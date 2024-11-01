@@ -2,8 +2,6 @@ import PlantCard from "@/components/PlantCard";
 
 export default function HomePage({ plants }) {
 
-  console.log(plants);
-
   return (
     <>
       <main>

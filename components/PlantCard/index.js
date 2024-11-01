@@ -4,7 +4,7 @@ import styled from "styled-components"
 export default function PlantCard({ image, name, botanicalName }) {
 
     return (
-        <section>
+        <article>
             <StyledImageContainer>
                 <StyledImage
                     src={image}
@@ -13,7 +13,7 @@ export default function PlantCard({ image, name, botanicalName }) {
             </StyledImageContainer>
             <h2>{name}</h2>
             <h3>{botanicalName}</h3>
-        </section>
+        </article>
     )
 }
 
