@@ -6,10 +6,8 @@ export default function HomePage({ plants }) {
 
   return (
     <>
-      <header>
-        <h1>Plant List</h1>
-      </header>
       <main>
+        <h1>Plant List</h1>
         <ul>
           { plants.map((plant) => (
             <li key={plant.id}>

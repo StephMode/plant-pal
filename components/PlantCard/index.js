@@ -17,9 +17,6 @@ export default function PlantCard({ image, name, botanicalName }) {
     )
 }
 
-
-
-
 const StyledImageContainer = styled.div`
     width: 300px;
     height: 300px;
@@ -33,3 +30,4 @@ const StyledImage = styled.img`
     height: auto;
     text-align: center;
 `;
+

@@ -29,9 +29,16 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    display: flex;
-    justify-content: center;
+    width: 100%;
   }
+
+  main {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 
   ul, li {
     list-style: none;
