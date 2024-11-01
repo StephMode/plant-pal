@@ -5,11 +5,11 @@ import { useState } from "react";
 export default function App({ Component, pageProps }) {
   const [initialPlants, setInitialPlants] = useState(plants);
 
-  
+
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <Component {...pageProps} plants={initialPlants} />
     </>
   );
 }

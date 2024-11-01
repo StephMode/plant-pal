@@ -13,7 +13,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['upload.wikimedia.org'],
+    domains: ['en.wikipedia.org', 'upload.wikimedia.org'],
   },
 };
 
