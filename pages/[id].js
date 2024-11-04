@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import plants from "@/lib/data";
 import Image from "next/image";
-import Link from "next/link";
-import styled from "styled-components";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 export default function PlantDetailsPage() {
   const router = useRouter();
@@ -30,6 +29,9 @@ export default function PlantDetailsPage() {
           ))}
         </ul>
         <p>{plant.description}</p>
+        <button onClick={() => router.push("/")}>
+          <IoArrowBackOutline />
+        </button>
       </main>
     </>
   );
