@@ -31,6 +31,18 @@ export default createGlobalStyle`
     font-family: system-ui;
     width: 100%;
   }
+  header {
+    display: flex;
+    padding: 5px 20px;
+    width: 100%;
+    height: 50px;
+    background-color: var(--green-main);
+  }
+  
+  header img {
+    width: 150px;
+    height: auto;
+  }
 
   main {
     margin: 0;

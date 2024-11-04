@@ -19,14 +19,14 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <StyledHeader>
+      <header>
         <Image
           src={"/logo-main.svg"}
-          width={150}
-          height={30}
+          width={200}
+          height={50}
           alt={"rooted logo"}
         />
-      </StyledHeader>
+      </header>
       <Component
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
@@ -35,9 +35,3 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-
-const StyledHeader = styled.header`
-  width: 100%;
-  height: 50px;
-  background-color: var(--green-main);
-`;
