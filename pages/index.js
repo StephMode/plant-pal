@@ -1,6 +1,7 @@
 import PlantCard from "@/components/PlantCard";
+import plants from "@/lib/data";
 
-export default function HomePage({ plants }) {
+export default function HomePage() {
 
   return (
     <>

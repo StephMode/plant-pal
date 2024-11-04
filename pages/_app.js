@@ -1,13 +1,9 @@
 import GlobalStyle from "../styles";
-import plants from "@/lib/data";
-import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 
 export default function App({ Component, pageProps }) {
-  const [initialPlants, setInitialPlants] = useState(plants);
-
-
+  
   return (
     <>
       <GlobalStyle />
@@ -19,7 +15,7 @@ export default function App({ Component, pageProps }) {
           alt={"rooted logo"}
         />
       </StyledHeader>
-      <Component {...pageProps} plants={initialPlants} />
+      <Component {...pageProps} />
     </>
   );
 }
