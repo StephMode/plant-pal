@@ -10,9 +10,12 @@ const nextConfig = {
       issuer: /\.[jt]sx?$/,
       use: ["@svgr/webpack"],
     });
-
     return config;
+  },
+  images: {
+    domains: ['en.wikipedia.org', 'upload.wikimedia.org'],
   },
 };
 
 module.exports = nextConfig;
+
