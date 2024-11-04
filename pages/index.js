@@ -1,7 +1,6 @@
 import PlantCard from "@/components/PlantCard";
-import plants from "@/lib/data";
 
-export default function HomePage({ handleToggleOwned }) {
+export default function HomePage({ handleToggleOwned, plants }) {
   return (
     <>
       <main>
@@ -15,6 +14,7 @@ export default function HomePage({ handleToggleOwned }) {
                 name={plant.name}
                 botanicalName={plant.botanicalName}
                 handleToggleOwned={handleToggleOwned}
+                isOwned={plant.isOwned}
               />
             </li>
           ))}

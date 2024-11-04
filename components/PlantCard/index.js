@@ -8,6 +8,7 @@ export default function PlantCard({
   botanicalName,
   plantId,
   handleToggleOwned,
+  isOwned,
 }) {
   return (
     <article>
@@ -15,6 +16,7 @@ export default function PlantCard({
         <PlantOwnedButton
           plantId={plantId}
           handleToggleOwned={handleToggleOwned}
+          isOwned={isOwned}
         />
         <StyledImage src={image} alt={name} />
       </StyledImageContainer>

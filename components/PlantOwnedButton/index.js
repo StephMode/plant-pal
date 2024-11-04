@@ -7,7 +7,7 @@ export default function PlantOwnedButton({
 }) {
   return (
     <button type="button" onClick={() => handleToggleOwned(plantId)}>
-      {isOwned ? (
+      {isOwned === true ? (
         <Image
           src={"./heart-solid.svg"}
           height={40}

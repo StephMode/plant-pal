@@ -1,11 +1,21 @@
 import GlobalStyle from "../styles";
 import Image from "next/image";
+import { useState } from "react";
 import styled from "styled-components";
+import plants from "@/lib/data";
 
 export default function App({ Component, pageProps }) {
+  const [allPlants, setAllPlants] = useState(plants);
+
   function handleToggleOwned(id) {
-    console.log(id);
+    // setPlants(...plants, id{...id; is});
+    setAllPlants(
+      allPlants.map((plant) =>
+        plant.id === id ? { ...plant, isOwned: !plant.isOwned } : plant
+      )
+    );
   }
+
   return (
     <>
       <GlobalStyle />
@@ -17,7 +27,11 @@ export default function App({ Component, pageProps }) {
           alt={"rooted logo"}
         />
       </StyledHeader>
-      <Component {...pageProps} handleToggleOwned={handleToggleOwned} />
+      <Component
+        {...pageProps}
+        handleToggleOwned={handleToggleOwned}
+        plants={allPlants}
+      />
     </>
   );
 }
