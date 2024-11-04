@@ -32,6 +32,7 @@ const StyledImageContainer = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
 
 const StyledImage = styled.img`
