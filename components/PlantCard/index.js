@@ -2,11 +2,20 @@ import Image from "next/image";
 import styled from "styled-components";
 import PlantOwnedButton from "../PlantOwnedButton";
 
-export default function PlantCard({ image, name, botanicalName }) {
+export default function PlantCard({
+  image,
+  name,
+  botanicalName,
+  plantId,
+  handleToggleOwned,
+}) {
   return (
     <article>
       <StyledImageContainer>
-        <PlantOwnedButton />
+        <PlantOwnedButton
+          plantId={plantId}
+          handleToggleOwned={handleToggleOwned}
+        />
         <StyledImage src={image} alt={name} />
       </StyledImageContainer>
       <h2>{name}</h2>

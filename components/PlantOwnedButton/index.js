@@ -1,8 +1,12 @@
 import Image from "next/image";
 
-export default function PlantOwnedButton({ isOwned, onClick }) {
+export default function PlantOwnedButton({
+  isOwned,
+  handleToggleOwned,
+  plantId,
+}) {
   return (
-    <button type="button" onClick={onClick}>
+    <button type="button" onClick={() => handleToggleOwned(plantId)}>
       {isOwned ? (
         <Image
           src={"./heart-solid.svg"}

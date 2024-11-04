@@ -3,23 +3,24 @@ import Image from "next/image";
 import styled from "styled-components";
 
 export default function App({ Component, pageProps }) {
-  
+  function handleToggleOwned(id) {
+    console.log(id);
+  }
   return (
     <>
       <GlobalStyle />
       <StyledHeader>
-        <Image 
+        <Image
           src={"/logo-main.svg"}
           width={150}
           height={30}
           alt={"rooted logo"}
         />
       </StyledHeader>
-      <Component {...pageProps} />
+      <Component {...pageProps} handleToggleOwned={handleToggleOwned} />
     </>
   );
 }
-
 
 const StyledHeader = styled.header`
   width: 100%;
