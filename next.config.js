@@ -13,9 +13,13 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['en.wikipedia.org', 'upload.wikimedia.org'],
+    domains: [
+      "en.wikipedia.org",
+      "upload.wikimedia.org",
+      "images.unsplash.com",
+      "images.pexels.com",
+    ],
   },
 };
 
 module.exports = nextConfig;
-
