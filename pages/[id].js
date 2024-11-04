@@ -21,7 +21,7 @@ export default function PlantDetailsPage() {
         <h1>Plant Details</h1>
         <h2>{plant.name}</h2>
         <h3>{plant.botanicalName}</h3>
-        <Image src={plant.imageUrl} alt={plant.name} />
+        <Image src={plant.imageUrl} alt={plant.name} width={300} height={300} />
         <p>{plant.lightNeed}</p>
         <p>{plant.waterNeed}</p>
         <ul>
