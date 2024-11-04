@@ -1,7 +1,6 @@
 import GlobalStyle from "../styles";
 import Image from "next/image";
 import { useState } from "react";
-import styled from "styled-components";
 import plants from "@/lib/data";
 
 export default function App({ Component, pageProps }) {

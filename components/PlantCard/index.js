@@ -11,7 +11,7 @@ export default function PlantCard({
   isOwned,
 }) {
   return (
-    <article>
+    <StyledCard>
       <StyledImageContainer>
         <PlantOwnedButton
           plantId={plantId}
@@ -22,9 +22,17 @@ export default function PlantCard({
       </StyledImageContainer>
       <h2>{name}</h2>
       <h3>{botanicalName}</h3>
-    </article>
+    </StyledCard>
   );
 }
+
+const StyledCard = styled.article`
+  background-color: var(--green-light);
+  color: var(--white);
+  padding: 18px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+`;
 
 const StyledImageContainer = styled.div`
   width: 300px;
@@ -39,4 +47,5 @@ const StyledImage = styled.img`
   width: 200%;
   height: auto;
   text-align: center;
+  border-radius: 35px;
 `;
