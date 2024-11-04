@@ -24,8 +24,9 @@ export default function PlantDetailsPage() {
         <h2>{plant.name}</h2>
         <h3>{plant.botanicalName}</h3>
         <Image src={plant.imageUrl} alt={plant.name} width={300} height={300} />
-        <p>
-          Light needs
+       
+        <h4>Light needs:</h4>
+        <span>
           <StyledSunIcon />
           <StyledSunIcon
             style={plant.lightNeed === "Full Shade" ? { fill: "none" } : null}
@@ -38,10 +39,10 @@ export default function PlantDetailsPage() {
                 : null
             }
           />
-        </p>
+        </span>
 
-        <p>
-          Water needs
+        <h4>Water needs:</h4>
+        <span>
           <StyledWaterDropIcon />
           <StyledWaterDropIcon
             style={plant.waterNeed === "Low" ? { fill: "none" } : null}
@@ -53,17 +54,21 @@ export default function PlantDetailsPage() {
                 : null
             }
           />
-        </p>
-
+        </span>
+        
+        <h4>Fertiliser Seasons:</h4>
         <ul>
           {plant.fertiliserSeason.map((season) => (
-            <li key={season}>{season}</li>
+            <li key={season}>{season} </li>
           ))}
         </ul>
+       
+        <h4>Description:</h4>
         <p>{plant.description}</p>
         <button onClick={() => router.push("/")}>
           <IoArrowBackOutline />
         </button>
+      
       </main>
     </>
   );
