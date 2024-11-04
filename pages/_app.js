@@ -7,7 +7,6 @@ export default function App({ Component, pageProps }) {
   const [allPlants, setAllPlants] = useState(plants);
 
   function handleToggleOwned(id) {
-    // setPlants(...plants, id{...id; is});
     setAllPlants(
       allPlants.map((plant) =>
         plant.id === id ? { ...plant, isOwned: !plant.isOwned } : plant

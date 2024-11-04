@@ -28,11 +28,6 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
   }
-  /* html {
-    font-family: var(--font-playfair-display);
-    font-family: var(--font-assistant);
-    font-family: var(--font-hind-vadodara);
-  } */
   body {
     margin: 0;
     font-family: system-ui;
@@ -47,6 +42,8 @@ export default createGlobalStyle`
   }
   h1 {
   font-family: 'Playfair Display', sans-serif;
+  padding: 20px 10px;
+  color: var(--green-main);
   }
 
  h2, h3, h4 {
