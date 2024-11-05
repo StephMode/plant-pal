@@ -36,7 +36,6 @@ export default createGlobalStyle`
   header {
     display: flex;
     padding: 5px 20px;
-    width: 100%;
     height: 50px;
     background-color: var(--green-main);
   }
