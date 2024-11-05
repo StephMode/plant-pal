@@ -1,5 +1,6 @@
 import PlantCard from "@/components/PlantCard";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function MyPlants({ handleToggleOwned, plants }) {
   const ownedPlants = plants.filter((plant) => plant.isOwned);
@@ -25,6 +26,7 @@ export default function MyPlants({ handleToggleOwned, plants }) {
             </li>
           ))}
         </ul>
+        <Link href={"/"}>Plant List</Link>
       </main>
     </>
   );
