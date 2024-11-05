@@ -18,72 +18,68 @@ export default function PlantDetailsPage() {
   }
 
   return (
-    <>
-      <main>
-        <h1>Plant Details</h1>
-        <h2>{plant.name}</h2>
-        <h3>{plant.botanicalName}</h3>
-        <StyledPlantContainer>
-          <StyledPlantNeedsContainer>
-            <h4>Light needs:</h4>
-            <span>
-              <StyledSunIcon />
-              <StyledSunIcon
-                style={
-                  plant.lightNeed === "Full Shade" ? { fill: "none" } : null
-                }
-              />
-              <StyledSunIcon
-                style={
-                  plant.lightNeed === "Full Shade" ||
-                  plant.lightNeed === "Partial Shade"
-                    ? { fill: "none" }
-                    : null
-                }
-              />
-            </span>
-            <br />
-
-            <h4>Water needs:</h4>
-            <span>
-              <StyledWaterDropIcon />
-              <StyledWaterDropIcon
-                style={plant.waterNeed === "Low" ? { fill: "none" } : null}
-              />
-              <StyledWaterDropIcon
-                style={
-                  plant.waterNeed === "Low" || plant.waterNeed === "Medium"
-                    ? { fill: "none" }
-                    : null
-                }
-              />
-            </span>
-            <br />
-            <h4>Fertiliser Seasons:</h4>
-            <ul>
-              {plant.fertiliserSeason.map((season) => (
-                <li key={season}>{season} </li>
-              ))}
-            </ul>
-            <br />
-          </StyledPlantNeedsContainer>
-          <StyledImageContainer>
-            <Image
-              src={plant.imageUrl}
-              alt={plant.name}
-              width={300}
-              height={300}
+    <main>
+      <h1>Plant Details</h1>
+      <h2>{plant.name}</h2>
+      <h3>{plant.botanicalName}</h3>
+      <StyledPlantContainer>
+        <StyledPlantNeedsContainer>
+          <h4>Light needs:</h4>
+          <span>
+            <StyledSunIcon />
+            <StyledSunIcon
+              style={plant.lightNeed === "Full Shade" ? { fill: "none" } : null}
             />
-          </StyledImageContainer>
-        </StyledPlantContainer>
-        <h4>Description:</h4>
-        <p>{plant.description}</p>
-        <br />
-        <button onClick={() => router.push("/")}>
-          <IoArrowBackOutline />
-        </button>
-      </main>
-    </>
+            <StyledSunIcon
+              style={
+                plant.lightNeed === "Full Shade" ||
+                plant.lightNeed === "Partial Shade"
+                  ? { fill: "none" }
+                  : null
+              }
+            />
+          </span>
+          <br />
+
+          <h4>Water needs:</h4>
+          <span>
+            <StyledWaterDropIcon />
+            <StyledWaterDropIcon
+              style={plant.waterNeed === "Low" ? { fill: "none" } : null}
+            />
+            <StyledWaterDropIcon
+              style={
+                plant.waterNeed === "Low" || plant.waterNeed === "Medium"
+                  ? { fill: "none" }
+                  : null
+              }
+            />
+          </span>
+          <br />
+          <h4>Fertiliser Seasons:</h4>
+          <ul>
+            {plant.fertiliserSeason.map((season) => (
+              <li key={season}>{season} </li>
+            ))}
+          </ul>
+          <br />
+        </StyledPlantNeedsContainer>
+        <StyledImageContainer>
+          <Image
+            src={plant.imageUrl}
+            alt={plant.name}
+            width={300}
+            height={300}
+          />
+        </StyledImageContainer>
+      </StyledPlantContainer>
+      <h4>Description:</h4>
+      <p>{plant.description}</p>
+      <br />
+      <button onClick={() => router.push("/")}>
+        <IoArrowBackOutline />
+      </button>
+    </main>
   );
 }
 
