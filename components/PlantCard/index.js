@@ -6,7 +6,12 @@ export default function PlantCard({ image, name, botanicalName, id }) {
   return (
     <article>
       <StyledImageContainer>
-        <StyledImage src={image} alt={name} />
+        <StyledImage
+          src={image}
+          alt={name}
+          fill={true}
+          style={{ objectFit: "cover" }}
+        ></StyledImage>
       </StyledImageContainer>
       <Link href={`/plants/${id}`}>
         <h2>{name}</h2>
@@ -22,10 +27,9 @@ const StyledImageContainer = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
 
-const StyledImage = styled.img`
-  width: 200%;
-  height: auto;
+const StyledImage = styled(Image)`
   text-align: center;
 `;
