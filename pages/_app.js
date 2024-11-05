@@ -8,8 +8,6 @@ export default function App({ Component, pageProps }) {
     defaultValue: plants,
   });
 
-  console.log(allPlants);
-
   function handleToggleOwned(id) {
     setAllPlants((prevPlants) =>
       prevPlants.map((plant) =>
