@@ -1,12 +1,18 @@
 import PlantCard from "@/components/PlantCard";
+import styled from "styled-components";
 
 export default function MyPlants({ handleToggleOwned, plants }) {
+  const ownedPlants = plants.filter((plant) => plant.isOwned);
+
   return (
     <>
       <main>
         <h1>My Plants</h1>
+        {ownedPlants.length === 0 && (
+          <StyledInfoText>Currently no plants in your list!</StyledInfoText>
+        )}
         <ul>
-          {plants.map((plant) => (
+          {ownedPlants.map((plant) => (
             <li key={plant.id}>
               <PlantCard
                 plantId={plant.id}
@@ -23,3 +29,11 @@ export default function MyPlants({ handleToggleOwned, plants }) {
     </>
   );
 }
+
+const StyledInfoText = styled.p`
+  color: var(--green-main);
+  background-color: var(--gray);
+  margin-top: 10px;
+  padding: 40px 40px;
+  border-radius: 25px;
+`;

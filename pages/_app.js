@@ -1,14 +1,18 @@
 import GlobalStyle from "../styles";
 import Image from "next/image";
-import { useState } from "react";
 import plants from "@/lib/data";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
-  const [allPlants, setAllPlants] = useState(plants);
+  const [allPlants, setAllPlants] = useLocalStorageState("allPlants", {
+    defaultValue: plants,
+  });
+
+  console.log(allPlants);
 
   function handleToggleOwned(id) {
-    setAllPlants(
-      allPlants.map((plant) =>
+    setAllPlants((prevPlants) =>
+      prevPlants.map((plant) =>
         plant.id === id ? { ...plant, isOwned: !plant.isOwned } : plant
       )
     );
@@ -29,6 +33,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
         plants={allPlants}
+        // ownedPlants={ownedPlants}
       />
     </>
   );
