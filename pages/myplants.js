@@ -1,4 +1,4 @@
-import PlantCard from "@/components/PlantCard";
+import PlantCard from "/components/PlantCard";
 import styled from "styled-components";
 import Link from "next/link";
 

@@ -1,6 +1,6 @@
 import GlobalStyle from "../styles";
 import Image from "next/image";
-import plants from "@/lib/data";
+import plants from "/lib/data";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {

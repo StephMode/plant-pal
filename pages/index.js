@@ -1,4 +1,4 @@
-import PlantCard from "@/components/PlantCard";
+import PlantCard from "/components/PlantCard";
 import Link from "next/link";
 
 export default function HomePage({ handleToggleOwned, plants }) {
