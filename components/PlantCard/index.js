@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PlantOwnedButton from "../PlantOwnedButton";
+import Image from "next/image";
 
 export default function PlantCard({
   image,
@@ -17,7 +18,7 @@ export default function PlantCard({
           handleToggleOwned={handleToggleOwned}
           isOwned={isOwned}
         />
-        <StyledImage src={image} alt={name} />
+        <StyledImage src={image} alt={name} fill={true} />
       </StyledImageContainer>
       <StyledH2>{name}</StyledH2>
       <StyledH3>{botanicalName}</StyledH3>
@@ -43,7 +44,7 @@ const StyledImageContainer = styled.div`
   margin-bottom: 15px;
 `;
 
-const StyledImage = styled.img`
+const StyledImage = styled(Image)`
   width: 200%;
   height: auto;
   text-align: center;

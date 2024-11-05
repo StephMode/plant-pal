@@ -26,5 +26,5 @@ const StyledButton = styled.button`
   top: 10px;
   right: 10px;
   padding: 10px;
-  fill: blue;
+  z-index: 20;
 `;
