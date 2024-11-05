@@ -33,7 +33,6 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
         plants={allPlants}
-        // ownedPlants={ownedPlants}
       />
     </>
   );
