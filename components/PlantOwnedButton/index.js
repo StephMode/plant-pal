@@ -8,16 +8,12 @@ export default function PlantOwnedButton({
 }) {
   return (
     <StyledButton type="button" onClick={() => handleToggleOwned(plantId)}>
-      {isOwned === true ? (
-        <Image
-          src={"./heart-solid.svg"}
-          height={40}
-          width={40}
-          alt="heart icon"
-        />
-      ) : (
-        <Image src={"./heart.svg"} height={40} width={40} alt="heart icon" />
-      )}
+      <Image
+        src={isOwned ? "./heart-solid.svg" : "./heart.svg"}
+        height={40}
+        width={40}
+        alt="heart icon"
+      />
     </StyledButton>
   );
 }
