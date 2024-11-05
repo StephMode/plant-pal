@@ -1,10 +1,6 @@
 import { useRouter } from "next/router";
 import plants from "@/lib/data";
-import Image from "next/image";
-import { IoArrowBackOutline } from "react-icons/io5";
-import styled from "styled-components";
-import { LuDroplet } from "react-icons/lu";
-import { FiSun } from "react-icons/fi";
+import PlantDetails from "@/components/PlantDetails/PlantDetails";
 
 export default function PlantDetailsPage() {
   const router = useRouter();
@@ -20,93 +16,7 @@ export default function PlantDetailsPage() {
   return (
     <main>
       <h1>Plant Details</h1>
-      <h2>{plant.name}</h2>
-      <h3>{plant.botanicalName}</h3>
-      <StyledPlantContainer>
-        <StyledPlantNeedsContainer>
-          <h4>Light needs:</h4>
-          <span>
-            <StyledSunIcon />
-            <StyledSunIcon
-              style={plant.lightNeed === "Full Shade" ? { fill: "none" } : null}
-            />
-            <StyledSunIcon
-              style={
-                plant.lightNeed === "Full Shade" ||
-                plant.lightNeed === "Partial Shade"
-                  ? { fill: "none" }
-                  : null
-              }
-            />
-          </span>
-          <br />
-
-          <h4>Water needs:</h4>
-          <span>
-            <StyledWaterDropIcon />
-            <StyledWaterDropIcon
-              style={plant.waterNeed === "Low" ? { fill: "none" } : null}
-            />
-            <StyledWaterDropIcon
-              style={
-                plant.waterNeed === "Low" || plant.waterNeed === "Medium"
-                  ? { fill: "none" }
-                  : null
-              }
-            />
-          </span>
-          <br />
-          <h4>Fertiliser Seasons:</h4>
-          <ul>
-            {plant.fertiliserSeason.map((season) => (
-              <li key={season}>{season} </li>
-            ))}
-          </ul>
-          <br />
-        </StyledPlantNeedsContainer>
-        <StyledImageContainer>
-          <Image
-            src={plant.imageUrl}
-            alt={plant.name}
-            width={300}
-            height={300}
-          />
-        </StyledImageContainer>
-      </StyledPlantContainer>
-      <h4>Description:</h4>
-      <p>{plant.description}</p>
-      <br />
-      <button onClick={() => router.push("/")}>
-        <IoArrowBackOutline />
-      </button>
+      <PlantDetails {...plant} />
     </main>
   );
 }
-
-const StyledWaterDropIcon = styled(LuDroplet)`
-  color: blue;
-  fill: blue;
-`;
-
-const StyledSunIcon = styled(FiSun)`
-  color: gold;
-  fill: gold;
-`;
-
-const StyledPlantContainer = styled.section`
-  display: flex;
-  margin: 25px;
-`;
-
-const StyledImageContainer = styled.div`
-  width: 300px;
-  height: 300px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-`;
-
-const StyledPlantNeedsContainer = styled.article`
-  display: flex;
-  flex-direction: column;
-`;
