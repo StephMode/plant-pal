@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components";
 
-export default function PlantDeleteButton({ id, handleDeletePlant }) {
+export default function PlantDeleteButton({ name, id, handleDeletePlant }) {
 const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 function handleToggleModal() {
@@ -14,13 +14,15 @@ return(
     <StyledButton type="button" onClick={handleToggleModal}>Delete Plant</StyledButton>
 
     {showDeleteModal === true ? (
-        <StyledDeleteModal>
-            <p>Are you sure you want to delete PLANTNAME?</p>
-            <StyledDeleteModalButtonContainer>
-                <button type="button" onClick={handleToggleModal}>Cancel</button>
-                <button type="button" onClick={() => handleDeletePlant(id)}>Delete</button>
-            </StyledDeleteModalButtonContainer>
-        </StyledDeleteModal>
+        <StyledDeleteModalBackground>
+            <StyledDeleteModal>
+                <p>Do you really want to delete <StyledPlantName>{name}</StyledPlantName>?</p>
+                <StyledDeleteModalButtonContainer>
+                    <StyledButton type="button" onClick={handleToggleModal}>Cancel</StyledButton>
+                    <StyledButton type="button" onClick={() => handleDeletePlant(id)}>Delete</StyledButton>
+                </StyledDeleteModalButtonContainer>
+            </StyledDeleteModal>
+        </StyledDeleteModalBackground>
     ) : null
     }
     </>
@@ -29,33 +31,33 @@ return(
 };
 
 
+const StyledDeleteModalBackground = styled.section`
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+`;
+
 const StyledDeleteModal = styled.section`
-    background-color: rgba(128, 128, 128, 0.6);
+    background-color: var(--white);
+    border-radius: 35px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
     height: 40%;
-    border-radius: 35px;
+    padding: 0 20px;
     display: flex;
     text-align: center;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
     z-index: 110;
-
-    /* :before {
-        content: "";
-        background-color: rgba(128, 128, 128, 0.3);
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-    }; */
-
 `;
 
 const StyledDeleteModalButtonContainer = styled.div`
@@ -65,12 +67,14 @@ const StyledDeleteModalButtonContainer = styled.div`
 
 `;
 
-
 const StyledButton = styled.button`
     background-color: var(--brown);
-    padding: 5px;
+    padding: 8px;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
 `;
 
-//aside, section as alternative to div
+
+const StyledPlantName = styled.span`
+    font-weight: bold;
+`;
