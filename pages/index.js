@@ -19,7 +19,7 @@ export default function HomePage({ handleToggleOwned, plants }) {
           </li>
         ))}
       </ul>
-      <Link href={"/myplants"}>My Plants</Link>
+      <Link href="/myplants">My Plants</Link>
     </main>
   );
 }

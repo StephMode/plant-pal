@@ -20,12 +20,7 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <header>
-        <Image
-          src={"/logo-main.svg"}
-          width={200}
-          height={50}
-          alt={"rooted logo"}
-        />
+        <Image src="/logo-main.svg" width={200} height={50} alt="rooted logo" />
       </header>
       <Component
         {...pageProps}
