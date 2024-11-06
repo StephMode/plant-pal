@@ -2,6 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap');
+
   :root {
     --gold: #FFBA00;
     --gold-dark: #CE9605;
@@ -25,11 +28,30 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
   }
-
   body {
     margin: 0;
     font-family: system-ui;
     width: 100%;
+  }
+  header {
+    display: flex;
+    padding: 5px 20px;
+    height: 50px;
+    background-color: var(--green-main);
+  }
+  h1 {
+  font-family: 'Playfair Display', sans-serif;
+  padding: 20px 10px;
+  color: var(--green-main);
+  }
+
+ h2, h3, h4 {
+  font-family: 'Assistant', sans-serif;
+ }
+
+  header img {
+    width: 150px;
+    height: auto;
   }
 
   main {

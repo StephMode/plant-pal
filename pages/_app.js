@@ -1,28 +1,32 @@
 import GlobalStyle from "../styles";
 import Image from "next/image";
-import styled from "styled-components";
+import { plants as initialPlants } from "/lib/data";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
-  
+  const [plants, setPlants] = useLocalStorageState("plants", {
+    defaultValue: initialPlants,
+  });
+
+  function handleToggleOwned(id) {
+    setPlants((prevPlants) =>
+      prevPlants.map((plant) =>
+        plant.id === id ? { ...plant, isOwned: !plant.isOwned } : plant
+      )
+    );
+  }
+
   return (
     <>
       <GlobalStyle />
-      <StyledHeader>
-        <Image 
-          src={"/logo-main.svg"}
-          width={150}
-          height={30}
-          alt={"rooted logo"}
-        />
-      </StyledHeader>
-      <Component {...pageProps} />
+      <header>
+        <Image src="/logo-main.svg" width={200} height={50} alt="rooted logo" />
+      </header>
+      <Component
+        {...pageProps}
+        handleToggleOwned={handleToggleOwned}
+        plants={plants}
+      />
     </>
   );
 }
-
-
-const StyledHeader = styled.header`
-  width: 100%;
-  height: 50px;
-  background-color: var(--green-main);
-`;

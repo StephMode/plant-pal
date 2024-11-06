@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { IoArrowBackOutline } from "react-icons/io5";
 import styled from "styled-components";
 import { LuDroplet } from "react-icons/lu";
 import { FiSun } from "react-icons/fi";
