@@ -1,9 +1,32 @@
-export default function AddPlantForm (){
+export default function AddPlantForm ({handleAddPlant}){
+
+    function handleSubmitAddPlant(event){
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = {}
+
+
+        formData.forEach((value, key) => {
+            if (key === "fertiliserSeason") {
+              if (!data[key]) {
+                data[key] = [];
+              }
+              data[key].push(value);
+            } else {
+              data[key] = value;
+            }
+          });
+
+
+        console.log(data)
+        handleAddPlant(data)
+        event.target.reset();
+    }
 
     return(
         <>
             <h2>Add plant</h2>
-            <form>
+            <form onSubmit={handleSubmitAddPlant}>
                 <fieldset>
                     <label htmlFor="plantName">
                     Plant name:
