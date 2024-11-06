@@ -75,7 +75,7 @@ export default function PlantDetails({
           <br />
         </StyledPlantNeedsContainer>
         <StyledImageContainer>
-          <Image src={imageUrl} alt={name} width={300} height={300} />
+          <StyledImage src={imageUrl} alt={name} fill={true} />
         </StyledImageContainer>
       </StyledPlantContainer>
       <h4>Description:</h4>
@@ -111,15 +111,23 @@ const StyledPlantContainer = styled.section`
   margin: 25px;
 `;
 
+const StyledPlantNeedsContainer = styled.article`
+  display: flex;
+  flex-direction: column;
+`;
+
 const StyledImageContainer = styled.div`
   width: 300px;
   height: 300px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
+  position: relative;
+  margin-bottom: 15px;
 `;
 
-const StyledPlantNeedsContainer = styled.article`
-  display: flex;
-  flex-direction: column;
+const StyledImage = styled(Image)`
+  width: 200%;
+  height: auto;
+  text-align: center;
+  border-radius: 35px;
+  object-fit: cover;
 `;
