@@ -9,6 +9,10 @@ function handleToggle() {
 
 
 
+// if(plants.length === 0) {
+//     show info text that list is empty
+//     render Add plant button
+// }
 
 
 

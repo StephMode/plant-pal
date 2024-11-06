@@ -2,6 +2,18 @@ import PlantCard from "/components/PlantCard";
 import Link from "next/link";
 
 export default function HomePage({ handleToggleOwned, plants }) {
+
+  if(plants.length === 0) {
+    return (
+    <main>
+    <h1>Plant List</h1>
+    <p>No plants there yet. Add new ones!</p>
+    <br />
+    <button type="button">Add Plant</button>
+  </main>
+    )
+  }
+
   return (
     <main>
       <h1>Plant List</h1>
@@ -23,3 +35,7 @@ export default function HomePage({ handleToggleOwned, plants }) {
     </main>
   );
 }
+
+
+
+

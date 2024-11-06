@@ -19,14 +19,12 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  console.log(plants);
-
   function handleDeletePlant(id) {
     setPlants((prevPlants) => 
       prevPlants.filter((plant) =>
         plant.id !== id)
     );
-    
+
     router.push("/");
   }
 
