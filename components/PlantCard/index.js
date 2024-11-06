@@ -15,7 +15,7 @@ export default function PlantCard({
       <StyledImageContainer>
         <PlantOwnedButton
           plantId={plantId}
-          handleToggleOwned={handleToggleOwned}
+          onClick={() => handleToggleOwned(plantId)}
           isOwned={isOwned}
         />
         <StyledImage src={image} alt={name} fill={true} />

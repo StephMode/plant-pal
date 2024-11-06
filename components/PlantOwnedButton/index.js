@@ -1,13 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-export default function PlantOwnedButton({
-  isOwned,
-  handleToggleOwned,
-  plantId,
-}) {
+export default function PlantOwnedButton({ isOwned, onClick }) {
   return (
-    <StyledButton type="button" onClick={() => handleToggleOwned(plantId)}>
+    <StyledButton type="button" onClick={onClick}>
       <Image
         src={isOwned ? "./heart-solid.svg" : "./heart.svg"}
         height={40}
