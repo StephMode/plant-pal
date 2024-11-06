@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { LuDroplet } from "react-icons/lu";
 import { FiSun } from "react-icons/fi";
 import Link from "next/link";
+import PlantDeleteButton from "../PlantDeleteButton";
 
 export default function PlantDetails({
   name,
@@ -80,6 +81,8 @@ export default function PlantDetails({
       </StyledPlantContainer>
       <h4>Description:</h4>
       <p>{description}</p>
+      <br />
+      <PlantDeleteButton />
       <br />
       <Link href={"/"}>Homepage</Link>
     </>
