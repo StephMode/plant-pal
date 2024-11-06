@@ -21,7 +21,7 @@ export default function PlantCard({
         />
         <StyledImage src={image} alt={name} fill={true} />
       </StyledImageContainer>
-      <Link href={`/plants/${id}`}>
+      <Link href={`/plants/${plantId}`}>
         <StyledH2>{name}</StyledH2>
         <StyledH3>{botanicalName}</StyledH3>
       </Link>
