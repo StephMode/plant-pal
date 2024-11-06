@@ -8,8 +8,7 @@ function handleToggleModal() {
     setShowDeleteModal(!showDeleteModal);
 };
 
-
-return(
+return (
     <>
     <StyledButton type="button" onClick={handleToggleModal}>Delete Plant</StyledButton>
 
@@ -39,7 +38,6 @@ const StyledDeleteModalBackground = styled.section`
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;
 `;
 
 const StyledDeleteModal = styled.section`
@@ -57,7 +55,6 @@ const StyledDeleteModal = styled.section`
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    z-index: 110;
 `;
 
 const StyledDeleteModalButtonContainer = styled.div`
@@ -69,7 +66,7 @@ const StyledDeleteModalButtonContainer = styled.div`
 
 const StyledButton = styled.button`
     background-color: var(--brown);
-    padding: 8px;
+    padding: 8px 20px;
     border: none;
     border-radius: 20px;
 `;

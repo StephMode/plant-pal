@@ -11,7 +11,8 @@ export default function HomePage({ handleToggleOwned, plants }) {
         <>
           <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
           <br />
-          <button type="button">Add Plant</button>
+          <StyledButton type="button">Add Plant</StyledButton>
+          <br />
         </>
       ) : (
       <ul>
@@ -44,5 +45,11 @@ const StyledInfoText = styled.p`
 `;
 
 
+const StyledButton = styled.button`
+    background-color: var(--green-light);
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+`;
 
 
