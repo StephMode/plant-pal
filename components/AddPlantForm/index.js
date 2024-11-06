@@ -31,16 +31,16 @@ export default function AddPlantForm ({handleAddPlant}){
                     <StyledInput id="plantName" name="name" type="text" placeholder="e.g. Monstera" required></StyledInput>
                 </StyledFieldset>
                 <StyledFieldset>
-                <label htmlFor="botanicalPlantName">
-                  Botanical plant name:
-                </label>
-                <StyledInput id="botanicalPlantName" name="botanicalName" type="text" placeholder="e.g. Monstera deliciosa" required></StyledInput>
+                    <label htmlFor="botanicalPlantName">
+                    Botanical plant name:
+                    </label>
+                    <StyledInput id="botanicalPlantName" name="botanicalName" type="text" placeholder="e.g. Monstera deliciosa" required></StyledInput>
                 </StyledFieldset>
                 <StyledFieldset>
-                <label htmlFor="plantDescription">
-                  Description:
-                </label>
-                <StyledTextarea id="plantDescription" name="description" type="text" placeholder="e.g. Monstera deliciosa, also known as the Swiss cheese plant"></StyledTextarea>
+                    <label htmlFor="plantDescription">
+                    Description:
+                    </label>
+                    <StyledTextarea id="plantDescription" name="description" type="text" placeholder="e.g. Monstera deliciosa, also known as the Swiss cheese plant"></StyledTextarea>
                 </StyledFieldset>
                 {/*-----------------------------------------------------------*/}
                 <StyledFieldsetRadio>
@@ -137,7 +137,6 @@ const StyledSection = styled.section`
     padding: 5px 10px;
     border-radius: 20px;  
     font-weight: bold; 
-    
  `;
  const StyledRadioInput = styled.input`
 	display: none;
