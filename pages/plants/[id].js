@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
-import plants from "@/lib/data";
-import PlantDetails from "@/components/PlantDetails/PlantDetails";
+import PlantDetails from "/components/PlantDetails/PlantDetails";
 
-export default function PlantDetailsPage() {
+export default function PlantDetailsPage({ plants }) {
   const router = useRouter();
 
   const { id } = router.query;
