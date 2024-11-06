@@ -47,6 +47,7 @@ const StyledImage = styled(Image)`
   height: auto;
   text-align: center;
   border-radius: 35px;
+  object-fit: cover;
 `;
 
 const StyledH2 = styled.h2`
