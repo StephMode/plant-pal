@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function PlantDeleteButton({ handleDeletePlant }) {
+export default function PlantDeleteButton({ id, handleDeletePlant }) {
 const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 function handleToggle() {
@@ -19,7 +19,7 @@ return(
     {showDeleteModal === true ? (
         <>
             <button type="button" onClick={handleToggle}>Cancel</button>
-            <button type="button" onClick={handleDeletePlant}>Delete</button>
+            <button type="button" onClick={() => handleDeletePlant(id)}>Delete</button>
         </>
     ) : null
     }

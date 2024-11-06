@@ -2,8 +2,11 @@ import GlobalStyle from "../styles";
 import Image from "next/image";
 import { plants as initialPlants } from "/lib/data";
 import useLocalStorageState from "use-local-storage-state";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
@@ -16,8 +19,15 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  function onDeletePlant() {
-    return console.log("Deleted!");
+  console.log(plants);
+
+  function handleDeletePlant(id) {
+    setPlants((prevPlants) => 
+      prevPlants.filter((plant) =>
+        plant.id !== id)
+    );
+    
+    router.push("/");
   }
 
   return (
@@ -30,7 +40,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
         plants={plants}
-        onDeletePlant={onDeletePlant}
+        onDeletePlant={handleDeletePlant}
       />
     </>
   );

@@ -15,7 +15,7 @@ export default function PlantDetailsPage({ plants, onDeletePlant }) {
   return (
     <main>
       <h1>Plant Details</h1>
-      <PlantDetails {...plant} onDeletePlant={onDeletePlant} />
+      <PlantDetails {...plant} onDeletePlant={onDeletePlant} id={id} />
     </main>
   );
 }
