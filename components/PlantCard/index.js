@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PlantOwnedButton from "../PlantOwnedButton";
 import Image from "next/image";
+import Link from "next/link"
 
 export default function PlantCard({
   image,
@@ -20,8 +21,10 @@ export default function PlantCard({
         />
         <StyledImage src={image} alt={name} fill={true} />
       </StyledImageContainer>
-      <StyledH2>{name}</StyledH2>
-      <StyledH3>{botanicalName}</StyledH3>
+      <Link href={`/plants/${id}`}>
+        <StyledH2>{name}</StyledH2>
+        <StyledH3>{botanicalName}</StyledH3>
+      </Link>
     </StyledCard>
   );
 }
