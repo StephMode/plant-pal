@@ -38,8 +38,6 @@ const StyledImageContainer = styled.div`
   width: 300px;
   height: 300px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
   position: relative;
   margin-bottom: 15px;
 `;
