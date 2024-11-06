@@ -1,22 +1,19 @@
 import PlantCard from "/components/PlantCard";
 import Link from "next/link";
+import styled from "styled-components";
 
 export default function HomePage({ handleToggleOwned, plants }) {
-
-  if(plants.length === 0) {
-    return (
-    <main>
-    <h1>Plant List</h1>
-    <p>No plants there yet. Add new ones!</p>
-    <br />
-    <button type="button">Add Plant</button>
-  </main>
-    )
-  }
 
   return (
     <main>
       <h1>Plant List</h1>
+      { plants.length === 0 ? (
+        <>
+          <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
+          <br />
+          <button type="button">Add Plant</button>
+        </>
+      ) : (
       <ul>
         {plants.map((plant) => (
           <li key={plant.id}>
@@ -31,10 +28,20 @@ export default function HomePage({ handleToggleOwned, plants }) {
           </li>
         ))}
       </ul>
+      )}
       <Link href="/myplants">My Plants</Link>
     </main>
   );
 }
+
+
+const StyledInfoText = styled.p`
+  color: var(--green-main);
+  background-color: var(--gray);
+  margin-top: 10px;
+  padding: 40px 40px;
+  border-radius: 25px;
+`;
 
 
 
