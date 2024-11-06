@@ -13,6 +13,7 @@ export default function PlantDetails({
   lightNeed,
   fertiliserSeason,
   description,
+  onDeletePlant
 }) {
   return (
     <>
@@ -82,7 +83,7 @@ export default function PlantDetails({
       <h4>Description:</h4>
       <p>{description}</p>
       <br />
-      <PlantDeleteButton />
+      <PlantDeleteButton handleDeletePlant={onDeletePlant} />
       <br />
       <Link href={"/"}>Homepage</Link>
     </>

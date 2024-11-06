@@ -16,6 +16,10 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  function onDeletePlant() {
+    return console.log("Deleted!");
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -26,6 +30,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
         plants={plants}
+        onDeletePlant={onDeletePlant}
       />
     </>
   );
