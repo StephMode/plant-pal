@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { LuDroplet } from "react-icons/lu";
 import { FiSun } from "react-icons/fi";
 import Link from "next/link";
-import PlantDeleteButton from "../PlantDeleteButton";
+import PlantDeleteButton from "../Modal";
 
 export default function PlantDetails({
   name,
@@ -84,7 +84,7 @@ export default function PlantDetails({
       <h4>Description:</h4>
       <p>{description}</p>
       <br />
-      <PlantDeleteButton handleDeletePlant={onDeletePlant} name={name} id={id}  />
+      <PlantDeleteButton onDeletePlant={onDeletePlant} name={name} id={id}  />
       <br />
       <Link href="/">Homepage</Link>
     </>
