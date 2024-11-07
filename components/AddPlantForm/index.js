@@ -129,6 +129,13 @@ const StyledSection = styled.section`
     border-radius: 30px;
     padding: 10px 15px;
     margin-top: 6px;
+    max-width: 570px;
+    max-height: 300px;
+    min-width: 327px;
+    width: 100%;
+    height: auto;
+    resize: none;
+    min-height: 100px;
  `;
  const StyledRadiolabel = styled.label`
     background: var(--green-light);
@@ -151,7 +158,8 @@ const StyledSection = styled.section`
     border: none;
     padding: 10px 0;
     color: var(--green-main);
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 15px;
  `;
  const StyledCheckboxLabel = styled.label`
     background: var(--green-light);
