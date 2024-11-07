@@ -5,31 +5,15 @@ export default function AddPlantForm ({handleAddPlant}){
     function handleSubmitAddPlant(event){
         event.preventDefault();
         const formData = new FormData(event.target);
-
-
         const data = Object.fromEntries(formData);
+
         const selectedSeasons = formData.getAll("fertiliserSeason");
-     
         if (selectedSeasons.length === 0) {
            alert("Please select at least one season.");
            return; 
         }
-     
         data.fertiliserSeason = selectedSeasons;
 
-
-
-       /*  const data = {}
-        formData.forEach((value, key) => {
-            if (key === "fertiliserSeason") {
-              if (!data[key]) {
-                data[key] = [];
-              }
-              data[key].push(value);
-            } else {
-              data[key] = value;
-            }
-        }); */
         handleAddPlant(data)
         event.target.reset();
     }
@@ -60,33 +44,33 @@ export default function AddPlantForm ({handleAddPlant}){
                 <StyledFieldsetRadio>
                     <legend> Light needs </legend>
 
-                    <StyledRadioInput id="light-full-shade" name="lightNeed" type="radio" value="Full Shade" required/>
+                    <StyledRadioInput id="light-full-shade" name="lightNeed" type="radio" value="Full Shade" defaultChecked />
                     <StyledRadiolabel htmlFor="light-full-shade">Full Shade </StyledRadiolabel>
 
-                    <StyledRadioInput id="light-partial-shade" name="lightNeed" type="radio" value="Partial Shade" required/>
+                    <StyledRadioInput id="light-partial-shade" name="lightNeed" type="radio" value="Partial Shade" />
                     <StyledRadiolabel htmlFor="light-partial-shade">Partial Shade </StyledRadiolabel>
 
-                    <StyledRadioInput id="light-full-sun" name="lightNeed" type="radio" value="Full Sun" required/>
+                    <StyledRadioInput id="light-full-sun" name="lightNeed" type="radio" value="Full Sun" />
                     <StyledRadiolabel htmlFor="light-full-sun">Full Sun </StyledRadiolabel>
                 </StyledFieldsetRadio>
                 {/*-----------------------------------------------------------*/}
                 <StyledFieldsetRadio>
                     <legend> Water needs </legend>
 
-                    <StyledRadioInput id="water-low" name="waterNeed" type="radio" value="Low" required/>
+                    <StyledRadioInput id="water-low" name="waterNeed" type="radio" value="Low" defaultChecked  />
                     <StyledRadiolabel htmlFor="water-low">Low</StyledRadiolabel>
 
-                    <StyledRadioInput id="water-medium" name="waterNeed" type="radio" value="Medium" required/>
+                    <StyledRadioInput id="water-medium" name="waterNeed" type="radio" value="Medium" />
                     <StyledRadiolabel htmlFor="water-medium">Medium</StyledRadiolabel>
 
-                    <StyledRadioInput id="water-high" name="waterNeed" type="radio" value="High" required/>
+                    <StyledRadioInput id="water-high" name="waterNeed" type="radio" value="High" />
                     <StyledRadiolabel htmlFor="water-high">High </StyledRadiolabel>
                 </StyledFieldsetRadio>
                 {/*-----------------------------------------------------------*/}
                 <StyledFieldsetCheckbox>
                     <legend>Fertiliser Season</legend>
 
-                        <StyledCheckboxInput id="fertiliser-spring" name="fertiliserSeason" type="checkbox" value="Spring"/>
+                        <StyledCheckboxInput id="fertiliser-spring" name="fertiliserSeason" type="checkbox" value="Spring" defaultChecked/>
                         <StyledCheckboxLabel htmlFor="fertiliser-spring">Spring</StyledCheckboxLabel>
 
                         <StyledCheckboxInput id="fertiliser-summer" name="fertiliserSeason" type="checkbox" value="Summer"/>
