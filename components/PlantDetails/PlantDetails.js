@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { LuDroplet } from "react-icons/lu";
 import { FiSun } from "react-icons/fi";
 import Link from "next/link";
+import PlantDeleteButton from "../PlantDeleteButton";
 
 export default function PlantDetails({
   name,
@@ -12,6 +13,8 @@ export default function PlantDetails({
   lightNeed,
   fertiliserSeason,
   description,
+  onDeletePlant,
+  id
 }) {
   return (
     <>
@@ -75,13 +78,15 @@ export default function PlantDetails({
           <br />
         </StyledPlantNeedsContainer>
         <StyledImageContainer>
-          <Image src={imageUrl} alt={name} width={300} height={300} />
+          <StyledImage src={imageUrl} alt={name} fill />
         </StyledImageContainer>
       </StyledPlantContainer>
       <h4>Description:</h4>
       <p>{description}</p>
       <br />
-      <Link href={"/"}>Homepage</Link>
+      <PlantDeleteButton onDeletePlant={onDeletePlant} name={name} id={id}  />
+      <br />
+      <Link href="/">Homepage</Link>
     </>
   );
 }
@@ -111,15 +116,23 @@ const StyledPlantContainer = styled.section`
   margin: 25px;
 `;
 
+const StyledPlantNeedsContainer = styled.article`
+  display: flex;
+  flex-direction: column;
+`;
+
 const StyledImageContainer = styled.div`
   width: 300px;
   height: 300px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
+  position: relative;
+  margin-bottom: 15px;
 `;
 
-const StyledPlantNeedsContainer = styled.article`
-  display: flex;
-  flex-direction: column;
+const StyledImage = styled(Image)`
+  width: 200%;
+  height: auto;
+  text-align: center;
+  border-radius: 35px;
+  object-fit: cover;
 `;

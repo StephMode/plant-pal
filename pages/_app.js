@@ -2,9 +2,12 @@ import GlobalStyle from "../styles";
 import Image from "next/image";
 import { plants as initialPlants } from "/lib/data";
 import useLocalStorageState from "use-local-storage-state";
-import { nanoid } from 'nanoid'
+import { useRouter } from "next/router";
+import { nanoid } from 'nanoid';
+
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
 
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
@@ -24,6 +27,15 @@ export default function App({ Component, pageProps }) {
   }
 
 
+  function handleDeletePlant(id) {
+    setPlants((prevPlants) => 
+      prevPlants.filter((plant) =>
+        plant.id !== id)
+    );
+
+    router.push("/");
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -34,6 +46,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
         plants={plants}
+        onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
       />
     </>
