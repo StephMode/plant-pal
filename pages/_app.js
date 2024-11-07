@@ -3,7 +3,7 @@ import Image from "next/image";
 import { plants as initialPlants } from "/lib/data";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
 
 export default function App({ Component, pageProps }) {
