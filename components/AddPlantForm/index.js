@@ -5,7 +5,21 @@ export default function AddPlantForm ({handleAddPlant}){
     function handleSubmitAddPlant(event){
         event.preventDefault();
         const formData = new FormData(event.target);
-        const data = {}
+
+
+        const data = Object.fromEntries(formData);
+        const selectedSeasons = formData.getAll("fertiliserSeason");
+     
+        if (selectedSeasons.length === 0) {
+           alert("Please select at least one season.");
+           return; 
+        }
+     
+        data.fertiliserSeason = selectedSeasons;
+
+
+
+       /*  const data = {}
         formData.forEach((value, key) => {
             if (key === "fertiliserSeason") {
               if (!data[key]) {
@@ -15,7 +29,7 @@ export default function AddPlantForm ({handleAddPlant}){
             } else {
               data[key] = value;
             }
-          });
+        }); */
         handleAddPlant(data)
         event.target.reset();
     }
