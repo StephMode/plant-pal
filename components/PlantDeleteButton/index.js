@@ -1,9 +1,26 @@
 import Modal from "../Modal";
+import styled from "styled-components";
 
 export default function PlantDeleteButton({ onDeletePlant, name, id }) {
-  const Info = "Do you really want to delete {name}?";
+  const deletionConfirmText = (
+    <p>
+      Do you really want to delete <StyledPlantName>{name}</StyledPlantName>?
+    </p>
+  );
+
+  const deleteButtonText = "Delete Plant";
+
 
   return (
-    <Modal handleDeletePlant={onDeletePlant} name={name} id={id} Info={Info} />
+    <Modal 
+    modalMessage={deletionConfirmText}
+    buttonText={deleteButtonText}
+    handleButtonFunction={() => onDeletePlant(id)}
+     />
   );
 }
+
+
+const StyledPlantName = styled.span`
+  font-weight: bold;
+`;

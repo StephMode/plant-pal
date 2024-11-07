@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { LuDroplet } from "react-icons/lu";
 import { FiSun } from "react-icons/fi";
 import Link from "next/link";
-import PlantDeleteButton from "../Modal";
+import PlantDeleteButton from "../PlantDeleteButton";
 
 export default function PlantDetails({
   name,

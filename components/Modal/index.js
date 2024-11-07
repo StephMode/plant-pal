@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function Modal({ name, id, handleDeletePlant }) {
+export default function Modal({ modalMessage, buttonText, handleButtonFunction  }) {
   const [showModal, setShowModal] = useState(false);
 
   function handleToggleModal() {
@@ -11,22 +11,19 @@ export default function Modal({ name, id, handleDeletePlant }) {
   return (
     <>
       <StyledButton type="button" onClick={handleToggleModal}>
-        Delete Plant
+        {buttonText}
       </StyledButton>
 
       {showModal && (
         <StyledModalBackground>
           <StyledModal>
-            <p>
-              Do you really want to delete{" "}
-              <StyledPlantName>{name}</StyledPlantName>?
-            </p>
+              {modalMessage}
             <StyledModalButtonContainer>
               <StyledButton type="button" onClick={handleToggleModal}>
                 Cancel
               </StyledButton>
-              <StyledButton type="button" onClick={() => handleDeletePlant(id)}>
-                Delete
+              <StyledButton type="button" onClick={handleButtonFunction}>
+                {buttonText}
               </StyledButton>
             </StyledModalButtonContainer>
           </StyledModal>
@@ -75,6 +72,3 @@ const StyledButton = styled.button`
   border-radius: 20px;
 `;
 
-const StyledPlantName = styled.span`
-  font-weight: bold;
-`;
