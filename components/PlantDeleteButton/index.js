@@ -12,7 +12,7 @@ return (
     <>
     <StyledButton type="button" onClick={handleToggleModal}>Delete Plant</StyledButton>
 
-    {showDeleteModal === true ? (
+    {showDeleteModal &&
         <StyledDeleteModalBackground>
             <StyledDeleteModal>
                 <p>Do you really want to delete <StyledPlantName>{name}</StyledPlantName>?</p>
@@ -22,7 +22,6 @@ return (
                 </StyledDeleteModalButtonContainer>
             </StyledDeleteModal>
         </StyledDeleteModalBackground>
-    ) : null
     }
     </>
 )
@@ -31,7 +30,6 @@ return (
 
 
 const StyledDeleteModalBackground = styled.section`
-    content: "";
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;

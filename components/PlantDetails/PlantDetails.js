@@ -78,7 +78,7 @@ export default function PlantDetails({
           <br />
         </StyledPlantNeedsContainer>
         <StyledImageContainer>
-          <StyledImage src={imageUrl} alt={name} fill={true} />
+          <StyledImage src={imageUrl} alt={name} fill />
         </StyledImageContainer>
       </StyledPlantContainer>
       <h4>Description:</h4>
@@ -86,7 +86,7 @@ export default function PlantDetails({
       <br />
       <PlantDeleteButton handleDeletePlant={onDeletePlant} name={name} id={id}  />
       <br />
-      <Link href={"/"}>Homepage</Link>
+      <Link href="/">Homepage</Link>
     </>
   );
 }

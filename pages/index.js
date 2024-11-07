@@ -10,9 +10,7 @@ export default function HomePage({ handleToggleOwned, plants }) {
       { plants.length === 0 ? (
         <>
           <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
-          <br />
           <StyledButton type="button">Add Plant</StyledButton>
-          <br />
         </>
       ) : (
       <ul>
@@ -40,7 +38,7 @@ const StyledInfoText = styled.p`
   color: var(--green-main);
   background-color: var(--gray);
   margin-top: 10px;
-  padding: 40px 40px;
+  padding: 40px;
   border-radius: 25px;
 `;
 
@@ -50,6 +48,7 @@ const StyledButton = styled.button`
     padding: 8px 20px;
     border: none;
     border-radius: 20px;
+    margin: 10px 0;
 `;
 
 
