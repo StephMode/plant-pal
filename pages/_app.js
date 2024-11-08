@@ -4,6 +4,7 @@ import { plants as initialPlants } from "/lib/data";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
+import { useState } from "react";
 
 
 export default function App({ Component, pageProps }) {
@@ -12,6 +13,12 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
+
+  const [showModal, setShowModal] = useState(false);
+
+  function handleToggleModal() {
+    setShowModal(!showModal);
+  }
   //---------------------------------------------------------------------------
   function handleToggleOwned(id) {
     setPlants((prevPlants) =>
@@ -34,6 +41,7 @@ export default function App({ Component, pageProps }) {
     );
 
     router.push("/");
+    setShowModal(!showModal);
   }
 
   //---------------------------------------------------------------------------
@@ -60,6 +68,8 @@ export default function App({ Component, pageProps }) {
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         onFilterPlant={handleFilterPlant}
+        onToggleModal={handleToggleModal}
+        showModal={showModal}
       />
     </>
   );

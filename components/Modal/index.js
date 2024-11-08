@@ -1,36 +1,20 @@
-import { useState } from "react";
 import styled from "styled-components";
+import Button from "../Button";
 
-export default function Modal({ modalMessage, buttonText, handleButtonFunction  }) {
-  const [showModal, setShowModal] = useState(false);
-
-  function handleToggleModal() {
-    setShowModal(!showModal);
-  }
+export default function Modal({ showModal, onToggleModal, modalContent, modalContentButtonText, modalContentFunction }) {
 
   return (
-    <>
-      <StyledButton type="button" onClick={handleToggleModal}>
-        {buttonText}
-      </StyledButton>
-
-      {showModal && (
+      showModal && (
         <StyledModalBackground>
           <StyledModal>
-              {modalMessage}
+              {modalContent}
             <StyledModalButtonContainer>
-              <StyledButton type="button" onClick={handleToggleModal}>
-                Cancel
-              </StyledButton>
-              <StyledButton type="button" onClick={handleButtonFunction}>
-                {buttonText}
-              </StyledButton>
-            </StyledModalButtonContainer>
+              <Button buttonText="Cancel" handleButtonFunction={onToggleModal} />
+              <Button buttonText={modalContentButtonText} handleButtonFunction={modalContentFunction} />
+            </StyledModalButtonContainer> 
           </StyledModal>
         </StyledModalBackground>
-      )}
-    </>
-  );
+      ));
 }
 
 const StyledModalBackground = styled.section`

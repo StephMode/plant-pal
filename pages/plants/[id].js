@@ -1,7 +1,12 @@
 import { useRouter } from "next/router";
 import PlantDetails from "/components/PlantDetails/PlantDetails";
 
-export default function PlantDetailsPage({ plants, onDeletePlant }) {
+export default function PlantDetailsPage({ 
+  plants, 
+  onDeletePlant, 
+  onToggleModal,
+  showModal 
+  }) {
   const router = useRouter();
 
   const { id } = router.query;
@@ -15,7 +20,7 @@ export default function PlantDetailsPage({ plants, onDeletePlant }) {
   return (
     <main>
       <h1>Plant Details</h1>
-      <PlantDetails {...plant} onDeletePlant={onDeletePlant} id={id} />
+      <PlantDetails {...plant} onDeletePlant={onDeletePlant} id={id} onToggleModal={onToggleModal} showModal={showModal} />
     </main>
   );
 }

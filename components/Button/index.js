@@ -1,9 +1,9 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-export default function Button({ buttonText, buttonFunction }) {
+export default function Button({ buttonText, handleButtonFunction }) {
 
     return (
-        <StyledButton type="button" onClick={buttonFunction}>
+        <StyledButton type="button" onClick={handleButtonFunction}>
             {buttonText}
         </StyledButton>
     )
