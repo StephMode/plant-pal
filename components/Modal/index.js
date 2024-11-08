@@ -30,7 +30,11 @@ export default function Modal({
             )}
 
             {buttonText === "Edit" && (
-              <AddPlantForm plant={plant} buttonText={buttonText} />
+              <AddPlantForm
+                plant={plant}
+                buttonText={buttonText}
+                handleToggleModal={handleToggleModal}
+              />
             )}
           </StyledModal>
         </StyledModalBackground>

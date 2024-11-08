@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
+export default function AddPlantForm({
+  handleAddPlant,
+  plant,
+  buttonText,
+  handleToggleModal,
+}) {
   function handleSubmitAddPlant(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -147,7 +152,8 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             type="checkbox"
             value="Spring"
             defaultChecked={
-              buttonText === "Edit" && !plant.fertiliserSeason.includes("Spring")
+              buttonText === "Edit" &&
+              !plant.fertiliserSeason.includes("Spring")
                 ? false
                 : true
             }
@@ -204,6 +210,12 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
         <StyledSubmitButton type="submit">
           {buttonText === "Edit" ? "Edit Plant" : "Add plant"}
         </StyledSubmitButton>
+
+        {buttonText === "Edit" && (
+          <StyledSubmitButton type="button" onClick={handleToggleModal}>
+            Cancel
+          </StyledSubmitButton>
+        )}
       </form>
     </StyledSection>
   );
