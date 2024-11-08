@@ -19,7 +19,9 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
 
   return (
     <StyledSection>
-      <StyledH2>Add plant</StyledH2>
+      <StyledH2>
+        {buttonText === "Edit" ? `Edit ${plant.name}` : "Add plant"}
+      </StyledH2>
       <form onSubmit={handleSubmitAddPlant}>
         <StyledFieldset>
           <label htmlFor="plantName">Plant name:</label>
@@ -62,7 +64,7 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             name="lightNeed"
             type="radio"
             value="Full Shade"
-            defaultChecked={true}
+            defaultChecked
           />
           <StyledRadiolabel htmlFor="light-full-shade">
             Full Shade{" "}
@@ -74,7 +76,7 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             type="radio"
             value="Partial Shade"
             defaultChecked={
-              buttonText === "Edit" && plant.lightNeeds == "Partial Shade"
+              buttonText === "Edit" && plant.lightNeed == "Partial Shade"
                 ? true
                 : false
             }
@@ -88,6 +90,11 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             name="lightNeed"
             type="radio"
             value="Full Sun"
+            defaultChecked={
+              buttonText === "Edit" && plant.lightNeed == "Full Sun"
+                ? true
+                : false
+            }
           />
           <StyledRadiolabel htmlFor="light-full-sun">
             Full Sun{" "}
@@ -111,6 +118,11 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             name="waterNeed"
             type="radio"
             value="Medium"
+            defaultChecked={
+              buttonText === "Edit" && plant.waterNeed == "Medium"
+                ? true
+                : false
+            }
           />
           <StyledRadiolabel htmlFor="water-medium">Medium</StyledRadiolabel>
 
@@ -119,6 +131,9 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             name="waterNeed"
             type="radio"
             value="High"
+            defaultChecked={
+              buttonText === "Edit" && plant.waterNeed == "High" ? true : false
+            }
           />
           <StyledRadiolabel htmlFor="water-high">High </StyledRadiolabel>
         </StyledFieldsetRadio>
@@ -131,7 +146,11 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             name="fertiliserSeason"
             type="checkbox"
             value="Spring"
-            defaultChecked
+            defaultChecked={
+              buttonText === "Edit" && !plant.fertiliserSeason.includes("Spring")
+                ? false
+                : true
+            }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-spring">
             Spring
@@ -142,6 +161,11 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             name="fertiliserSeason"
             type="checkbox"
             value="Summer"
+            defaultChecked={
+              buttonText === "Edit" && plant.fertiliserSeason.includes("Summer")
+                ? true
+                : false
+            }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-summer">
             Summer
@@ -152,6 +176,11 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             name="fertiliserSeason"
             type="checkbox"
             value="Fall"
+            defaultChecked={
+              buttonText === "Edit" && plant.fertiliserSeason.includes("Fall")
+                ? true
+                : false
+            }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-fall">
             Fall
@@ -162,12 +191,19 @@ export default function AddPlantForm({ handleAddPlant, plant, buttonText }) {
             name="fertiliserSeason"
             type="checkbox"
             value="Winter"
+            defaultChecked={
+              buttonText === "Edit" && plant.fertiliserSeason.includes("Winter")
+                ? true
+                : false
+            }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-winter">
             Winter
           </StyledCheckboxLabel>
         </StyledFieldsetCheckbox>
-        <StyledSubmitButton type="submit">Add plant</StyledSubmitButton>
+        <StyledSubmitButton type="submit">
+          {buttonText === "Edit" ? "Edit Plant" : "Add plant"}
+        </StyledSubmitButton>
       </form>
     </StyledSection>
   );
