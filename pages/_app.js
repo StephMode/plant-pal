@@ -38,6 +38,7 @@ export default function App({ Component, pageProps }) {
 
   //---------------------------------------------------------------------------
   function handleFilterPlant(choosenFilter) {
+
     setPlants((prevPlants) => 
       prevPlants.filter((plant) =>
         plant.lightNeed === choosenFilter)
