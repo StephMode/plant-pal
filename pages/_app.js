@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
     setPlants([newPlant, ...plants ])
   }
 
-
+  //---------------------------------------------------------------------------
   function handleDeletePlant(id) {
     setPlants((prevPlants) => 
       prevPlants.filter((plant) =>
@@ -34,6 +34,14 @@ export default function App({ Component, pageProps }) {
     );
 
     router.push("/");
+  }
+
+  //---------------------------------------------------------------------------
+  function handleFilterPlant(choosenFilter) {
+    setPlants((prevPlants) => 
+      prevPlants.filter((plant) =>
+        plant.lightNeed === choosenFilter)
+    );
   }
 
   return (
@@ -48,6 +56,7 @@ export default function App({ Component, pageProps }) {
         plants={plants}
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
+        handleFilterPlant={handleFilterPlant}
       />
     </>
   );
