@@ -42,6 +42,8 @@ export default function App({ Component, pageProps }) {
       prevPlants.filter((plant) =>
         plant.lightNeed === choosenFilter)
     );
+
+    console.log("Filter successful:", choosenFilter)
   }
 
   return (
@@ -56,7 +58,7 @@ export default function App({ Component, pageProps }) {
         plants={plants}
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
-        handleFilterPlant={handleFilterPlant}
+        onFilterPlant={handleFilterPlant}
       />
     </>
   );

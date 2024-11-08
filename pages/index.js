@@ -1,10 +1,11 @@
+import PlantFilter from "/components/PlantFilter";
 import AddPlantForm from "/components/AddPlantForm";
 import PlantCard from "/components/PlantCard";
 import Link from "next/link";
 import styled from "styled-components";
 
 
-export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) {
+export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlant }) {
 
   return (
     <main>
@@ -16,6 +17,7 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) 
         </>
       ) : (
         <>
+          <PlantFilter handleFilterPlant={onFilterPlant} />
           <AddPlantForm handleAddPlant={handleAddPlant}/>
           <ul>
             {plants.map((plant) => (

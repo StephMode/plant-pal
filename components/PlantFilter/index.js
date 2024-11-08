@@ -12,6 +12,4 @@ export default function PlantFilter({ handleFilterPlant }) {
             <button type="button">reset</button>
         </>
     )
-
-
 };
