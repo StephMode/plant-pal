@@ -77,7 +77,7 @@ export default function PlantDetails({ plant, onDeletePlant, id }) {
       <MultifunctionalButton buttonText={"Edit"} plant={plant} />
       <MultifunctionalButton
         onDeletePlant={onDeletePlant}
-        name={plant.name}
+        plant={plant}
         id={id}
         buttonText={"Delete"}
       />

@@ -16,7 +16,7 @@ export default function Modal({
               <>
                 <p>
                   Do you really want to delete
-                  <StyledPlantName> {plant.name} </StyledPlantName>?
+                  <StyledPlantName> {plant.name} </StyledPlantName>
                 </p>
                 <StyledModalButtonContainer>
                   <StyledButton type="button" onClick={handleToggleModal}>
