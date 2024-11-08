@@ -1,31 +1,37 @@
-import { useState } from "react";
 import styled from "styled-components";
-
-export default function Modal({ modalMessage, buttonText, handleButtonFunction  }) {
-  const [showModal, setShowModal] = useState(false);
-
-  function handleToggleModal() {
-    setShowModal(!showModal);
-  }
-
+import AddPlantForm from "../AddPlantForm";
+export default function Modal({
+  buttonText,
+  handleButtonFunction,
+  showModal,
+  handleToggleModal,
+  plant,
+}) {
   return (
     <>
-      <StyledButton type="button" onClick={handleToggleModal}>
-        {buttonText}
-      </StyledButton>
-
       {showModal && (
         <StyledModalBackground>
           <StyledModal>
-              {modalMessage}
-            <StyledModalButtonContainer>
-              <StyledButton type="button" onClick={handleToggleModal}>
-                Cancel
-              </StyledButton>
-              <StyledButton type="button" onClick={handleButtonFunction}>
-                {buttonText}
-              </StyledButton>
-            </StyledModalButtonContainer>
+            {buttonText === "Delete" && (
+              <>
+                <p>
+                  Do you really want to delete
+                  <StyledPlantName> {plant.name} </StyledPlantName>?
+                </p>
+                <StyledModalButtonContainer>
+                  <StyledButton type="button" onClick={handleToggleModal}>
+                    Cancel
+                  </StyledButton>
+                  <StyledButton type="button" onClick={handleButtonFunction}>
+                    {buttonText}
+                  </StyledButton>
+                </StyledModalButtonContainer>
+              </>
+            )}
+
+            {buttonText === "Edit" && (
+              <AddPlantForm plant={plant} buttonText={buttonText} />
+            )}
           </StyledModal>
         </StyledModalBackground>
       )}
@@ -72,3 +78,6 @@ const StyledButton = styled.button`
   border-radius: 20px;
 `;
 
+const StyledPlantName = styled.span`
+  font-weight: bold;
+`;

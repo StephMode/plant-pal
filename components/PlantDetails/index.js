@@ -3,40 +3,30 @@ import styled from "styled-components";
 import { LuDroplet } from "react-icons/lu";
 import { FiSun } from "react-icons/fi";
 import Link from "next/link";
-import PlantDeleteButton from "../PlantDeleteButton";
+import MultifunctionalButton from "../MultifunctionalButton";
 
-export default function PlantDetails({
-  name,
-  botanicalName,
-  imageUrl,
-  waterNeed,
-  lightNeed,
-  fertiliserSeason,
-  description,
-  onDeletePlant,
-  id
-}) {
+export default function PlantDetails({ plant, onDeletePlant, id }) {
   return (
     <>
-      <h2>{name}</h2>
-      <h3>{botanicalName}</h3>
+      <h2>{plant.name}</h2>
+      <h3>{plant.botanicalName}</h3>
       <StyledPlantContainer>
         <StyledPlantNeedsContainer>
           <h4>Light needs:</h4>
           <span>
-            {lightNeed === "Full Shade" ? (
+            {plant.lightNeed === "Full Shade" ? (
               <>
                 <StyledSunIconFull />
                 <StyledSunIcon />
                 <StyledSunIcon />
               </>
-            ) : lightNeed === "Partial Shade" ? (
+            ) : plant.lightNeed === "Partial Shade" ? (
               <>
                 <StyledSunIconFull />
                 <StyledSunIconFull />
                 <StyledSunIcon />
               </>
-            ) : lightNeed === "Full Sun" ? (
+            ) : plant.lightNeed === "Full Sun" ? (
               <>
                 <StyledSunIconFull />
                 <StyledSunIconFull />
@@ -48,19 +38,19 @@ export default function PlantDetails({
 
           <h4>Water needs:</h4>
           <span>
-            {waterNeed === "Low" ? (
+            {plant.waterNeed === "Low" ? (
               <>
                 <StyledWaterIconFull />
                 <StyledWaterIcon />
                 <StyledWaterIcon />
               </>
-            ) : waterNeed === "Medium" ? (
+            ) : plant.waterNeed === "Medium" ? (
               <>
                 <StyledWaterIconFull />
                 <StyledWaterIconFull />
                 <StyledWaterIcon />
               </>
-            ) : waterNeed === "High" ? (
+            ) : plant.waterNeed === "High" ? (
               <>
                 <StyledWaterIconFull />
                 <StyledWaterIconFull />
@@ -71,20 +61,26 @@ export default function PlantDetails({
           <br />
           <h4>Fertiliser Seasons:</h4>
           <ul>
-            {fertiliserSeason.map((season) => (
+            {plant.fertiliserSeason.map((season) => (
               <li key={season}>{season} </li>
             ))}
           </ul>
           <br />
         </StyledPlantNeedsContainer>
         <StyledImageContainer>
-          <StyledImage src={imageUrl} alt={name} fill />
+          <StyledImage src={plant.imageUrl} alt={plant.name} fill />
         </StyledImageContainer>
       </StyledPlantContainer>
       <h4>Description:</h4>
-      <p>{description}</p>
+      <p>{plant.description}</p>
       <br />
-      <PlantDeleteButton onDeletePlant={onDeletePlant} name={name} id={id}  />
+      <MultifunctionalButton buttonText={"Edit"} plant={plant} />
+      <MultifunctionalButton
+        onDeletePlant={onDeletePlant}
+        name={plant.name}
+        id={id}
+        buttonText={"Delete"}
+      />
       <br />
       <Link href="/">Homepage</Link>
     </>

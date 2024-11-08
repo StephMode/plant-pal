@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import PlantDetails from "/components/PlantDetails/PlantDetails";
+import PlantDetails from "/components/PlantDetails/";
 
 export default function PlantDetailsPage({ plants, onDeletePlant }) {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function PlantDetailsPage({ plants, onDeletePlant }) {
   return (
     <main>
       <h1>Plant Details</h1>
-      <PlantDetails {...plant} onDeletePlant={onDeletePlant} id={id} />
+      <PlantDetails plant={plant} onDeletePlant={onDeletePlant} id={id} />
     </main>
   );
 }
