@@ -45,14 +45,12 @@ export default function App({ Component, pageProps }) {
   }
 
   //---------------------------------------------------------------------------
-  function handleFilterPlant(choosenFilter) {
+  function handleFilterPlant(selectedFilter) {
 
     setPlants((prevPlants) => 
       prevPlants.filter((plant) =>
-        plant.lightNeed === choosenFilter)
+        plant.lightNeed === selectedFilter)
     );
-
-    console.log("Filter successful:", choosenFilter)
   }
 
   return (
