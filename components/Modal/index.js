@@ -9,6 +9,7 @@ export default function Modal({ showModal, onToggleModal, modalContent, modalCon
           <StyledModal>
               {modalContent}
             <StyledModalButtonContainer>
+              {/* Die Buttons hier entfernen und in die zu rendernde Komponente packen */}
               <Button buttonText="Cancel" handleButtonFunction={onToggleModal} />
               <Button buttonText={modalContentButtonText} handleButtonFunction={modalContentFunction} />
             </StyledModalButtonContainer> 
@@ -49,10 +50,5 @@ const StyledModalButtonContainer = styled.div`
   gap: 10px;
 `;
 
-const StyledButton = styled.button`
-  background-color: var(--brown);
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-`;
+
 

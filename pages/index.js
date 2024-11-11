@@ -3,8 +3,7 @@ import PlantCard from "/components/PlantCard";
 import Link from "next/link";
 import styled from "styled-components";
 import Button from "/components/Button";
-import Modal from "/components/Modal";
-import PlantFilter from "/components/PlantFilter";
+import PlantFilterSection from "/components/PlantFilterSection";
 
 
 export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlant, onToggleModal, showModal }) {
@@ -20,7 +19,7 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
       ) : (
         <>
           <Button buttonText="Filter" handleButtonFunction={onToggleModal} onFilterPlant={onFilterPlant} />
-          <Modal showModal={showModal} onToggleModal={onToggleModal} modalContent={<PlantFilter handleFilterPlant={onFilterPlant} />} />
+          <PlantFilterSection />
           <AddPlantForm handleAddPlant={handleAddPlant}/>
           <ul>
             {plants.map((plant) => (
