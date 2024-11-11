@@ -5,6 +5,7 @@ export default function AddPlantForm({
   plant,
   buttonText,
   handleToggleModal,
+  handleEditPlant,
 }) {
   function handleSubmitAddPlant(event) {
     event.preventDefault();
@@ -18,8 +19,13 @@ export default function AddPlantForm({
     }
     data.fertiliserSeason = selectedSeasons;
 
-    handleAddPlant(data);
+    { buttonText === "Edit" && handleEditPlant(data, plant.id) }
+
+    { buttonText === "Add" && handleAddPlant(data) }
+
     event.target.reset();
+
+
   }
 
   return (
@@ -153,7 +159,7 @@ export default function AddPlantForm({
             value="Spring"
             defaultChecked={
               buttonText === "Edit" &&
-              !plant.fertiliserSeason.includes("Spring")
+                !plant.fertiliserSeason.includes("Spring")
                 ? false
                 : true
             }
@@ -212,7 +218,7 @@ export default function AddPlantForm({
         </StyledSubmitButton>
 
         {buttonText === "Edit" && (
-          <StyledSubmitButton type="button" onClick={handleToggleModal}>
+          <StyledSubmitButton type="button" onClick={() => handleToggleModal("Edit")}>
             Cancel
           </StyledSubmitButton>
         )}

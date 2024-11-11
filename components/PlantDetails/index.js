@@ -4,8 +4,11 @@ import { LuDroplet } from "react-icons/lu";
 import { FiSun } from "react-icons/fi";
 import Link from "next/link";
 import MultifunctionalButton from "../MultifunctionalButton";
+import Modal from "../Modal";
+import AddPlantForm from "../AddPlantForm";
+import PlantDeleteSection from "../PlantDeleteSection";
 
-export default function PlantDetails({ plant, onDeletePlant, id }) {
+export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdit, showModal, handleEditPlant, handleAddPlant, onDeletePlant }) {
   return (
     <>
       <h2>{plant.name}</h2>
@@ -74,13 +77,25 @@ export default function PlantDetails({ plant, onDeletePlant, id }) {
       <h4>Description:</h4>
       <p>{plant.description}</p>
       <br />
-      <MultifunctionalButton buttonText={"Edit"} plant={plant} />
+      <MultifunctionalButton buttonText={"Edit"} handleButtonFunction={() => handleToggleModal("Edit")} />
       <MultifunctionalButton
-        onDeletePlant={onDeletePlant}
-        plant={plant}
-        id={id}
         buttonText={"Delete"}
+        handleButtonFunction={() => handleToggleModal("Delete")}
       />
+
+      {showModal &&
+        <Modal modalContent={
+          isEdit ? <AddPlantForm handleAddPlant={handleAddPlant}
+            plant={plant}
+            buttonText={"Edit"}
+            handleToggleModal={handleToggleModal}
+            handleEditPlant={handleEditPlant}
+
+          /> :
+            isDelete ? <PlantDeleteSection plant={plant} buttonText={"Delete"} onDeletePlant={onDeletePlant} id={plant.id} handleToggleModal={handleToggleModal} /> :
+              "dddd"
+        } />}
+
       <br />
       <Link href="/">Homepage</Link>
     </>

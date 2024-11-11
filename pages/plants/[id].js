@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import PlantDetails from "/components/PlantDetails/";
 
-export default function PlantDetailsPage({ plants, onDeletePlant }) {
+export default function PlantDetailsPage({ plants, onDeletePlant, handleEditPlant, handleAddPlant, handleToggleModal, showModal, isEdit, isDelete }) {
   const router = useRouter();
 
   const { id } = router.query;
@@ -15,7 +15,7 @@ export default function PlantDetailsPage({ plants, onDeletePlant }) {
   return (
     <main>
       <h1>Plant Details</h1>
-      <PlantDetails plant={plant} onDeletePlant={onDeletePlant} id={id} />
+      <PlantDetails plant={plant} onDeletePlant={onDeletePlant} id={id} handleEditPlant={handleEditPlant} handleToggleModal={handleToggleModal} showModal={showModal} isDelete={isDelete} isEdit={isEdit} handleAddPlant={handleAddPlant} />
     </main>
   );
 }

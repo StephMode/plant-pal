@@ -1,45 +1,17 @@
 import styled from "styled-components";
-import AddPlantForm from "../AddPlantForm";
-export default function Modal({
-  buttonText,
-  handleButtonFunction,
-  showModal,
-  handleToggleModal,
-  plant,
-}) {
-  return (
-    <>
-      {showModal && (
-        <StyledModalBackground>
-          <StyledModal>
-            {buttonText === "Delete" && (
-              <>
-                <p>
-                  Do you really want to delete
-                  <StyledPlantName> {plant.name} </StyledPlantName>
-                </p>
-                <StyledModalButtonContainer>
-                  <StyledButton type="button" onClick={handleToggleModal}>
-                    Cancel
-                  </StyledButton>
-                  <StyledButton type="button" onClick={handleButtonFunction}>
-                    {buttonText}
-                  </StyledButton>
-                </StyledModalButtonContainer>
-              </>
-            )}
 
-            {buttonText === "Edit" && (
-              <AddPlantForm
-                plant={plant}
-                buttonText={buttonText}
-                handleToggleModal={handleToggleModal}
-              />
-            )}
-          </StyledModal>
-        </StyledModalBackground>
-      )}
-    </>
+
+export default function Modal({ modalContent }) {
+  return (
+
+
+    <StyledModalBackground>
+      <StyledModal>
+        {modalContent}
+      </StyledModal>
+    </StyledModalBackground>
+
+
   );
 }
 
@@ -67,21 +39,4 @@ const StyledModal = styled.section`
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-`;
-
-const StyledModalButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-`;
-
-const StyledButton = styled.button`
-  background-color: var(--brown);
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-`;
-
-const StyledPlantName = styled.span`
-  font-weight: bold;
 `;
