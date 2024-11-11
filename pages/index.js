@@ -16,7 +16,7 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) 
         </>
       ) : (
         <>
-          <Form handleAddPlant={handleAddPlant} />
+          <Form handleAddPlant={handleAddPlant} buttonText={"Add"} />
           <ul>
             {plants.map((plant) => (
               <li key={plant.id}>
