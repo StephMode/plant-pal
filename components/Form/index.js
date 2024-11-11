@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function AddPlantForm({
+export default function Form({
   handleAddPlant,
   plant,
   buttonText,
@@ -24,10 +24,7 @@ export default function AddPlantForm({
     { buttonText === "Add" && handleAddPlant(data) }
 
     event.target.reset();
-
-
-  }
-
+}
   return (
     <StyledSection>
       <StyledH2>

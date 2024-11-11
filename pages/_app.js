@@ -5,7 +5,6 @@ import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
 import { useState } from "react";
-import { useEffect } from "react";
 
 
 export default function App({ Component, pageProps }) {
@@ -54,10 +53,6 @@ export default function App({ Component, pageProps }) {
     } else if (buttonFunctionText === "Delete") {
       setIsDelete(!isDelete)
     }
-    /* useEffect(() => {
-      console.log("setEdit", isEdit, "setDelete", isDelete, "showModal", showModal)
-
-    }, [handleToggleModal]); */
   }
   //---------------------------------------------------------------------------
 
