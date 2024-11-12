@@ -3,26 +3,24 @@ import { HiHome } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Navigation() { 
 
-    
-
-
-
+    const router = useRouter();
 
     return (
         <Stylednavcontainer>
-            <Link href={"/"}>
-                <StyledIconContainer >
+            <Link href={"/"} passHref >
+                <StyledIconContainer isActive={router.asPath === "/"}>
                     <HiHome />
                 </StyledIconContainer>
             </Link>
             <StyledIconContainer>
                 <FaPlus />
             </StyledIconContainer>
-            <Link href={"/myplants"}>
-                <StyledIconContainer>
+            <Link href={"/myplants"} passHref>
+                <StyledIconContainer isActive={router.asPath === "/myplants"}>
                     <IoHeart />
                 </StyledIconContainer>
             </Link>
@@ -45,7 +43,7 @@ const Stylednavcontainer = styled.nav`
     box-shadow: 0 0px 37px rgba(0, 0, 0, 0.5);
 `;
  const StyledIconContainer = styled.span `
-    background-color: var(--green-main);
+    background-color:  ${({ isActive }) => (isActive ? "var(--brown)" : "var(--green-main)")};;
     border-radius: 40px;
     width: 50px;
     height: 50px;
