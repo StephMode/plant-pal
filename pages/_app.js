@@ -43,6 +43,11 @@ export default function App({ Component, pageProps }) {
         plant.id !== id)
     );
 
+    setFilteredPlants((prevFilteredPlants) => 
+      prevFilteredPlants.filter((plant) =>
+        plant.id !== id)
+    );
+
     router.push("/");
     setShowModal(!showModal);
   }

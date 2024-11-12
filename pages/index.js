@@ -22,6 +22,8 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
           <Button buttonText="Filter" handleButtonFunction={handleFilterSection} />
           <PlantFilterSection handleFilterPlant={onFilterPlant} showPlantFilterSection={showPlantFilterSection} handleFilterPlantReset={onFilterPlantReset} />
           <AddPlantForm handleAddPlant={handleAddPlant}/>
+          { filteredPlants.length === 0 && 
+          ( <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> )}
           <ul>
            {plantsToBeRendered.map((plant) => (
               <li key={plant.id}>
