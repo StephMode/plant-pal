@@ -88,7 +88,7 @@ export default function App({ Component, pageProps }) {
 
 
   function handleFilterPlantReset() {
-
+    setFilteredPlants(plants);
   }
 
   return (
@@ -104,6 +104,7 @@ export default function App({ Component, pageProps }) {
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         onFilterPlant={handleFilterPlant}
+        onFilterPlantReset={handleFilterPlantReset}
         filteredPlants={filteredPlants}
         showPlantFilterSection={showPlantFilterSection}
         handleFilterSection={handleFilterSection}

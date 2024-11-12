@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function PlantFilterSection({ handleFilterPlant, showPlantFilterSection }) {
+export default function PlantFilterSection({ handleFilterPlant, showPlantFilterSection, handleFilterPlantReset }) {
 
 
     return (
@@ -19,9 +19,12 @@ export default function PlantFilterSection({ handleFilterPlant, showPlantFilterS
 
                     <StyledRadioInput id="light-full-sun" name="lightNeed" type="radio" value="Full Sun" onChange={() => handleFilterPlant("Full Sun")} />
                     <StyledRadiolabel htmlFor="light-full-sun">Full Sun </StyledRadiolabel>
+
+                    <StyledRadioInput id="reset" name="lightNeed" type="radio" value="reset" onChange={handleFilterPlantReset} />
+                    <StyledRadiolabel htmlFor="reset">Reset</StyledRadiolabel>
                 </StyledFieldsetRadio>
             </form>
-            <StyledResetButton type="button">reset</StyledResetButton>
+            {/* <StyledResetButton type="button" onClick={handleFilterPlantReset}>reset</StyledResetButton> */}
         </StyledPlantFilterSection>
     );
 };
