@@ -2,13 +2,30 @@ import styled from "styled-components"
 import { HiHome } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
+import Link from "next/link";
 
 export default function Navigation() { 
+
+    
+
+
+
+
     return (
         <Stylednavcontainer>
-            <StyledIconContainer><HiHome /></StyledIconContainer>
-            <StyledIconContainer><FaPlus /></StyledIconContainer>
-            <StyledIconContainer><IoHeart /></StyledIconContainer>
+            <Link href={"/"}>
+                <StyledIconContainer >
+                    <HiHome />
+                </StyledIconContainer>
+            </Link>
+            <StyledIconContainer>
+                <FaPlus />
+            </StyledIconContainer>
+            <Link href={"/myplants"}>
+                <StyledIconContainer>
+                    <IoHeart />
+                </StyledIconContainer>
+            </Link>
         </Stylednavcontainer>
     )
 }
@@ -17,7 +34,7 @@ const Stylednavcontainer = styled.nav`
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 70px;
     background-color: var(--green-light);
     border-radius: 20px 20px 0 0 ;
     z-index: 999;
@@ -37,6 +54,4 @@ const Stylednavcontainer = styled.nav`
     align-items: center;
     color: var(--white);
     font-size: 30px;
-
-    
  `;
