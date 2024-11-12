@@ -24,7 +24,6 @@ export default function PlantFilterSection({ handleFilterPlant, showPlantFilterS
                     <StyledRadiolabelReset htmlFor="reset">Reset</StyledRadiolabelReset>
                 </StyledFieldsetRadio>
             </form>
-            {/* <StyledResetButton type="button" onClick={handleFilterPlantReset}>reset</StyledResetButton> */}
         </StyledPlantFilterSection>
     );
 };

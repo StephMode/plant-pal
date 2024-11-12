@@ -60,23 +60,7 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
-  // Lösungsansatz 1
-  // let filteredPlants;
-  // function handleFilterPlant(selectedFilter) {
-
-  //   filteredPlants = 
-  //     plants.filter((plant) =>
-  //       plant.lightNeed === selectedFilter);
-
-  //   console.log("Innerhalb der Funktion:", filteredPlants);
-  // };
-  
-  // useEffect(() => {
-  //   console.log("Außerhalb der Funktion:", filteredPlants)
-  // },[filteredPlants])
-
   //---------------------------------------------------------------------------
-  // Lösungsansatz 2: Einführen eines neuen states
   const [filteredPlants, setFilteredPlants] = useState(plants);
 
   function handleFilterPlant(selectedFilter) {
@@ -87,10 +71,7 @@ export default function App({ Component, pageProps }) {
       filteredPlants.filter((plant) =>
         plant.lightNeed === selectedFilter)
     );
-
-    console.log("Applied Filter:", filteredPlants);
   }
-
 
   function handleFilterPlantReset() {
     setFilteredPlants(plants);
