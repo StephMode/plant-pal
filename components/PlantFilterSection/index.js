@@ -20,8 +20,8 @@ export default function PlantFilterSection({ handleFilterPlant, showPlantFilterS
                     <StyledRadioInput id="light-full-sun" name="lightNeed" type="radio" value="Full Sun" onChange={() => handleFilterPlant("Full Sun")} />
                     <StyledRadiolabel htmlFor="light-full-sun">Full Sun </StyledRadiolabel>
 
-                    <StyledRadioInput id="reset" name="lightNeed" type="radio" value="reset" onChange={handleFilterPlantReset} />
-                    <StyledRadiolabel htmlFor="reset">Reset</StyledRadiolabel>
+                    <StyledRadioInputReset id="reset" name="lightNeed" type="radio" value="reset" onChange={handleFilterPlantReset} />
+                    <StyledRadiolabelReset htmlFor="reset">Reset</StyledRadiolabelReset>
                 </StyledFieldsetRadio>
             </form>
             {/* <StyledResetButton type="button" onClick={handleFilterPlantReset}>reset</StyledResetButton> */}
@@ -43,15 +43,6 @@ const StyledPlantFilterSection = styled.section`
     gap: 10px;
 `;
 
-
-const StyledResetButton = styled.button`
-  background-color: var(--white);
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-`;
-
 const StyledFieldsetRadio = styled.fieldset`
 display: flex;
 flex-direction: row;
@@ -59,7 +50,7 @@ border: none;
 padding: 10px 0;
 color: var(--green-main);
 justify-content: flex-start;
-gap: 15px;
+gap: 5px;
 `;
 
 const StyledRadiolabel = styled.label`
@@ -77,5 +68,25 @@ display: none;
     background: var(--green-main);
     font-weight: bold;
     color: var(--white);
+}
+`;
+
+const StyledRadiolabelReset = styled.label`
+  background-color: var(--white);
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+`;
+
+const StyledRadioInputReset = styled.input`
+display: none;
+
+&:active + label {
+    background-color: var(--white);
+    padding: 8px 20px;
+    border: 1px solid var(--black);
+    border-radius: 20px;
+    font-weight: bold;
 }
 `;
