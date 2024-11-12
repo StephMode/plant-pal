@@ -91,10 +91,9 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
             buttonText={"Edit"}
             handleToggleModal={handleToggleModal}
             handleEditPlant={handleEditPlant}
-
           /> :
             isDelete ? <PlantDeleteSection plant={plant} buttonText={"Delete"} onDeletePlant={onDeletePlant} id={plant.id} handleToggleModal={handleToggleModal} /> :
-              "This is an error, please reloard page."
+              "This is an error, please reload page."
         } />}
 
       <br />

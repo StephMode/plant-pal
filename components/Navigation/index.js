@@ -4,10 +4,8 @@ import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Modal from "../Modal";
-import Form from "../Form";
 
-export default function Navigation({handleToggleModal, showModal, handleAddPlant}) { 
+export default function Navigation() { 
 
     const router = useRouter();
 
@@ -30,14 +28,6 @@ export default function Navigation({handleToggleModal, showModal, handleAddPlant
                     </StyledIconContainer>
                 </Link>
             </Stylednavcontainer>
-
-{/*             {showModal &&
-            <Modal modalContent={
-            <Form handleAddPlant={handleAddPlant}
-            buttonText={"Add"}
-            handleToggleModal={handleToggleModal}/> 
-            } />}
- */}
         </>
 
     )

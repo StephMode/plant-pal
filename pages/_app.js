@@ -88,7 +88,7 @@ export default function App({ Component, pageProps }) {
         isEdit={isEdit}
         isDelete={isDelete}
       />
-      <Navigation handleToggleModal={handleToggleModal} showModal={showModal} handleAddPlant={handleAddPlant}/>
+      <Navigation />
     </>
   );
 }
