@@ -55,10 +55,11 @@ export default createGlobalStyle`
   }
 
   main {
-    margin: 0;
+    margin: 0 0 90px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+
   }
 
 

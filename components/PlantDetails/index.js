@@ -7,6 +7,7 @@ import EditDeleteButton from "../EditDeleteButton";
 import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
+import { FaChevronLeft } from "react-icons/fa6";
 
 export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdit, showModal, handleEditPlant, handleAddPlant, onDeletePlant }) {
   return (
@@ -97,7 +98,11 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
         } />}
 
       <br />
-      <Link href="/">Homepage</Link>
+      <Link href="/">
+      <StyledIconContainer>
+        <FaChevronLeft />
+      </StyledIconContainer>
+      </Link>
     </>
   );
 }
@@ -147,3 +152,17 @@ const StyledImage = styled(Image)`
   border-radius: 35px;
   object-fit: cover;
 `;
+const StyledIconContainer = styled.span `
+    background-color: var(--green-main);
+    border-radius: 40px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-size: 30px;
+    position: absolute;
+    top: 70px;
+    left: 20px;
+ `;
