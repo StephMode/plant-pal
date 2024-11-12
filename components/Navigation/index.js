@@ -15,17 +15,17 @@ export default function Navigation({handleToggleModal, showModal, handleAddPlant
         <>
             <Stylednavcontainer>
                 <Link href={"/"} passHref >
-                    <StyledIconContainer isActive={router.asPath === "/"}>
+                    <StyledIconContainer isactive={router.asPath === "/"}>
                         <HiHome />
                     </StyledIconContainer>
                 </Link>
                 <Link href={"/addplant"} passHref>
-                    <StyledIconContainer isActive={router.asPath === "/addplant"}>
+                    <StyledIconContainer isactive={router.asPath === "/addplant"}>
                         <FaPlus />
                     </StyledIconContainer>
                 </Link>
                 <Link href={"/myplants"} passHref>
-                    <StyledIconContainer isActive={router.asPath === "/myplants"}>
+                    <StyledIconContainer isactive={router.asPath === "/myplants"}>
                         <IoHeart />
                     </StyledIconContainer>
                 </Link>
@@ -58,7 +58,7 @@ const Stylednavcontainer = styled.nav`
     box-shadow: 0 0px 37px rgba(0, 0, 0, 0.5);
 `;
  const StyledIconContainer = styled.span `
-    background-color:  ${({ isActive }) => (isActive ? "var(--brown)" : "var(--green-main)")};;
+    background-color:  ${({ isactive }) => (isactive ? "var(--brown)" : "var(--green-main)")};;
     border-radius: 40px;
     width: 50px;
     height: 50px;
