@@ -151,8 +151,8 @@ export default function Form({
             value="Spring"
             defaultChecked={
               buttonText === "Edit" &&
-                !plant.fertiliserSeason.includes("Spring")
-                
+              !plant.fertiliserSeason.includes("Spring")
+
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-spring">
@@ -166,7 +166,7 @@ export default function Form({
             value="Summer"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Summer")
-                
+
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-summer">
@@ -180,7 +180,7 @@ export default function Form({
             value="Fall"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Fall")
-             
+
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-fall">
@@ -194,22 +194,26 @@ export default function Form({
             value="Winter"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Winter")
-               
+
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-winter">
             Winter
           </StyledCheckboxLabel>
         </StyledFieldsetCheckbox>
-        <StyledSubmitButton type="submit">
-          {buttonText === "Edit" ? "Edit Plant" : "Add plant"}
-        </StyledSubmitButton>
+        <StyledButtonContainer>
 
-        {buttonText === "Edit" && (
-          <StyledSubmitButton type="button" onClick={() => handleToggleModal("Edit")}>
-            Cancel
+          {buttonText === "Edit" && (
+            <StyledSubmitButton type="button" onClick={() => handleToggleModal("Edit")}>
+              Cancel
+            </StyledSubmitButton>
+          )}
+
+          <StyledSubmitButton type="submit">
+            {buttonText === "Edit" ? "Edit Plant" : "Add plant"}
           </StyledSubmitButton>
-        )}
+
+        </StyledButtonContainer>
       </form>
     </StyledSection>
   );
@@ -241,7 +245,7 @@ const StyledFieldsetRadio = styled.fieldset`
   border: none;
   padding: 10px 0;
   color: var(--green-main);
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 15px;
 `;
 const StyledInput = styled.input`
@@ -257,7 +261,7 @@ const StyledTextarea = styled.textarea`
   margin-top: 6px;
   max-width: 570px;
   max-height: 300px;
-  min-width: 327px;
+  /* min-width: 327px; */
   width: 100%;
   height: auto;
   resize: none;
@@ -268,6 +272,7 @@ const StyledRadiolabel = styled.label`
   padding: 5px 10px;
   border-radius: 20px;
   font-weight: bold;
+  text-align: center;
 `;
 const StyledRadioInput = styled.input`
   display: none;
@@ -276,6 +281,7 @@ const StyledRadioInput = styled.input`
     background: var(--green-main);
     font-weight: bold;
     color: var(--white);
+    text-align: center;
   }
 `;
 const StyledFieldsetCheckbox = styled.fieldset`
@@ -284,8 +290,9 @@ const StyledFieldsetCheckbox = styled.fieldset`
   border: none;
   padding: 10px 0;
   color: var(--green-main);
-  justify-content: flex-start;
+  justify-content:space-between;
   gap: 15px;
+  flex-wrap: wrap;
 `;
 const StyledCheckboxLabel = styled.label`
   background: var(--green-light);
@@ -317,3 +324,9 @@ const StyledSubmitButton = styled.button`
     cursor: pointer;
   }
 `;
+const StyledButtonContainer = styled.section`
+display: flex;
+gap: 15px;
+`;
+
+

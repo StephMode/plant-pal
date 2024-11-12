@@ -25,18 +25,17 @@ const StyledModalBackground = styled.section`
 `;
 
 const StyledModal = styled.section`
-  background-color: var(--white);
-  border-radius: 35px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 40%;
-  padding: 0 20px;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+    background-color: var(--white);
+    border-radius: 35px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
