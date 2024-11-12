@@ -3,7 +3,7 @@ export default function PlantDeleteSection({ onDeletePlant, id, handleToggleModa
 
 
     return (
-        <>
+        <StyledDeleteSection>
             <p>
                 Do you really want to delete
                 <b> {plant.name} </b>  ?
@@ -16,7 +16,7 @@ export default function PlantDeleteSection({ onDeletePlant, id, handleToggleModa
                     {buttonText}
                 </StyledButton>
             </StyledModalButtonContainer>
-        </>
+        </StyledDeleteSection>
 
     );
 }
@@ -33,4 +33,8 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 20px;
 `;
+
+const StyledDeleteSection = styled.section`
+padding: 30px; 
+`
 

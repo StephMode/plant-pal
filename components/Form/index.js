@@ -212,7 +212,6 @@ export default function Form({
           <StyledSubmitButton type="submit">
             {buttonText === "Edit" ? "Edit Plant" : "Add plant"}
           </StyledSubmitButton>
-
         </StyledButtonContainer>
       </form>
     </StyledSection>
@@ -222,10 +221,9 @@ export default function Form({
 const StyledSection = styled.section`
   padding: 15px;
   background: var(--gray);
-  margin-bottom: 50px;
   border-radius: 25px;
-  width: 95%;
   max-width: 600px;
+  min-width: 330px;
 `;
 const StyledH2 = styled.h2`
   color: var(--green-main);
@@ -273,6 +271,7 @@ const StyledRadiolabel = styled.label`
   border-radius: 20px;
   font-weight: bold;
   text-align: center;
+  font-size: 14px;
 `;
 const StyledRadioInput = styled.input`
   display: none;
@@ -299,6 +298,7 @@ const StyledCheckboxLabel = styled.label`
   padding: 5px 10px;
   border-radius: 20px;
   font-weight: bold;
+  font-size: 14px;
 `;
 const StyledCheckboxInput = styled.input`
   display: none;
@@ -317,7 +317,7 @@ const StyledSubmitButton = styled.button`
   border: none;
   border-radius: 20px;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 10px;
 
   &:hover {
     background-color: var(--green-main-dark);

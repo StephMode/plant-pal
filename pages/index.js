@@ -17,6 +17,7 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) 
       ) : (
         <>
           <Form handleAddPlant={handleAddPlant} buttonText={"Add"} />
+          <StyledSpacer />
           <ul>
             {plants.map((plant) => (
               <li key={plant.id}>
@@ -55,5 +56,12 @@ const StyledButton = styled.button`
     border-radius: 20px;
     margin: 10px 0;
 `;
+
+const StyledSpacer = styled.section`
+height: 30px;
+display: block;
+`
+
+
 
 
