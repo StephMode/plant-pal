@@ -19,12 +19,14 @@ export default function Form({
     }
     data.fertiliserSeason = selectedSeasons;
 
-    { buttonText === "Edit" && handleEditPlant(data, plant.id) }
+    if (buttonText === "Edit") { handleEditPlant(data, plant.id) }
+    else if (buttonText === "Add") {
+      handleAddPlant(data)
+    }
 
-    { buttonText === "Add" && handleAddPlant(data) }
 
     event.target.reset();
-}
+  }
   return (
     <StyledSection>
       <StyledH2>
@@ -83,11 +85,8 @@ export default function Form({
             name="lightNeed"
             type="radio"
             value="Partial Shade"
-            defaultChecked={
-              buttonText === "Edit" && plant.lightNeed == "Partial Shade"
-                ? true
-                : false
-            }
+            defaultChecked={buttonText === "Edit" && plant.lightNeed == "Partial Shade"}
+
           />
           <StyledRadiolabel htmlFor="light-partial-shade">
             Partial Shade{" "}
@@ -99,10 +98,7 @@ export default function Form({
             type="radio"
             value="Full Sun"
             defaultChecked={
-              buttonText === "Edit" && plant.lightNeed == "Full Sun"
-                ? true
-                : false
-            }
+              buttonText === "Edit" && plant.lightNeed == "Full Sun"}
           />
           <StyledRadiolabel htmlFor="light-full-sun">
             Full Sun{" "}
@@ -128,8 +124,7 @@ export default function Form({
             value="Medium"
             defaultChecked={
               buttonText === "Edit" && plant.waterNeed == "Medium"
-                ? true
-                : false
+
             }
           />
           <StyledRadiolabel htmlFor="water-medium">Medium</StyledRadiolabel>
@@ -140,7 +135,7 @@ export default function Form({
             type="radio"
             value="High"
             defaultChecked={
-              buttonText === "Edit" && plant.waterNeed == "High" ? true : false
+              buttonText === "Edit" && plant.waterNeed == "High"
             }
           />
           <StyledRadiolabel htmlFor="water-high">High </StyledRadiolabel>
@@ -157,8 +152,7 @@ export default function Form({
             defaultChecked={
               buttonText === "Edit" &&
                 !plant.fertiliserSeason.includes("Spring")
-                ? false
-                : true
+                
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-spring">
@@ -172,8 +166,7 @@ export default function Form({
             value="Summer"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Summer")
-                ? true
-                : false
+                
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-summer">
@@ -187,8 +180,7 @@ export default function Form({
             value="Fall"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Fall")
-                ? true
-                : false
+             
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-fall">
@@ -202,8 +194,7 @@ export default function Form({
             value="Winter"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Winter")
-                ? true
-                : false
+               
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-winter">
