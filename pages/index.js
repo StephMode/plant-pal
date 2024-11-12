@@ -33,7 +33,6 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) 
           </ul>
         </>
       )}
-      <Link href="/myplants">My Plants</Link>
     </main>
   );
 }

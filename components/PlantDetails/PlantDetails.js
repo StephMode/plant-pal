@@ -85,8 +85,6 @@ export default function PlantDetails({
       <p>{description}</p>
       <br />
       <PlantDeleteButton onDeletePlant={onDeletePlant} name={name} id={id}  />
-      <br />
-      <Link href="/">Homepage</Link>
     </>
   );
 }
