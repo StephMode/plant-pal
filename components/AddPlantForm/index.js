@@ -70,17 +70,17 @@ export default function AddPlantForm ({handleAddPlant}){
                 <StyledFieldsetCheckbox>
                     <legend>Fertiliser Season</legend>
 
-                        <StyledCheckboxInput id="fertiliser-spring" name="fertiliserSeason" type="checkbox" value="Spring" defaultChecked/>
-                        <StyledCheckboxLabel htmlFor="fertiliser-spring">Spring</StyledCheckboxLabel>
+                    <StyledCheckboxInput id="fertiliser-spring" name="fertiliserSeason" type="checkbox" value="Spring" defaultChecked/>
+                    <StyledCheckboxLabel htmlFor="fertiliser-spring">Spring</StyledCheckboxLabel>
 
-                        <StyledCheckboxInput id="fertiliser-summer" name="fertiliserSeason" type="checkbox" value="Summer"/>
-                        <StyledCheckboxLabel htmlFor="fertiliser-summer">Summer</StyledCheckboxLabel>
+                    <StyledCheckboxInput id="fertiliser-summer" name="fertiliserSeason" type="checkbox" value="Summer"/>
+                    <StyledCheckboxLabel htmlFor="fertiliser-summer">Summer</StyledCheckboxLabel>
 
-                        <StyledCheckboxInput id="fertiliser-fall" name="fertiliserSeason" type="checkbox" value="Fall"/>
-                        <StyledCheckboxLabel htmlFor="fertiliser-fall">Fall</StyledCheckboxLabel>
+                    <StyledCheckboxInput id="fertiliser-fall" name="fertiliserSeason" type="checkbox" value="Fall"/>
+                    <StyledCheckboxLabel htmlFor="fertiliser-fall">Fall</StyledCheckboxLabel>
 
-                        <StyledCheckboxInput id="fertiliser-winter" name="fertiliserSeason" type="checkbox" value="Winter"/>
-                        <StyledCheckboxLabel htmlFor="fertiliser-winter">Winter</StyledCheckboxLabel>
+                    <StyledCheckboxInput id="fertiliser-winter" name="fertiliserSeason" type="checkbox" value="Winter"/>
+                    <StyledCheckboxLabel htmlFor="fertiliser-winter">Winter</StyledCheckboxLabel>
 
                 </StyledFieldsetCheckbox>
                 <StyledSubmitButton type="submit">Add plant</StyledSubmitButton>
