@@ -5,6 +5,7 @@ import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
 import { useState } from "react";
+import Navigation from "/components/Navigation";
 
 
 export default function App({ Component, pageProps }) {
@@ -86,8 +87,8 @@ export default function App({ Component, pageProps }) {
         showModal={showModal}
         isEdit={isEdit}
         isDelete={isDelete}
-
       />
+      <Navigation/>
     </>
   );
 }
