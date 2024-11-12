@@ -4,7 +4,7 @@ export default function PlantFilterSection({ handleFilterPlant, showPlantFilterS
 
 
     return (
-        // showPlantFilterSection && ()
+        showPlantFilterSection && (
         <StyledPlantFilterSection>
             <h2>Filter options</h2>
             <form>
@@ -25,7 +25,7 @@ export default function PlantFilterSection({ handleFilterPlant, showPlantFilterS
                 </StyledFieldsetRadio>
             </form>
         </StyledPlantFilterSection>
-    );
+    ));
 };
 
 
