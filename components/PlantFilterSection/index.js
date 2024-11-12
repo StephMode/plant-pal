@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function PlantFilterSection({ handleFilterPlant }) {
+export default function PlantFilterSection({ handleFilterPlant, showPlantFilterSection }) {
 
 
     return (

@@ -6,7 +6,7 @@ import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
 
 
-export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlant, onToggleModal}) {
+export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlant, onToggleModal, showPlantFilterSection, handleFilterSection}) {
 
   return (
     <main>
@@ -18,8 +18,8 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
         </>
       ) : (
         <>
-          <Button buttonText="Filter" handleButtonFunction={onToggleModal} onFilterPlant={onFilterPlant} />
-          <PlantFilterSection handleFilterPlant={onFilterPlant} />
+          <Button buttonText="Filter" handleButtonFunction={handleFilterSection} />
+          <PlantFilterSection handleFilterPlant={onFilterPlant} showPlantFilterSection={showPlantFilterSection} />
           <AddPlantForm handleAddPlant={handleAddPlant}/>
           <ul>
             {plants.map((plant) => (

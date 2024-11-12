@@ -14,11 +14,13 @@ export default function App({ Component, pageProps }) {
     defaultValue: initialPlants,
   });
 
+  //---------------------------------------------------------------------------
   const [showModal, setShowModal] = useState(false);
 
   function handleToggleModal() {
     setShowModal(!showModal);
   }
+
   //---------------------------------------------------------------------------
   function handleToggleOwned(id) {
     setPlants((prevPlants) =>
@@ -27,6 +29,7 @@ export default function App({ Component, pageProps }) {
       )
     );
   }
+
   //---------------------------------------------------------------------------
   function handleAddPlant(newPlantData){
     const newPlant = {...newPlantData,  id: nanoid(), imageUrl: "https://images.unsplash.com/photo-1494516192674-b82b5f1e61dc?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
@@ -45,6 +48,13 @@ export default function App({ Component, pageProps }) {
   }
 
   //---------------------------------------------------------------------------
+
+  const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
+
+  function handleFilterSection() {
+    setShowPlantFilterSection(!showPlantFilterSection);
+  }
+
   function handleFilterPlant(selectedFilter) {
 
     setPlants((prevPlants) => 
@@ -66,6 +76,8 @@ export default function App({ Component, pageProps }) {
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         onFilterPlant={handleFilterPlant}
+        showPlantFilterSection={showPlantFilterSection}
+        handleFilterSection={handleFilterSection}
         onToggleModal={handleToggleModal}
         showModal={showModal}
       />
