@@ -6,7 +6,7 @@ import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
 
 
-export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlant, onToggleModal, showPlantFilterSection, handleFilterSection}) {
+export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlant, onToggleModal, showPlantFilterSection, handleFilterSection, filteredPlants}) {
 
   return (
     <main>
@@ -22,7 +22,8 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
           <PlantFilterSection handleFilterPlant={onFilterPlant} showPlantFilterSection={showPlantFilterSection} />
           <AddPlantForm handleAddPlant={handleAddPlant}/>
           <ul>
-            {plants.map((plant) => (
+           {filteredPlants === plants ? ( 
+            plants.map((plant) => (
               <li key={plant.id}>
                 <PlantCard
                   plantId={plant.id}
@@ -33,7 +34,19 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
                   isOwned={plant.isOwned}
                 />
               </li>
-            ))}
+            ))) : (
+            filteredPlants.map((plant) => (
+              <li key={plant.id}>
+                <PlantCard
+                  plantId={plant.id}
+                  image={plant.imageUrl}
+                  name={plant.name}
+                  botanicalName={plant.botanicalName}
+                  handleToggleOwned={handleToggleOwned}
+                  isOwned={plant.isOwned}
+                />
+              </li>
+            )))}
           </ul>
         </>
       )}
@@ -42,6 +55,7 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
   );
 }
 
+// {filteredPlants !== plants ? filteredPlants.map(plant) : plants.map(plant)}
 
 const StyledInfoText = styled.p`
   color: var(--green-main);

@@ -64,6 +64,7 @@ background: var(--green-light);
 padding: 5px 10px;
 border-radius: 20px;  
 font-weight: bold; 
+cursor: pointer;
 `;
 
 const StyledRadioInput = styled.input`

@@ -4,7 +4,7 @@ import { plants as initialPlants } from "/lib/data";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export default function App({ Component, pageProps }) {
@@ -55,12 +55,40 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
+  // Lösungsansatz 1
+  // let filteredPlants;
+  // function handleFilterPlant(selectedFilter) {
+
+  //   filteredPlants = 
+  //     plants.filter((plant) =>
+  //       plant.lightNeed === selectedFilter);
+
+  //   console.log("Innerhalb der Funktion:", filteredPlants);
+  // };
+  
+  // useEffect(() => {
+  //   console.log("Außerhalb der Funktion:", filteredPlants)
+  // },[filteredPlants])
+
+  //---------------------------------------------------------------------------
+  // Lösungsansatz 2: Einführen eines neuen states
+  const [filteredPlants, setFilteredPlants] = useState(plants);
+
   function handleFilterPlant(selectedFilter) {
 
-    setPlants((prevPlants) => 
-      prevPlants.filter((plant) =>
+    setFilteredPlants(plants);
+
+    setFilteredPlants((filteredPlants) => 
+      filteredPlants.filter((plant) =>
         plant.lightNeed === selectedFilter)
     );
+
+    console.log("Applied Filter:", filteredPlants);
+  }
+
+
+  function handleFilterPlantReset() {
+
   }
 
   return (
@@ -76,6 +104,7 @@ export default function App({ Component, pageProps }) {
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         onFilterPlant={handleFilterPlant}
+        filteredPlants={filteredPlants}
         showPlantFilterSection={showPlantFilterSection}
         handleFilterSection={handleFilterSection}
         onToggleModal={handleToggleModal}
