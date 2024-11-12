@@ -6,7 +6,7 @@ import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
 
 
-export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlant, onToggleModal, showPlantFilterSection, handleFilterSection, filteredPlants, onFilterPlantReset}) {
+export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlants, showPlantFilterSection, toggleFilterSection, filteredPlants, onFilterPlantsReset}) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
 
   return (
@@ -19,11 +19,11 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
         </>
       ) : (
         <>
-          <Button buttonText="Filter" handleButtonFunction={handleFilterSection} />
-          <PlantFilterSection handleFilterPlant={onFilterPlant} showPlantFilterSection={showPlantFilterSection} handleFilterPlantReset={onFilterPlantReset} />
+          <Button buttonText="Filter" handleButtonFunction={toggleFilterSection} />
+          <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} />
           <AddPlantForm handleAddPlant={handleAddPlant}/>
           { filteredPlants.length === 0 && 
-          ( <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> )}
+           <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> }
           <ul>
            {plantsToBeRendered.map((plant) => (
               <li key={plant.id}>

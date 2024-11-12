@@ -56,14 +56,14 @@ export default function App({ Component, pageProps }) {
 
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
-  function handleFilterSection() {
+  function toggleFilterSection() {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
   //---------------------------------------------------------------------------
   const [filteredPlants, setFilteredPlants] = useState(plants);
 
-  function handleFilterPlant(selectedFilter) {
+  function handleFilterPlants(selectedFilter) {
 
     setFilteredPlants(plants);
 
@@ -73,7 +73,7 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  function handleFilterPlantReset() {
+  function handleFilterPlantsReset() {
     setFilteredPlants(plants);
   }
 
@@ -89,11 +89,11 @@ export default function App({ Component, pageProps }) {
         plants={plants}
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
-        onFilterPlant={handleFilterPlant}
-        onFilterPlantReset={handleFilterPlantReset}
+        onFilterPlants={handleFilterPlants}
+        onFilterPlantsReset={handleFilterPlantsReset}
         filteredPlants={filteredPlants}
         showPlantFilterSection={showPlantFilterSection}
-        handleFilterSection={handleFilterSection}
+        toggleFilterSection={toggleFilterSection}
         onToggleModal={handleToggleModal}
         showModal={showModal}
       />

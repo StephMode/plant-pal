@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FiSun } from "react-icons/fi";
 
-export default function PlantFilterSection({ handleFilterPlant, showPlantFilterSection, handleFilterPlantReset }) {
+export default function PlantFilterSection({ handleFilterPlants, showPlantFilterSection, handleFilterPlantsReset }) {
 
 
     return (
@@ -12,28 +12,28 @@ export default function PlantFilterSection({ handleFilterPlant, showPlantFilterS
                 <StyledFieldsetRadio>
                     <legend>Light needs </legend>
 
-                    <StyledRadioInput id="light-full-shade" name="lightNeed" type="radio" value="Full Shade" onChange={() => handleFilterPlant("Full Shade")} />
+                    <StyledRadioInput id="light-full-shade" name="lightNeed" type="radio" value="Full Shade" onChange={() => handleFilterPlants("Full Shade")} />
                     <StyledRadiolabel htmlFor="light-full-shade">
                         <StyledSunIconFull />
                         <StyledSunIcon />
                         <StyledSunIcon />
                     </StyledRadiolabel>
 
-                    <StyledRadioInput id="light-partial-shade" name="lightNeed" type="radio" value="Partial Shade" onChange={() => handleFilterPlant("Partial Shade")} />
+                    <StyledRadioInput id="light-partial-shade" name="lightNeed" type="radio" value="Partial Shade" onChange={() => handleFilterPlants("Partial Shade")} />
                     <StyledRadiolabel htmlFor="light-partial-shade">
                         <StyledSunIconFull />
                         <StyledSunIconFull />
                         <StyledSunIcon />
                     </StyledRadiolabel>
 
-                    <StyledRadioInput id="light-full-sun" name="lightNeed" type="radio" value="Full Sun" onChange={() => handleFilterPlant("Full Sun")} />
+                    <StyledRadioInput id="light-full-sun" name="lightNeed" type="radio" value="Full Sun" onChange={() => handleFilterPlants("Full Sun")} />
                     <StyledRadiolabel htmlFor="light-full-sun">
                         <StyledSunIconFull />
                         <StyledSunIconFull />
                         <StyledSunIconFull /> 
                     </StyledRadiolabel>
 
-                    <StyledRadioInputReset id="reset" name="lightNeed" type="radio" value="reset" onChange={handleFilterPlantReset} />
+                    <StyledRadioInputReset id="reset" name="lightNeed" type="radio" value="reset" onChange={handleFilterPlantsReset} />
                     <StyledRadiolabelReset htmlFor="reset">Reset</StyledRadiolabelReset>
                 </StyledFieldsetRadio>
             </form>
