@@ -4,27 +4,42 @@ import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Modal from "../Modal";
+import Form from "../Form";
 
-export default function Navigation() { 
+export default function Navigation({handleToggleModal, showModal, handleAddPlant}) { 
 
     const router = useRouter();
 
     return (
-        <Stylednavcontainer>
-            <Link href={"/"} passHref >
-                <StyledIconContainer isActive={router.asPath === "/"}>
-                    <HiHome />
-                </StyledIconContainer>
-            </Link>
-            <StyledIconContainer>
-                <FaPlus />
-            </StyledIconContainer>
-            <Link href={"/myplants"} passHref>
-                <StyledIconContainer isActive={router.asPath === "/myplants"}>
-                    <IoHeart />
-                </StyledIconContainer>
-            </Link>
-        </Stylednavcontainer>
+        <>
+            <Stylednavcontainer>
+                <Link href={"/"} passHref >
+                    <StyledIconContainer isActive={router.asPath === "/"}>
+                        <HiHome />
+                    </StyledIconContainer>
+                </Link>
+                <Link href={"/addplant"} passHref>
+                    <StyledIconContainer isActive={router.asPath === "/addplant"}>
+                        <FaPlus />
+                    </StyledIconContainer>
+                </Link>
+                <Link href={"/myplants"} passHref>
+                    <StyledIconContainer isActive={router.asPath === "/myplants"}>
+                        <IoHeart />
+                    </StyledIconContainer>
+                </Link>
+            </Stylednavcontainer>
+
+{/*             {showModal &&
+            <Modal modalContent={
+            <Form handleAddPlant={handleAddPlant}
+            buttonText={"Add"}
+            handleToggleModal={handleToggleModal}/> 
+            } />}
+ */}
+        </>
+
     )
 }
 

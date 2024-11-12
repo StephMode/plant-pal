@@ -16,7 +16,7 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) 
         </>
       ) : (
         <>
-          <Form handleAddPlant={handleAddPlant} buttonText={"Add"} />
+         {/*  <Form handleAddPlant={handleAddPlant} buttonText={"Add"} /> */}
           <StyledSpacer />
           <ul>
             {plants.map((plant) => (
