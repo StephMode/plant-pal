@@ -6,24 +6,22 @@ import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
 
 
-export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlants, showPlantFilterSection, toggleFilterSection, filteredPlants, onFilterPlantsReset}) {
+export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlants, showPlantFilterSection, toggleFilterSection, onFilterPlantsReset, selectedFilter, filteredPlants}) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
 
   return (
     <main>
       <h1>Plant List</h1>
-      { plants.length === 0 ? (
-        <>
+      <Button buttonText={showPlantFilterSection ? "Close Filter" : "Filter"} handleButtonFunction={toggleFilterSection} />
+      <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} />
+      { filteredPlants.length === 0 && 
+           <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> }
+      { !selectedFilter && plants.length === 0 ? (
           <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
-          <StyledButton type="button">Add Plant</StyledButton>
-        </>
       ) : (
         <>
-          <Button buttonText="Filter" handleButtonFunction={toggleFilterSection} />
-          <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} />
           <AddPlantForm handleAddPlant={handleAddPlant}/>
-          { filteredPlants.length === 0 && 
-           <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> }
+
           <ul>
            {plantsToBeRendered.map((plant) => (
               <li key={plant.id}>
@@ -49,18 +47,11 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
 const StyledInfoText = styled.p`
   color: var(--green-main);
   background-color: var(--gray);
-  margin-top: 10px;
+  margin: 10px 0;
   padding: 40px;
   border-radius: 25px;
 `;
 
 
-const StyledButton = styled.button`
-    background-color: var(--green-light);
-    padding: 8px 20px;
-    border: none;
-    border-radius: 20px;
-    margin: 10px 0;
-`;
 
 

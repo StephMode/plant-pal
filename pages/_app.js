@@ -4,7 +4,7 @@ import { plants as initialPlants } from "/lib/data";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
 export default function App({ Component, pageProps }) {
@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
   });
 
   const [showModal, setShowModal] = useState(false);
-  const [filteredPlants, setFilteredPlants] = useState(plants);
+  const [selectedFilter, setSelectedFilter] = useState("");
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
   function handleToggleModal() {
@@ -41,11 +41,6 @@ export default function App({ Component, pageProps }) {
         plant.id !== id)
     );
 
-    setFilteredPlants((prevFilteredPlants) => 
-      prevFilteredPlants.filter((plant) =>
-        plant.id !== id)
-    );
-
     router.push("/");
     setShowModal(!showModal);
   }
@@ -55,17 +50,17 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleFilterPlants(selectedFilter) {
-
-    setFilteredPlants(plants);
-
-    setFilteredPlants((filteredPlants) => 
-      filteredPlants.filter((plant) =>
-        plant.lightNeed === selectedFilter)
-    );
+    setSelectedFilter(selectedFilter);
   }
 
+  const filteredPlants = selectedFilter 
+   ? plants.filter((plant) => 
+      plant.lightNeed === selectedFilter) 
+   : plants;
+
+
   function handleFilterPlantsReset() {
-    setFilteredPlants(plants);
+    setSelectedFilter("");
   }
 
   return (
@@ -77,11 +72,12 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
-        plants={plants}
+        plants={selectedFilter ? filteredPlants : plants}
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         onFilterPlants={handleFilterPlants}
         onFilterPlantsReset={handleFilterPlantsReset}
+        selectedFilter={selectedFilter}
         filteredPlants={filteredPlants}
         showPlantFilterSection={showPlantFilterSection}
         toggleFilterSection={toggleFilterSection}
