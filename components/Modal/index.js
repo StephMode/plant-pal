@@ -28,7 +28,7 @@ const StyledModal = styled.section`
     background-color: var(--white);
     border-radius: 35px;
     position: fixed;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: auto;

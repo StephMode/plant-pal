@@ -263,7 +263,7 @@ const StyledTextarea = styled.textarea`
   width: 100%;
   height: auto;
   resize: none;
-  min-height: 100px;
+  min-height: 50px;
 `;
 const StyledRadiolabel = styled.label`
   background: var(--green-light);
