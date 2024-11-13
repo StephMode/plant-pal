@@ -11,6 +11,7 @@ export default function MyPlants({ handleToggleOwned, plants }) {
       {ownedPlants.length === 0 && (
         <StyledInfoText>Currently no plants in your list!</StyledInfoText>
       )}
+      <StyledSpacer/>
       <ul>
         {ownedPlants.map((plant) => (
           <li key={plant.id}>
@@ -35,4 +36,8 @@ const StyledInfoText = styled.p`
   margin-top: 10px;
   padding: 40px 40px;
   border-radius: 25px;
+`;
+const StyledSpacer = styled.span`
+  display: block;
+  height: 51px;
 `;
