@@ -62,11 +62,13 @@ const StyledImage = styled(Image)`
 `;
 
 const StyledH2 = styled.h2`
-  padding: 10px 5px;
+  padding: 10px 5px 0 5px;
+  font-size: 20px;
 `;
 
 const StyledH3 = styled.h3`
   padding: 0px 5px;
   font-weight: 300;
   font-style: italic;
+  font-size: 16px;
 `;

@@ -49,6 +49,14 @@ export default createGlobalStyle`
   font-family: 'Assistant', sans-serif;
  }
 
+ a {
+  text-decoration: none;
+  color: var(--black);
+ }
+ a:visited {
+  color: var(--black);
+ }
+
   header img {
     width: 150px;
     height: auto;
