@@ -46,19 +46,5 @@ const StyledInfoText = styled.p`
 `;
 
 
-const StyledButton = styled.button`
-    background-color: var(--green-light);
-    padding: 8px 20px;
-    border: none;
-    border-radius: 20px;
-    margin: 10px 0;
-`;
-
-const StyledSpacer = styled.section`
-height: 30px;
-display: block;
-`
-
-
 
 

@@ -35,14 +35,18 @@ export default createGlobalStyle`
   }
   header {
     display: flex;
-    padding: 5px 20px;
+    padding: 5px 10px;
     height: 50px;
     background-color: var(--green-main);
+    border-radius: 0 0 0px 22px;
   }
   h1 {
   font-family: 'Playfair Display', sans-serif;
-  padding: 20px 10px;
-  color: var(--green-main);
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: var(--white);
   }
 
  h2, h3, h4 {
@@ -58,7 +62,7 @@ export default createGlobalStyle`
  }
 
   header img {
-    width: 150px;
+    width: 125px;
     height: auto;
   }
 

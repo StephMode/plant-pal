@@ -13,7 +13,7 @@ export default function Button({ buttonText, handleButtonFunction }) {
 const StyledButton = styled.button`
   background-color: var(--brown);
   padding: 8px 20px;
-  margin-bottom: 10px;
+  margin : 10px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
