@@ -22,6 +22,7 @@ const StyledModalBackground = styled.section`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 `;
 
 const StyledModal = styled.section`
