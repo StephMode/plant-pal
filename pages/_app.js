@@ -72,7 +72,7 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
-        plants={selectedFilter ? filteredPlants : plants}
+        plants={plants}
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         onFilterPlants={handleFilterPlants}
