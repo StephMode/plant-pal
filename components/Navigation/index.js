@@ -13,17 +13,17 @@ export default function Navigation() {
         <>
             <Stylednavcontainer>
                 <Link href={"/"} passHref >
-                    <StyledIconContainer isactive={router.asPath === "/"}>
+                    <StyledIconContainer $isactive={router.asPath === "/"}>
                         <HiHome />
                     </StyledIconContainer>
                 </Link>
                 <Link href={"/addplant"} passHref>
-                    <StyledIconContainer isactive={router.asPath === "/addplant"}>
+                    <StyledIconContainer $isactive={router.asPath === "/addplant"}>
                         <FaPlus />
                     </StyledIconContainer>
                 </Link>
                 <Link href={"/myplants"} passHref>
-                    <StyledIconContainer isactive={router.asPath === "/myplants"}>
+                    <StyledIconContainer $isactive={router.asPath === "/myplants"}>
                         <IoHeart />
                     </StyledIconContainer>
                 </Link>
