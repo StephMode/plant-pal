@@ -25,7 +25,6 @@ export default function MyPlants({ handleToggleOwned, plants }) {
           </li>
         ))}
       </ul>
-      <Link href="/">Plant List</Link>
     </main>
   );
 }

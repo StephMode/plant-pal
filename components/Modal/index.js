@@ -1,21 +1,19 @@
 import styled from "styled-components";
 import Button from "../Button";
 
-export default function Modal({ showModal, onToggleModal, modalContent, modalContentButtonText, modalContentFunction }) {
 
+export default function Modal({ modalContent }) {
   return (
-      showModal && (
-        <StyledModalBackground>
-          <StyledModal>
-              {modalContent}
-            <StyledModalButtonContainer>
-              {/* Die Buttons hier entfernen und in die zu rendernde Komponente packen */}
-              <Button buttonText="Cancel" handleButtonFunction={onToggleModal} />
-              <Button buttonText={modalContentButtonText} handleButtonFunction={modalContentFunction} />
-            </StyledModalButtonContainer> 
-          </StyledModal>
-        </StyledModalBackground>
-      ));
+
+
+    <StyledModalBackground>
+      <StyledModal>
+        {modalContent}
+      </StyledModal>
+    </StyledModalBackground>
+
+
+  );
 }
 
 const StyledModalBackground = styled.section`
@@ -25,30 +23,21 @@ const StyledModalBackground = styled.section`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 `;
 
 const StyledModal = styled.section`
-  background-color: var(--white);
-  border-radius: 35px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 40%;
-  padding: 0 20px;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+    background-color: var(--white);
+    border-radius: 35px;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
-
-const StyledModalButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-`;
-
-
-

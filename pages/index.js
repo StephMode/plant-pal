@@ -1,12 +1,10 @@
-import AddPlantForm from "/components/AddPlantForm";
 import PlantCard from "/components/PlantCard";
-import Link from "next/link";
 import styled from "styled-components";
 import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
 
 
-export default function HomePage({ handleToggleOwned, plants, handleAddPlant, onFilterPlants, showPlantFilterSection, toggleFilterSection, onFilterPlantsReset, selectedFilter, filteredPlants}) {
+export default function HomePage({ handleToggleOwned, plants, onFilterPlants, showPlantFilterSection, toggleFilterSection, onFilterPlantsReset, selectedFilter, filteredPlants}) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
 
   return (
@@ -19,9 +17,6 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
       { !selectedFilter && plants.length === 0 ? (
           <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
       ) : (
-        <>
-          <AddPlantForm handleAddPlant={handleAddPlant}/>
-
           <ul>
            {plantsToBeRendered.map((plant) => (
               <li key={plant.id}>
@@ -36,9 +31,7 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant, on
               </li>)
             ) }
           </ul>
-        </>
       )}
-      <Link href="/myplants">My Plants</Link>
     </main>
   );
 }
@@ -51,6 +44,20 @@ const StyledInfoText = styled.p`
   padding: 40px;
   border-radius: 25px;
 `;
+
+
+const StyledButton = styled.button`
+    background-color: var(--green-light);
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    margin: 10px 0;
+`;
+
+const StyledSpacer = styled.section`
+height: 30px;
+display: block;
+`
 
 
 
