@@ -1,10 +1,8 @@
-import Form from "/components/Form";
 import PlantCard from "/components/PlantCard";
-import Link from "next/link";
 import styled from "styled-components";
 
 
-export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) {
+export default function HomePage({ handleToggleOwned, plants }) {
 
   return (
     <main>
@@ -15,9 +13,6 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) 
           <StyledButton type="button">Add Plant</StyledButton>
         </>
       ) : (
-        <>
-          <Form handleAddPlant={handleAddPlant} buttonText={"Add"} />
-          <StyledSpacer />
           <ul>
             {plants.map((plant) => (
               <li key={plant.id}>
@@ -32,9 +27,7 @@ export default function HomePage({ handleToggleOwned, plants, handleAddPlant }) 
               </li>
             ))}
           </ul>
-        </>
       )}
-      <Link href="/myplants">My Plants</Link>
     </main>
   );
 }

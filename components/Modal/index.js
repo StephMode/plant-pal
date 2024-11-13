@@ -22,13 +22,14 @@ const StyledModalBackground = styled.section`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 `;
 
 const StyledModal = styled.section`
     background-color: var(--white);
     border-radius: 35px;
     position: fixed;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: auto;
