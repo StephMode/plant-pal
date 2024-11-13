@@ -11,29 +11,29 @@ export default function Navigation() {
 
     return (
         <>
-            <Stylednavcontainer>
-                <Link href={"/"} passHref >
+            <StyledNavContainer>
+                <Link href="/" passHref >
                     <StyledIconContainer $isactive={router.asPath === "/"}>
                         <HiHome />
                     </StyledIconContainer>
                 </Link>
-                <Link href={"/addplant"} passHref>
+                <Link href="/addplant" passHref>
                     <StyledIconContainer $isactive={router.asPath === "/addplant"}>
                         <FaPlus />
                     </StyledIconContainer>
                 </Link>
-                <Link href={"/myplants"} passHref>
+                <Link href="/myplants" passHref>
                     <StyledIconContainer $isactive={router.asPath === "/myplants"}>
                         <IoHeart />
                     </StyledIconContainer>
                 </Link>
-            </Stylednavcontainer>
+            </StyledNavContainer>
         </>
 
     )
 }
 
-const Stylednavcontainer = styled.nav`
+const StyledNavContainer = styled.nav`
     position: fixed;
     bottom: 0;
     width: 100%;
