@@ -59,9 +59,14 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
-
+  main ul {    
+    gap: 16px;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   ul, li {
     list-style: none;
