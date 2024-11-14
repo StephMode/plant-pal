@@ -76,7 +76,7 @@ export default function Form({
         </StyledFieldset>
         {/*-----------------------------------------------------------*/}
         <StyledFieldsetRadio>
-          <legend> Light needs </legend>
+          <StyledLegend> Light needs: </StyledLegend>
 
           <StyledRadioInput
             id="light-full-shade"
@@ -115,7 +115,7 @@ export default function Form({
         </StyledFieldsetRadio>
         {/*-----------------------------------------------------------*/}
         <StyledFieldsetRadio>
-          <legend> Water needs </legend>
+          <StyledLegend> Water needs:</StyledLegend>
 
           <StyledWaterRadioInput
             id="water-low"
@@ -151,7 +151,7 @@ export default function Form({
         </StyledFieldsetRadio>
         {/*-----------------------------------------------------------*/}
         <StyledFieldsetCheckbox>
-          <legend>Fertiliser Season</legend>
+          <StyledLegend>Fertiliser Season:</StyledLegend>
 
           <StyledCheckboxInput
             id="fertiliser-spring"
@@ -380,5 +380,8 @@ const StyledButtonContainer = styled.section`
 display: flex;
 gap: 15px;
 `;
-
+const StyledLegend = styled.legend`
+  width: 100%;
+  text-align: left;
+`;
 

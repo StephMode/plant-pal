@@ -2,8 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 
-
-
 :root {
   --gold: #FFBA00;
   --gold-dark: #CE9605;
