@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import { IoClose } from "react-icons/io5";
+import { IoMdMoon } from "react-icons/io";
+import { IoIosSunny } from "react-icons/io";
+import { IoIosPartlySunny } from "react-icons/io";
+import { RiDropLine } from "react-icons/ri";
+import { RiDropFill } from "react-icons/ri";
+import { RiContrastDrop2Fill } from "react-icons/ri";
 
 export default function Form({
   handleAddPlant,
@@ -80,7 +86,7 @@ export default function Form({
             defaultChecked
           />
           <StyledRadiolabel htmlFor="light-full-shade">
-            Full Shade{" "}
+          <IoMdMoon /> Full Shade{" "}
           </StyledRadiolabel>
 
           <StyledRadioInput
@@ -92,7 +98,7 @@ export default function Form({
 
           />
           <StyledRadiolabel htmlFor="light-partial-shade">
-            Partial Shade{" "}
+          <IoIosPartlySunny /> Partial Shade{" "}
           </StyledRadiolabel>
 
           <StyledRadioInput
@@ -104,23 +110,23 @@ export default function Form({
               buttonText === "Edit" && plant.lightNeed == "Full Sun"}
           />
           <StyledRadiolabel htmlFor="light-full-sun">
-            Full Sun{" "}
+          <IoIosSunny /> Full Sun{" "}
           </StyledRadiolabel>
         </StyledFieldsetRadio>
         {/*-----------------------------------------------------------*/}
         <StyledFieldsetRadio>
           <legend> Water needs </legend>
 
-          <StyledRadioInput
+          <StyledWaterRadioInput
             id="water-low"
             name="waterNeed"
             type="radio"
             value="Low"
             defaultChecked
           />
-          <StyledRadiolabel htmlFor="water-low">Low</StyledRadiolabel>
+          <StyledWaterRadiolabel htmlFor="water-low"><RiDropLine /> Low</StyledWaterRadiolabel>
 
-          <StyledRadioInput
+          <StyledWaterRadioInput
             id="water-medium"
             name="waterNeed"
             type="radio"
@@ -130,9 +136,9 @@ export default function Form({
 
             }
           />
-          <StyledRadiolabel htmlFor="water-medium">Medium</StyledRadiolabel>
+          <StyledWaterRadiolabel htmlFor="water-medium"><RiContrastDrop2Fill /> Medium</StyledWaterRadiolabel>
 
-          <StyledRadioInput
+          <StyledWaterRadioInput
             id="water-high"
             name="waterNeed"
             type="radio"
@@ -141,7 +147,7 @@ export default function Form({
               buttonText === "Edit" && plant.waterNeed == "High"
             }
           />
-          <StyledRadiolabel htmlFor="water-high">High </StyledRadiolabel>
+          <StyledWaterRadiolabel htmlFor="water-high"><RiDropFill /> High </StyledWaterRadiolabel>
         </StyledFieldsetRadio>
         {/*-----------------------------------------------------------*/}
         <StyledFieldsetCheckbox>
@@ -154,8 +160,7 @@ export default function Form({
             value="Spring"
             defaultChecked={
               buttonText === "Edit" &&
-              !plant.fertiliserSeason.includes("Spring")
-
+              !plant.fertiliserSeason.includes("Spring") ? false : true
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-spring">
@@ -183,7 +188,6 @@ export default function Form({
             value="Fall"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Fall")
-
             }
           />
           <StyledCheckboxLabel htmlFor="fertiliser-fall">
@@ -219,7 +223,7 @@ const StyledSection = styled.section`
   padding: 15px;
   border-radius: 25px;
   max-width: 600px;
-  min-width: 330px;
+  min-width: 350px;
 `;
 const StyledCloseButton = styled.button`
   background-color: var(--brown);
@@ -242,6 +246,7 @@ const StyledFieldset = styled.fieldset`
   border: none;
   padding: 10px 0;
   color: var(--green-main);
+  text-align: left;
 `;
 const StyledFieldsetRadio = styled.fieldset`
   display: flex;
@@ -250,7 +255,7 @@ const StyledFieldsetRadio = styled.fieldset`
   padding: 10px 0;
   color: var(--green-main);
   justify-content: space-between;
-  gap: 15px;
+  gap: 5px;
 `;
 const StyledInput = styled.input`
   border: none;
@@ -284,18 +289,49 @@ const StyledRadiolabel = styled.label`
   background: var(--green-light);
   padding: 5px 10px;
   border-radius: 20px;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
   font-size: 14px;
+  display: flex;
+    align-items: center;
+    gap: 5px;
+`;
+const StyledWaterRadiolabel = styled.label`
+  background: var(--green-light);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: normal;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 30%;
+  gap: 10px;
+  justify-content: center;
 `;
 const StyledRadioInput = styled.input`
   display: none;
 
   &:checked + label {
     background: var(--green-main);
-    font-weight: bold;
     color: var(--white);
     text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+`;
+const StyledWaterRadioInput = styled.input`
+  display: none;
+
+  &:checked + label {
+    background: var(--green-main);
+    color: var(--white);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 `;
 const StyledFieldsetCheckbox = styled.fieldset`
@@ -305,22 +341,21 @@ const StyledFieldsetCheckbox = styled.fieldset`
   padding: 10px 0;
   color: var(--green-main);
   justify-content:space-between;
-  gap: 15px;
   flex-wrap: wrap;
 `;
 const StyledCheckboxLabel = styled.label`
   background: var(--green-light);
   padding: 5px 10px;
   border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
+  font-weight: normal;
+  font-size: 14px;  
+  width: 22%;
 `;
 const StyledCheckboxInput = styled.input`
   display: none;
 
   &:checked + label {
     background: var(--green-main);
-    font-weight: bold;
     color: var(--white);
   }
 `;

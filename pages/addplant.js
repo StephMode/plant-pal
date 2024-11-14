@@ -12,5 +12,5 @@ export default function AddPlantPage ({handleAddPlant}){
 }
 const StyledSpacer = styled.span`
   display: block;
-  height: 66px;
+  height: 40px;
 `;
