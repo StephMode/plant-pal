@@ -1,13 +1,18 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { LuDroplet } from "react-icons/lu";
-import { FiSun } from "react-icons/fi";
 import Link from "next/link";
 import EditDeleteButton from "../EditDeleteButton";
 import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
+import { RiDropLine } from "react-icons/ri";
 import { FaChevronLeft } from "react-icons/fa6";
+import { RiDropFill } from "react-icons/ri";
+import { RiContrastDrop2Fill } from "react-icons/ri";
+import { IoIosSunny } from "react-icons/io";
+import { IoIosPartlySunny } from "react-icons/io";
+import { IoMdMoon } from "react-icons/io";
+import { GiPowder } from "react-icons/gi";
 
 export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdit, showModal, handleEditPlant, handleAddPlant, onDeletePlant }) {
   return (
@@ -19,67 +24,55 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
       <StyledPlantContainer>
       <StyledH2>{plant.name}</StyledH2>
       <StyledH3>{plant.botanicalName}</StyledH3>
+      <StyledDescription>{plant.description}</StyledDescription>
         <StyledPlantNeedsContainer>
-          <h4>Light needs:</h4>
-          <span>
             {plant.lightNeed === "Full Shade" ? (
-              <>
-                <StyledSunIconFull />
-                <StyledSunIcon />
-                <StyledSunIcon />
-              </>
+              <StyledIconSection>
+                <IoMdMoon />
+                <p>Full shade</p>
+              </StyledIconSection>
             ) : plant.lightNeed === "Partial Shade" ? (
-              <>
-                <StyledSunIconFull />
-                <StyledSunIconFull />
-                <StyledSunIcon />
-              </>
+              <StyledIconSection>
+                <IoIosPartlySunny />
+                <p>Partial shade</p>
+              </StyledIconSection>
             ) : plant.lightNeed === "Full Sun" ? (
-              <>
-                <StyledSunIconFull />
-                <StyledSunIconFull />
-                <StyledSunIconFull />
-              </>
+              <StyledIconSection>
+                <IoIosSunny /> 
+                <p>Full sun</p>
+              </StyledIconSection>
             ) : null}
-          </span>
-          <br />
 
-          <h4>Water needs:</h4>
-          <span>
             {plant.waterNeed === "Low" ? (
-              <>
-                <StyledWaterIconFull />
-                <StyledWaterIcon />
-                <StyledWaterIcon />
-              </>
+              <StyledIconSection>
+                <RiDropLine /> 
+                <p>Low water need</p>
+              </StyledIconSection>
             ) : plant.waterNeed === "Medium" ? (
-              <>
-                <StyledWaterIconFull />
-                <StyledWaterIconFull />
-                <StyledWaterIcon />
-              </>
+              <StyledIconSection>
+                <RiContrastDrop2Fill />
+                <p>Medium water need</p>
+              </StyledIconSection>
             ) : plant.waterNeed === "High" ? (
-              <>
-                <StyledWaterIconFull />
-                <StyledWaterIconFull />
-                <StyledWaterIconFull />
-              </>
+              <StyledIconSection>
+                <RiDropFill />
+                <p>High water need</p>
+              </StyledIconSection>
             ) : null}
-          </span>
-          <br />
-          <h4>Fertiliser Seasons:</h4>
-          <ul>
-            {plant.fertiliserSeason.map((season) => (
-              <li key={season}>{season} </li>
-            ))}
-          </ul>
-          <br />
+
+          <StyledIconSection>
+            <GiPowder />
+            <p>Fertilize in:</p>
+            <StyledFertilizerUl>
+              {plant.fertiliserSeason.map((season) => (
+                <StyledFertilizerLi key={season}>{season} </StyledFertilizerLi>
+              ))}
+            </StyledFertilizerUl>
+          </StyledIconSection>
         </StyledPlantNeedsContainer>
         
       </StyledPlantContainer>
-      <h4>Description:</h4>
-      <p>{plant.description}</p>
-      <br />
+      
       <EditDeleteButton buttonText={"Edit"} handleButtonFunction={() => handleToggleModal("Edit")} />
       <EditDeleteButton
         buttonText={"Delete"}
@@ -98,7 +91,6 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
               "This is an error, please reload page."
         } />}
 
-      <br />
       <Link href="/">
       <StyledIconContainer>
         <FaChevronLeft />
@@ -108,31 +100,15 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
   );
 }
 
-const StyledWaterIconFull = styled(LuDroplet)`
-  color: blue;
-  fill: blue;
-`;
-
-const StyledWaterIcon = styled(LuDroplet)`
-  color: blue;
-  fill: none;
-`;
-
-const StyledSunIconFull = styled(FiSun)`
-  color: gold;
-  fill: gold;
-`;
-
-const StyledSunIcon = styled(FiSun)`
-  color: gold;
-  fill: none;
-`;
-
 const StyledPlantContainer = styled.section`
   display: block;
   margin: 0;
   width: 100%;
   padding: 20px;
+
+  @media (min-width: 768px) {
+    width: 70%;
+  }
 `;
 
 const StyledPlantNeedsContainer = styled.article`
@@ -156,7 +132,7 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 const StyledIconContainer = styled.span `
-    background-color: var(--green-main);
+    background-color: var(--green-light);
     border-radius: 40px;
     width: 50px;
     height: 50px;
@@ -169,10 +145,37 @@ const StyledIconContainer = styled.span `
     top: 70px;
     left: 20px;
  `;
-
- const StyledH2 = styled.h2`
+const StyledIconSection = styled.section`
+  display: flex;
+  align-items: center;
+  color: var(--green-main);
+  font-weight: bold;
+  font-size: 20px;
+  gap: 10px;
   margin-bottom: 5px;
+  flex-wrap: wrap;
+`;
+ const StyledH2 = styled.h2`
+  margin-bottom: 2px;
  `;
  const StyledH3 = styled.h3`
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  font-style: italic;
+  font-weight: normal;
  `;
+ const StyledDescription = styled.p`
+  margin-bottom: 20px;
+  text-align: justify;
+ `;
+ const StyledFertilizerUl = styled.ul`
+  gap: 5px;
+  margin : 0 0 0 30px;
+ `;
+ const StyledFertilizerLi = styled.li`
+  color: var(--white);
+  background-color: var(--green-light);
+  padding: 3px 10px 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: normal;
+`;
