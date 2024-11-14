@@ -83,7 +83,6 @@ export default createGlobalStyle`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 50px;
   }
 
   ul, li {

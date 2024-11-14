@@ -2,6 +2,8 @@ import PlantCard from "/components/PlantCard";
 import styled from "styled-components";
 import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
+import { AiOutlineControl } from "react-icons/ai";
+import { IoClose } from "react-icons/io5";
 
 
 export default function HomePage({ handleToggleOwned, plants, onFilterPlants, showPlantFilterSection, toggleFilterSection, onFilterPlantsReset, selectedFilter, filteredPlants}) {
@@ -10,7 +12,7 @@ export default function HomePage({ handleToggleOwned, plants, onFilterPlants, sh
   return (
     <main>
       <h1>Plant List</h1>
-      <Button buttonText={showPlantFilterSection ? "Close Filter" : "Filter"} handleButtonFunction={toggleFilterSection} />
+      <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
       <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} />
       { filteredPlants.length === 0 && 
            <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> }
