@@ -97,4 +97,7 @@ svg{
 svg:hover {
   filter: brightness(0.7);
 }
+nav svg:hover {
+  filter: brightness(1);
+}
 `;
