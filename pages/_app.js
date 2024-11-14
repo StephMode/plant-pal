@@ -1,4 +1,5 @@
 import GlobalStyle from "../styles";
+import "../fonts.css"
 import Image from "next/image";
 import { plants as initialPlants } from "/lib/data";
 import useLocalStorageState from "use-local-storage-state";
