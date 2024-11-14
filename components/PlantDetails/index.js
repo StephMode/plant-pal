@@ -12,9 +12,13 @@ import { FaChevronLeft } from "react-icons/fa6";
 export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdit, showModal, handleEditPlant, handleAddPlant, onDeletePlant }) {
   return (
     <>
-      <h2>{plant.name}</h2>
-      <h3>{plant.botanicalName}</h3>
+    <StyledImageContainer>
+          <StyledImage src={plant.imageUrl} alt={plant.name} fill />
+        </StyledImageContainer>
+      
       <StyledPlantContainer>
+      <StyledH2>{plant.name}</StyledH2>
+      <StyledH3>{plant.botanicalName}</StyledH3>
         <StyledPlantNeedsContainer>
           <h4>Light needs:</h4>
           <span>
@@ -71,9 +75,7 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
           </ul>
           <br />
         </StyledPlantNeedsContainer>
-        <StyledImageContainer>
-          <StyledImage src={plant.imageUrl} alt={plant.name} fill />
-        </StyledImageContainer>
+        
       </StyledPlantContainer>
       <h4>Description:</h4>
       <p>{plant.description}</p>
@@ -127,8 +129,10 @@ const StyledSunIcon = styled(FiSun)`
 `;
 
 const StyledPlantContainer = styled.section`
-  display: flex;
-  margin: 25px;
+  display: block;
+  margin: 0;
+  width: 100%;
+  padding: 20px;
 `;
 
 const StyledPlantNeedsContainer = styled.article`
@@ -137,18 +141,18 @@ const StyledPlantNeedsContainer = styled.article`
 `;
 
 const StyledImageContainer = styled.div`
-  width: 300px;
+  width: 100%;
   height: 300px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 15px;
+  border-radius: 35px;
 `;
 
 const StyledImage = styled(Image)`
   width: 200%;
   height: auto;
   text-align: center;
-  border-radius: 35px;
+
   object-fit: cover;
 `;
 const StyledIconContainer = styled.span `
@@ -164,4 +168,11 @@ const StyledIconContainer = styled.span `
     position: absolute;
     top: 70px;
     left: 20px;
+ `;
+
+ const StyledH2 = styled.h2`
+  margin-bottom: 5px;
+ `;
+ const StyledH3 = styled.h3`
+  margin-bottom: 25px;
  `;

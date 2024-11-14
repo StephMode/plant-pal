@@ -39,6 +39,10 @@ export default createGlobalStyle`
     height: 50px;
     background-color: var(--green-main);
     border-radius: 0 0 0px 22px;
+    position: absolute;
+    top: 0;
+    z-index: 30;
+    width: 100%;
   }
   h1 {
   font-family: 'Playfair Display', sans-serif;
@@ -47,6 +51,7 @@ export default createGlobalStyle`
   top: 0;
   right: 10px;
   color: var(--white);
+  z-index: 40;
   }
 
  h2, h3, h4 {
@@ -78,6 +83,7 @@ export default createGlobalStyle`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 50px;
   }
 
   ul, li {
