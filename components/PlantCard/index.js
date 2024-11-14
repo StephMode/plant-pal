@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PlantOwnedButton from "../PlantOwnedButton";
 import Image from "next/image";
-import Link from "next/link"
+import Link from "next/link";
 
 export default function PlantCard({
   image,
@@ -28,6 +28,8 @@ export default function PlantCard({
     </StyledCard>
   );
 }
+
+
 
 const StyledCard = styled.article`
   background-color: var(--green-light);

@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export default function EditDeleteButton({ buttonText, handleButtonFunction,
-
-}) {
-
+export default function EditDeleteButton({ buttonText, handleButtonFunction }) {
   return (
     <>
       <StyledButton type="button" onClick={handleButtonFunction}>

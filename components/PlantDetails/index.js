@@ -8,7 +8,16 @@ import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
 
-export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdit, showModal, handleEditPlant, handleAddPlant, onDeletePlant }) {
+export default function PlantDetails({
+  plant,
+  handleToggleModal,
+  isDelete,
+  isEdit,
+  showModal,
+  handleEditPlant,
+  handleAddPlant,
+  onDeletePlant,
+}) {
   return (
     <>
       <h2>{plant.name}</h2>
@@ -77,24 +86,40 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
       <h4>Description:</h4>
       <p>{plant.description}</p>
       <br />
-      <EditDeleteButton buttonText={"Edit"} handleButtonFunction={() => handleToggleModal("Edit")} />
+      <EditDeleteButton
+        buttonText={"Edit"}
+        handleButtonFunction={() => handleToggleModal("Edit")}
+      />
       <EditDeleteButton
         buttonText={"Delete"}
         handleButtonFunction={() => handleToggleModal("Delete")}
       />
 
-      {showModal &&
-        <Modal modalContent={
-          isEdit ? <Form handleAddPlant={handleAddPlant}
-            plant={plant}
-            buttonText={"Edit"}
-            handleToggleModal={handleToggleModal}
-            handleEditPlant={handleEditPlant}
-
-          /> :
-            isDelete ? <PlantDeleteSection plant={plant} buttonText={"Delete"} onDeletePlant={onDeletePlant} id={plant.id} handleToggleModal={handleToggleModal} /> :
+      {showModal && (
+        <Modal
+          modalContent={
+            isEdit ? (
+              <Form
+                handleAddPlant={handleAddPlant}
+                plant={plant}
+                buttonText={"Edit"}
+                handleToggleModal={handleToggleModal}
+                handleEditPlant={handleEditPlant}
+              />
+            ) : isDelete ? (
+              <PlantDeleteSection
+                plant={plant}
+                buttonText={"Delete"}
+                onDeletePlant={onDeletePlant}
+                id={plant.id}
+                handleToggleModal={handleToggleModal}
+              />
+            ) : (
               "This is an error, please reloard page."
-        } />}
+            )
+          }
+        />
+      )}
 
       <br />
       <Link href="/">Homepage</Link>
