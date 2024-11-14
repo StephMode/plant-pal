@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoClose } from "react-icons/io5";
 
 export default function Form({
   handleAddPlant,
@@ -29,10 +30,12 @@ export default function Form({
   }
   return (
     <StyledSection>
-      <StyledH2>
-        {buttonText === "Edit" ? `Edit ${plant.name}` : "Add plant"}
-      </StyledH2>
       <form onSubmit={handleSubmitAddPlant}>
+      {buttonText === "Edit" && (
+            <StyledCloseButton type="button" onClick={() => handleToggleModal("Edit")}>
+               <IoClose />
+            </StyledCloseButton>
+          )}
         <StyledFieldset>
           <label htmlFor="plantName">Plant name:</label>
           <StyledInput
@@ -203,12 +206,6 @@ export default function Form({
         </StyledFieldsetCheckbox>
         <StyledButtonContainer>
 
-          {buttonText === "Edit" && (
-            <StyledSubmitButton type="button" onClick={() => handleToggleModal("Edit")}>
-              Cancel
-            </StyledSubmitButton>
-          )}
-
           <StyledSubmitButton type="submit">
             {buttonText === "Edit" ? "Edit Plant" : "Add plant"}
           </StyledSubmitButton>
@@ -220,15 +217,24 @@ export default function Form({
 
 const StyledSection = styled.section`
   padding: 15px;
-  background: var(--gray);
   border-radius: 25px;
   max-width: 600px;
   min-width: 330px;
 `;
-const StyledH2 = styled.h2`
-  color: var(--green-main);
-  text-align: center;
-  padding: 0px 5px 10px 5px;
+const StyledCloseButton = styled.button`
+  background-color: var(--brown);
+  border: none;
+  border-radius: 20px;
+  padding: 5px 6px 0px 6px;
+  font-size: 26px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  transition: all ease-in-out 0.5s;
+
+  &:hover {
+    background-color: var(--brown-dark);
+  }
 `;
 const StyledFieldset = styled.fieldset`
   flex-direction: column;
@@ -251,6 +257,11 @@ const StyledInput = styled.input`
   border-radius: 30px;
   padding: 10px 15px;
   margin-top: 6px;
+  background-color: rgba(0,0,0,0.1);
+
+  &:focus {
+    outline-color:var(--green-light);
+  }
 `;
 const StyledTextarea = styled.textarea`
   border: none;
@@ -259,11 +270,15 @@ const StyledTextarea = styled.textarea`
   margin-top: 6px;
   max-width: 570px;
   max-height: 300px;
-  /* min-width: 327px; */
   width: 100%;
   height: auto;
   resize: none;
   min-height: 50px;
+  background-color: rgba(0,0,0,0.1);
+  
+  &:focus {
+    outline-color:var(--green-light);
+  }
 `;
 const StyledRadiolabel = styled.label`
   background: var(--green-light);
@@ -311,17 +326,19 @@ const StyledCheckboxInput = styled.input`
 `;
 const StyledSubmitButton = styled.button`
   padding: 10px 15px;
-  background-color: var(--green-main);
-  color: var(--white);
+  background-color: var(--brown);
+  color: var(--black);
   font-weight: bold;
   border: none;
   border-radius: 20px;
   width: 100%;
   margin-top: 10px;
+  transition: all ease-in-out 0.5s;
 
   &:hover {
     background-color: var(--green-main-dark);
     cursor: pointer;
+    color: var(--white);
   }
 `;
 const StyledButtonContainer = styled.section`

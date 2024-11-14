@@ -19,5 +19,10 @@ const StyledButton = styled.button`
     cursor: pointer;
     align-self: end;
     font-size: 26px;
+    transition: 0.5s ease-in-out;
+
+    &:hover {
+    background-color: var(--brown-dark);
+  }
 `;
 

@@ -64,6 +64,7 @@ const StyledImage = styled(Image)`
 const StyledH2 = styled.h2`
   padding: 10px 5px 0 5px;
   font-size: 20px;
+  max-width: 300px;
 `;
 
 const StyledH3 = styled.h3`

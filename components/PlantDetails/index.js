@@ -125,13 +125,17 @@ const StyledImageContainer = styled.div`
   position: relative;
   border-radius: 35px;
   box-shadow: 0 0px 51px rgba(0, 0, 0, 0.3);
+
+  
+  @media (min-width: 750px) {
+    height: 500px;
+  }
 `;
 
 const StyledImage = styled(Image)`
   width: 200%;
   height: auto;
   text-align: center;
-
   object-fit: cover;
 `;
 const StyledIconContainer = styled.span `

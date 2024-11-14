@@ -20,4 +20,9 @@ const StyledButton = styled.button`
   border-radius: 20px;
   max-height: 40px;
   font-size: 18px;
+  transition: 0.5s ease-in-out ;
+
+  &:hover {
+    background-color: var(--brown-dark);
+  }
 `;
