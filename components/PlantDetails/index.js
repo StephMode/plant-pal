@@ -124,6 +124,7 @@ const StyledImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   border-radius: 35px;
+  box-shadow: 0 0px 51px rgba(0, 0, 0, 0.3);
 `;
 
 const StyledImage = styled(Image)`
