@@ -15,7 +15,9 @@ export default function EditDeleteButton({ buttonText, handleButtonFunction,
 
 const StyledButton = styled.button`
   background-color: var(--brown);
-  padding: 8px 20px;
+  padding: 10px 20px 8px 20px;
   border: none;
   border-radius: 20px;
+  max-height: 40px;
+  font-size: 18px;
 `;

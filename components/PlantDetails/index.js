@@ -13,17 +13,23 @@ import { IoIosSunny } from "react-icons/io";
 import { IoIosPartlySunny } from "react-icons/io";
 import { IoMdMoon } from "react-icons/io";
 import { GiPowder } from "react-icons/gi";
+import { FaTrashAlt } from "react-icons/fa";
+import { FaPen } from "react-icons/fa6";
 
 export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdit, showModal, handleEditPlant, handleAddPlant, onDeletePlant }) {
   return (
     <>
-    <StyledImageContainer>
-          <StyledImage src={plant.imageUrl} alt={plant.name} fill />
-        </StyledImageContainer>
+      <StyledImageContainer>
+            <StyledImage src={plant.imageUrl} alt={plant.name} fill />
+      </StyledImageContainer>
       
       <StyledPlantContainer>
-      <StyledH2>{plant.name}</StyledH2>
+      <StyledTopSection>
+        <StyledH2>{plant.name}</StyledH2>
+        <EditDeleteButton buttonText={<FaPen />}   handleButtonFunction={() => handleToggleModal("Edit")}  />
+      </StyledTopSection>
       <StyledH3>{plant.botanicalName}</StyledH3>
+      
       <StyledDescription>{plant.description}</StyledDescription>
         <StyledPlantNeedsContainer>
             {plant.lightNeed === "Full Shade" ? (
@@ -70,32 +76,28 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
             </StyledFertilizerUl>
           </StyledIconSection>
         </StyledPlantNeedsContainer>
-        
+        <StyledEditDeleteSection>
+          <EditDeleteButton buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")}/>
+      </StyledEditDeleteSection>
       </StyledPlantContainer>
-      
-      <EditDeleteButton buttonText={"Edit"} handleButtonFunction={() => handleToggleModal("Edit")} />
-      <EditDeleteButton
-        buttonText={"Delete"}
-        handleButtonFunction={() => handleToggleModal("Delete")}
-      />
 
-      {showModal &&
-        <Modal modalContent={
-          isEdit ? <Form handleAddPlant={handleAddPlant}
-            plant={plant}
-            buttonText={"Edit"}
-            handleToggleModal={handleToggleModal}
-            handleEditPlant={handleEditPlant}
-          /> :
-            isDelete ? <PlantDeleteSection plant={plant} buttonText={"Delete"} onDeletePlant={onDeletePlant} id={plant.id} handleToggleModal={handleToggleModal} /> :
-              "This is an error, please reload page."
-        } />}
+        {showModal &&
+          <Modal modalContent={
+            isEdit ? <Form handleAddPlant={handleAddPlant}
+              plant={plant}
+              buttonText={"Edit"}
+              handleToggleModal={handleToggleModal}
+              handleEditPlant={handleEditPlant}
+            /> :
+              isDelete ? <PlantDeleteSection plant={plant} buttonText={"Delete"} onDeletePlant={onDeletePlant} id={plant.id} handleToggleModal={handleToggleModal} /> :
+                "This is an error, please reload page."
+          } />}
 
-      <Link href="/">
-      <StyledIconContainer>
-        <FaChevronLeft />
-      </StyledIconContainer>
-      </Link>
+        <Link href="/">
+        <StyledIconContainer>
+          <FaChevronLeft />
+        </StyledIconContainer>
+        </Link>
     </>
   );
 }
@@ -155,8 +157,14 @@ const StyledIconSection = styled.section`
   margin-bottom: 5px;
   flex-wrap: wrap;
 `;
+ const StyledTopSection = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+ `;
  const StyledH2 = styled.h2`
   margin-bottom: 2px;
+  max-width: 260px;
  `;
  const StyledH3 = styled.h3`
   margin-bottom: 15px;
@@ -170,6 +178,7 @@ const StyledIconSection = styled.section`
  const StyledFertilizerUl = styled.ul`
   gap: 5px;
   margin : 0 0 0 30px;
+  justify-content: flex-start;
  `;
  const StyledFertilizerLi = styled.li`
   color: var(--white);
@@ -178,4 +187,9 @@ const StyledIconSection = styled.section`
   border-radius: 20px;
   font-size: 14px;
   font-weight: normal;
+`;
+const StyledEditDeleteSection = styled.section`
+  display: flex;
+  width: 100%;
+  margin-top: 25px;
 `;
