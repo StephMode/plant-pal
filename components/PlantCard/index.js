@@ -13,15 +13,16 @@ export default function PlantCard({
 }) {
   return (
     <StyledCard>
+      <Link href={`/plants/${plantId}`}>
       <StyledImageContainer>
         <PlantOwnedButton
           plantId={plantId}
-          onClick={() => handleToggleOwned(plantId)}
+          onClick={(event) => {event.preventDefault(); handleToggleOwned(plantId)}}
           isOwned={isOwned}
         />
         <StyledImage src={image} alt={name} fill={true} />
       </StyledImageContainer>
-      <Link href={`/plants/${plantId}`}>
+      
         <StyledH2>{name}</StyledH2>
         <StyledH3>{botanicalName}</StyledH3>
       </Link>
