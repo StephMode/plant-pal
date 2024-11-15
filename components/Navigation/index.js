@@ -29,8 +29,8 @@ export default function Navigation() {
                         <IoHeart />
                     </StyledIconContainer>
                 </Link>
-                <Link href="/plantTips" passHref>
-                    <StyledIconContainer $isactive={router.asPath === "/plantTips"}>
+                <Link href="/plantTipsPage" passHref>
+                    <StyledIconContainer $isactive={router.asPath === "/plantTipsPage"}>
                         <RiPlantFill />
                     </StyledIconContainer>
                 </Link>

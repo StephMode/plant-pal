@@ -1,9 +1,7 @@
 import TipCard from "/components/TipCard";
 import styled from "styled-components";
 
-export default function PlantTips({ tips }) {
-
-  console.log(tips);
+export default function PlantTipsPage({ tips }) {
 
   return (
     <main>

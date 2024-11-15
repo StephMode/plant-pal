@@ -42,8 +42,7 @@ const StyledImageContainer = styled.div`
   border-radius: 20px;
 
   @media (max-width: 750px) {
-    width: 100%;
-    min-width: 328px;
+    width: 328px;
   }
 `;
 
@@ -65,4 +64,5 @@ const StyledH3 = styled.h3`
   font-weight: 300;
   font-style: italic;
   font-size: 16px;
+  max-width: 320px;
 `;
