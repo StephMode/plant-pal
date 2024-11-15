@@ -21,8 +21,7 @@ export default function PlantCard({
           isOwned={isOwned}
         />
         <StyledImage src={image} alt={name} fill={true} />
-      </StyledImageContainer>
-      
+      </StyledImageContainer>    
         <StyledH2>{name}</StyledH2>
         <StyledH3>{botanicalName}</StyledH3>
       </Link>
