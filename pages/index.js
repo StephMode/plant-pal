@@ -12,7 +12,11 @@ export default function HomePage({ handleToggleOwned, plants, onFilterPlants, sh
   return (
     <main>
       <h1>Plant List</h1>
-      <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
+      <StyledSpacer/>
+      <StyledFilterButtonSection>
+        <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
+      </StyledFilterButtonSection>
+      <StyledSpacer2/>
       <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} />
       { filteredPlants.length === 0 && 
            <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> }
@@ -45,6 +49,18 @@ const StyledInfoText = styled.p`
   margin: 10px 0;
   padding: 40px;
   border-radius: 25px;
+`;
+const StyledSpacer = styled.span`
+  display: block;
+  height: 62px;
+`;
+const StyledSpacer2 = styled.span`
+  display: block;
+  height: 17px;
+`;
+const StyledFilterButtonSection = styled.section`
+  margin-right: 10px;
+  align-self: end;
 `;
 
 

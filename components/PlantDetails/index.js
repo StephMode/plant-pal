@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
-import EditDeleteButton from "../EditDeleteButton";
+import Button from "../Button";
 import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
@@ -26,7 +26,7 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
       <StyledPlantContainer>
       <StyledTopSection>
         <StyledH2>{plant.name}</StyledH2>
-        <EditDeleteButton buttonText={<FaPen />}   handleButtonFunction={() => handleToggleModal("Edit")}  />
+        <Button buttonText={<FaPen />}   handleButtonFunction={() => handleToggleModal("Edit")}  />
       </StyledTopSection>
       <StyledH3>{plant.botanicalName}</StyledH3>
       
@@ -77,7 +77,7 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
           </StyledIconSection>
         </StyledPlantNeedsContainer>
         <StyledEditDeleteSection>
-          <EditDeleteButton buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")}/>
+          <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")}/>
       </StyledEditDeleteSection>
       </StyledPlantContainer>
 
