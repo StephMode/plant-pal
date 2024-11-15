@@ -12,6 +12,6 @@ const nextConfig = {
     });
     return config;
   },
-  images: {domains: ["images.unsplash.com", 'images.pexels.com']}
+  images: {domains: ['images.unsplash.com', 'images.pexels.com','unsplash.com']}
 };
 module.exports = nextConfig;

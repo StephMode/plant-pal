@@ -2,6 +2,8 @@ import PlantCard from "/components/PlantCard";
 import styled from "styled-components";
 import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
+import { AiOutlineControl } from "react-icons/ai";
+import { IoClose } from "react-icons/io5";
 
 
 export default function HomePage({ handleToggleOwned, plants, onFilterPlants, showPlantFilterSection, toggleFilterSection, onFilterPlantsReset, selectedFilter, filteredPlants}) {
@@ -10,7 +12,11 @@ export default function HomePage({ handleToggleOwned, plants, onFilterPlants, sh
   return (
     <main>
       <h1>Plant List</h1>
-      <Button buttonText={showPlantFilterSection ? "Close Filter" : "Filter"} handleButtonFunction={toggleFilterSection} />
+      <StyledSpacer/>
+      <StyledFilterButtonSection>
+        <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
+      </StyledFilterButtonSection>
+      <StyledSpacer2/>
       <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} />
       { filteredPlants.length === 0 && 
            <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> }
@@ -44,20 +50,18 @@ const StyledInfoText = styled.p`
   padding: 40px;
   border-radius: 25px;
 `;
-
-
-const StyledButton = styled.button`
-    background-color: var(--green-light);
-    padding: 8px 20px;
-    border: none;
-    border-radius: 20px;
-    margin: 10px 0;
+const StyledSpacer = styled.span`
+  display: block;
+  height: 62px;
 `;
-
-const StyledSpacer = styled.section`
-height: 30px;
-display: block;
-`
+const StyledSpacer2 = styled.span`
+  display: block;
+  height: 17px;
+`;
+const StyledFilterButtonSection = styled.section`
+  margin-right: 10px;
+  align-self: end;
+`;
 
 
 

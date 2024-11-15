@@ -38,7 +38,7 @@ const StyledNavContainer = styled.nav`
     bottom: 0;
     width: 100%;
     height: 70px;
-    background-color: var(--green-light);
+    background-color: var(--green-main);
     border-radius: 20px 20px 0 0 ;
     z-index: 999;
     padding: 10px 20px;
@@ -56,5 +56,5 @@ const StyledNavContainer = styled.nav`
     justify-content: center;
     align-items: center;
     color: var(--white);
-    font-size: 30px;
+    font-size: 2.2rem;
  `;

@@ -30,11 +30,15 @@ export default function PlantCard({
 }
 
 const StyledCard = styled.article`
-  background-color: var(--green-light);
+  background-color: var(--white);
   color: var(--white);
-  padding: 18px;
+  padding: 0;
   border-radius: 25px;
   margin-bottom: 20px;
+
+  @media (max-width: 750px) {
+    width: 170px;
+  }
 `;
 
 const StyledImageContainer = styled.div`
@@ -42,23 +46,30 @@ const StyledImageContainer = styled.div`
   height: 300px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 15px;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+
+  @media (max-width: 750px) {
+    width: 170px;
+  }
 `;
 
 const StyledImage = styled(Image)`
   width: 200%;
   height: auto;
   text-align: center;
-  border-radius: 35px;
   object-fit: cover;
 `;
 
 const StyledH2 = styled.h2`
-  padding: 10px 5px;
+  padding: 10px 5px 0 5px;
+  font-size: 20px;
+  max-width: 300px;
 `;
 
 const StyledH3 = styled.h3`
   padding: 0px 5px;
   font-weight: 300;
   font-style: italic;
+  font-size: 16px;
 `;
