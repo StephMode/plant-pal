@@ -30,6 +30,7 @@ body {
   margin: 0;
   font-family: system-ui;
   width: 100%;
+  background-color: var(--white);
 }
 
 header {
