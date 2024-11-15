@@ -22,8 +22,10 @@ export default function PlantCard({
         />
         <StyledImage src={image} alt={name} fill={true} />
       </StyledImageContainer>    
+      <StyledCardTitleContainer>
         <StyledH2>{name}</StyledH2>
         <StyledH3>{botanicalName}</StyledH3>
+        </StyledCardTitleContainer>
       </Link>
     </StyledCard>
   );
@@ -36,10 +38,13 @@ const StyledCard = styled.article`
   border-radius: 25px;
   margin-bottom: 20px;
 
+
+
   @media (max-width: 750px) {
     width: 170px;
   }
 `;
+
 
 const StyledImageContainer = styled.div`
   width: 300px;
@@ -48,6 +53,11 @@ const StyledImageContainer = styled.div`
   position: relative;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
+
+  &:hover {
+    box-shadow: 0px 5px 40px -10px var(--white-dark);
+    transition: all 0.45s ease 0s;
+  }
 
   @media (max-width: 750px) {
     width: 170px;
@@ -59,6 +69,13 @@ const StyledImage = styled(Image)`
   height: auto;
   text-align: center;
   object-fit: cover;
+`;
+
+const StyledCardTitleContainer = styled.div`
+&:hover {
+    color: var(--green-light-dark);
+    transition: all 0.45s ease 0s;
+  }
 `;
 
 const StyledH2 = styled.h2`
