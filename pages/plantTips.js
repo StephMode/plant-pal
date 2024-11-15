@@ -1,28 +1,27 @@
 import PlantCard from "/components/PlantCard";
 import styled from "styled-components";
 
-export default function MyPlants({ handleToggleOwned, plants }) {
-  const ownedPlants = plants.filter((plant) => plant.isOwned);
+export default function PlantTips({ handleToggleOwned, tips }) {
 
   return (
     <main>
       <h1>Plant Tips</h1>
       <StyledSpacer/>
-      {ownedPlants.length === 0 && (
+      {tips.length === 0 && (
 
-        <StyledInfoText>Currently no plants in your list!</StyledInfoText>
+        <StyledInfoText>Currently no tips available!</StyledInfoText>
       )}
       
       <ul>
-        {ownedPlants.map((plant) => (
-          <li key={plant.id}>
+        {tips.map((tip) => (
+          <li key={tip.id}>
             <PlantCard
-              plantId={plant.id}
-              image={plant.imageUrl}
-              name={plant.name}
-              botanicalName={plant.botanicalName}
+              plantId={tip.id}
+              image={tip.imageUrl}
+              name={tip.title}
+              botanicalName={tip.shortDescription}
               handleToggleOwned={handleToggleOwned}
-              isOwned={plant.isOwned}
+              isOwned="false"
             />
           </li>
         ))}
