@@ -1,6 +1,5 @@
 import PlantCard from "/components/PlantCard";
 import styled from "styled-components";
-import Link from "next/link";
 
 export default function MyPlants({ handleToggleOwned, plants }) {
   const ownedPlants = plants.filter((plant) => plant.isOwned);
@@ -8,10 +7,12 @@ export default function MyPlants({ handleToggleOwned, plants }) {
   return (
     <main>
       <h1>My Plants</h1>
+      <StyledSpacer/>
       {ownedPlants.length === 0 && (
+
         <StyledInfoText>Currently no plants in your list!</StyledInfoText>
       )}
-      <StyledSpacer/>
+      
       <ul>
         {ownedPlants.map((plant) => (
           <li key={plant.id}>

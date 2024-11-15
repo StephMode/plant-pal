@@ -263,6 +263,7 @@ const StyledInput = styled.input`
   padding: 10px 15px;
   margin-top: 6px;
   background-color: rgba(0,0,0,0.1);
+  font-family: inherit;
 
   &:focus {
     outline-color:var(--green-light);
@@ -280,6 +281,7 @@ const StyledTextarea = styled.textarea`
   resize: none;
   min-height: 50px;
   background-color: rgba(0,0,0,0.1);
+  font-family: inherit;
   
   &:focus {
     outline-color:var(--green-light);
