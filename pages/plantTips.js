@@ -19,7 +19,7 @@ export default function PlantTips({ tips }) {
           <li key={tip.id}>
             <TipCard
               tipId={tip.id}
-              image={tip.imageURl}
+              image={tip.imageURL}
               title={tip.title}
               shortDescription={tip.shortDescription}
             />
