@@ -1,7 +1,9 @@
-import PlantCard from "/components/PlantCard";
+import TipCard from "/components/TipCard";
 import styled from "styled-components";
 
-export default function PlantTips({ handleToggleOwned, tips }) {
+export default function PlantTips({ tips }) {
+
+  console.log(tips);
 
   return (
     <main>
@@ -15,13 +17,11 @@ export default function PlantTips({ handleToggleOwned, tips }) {
       <ul>
         {tips.map((tip) => (
           <li key={tip.id}>
-            <PlantCard
-              plantId={tip.id}
-              image={tip.imageUrl}
-              name={tip.title}
-              botanicalName={tip.shortDescription}
-              handleToggleOwned={handleToggleOwned}
-              isOwned="false"
+            <TipCard
+              tipId={tip.id}
+              image={tip.imageURl}
+              title={tip.title}
+              shortDescription={tip.shortDescription}
             />
           </li>
         ))}
