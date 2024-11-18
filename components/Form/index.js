@@ -16,9 +16,11 @@ export default function Form({
   handleEditPlant,
 }) {
   const [nameState, setNameState] = useState(""); // das hier eher in nameValidator umbenennen
-  console.log(nameState);
+  const [botanicalNameState, setBotanicalNameState] = useState("");
 
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [showErrorMessageName, setShowErrorMessageName] = useState(false);
+  const [showErrorMessageBotanicalName, setShowErrorMessageBotanicalName] = useState(false);
+  
 
 
   function handleSubmitPlant(event) {
@@ -33,11 +35,10 @@ export default function Form({
       return;
     }
     data.fertiliserSeason = selectedSeasons;
-    // console.log(data);
-    
-    // hier wahrscheinlich eher mit || arbeiten, weil das ja bei 1-n Fällen anschlagen soll
-    if (data.name === "") {
-      setShowErrorMessage(true);
+
+    if (nameState === "" || botanicalNameState === "") {
+        if (nameState === "") {setShowErrorMessageName(true)};
+        if (botanicalNameState === "") {setShowErrorMessageBotanicalName(true)};
     } else {
       if (buttonText === "Edit") { handleEditPlant(data, plant.id) }
       else if (buttonText === "Add") {
@@ -62,9 +63,9 @@ export default function Form({
             type="text"
             placeholder="e.g. Monstera"
             defaultValue={buttonText === "Edit" ? plant.name : ""}
-            onChange={(event) => {setNameState(event.target.value);setShowErrorMessage(false)}}           
+            onChange={(event) => {setNameState(event.target.value);setShowErrorMessageName(false)}}           
           ></StyledInput>
-          {showErrorMessage === true && <p>please provide input</p>}
+          {showErrorMessageName === true && <p>Please provide a name for the plant. Think of it as the plant's nickname</p>}
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="botanicalPlantName">Botanical plant name:</label>
@@ -73,9 +74,10 @@ export default function Form({
             name="botanicalName"
             type="text"
             placeholder="e.g. Monstera deliciosa"
-            required
             defaultValue={buttonText === "Edit" ? plant.botanicalName : ""}
+            onChange={(event) => {setBotanicalNameState(event.target.value);setShowErrorMessageBotanicalName(false)}}
           ></StyledInput>
+          {showErrorMessageBotanicalName === true && <p>Please provide a botanical name for the plant.</p>}
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="plantDescription">Description:</label>
