@@ -18,6 +18,8 @@ export default function Form({
   const [nameState, setNameState] = useState(""); // das hier eher in nameValidator umbenennen
   console.log(nameState);
 
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
 
   function handleSubmitPlant(event) {
     event.preventDefault();
@@ -34,17 +36,15 @@ export default function Form({
     // console.log(data);
     
     // hier wahrscheinlich eher mit || arbeiten, weil das ja bei 1-n Fällen anschlagen soll
-    
-      
+    if (data.name === "") {
+      setShowErrorMessage(true);
+    } else {
       if (buttonText === "Edit") { handleEditPlant(data, plant.id) }
       else if (buttonText === "Add") {
         handleAddPlant(data)
       }
       event.target.reset();  
-
-    
-
-    
+    }
   }
   return (
     <StyledSection>
@@ -61,10 +61,10 @@ export default function Form({
             name="name"
             type="text"
             placeholder="e.g. Monstera"
-            required
             defaultValue={buttonText === "Edit" ? plant.name : ""}
-            onChange={(event) => {setNameState(event.target.value)}}           
+            onChange={(event) => {setNameState(event.target.value);setShowErrorMessage(false)}}           
           ></StyledInput>
+          {showErrorMessage === true && <p>please provide input</p>}
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="botanicalPlantName">Botanical plant name:</label>
