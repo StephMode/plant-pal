@@ -5,7 +5,7 @@ export default function PlantTipsPage({ tips }) {
 
   return (
     <main>
-      <h1>Plant Tips</h1>
+      <h1>Tips for your plants</h1>
       <StyledSpacer/>
       {tips.length === 0 && (
 
