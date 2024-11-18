@@ -1,13 +1,14 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
+import { FaChevronLeft } from "react-icons/fa6";
 
 
 export default function TipDetails({ tip }) {
   return (
     <>
       <StyledImageContainer>
-            <StyledImage src={tip.imageUrl} alt={tip.title} fill />
+            <StyledImage src={tip.imageURL} alt={tip.title} fill />
       </StyledImageContainer>
       
       <StyledPlantContainer>
@@ -23,6 +24,7 @@ export default function TipDetails({ tip }) {
 
         <Link href="/">
         <StyledIconContainer>
+          <FaChevronLeft />
         </StyledIconContainer>
         </Link>
     </>

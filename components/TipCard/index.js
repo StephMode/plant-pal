@@ -1,23 +1,23 @@
 import styled from "styled-components";
 import Image from "next/image";
-// import Link from "next/link"
+import Link from "next/link"
 
 export default function TipCard({
-  // tipId,
+  tipId,
   image,
   title,
   shortBodyContent
 }) {
   return (
-    <StyledCard>
-      <StyledImageContainer>
-        <StyledImage src={image} alt={title} fill={true} />
-      </StyledImageContainer>
-      {/* <Link href={`/plants/${plantId}`}> */}
-        <StyledH2>{title}</StyledH2>
-        <StyledH3>{shortBodyContent}</StyledH3>
-      {/* </Link> */}
-    </StyledCard>
+    <Link href={`/tips/${tipId}`}>
+      <StyledCard>
+        <StyledImageContainer>
+          <StyledImage src={image} alt={title} fill={true} />
+        </StyledImageContainer>
+          <StyledH2>{title}</StyledH2>
+          <StyledH3>{shortBodyContent}</StyledH3>
+      </StyledCard>
+    </Link>
   );
 }
 
