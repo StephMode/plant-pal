@@ -1,7 +1,8 @@
 import GlobalStyle from "../styles";
 import "../fonts.css"
 import Image from "next/image";
-import { plants as initialPlants } from "/lib/data";
+import { plants as initialPlants } from "/lib/plantData";
+import { tips } from "/lib/tipData";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
@@ -15,6 +16,8 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
+
+  
 
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false)
@@ -99,6 +102,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleToggleOwned={handleToggleOwned}
         plants={plants}
+        tips={tips}
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         handleEditPlant={handleEditPlant}

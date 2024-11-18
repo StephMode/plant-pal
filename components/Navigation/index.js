@@ -1,9 +1,11 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components"
 import { HiHome } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { RiPlantFill } from "react-icons/ri";
+
 
 export default function Navigation() { 
 
@@ -25,6 +27,11 @@ export default function Navigation() {
                 <Link href="/myplants" passHref>
                     <StyledIconContainer $isactive={router.asPath === "/myplants"}>
                         <IoHeart />
+                    </StyledIconContainer>
+                </Link>
+                <Link href="/plantTipsPage" passHref>
+                    <StyledIconContainer $isactive={router.asPath === "/plantTipsPage"}>
+                        <RiPlantFill />
                     </StyledIconContainer>
                 </Link>
             </StyledNavContainer>
