@@ -6,7 +6,7 @@ import { tips } from "/lib/tipData";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "/components/Navigation";
 
 
@@ -16,9 +16,14 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
-
-  
-
+/*---------------------------------------------------------------------- */
+  const [randomTip, setRandomTip] = useState("");
+  const getRandomTip = () => {
+    const randomIndex = Math.floor(Math.random() * tips.length);
+    return tips[randomIndex];
+  };
+  useEffect(() => {setRandomTip(getRandomTip());},[])
+/*---------------------------------------------------------------------- */
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false)
   const [isDelete, setIsDelete] = useState(false)
@@ -103,6 +108,7 @@ export default function App({ Component, pageProps }) {
         handleToggleOwned={handleToggleOwned}
         plants={plants}
         tips={tips}
+        randomTip={randomTip}
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         handleEditPlant={handleEditPlant}

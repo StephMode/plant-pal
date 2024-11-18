@@ -7,14 +7,24 @@ import { IoClose } from "react-icons/io5";
 import TipBanner from "/components/TipBanner";
 
 
-export default function HomePage({ handleToggleOwned, plants, onFilterPlants, showPlantFilterSection, toggleFilterSection, onFilterPlantsReset, selectedFilter, filteredPlants}) {
+export default function HomePage({ 
+  handleToggleOwned, 
+  plants, 
+  onFilterPlants, 
+  showPlantFilterSection, 
+  toggleFilterSection, 
+  onFilterPlantsReset, 
+  selectedFilter, 
+  filteredPlants,
+  randomTip
+}) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
 
   return (
     <main>
       <h1>Plant List</h1>
       <StyledSpacer/>
-      <TipBanner/>
+      <TipBanner randomTip={randomTip}/>
       <StyledFilterButtonSection>
         <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
       </StyledFilterButtonSection>
