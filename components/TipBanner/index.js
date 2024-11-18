@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import Button from "../Button";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -7,28 +6,50 @@ export default function TipBanner ({randomTip}) {
     
     
     return(
-        <StyledBannerContainer bannerColor={randomTip?.bannerColor|| "var(--green-main)"}  >
-            <p>{randomTip.title}</p>
-            <Link href={`/tips/${randomTip.id}`}>
-                <Button buttonText="Learn more"/>
-            </Link>
-            <StyledImageContainer>
-                <StyledImage src={randomTip.imageURL} alt={randomTip.title} fill={true} />
-            </StyledImageContainer>
-        </StyledBannerContainer>
+        <StyledLink href={`/tips/${randomTip.id}`}>
+            <StyledBannerContainer bannerColor={randomTip?.bannerColor|| "var(--green-main)"} >
+                <StyledBannerTextContainer>
+                    <p>Care tip: {randomTip.shortBodyContent}</p> 
+                    <StyledBannerButton type="button">Read More</StyledBannerButton>
+                </StyledBannerTextContainer>
+                <StyledImageContainer>
+                    <StyledImage src={randomTip.imageURL} alt={randomTip.title} fill={true} />
+                </StyledImageContainer>
+            </StyledBannerContainer>
+        </StyledLink>
     )
 }
-
-const StyledBannerContainer = styled.section`
+const StyledLink = styled(Link)`
     width: 95%;
     margin: 0 0 20px 0;
-    background-color:  ${(props) => `${props.bannerColor}`};
+`;
+const StyledBannerContainer = styled.section`
+    width: 100%;
+    background-color: ${(props) => `var(${props.bannerColor})`};
     border-radius: 20px;
     color: var(--white);
+    display:flex;
+    justify-content: space-between;
+    
+    &:hover {
+        background-color:${(props) => `var(${props.bannerColor}-dark)`};
+    }
+`;
+const StyledBannerTextContainer = styled.section`  
+    padding: 13px 10px 20px 20px;
+    font-size: 20px;
+`;
+const StyledBannerButton = styled.button`
+    background-color: var(--white);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-top: 15px;
 `;
 const StyledImageContainer = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 125px;
+  min-width: 125px;
+  height: auto;
   overflow: hidden;
   position: relative;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
