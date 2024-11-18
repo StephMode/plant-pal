@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    
+      setRandomTip(getRandomTip());
       const interval = setInterval(() => {
         setRandomTip(getRandomTip());
       }, 5000);
