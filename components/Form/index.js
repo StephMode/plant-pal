@@ -171,6 +171,7 @@ export default function Form({
               buttonText === "Edit" &&
               !plant.fertiliserSeason.includes("Spring") ? false : true
             }
+            onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
           <StyledCheckboxLabel htmlFor="fertiliser-spring">
             Spring
@@ -185,6 +186,7 @@ export default function Form({
               buttonText === "Edit" && plant.fertiliserSeason.includes("Summer")
 
             }
+            onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
           <StyledCheckboxLabel htmlFor="fertiliser-summer">
             Summer
@@ -198,6 +200,7 @@ export default function Form({
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Fall")
             }
+            onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
           <StyledCheckboxLabel htmlFor="fertiliser-fall">
             Fall
@@ -212,6 +215,7 @@ export default function Form({
               buttonText === "Edit" && plant.fertiliserSeason.includes("Winter")
 
             }
+            onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
           <StyledCheckboxLabel htmlFor="fertiliser-winter">
             Winter
