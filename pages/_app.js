@@ -22,7 +22,15 @@ export default function App({ Component, pageProps }) {
     const randomIndex = Math.floor(Math.random() * tips.length);
     return tips[randomIndex];
   };
-  useEffect(() => {setRandomTip(getRandomTip());},[])
+
+  useEffect(() => {
+    
+      const interval = setInterval(() => {
+        setRandomTip(getRandomTip());
+      }, 5000);
+      return () => clearInterval(interval);
+      
+     },[])
 /*---------------------------------------------------------------------- */
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false)

@@ -20,7 +20,7 @@ export default function TipBanner ({randomTip}) {
     )
 }
 const StyledLink = styled(Link)`
-    width: 100%;
+    width: 97%;
     margin: 0 0 20px 0;
 `;
 const StyledBannerContainer = styled.section`
