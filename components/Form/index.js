@@ -14,7 +14,7 @@ export default function Form({
   handleToggleModal,
   handleEditPlant,
 }) {
-  function handleSubmitAddPlant(event) {
+  function handleSubmitPlant(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
@@ -36,7 +36,7 @@ export default function Form({
   }
   return (
     <StyledSection>
-      <form onSubmit={handleSubmitAddPlant}>
+      <form onSubmit={handleSubmitPlant}>
       {buttonText === "Edit" && (
             <StyledCloseButton type="button" onClick={() => handleToggleModal("Edit")}>
                <IoClose />
