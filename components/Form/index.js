@@ -6,6 +6,7 @@ import { IoIosPartlySunny } from "react-icons/io";
 import { RiDropLine } from "react-icons/ri";
 import { RiDropFill } from "react-icons/ri";
 import { RiContrastDrop2Fill } from "react-icons/ri";
+import { useState } from "react";
 
 export default function Form({
   handleAddPlant,
@@ -14,8 +15,13 @@ export default function Form({
   handleToggleModal,
   handleEditPlant,
 }) {
+  const [nameState, setNameState] = useState(""); // das hier eher in nameValidator umbenennen
+  console.log(nameState);
+
+
   function handleSubmitPlant(event) {
     event.preventDefault();
+
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
@@ -25,14 +31,20 @@ export default function Form({
       return;
     }
     data.fertiliserSeason = selectedSeasons;
+    // console.log(data);
+    
+    // hier wahrscheinlich eher mit || arbeiten, weil das ja bei 1-n Fällen anschlagen soll
+    
+      
+      if (buttonText === "Edit") { handleEditPlant(data, plant.id) }
+      else if (buttonText === "Add") {
+        handleAddPlant(data)
+      }
+      event.target.reset();  
 
-    if (buttonText === "Edit") { handleEditPlant(data, plant.id) }
-    else if (buttonText === "Add") {
-      handleAddPlant(data)
-    }
+    
 
-
-    event.target.reset();
+    
   }
   return (
     <StyledSection>
@@ -51,6 +63,7 @@ export default function Form({
             placeholder="e.g. Monstera"
             required
             defaultValue={buttonText === "Edit" ? plant.name : ""}
+            onChange={(event) => {setNameState(event.target.value)}}           
           ></StyledInput>
         </StyledFieldset>
         <StyledFieldset>
