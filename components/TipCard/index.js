@@ -6,7 +6,7 @@ export default function TipCard({
   // tipId,
   image,
   title,
-  shortDescription
+  shortBodyContent
 }) {
   return (
     <StyledCard>
@@ -15,7 +15,7 @@ export default function TipCard({
       </StyledImageContainer>
       {/* <Link href={`/plants/${plantId}`}> */}
         <StyledH2>{title}</StyledH2>
-        <StyledH3>{shortDescription}</StyledH3>
+        <StyledH3>{shortBodyContent}</StyledH3>
       {/* </Link> */}
     </StyledCard>
   );

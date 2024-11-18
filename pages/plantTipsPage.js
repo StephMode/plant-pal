@@ -19,7 +19,7 @@ export default function PlantTipsPage({ tips }) {
               tipId={tip.id}
               image={tip.imageURL}
               title={tip.title}
-              shortDescription={tip.shortDescription}
+              shortBodyContent={tip.shortBodyContent}
             />
           </li>
         ))}
