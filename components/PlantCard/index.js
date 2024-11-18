@@ -11,13 +11,19 @@ export default function PlantCard({
   handleToggleOwned,
   isOwned,
 }) {
+
+  function handleToggleOwnedButtonClick (event) {
+    event.preventDefault();
+    handleToggleOwned(plantId);
+  }
+
   return (
     <StyledCard>
       <Link href={`/plants/${plantId}`}>
       <StyledImageContainer>
         <PlantOwnedButton
           plantId={plantId}
-          onClick={(event) => {event.preventDefault(); handleToggleOwned(plantId)}}
+          onClick={handleToggleOwnedButtonClick}
           isOwned={isOwned}
         />
         <StyledImage src={image} alt={name} fill={true} />
