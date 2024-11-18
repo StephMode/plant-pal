@@ -15,30 +15,24 @@ export default function Form({
   handleToggleModal,
   handleEditPlant,
 }) {
-  const [nameState, setNameState] = useState(""); // das hier eher in nameValidator umbenennen
-  const [botanicalNameState, setBotanicalNameState] = useState("");
-
   const [showErrorMessageName, setShowErrorMessageName] = useState(false);
   const [showErrorMessageBotanicalName, setShowErrorMessageBotanicalName] = useState(false);
+  const [showErrorMessageFertilizerSeason, setShowErrorMessageFertilizerSeason] = useState(false);
   
-
-
   function handleSubmitPlant(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+    
 
     const selectedSeasons = formData.getAll("fertiliserSeason");
-    if (selectedSeasons.length === 0) {
-      alert("Please select at least one season.");
-      return;
-    }
     data.fertiliserSeason = selectedSeasons;
 
-    if (nameState === "" || botanicalNameState === "") {
-        if (nameState === "") {setShowErrorMessageName(true)};
-        if (botanicalNameState === "") {setShowErrorMessageBotanicalName(true)};
+    if (data.name === "" || data.botanicalName === "" || data.fertiliserSeason.length === 0) {
+        if (data.name === "") {setShowErrorMessageName(true)};
+        if (data.botanicalName === "") {setShowErrorMessageBotanicalName(true)};
+        if (data.fertiliserSeason.length === 0) {setShowErrorMessageFertilizerSeason(true)};
     } else {
       if (buttonText === "Edit") { handleEditPlant(data, plant.id) }
       else if (buttonText === "Add") {
@@ -63,7 +57,7 @@ export default function Form({
             type="text"
             placeholder="e.g. Monstera"
             defaultValue={buttonText === "Edit" ? plant.name : ""}
-            onChange={(event) => {setNameState(event.target.value);setShowErrorMessageName(false)}}           
+            onChange={() => {setShowErrorMessageName(false)}}           
           ></StyledInput>
           {showErrorMessageName === true && <p>Please provide a name for the plant. Think of it as the plant's nickname</p>}
         </StyledFieldset>
@@ -75,7 +69,7 @@ export default function Form({
             type="text"
             placeholder="e.g. Monstera deliciosa"
             defaultValue={buttonText === "Edit" ? plant.botanicalName : ""}
-            onChange={(event) => {setBotanicalNameState(event.target.value);setShowErrorMessageBotanicalName(false)}}
+            onChange={() => {setShowErrorMessageBotanicalName(false)}}
           ></StyledInput>
           {showErrorMessageBotanicalName === true && <p>Please provide a botanical name for the plant.</p>}
         </StyledFieldset>
@@ -222,6 +216,9 @@ export default function Form({
           <StyledCheckboxLabel htmlFor="fertiliser-winter">
             Winter
           </StyledCheckboxLabel>
+
+            {showErrorMessageFertilizerSeason && <p>select a fert season</p>}
+
         </StyledFieldsetCheckbox>
         <StyledButtonContainer>
 
