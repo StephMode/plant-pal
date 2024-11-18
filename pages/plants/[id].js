@@ -15,7 +15,7 @@ export default function PlantDetailsPage({ plants, onDeletePlant, handleEditPlan
   return (
     <main>
       <h1>Plant Details</h1>
-      <PlantDetails plant={plant} onDeletePlant={onDeletePlant} id={id} handleEditPlant={handleEditPlant} handleToggleModal={handleToggleModal} showModal={showModal} isDelete={isDelete} isEdit={isEdit} handleAddPlant={handleAddPlant} />
+      <PlantDetails plant={plant} onDeletePlant={onDeletePlant} handleEditPlant={handleEditPlant} handleToggleModal={handleToggleModal} showModal={showModal} isDelete={isDelete} isEdit={isEdit} handleAddPlant={handleAddPlant} />
     </main>
   );
 }

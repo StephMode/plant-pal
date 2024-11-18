@@ -14,8 +14,10 @@ export default function TipCard({
         <StyledImageContainer>
           <StyledImage src={image} alt={title} fill={true} />
         </StyledImageContainer>
+        <StyledCardTitleContainer>
           <StyledH2>{title}</StyledH2>
           <StyledH3>{shortBodyContent}</StyledH3>
+        </StyledCardTitleContainer>
       </StyledCard>
     </Link>
   );
@@ -40,6 +42,11 @@ const StyledImageContainer = styled.div`
   position: relative;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
+  transition: all 0.45s ease;
+
+  &:hover {
+    box-shadow: 0px 5px 40px -10px var(--white-dark);
+  }
 
   @media (max-width: 750px) {
     width: 328px;
@@ -51,6 +58,14 @@ const StyledImage = styled(Image)`
   height: auto;
   text-align: center;
   object-fit: cover;
+`;
+
+const StyledCardTitleContainer = styled.div`
+  transition: all 0.45s ease;
+
+  &:hover {
+    color: var(--green-light-dark);
+  }
 `;
 
 const StyledH2 = styled.h2`

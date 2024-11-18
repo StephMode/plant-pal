@@ -8,7 +8,6 @@ export default function PlantTipsPage({ tips }) {
       <h1>Care tips</h1>
       <StyledSpacer/>
       {tips.length === 0 && (
-
         <StyledInfoText>Currently no tips available!</StyledInfoText>
       )}
       

@@ -15,7 +15,7 @@ export default function TipDetailsPage({ tips }) {
   return (
     <main>
       <h1>Care tips</h1>
-      <TipDetails tip={tip} id={id} />
+      <TipDetails tip={tip} />
     </main>
   );
 }
