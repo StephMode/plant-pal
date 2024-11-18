@@ -20,7 +20,7 @@ export default function TipBanner ({randomTip}) {
     )
 }
 const StyledLink = styled(Link)`
-    width: 95%;
+    width: 100%;
     margin: 0 0 20px 0;
 `;
 const StyledBannerContainer = styled.section`
@@ -38,6 +38,11 @@ const StyledBannerContainer = styled.section`
 const StyledBannerTextContainer = styled.section`  
     padding: 13px 10px 20px 20px;
     font-size: 20px;
+
+    @media (min-width: 750px) {
+        padding: 25px;
+        font-size: 25px;
+    }
 `;
 const StyledBannerButton = styled.button`
     background-color: var(--white);
@@ -54,7 +59,11 @@ const StyledImageContainer = styled.div`
   position: relative;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  transition: all 0.45s ease;
+
+  @media (min-width: 750px) {
+    min-height: 150px;
+    min-width: 30%;
+  }
 `;
 const StyledImage = styled(Image)`
   width: 200%;

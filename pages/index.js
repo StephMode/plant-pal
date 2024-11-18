@@ -71,7 +71,6 @@ const StyledSpacer2 = styled.span`
   height: 17px;
 `;
 const StyledFilterButtonSection = styled.section`
-  margin-right: 10px;
   align-self: end;
 `;
 

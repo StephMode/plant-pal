@@ -77,6 +77,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
 main ul {    
   gap: 16px;
@@ -97,5 +98,11 @@ svg:hover {
 }
 nav svg:hover {
   filter: brightness(1);
+}
+
+@media screen and (max-width: 480px) {
+  main  {
+    padding: 9px;
+  }
 }
 `;
