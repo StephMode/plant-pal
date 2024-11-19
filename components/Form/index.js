@@ -53,7 +53,7 @@ export default function Form({
           )}
         <StyledFieldset>
           <label htmlFor="plantName">Plant name:</label>
-          <ThemeProvider theme={showErrorMessageName ? theme : defaultTheme}>
+          <ThemeProvider theme={showErrorMessageName ? errorMessagetheme : defaultTheme}>
           <StyledInput
             id="plantName"
             name="name"
@@ -67,7 +67,7 @@ export default function Form({
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="botanicalPlantName">Botanical plant name:</label>
-          <ThemeProvider theme={showErrorMessageBotanicalName ? theme : defaultTheme}>
+          <ThemeProvider theme={showErrorMessageBotanicalName ? errorMessagetheme : defaultTheme}>
           <StyledInput
             id="botanicalPlantName"
             name="botanicalName"
@@ -181,7 +181,7 @@ export default function Form({
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
-          <ThemeProvider theme={showErrorMessageFertilizerSeason ? themeCheckBox : defaultThemeCheckbox}>
+          <ThemeProvider theme={showErrorMessageFertilizerSeason ? errorMessagethemeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-spring">
             Spring
           </StyledCheckboxLabel>
@@ -198,7 +198,7 @@ export default function Form({
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
-          <ThemeProvider theme={showErrorMessageFertilizerSeason ? themeCheckBox : defaultThemeCheckbox}>
+          <ThemeProvider theme={showErrorMessageFertilizerSeason ? errorMessagethemeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-summer">
             Summer
           </StyledCheckboxLabel>
@@ -215,7 +215,7 @@ export default function Form({
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
 
-          <ThemeProvider theme={showErrorMessageFertilizerSeason ? themeCheckBox : defaultThemeCheckbox}>
+          <ThemeProvider theme={showErrorMessageFertilizerSeason ? errorMessagethemeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-fall">
             Fall
           </StyledCheckboxLabel>
@@ -233,7 +233,7 @@ export default function Form({
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
 
-          <ThemeProvider theme={showErrorMessageFertilizerSeason ? themeCheckBox : defaultThemeCheckbox}>
+          <ThemeProvider theme={showErrorMessageFertilizerSeason ? errorMessagethemeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-winter">
             Winter
           </StyledCheckboxLabel>
@@ -316,8 +316,8 @@ StyledInput.defaultProps = {
 const defaultTheme = {
   main: "rgba(0,0,0,0.1)"
 }
-const theme = {
-  main: "#fc8686"
+const errorMessagetheme = {
+  main: "var(--error-red)"
 }
 
 const StyledErrorMessage = styled.p`
@@ -396,20 +396,15 @@ const StyledWaterRadioInput = styled.input`
   }
 `;
 const StyledFieldsetCheckbox = styled.fieldset`
-  display: flex;
-  flex-direction: row;
+  display: block;
   border: none;
-  /* padding: 10px 0; */
   color: var(--green-main);
-  justify-content:space-between;
-  flex-wrap: wrap;
 `;
 const StyledCheckboxInputWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   padding: 10px 0 0 0;
-}
 `;
 const StyledCheckboxLabel = styled.label`
   background: var(--green-light);
@@ -420,6 +415,7 @@ const StyledCheckboxLabel = styled.label`
   font-weight: normal;
   font-size: 14px;  
   width: 22%;
+  text-align: center;
 `;
 StyledCheckboxLabel.defaultProps = {
   theme: {
@@ -429,14 +425,15 @@ StyledCheckboxLabel.defaultProps = {
 const defaultThemeCheckbox = {
   main: "var(--green-light)"
 }
-const themeCheckBox = {
-  main: "red"
+const errorMessagethemeCheckBox = {
+  main: "var(--error-red)"
 }
 
 const StyledCheckboxInput = styled.input`
   display: none;
 
   &:checked + label {
+    border: 2px solid var(--green-main);
     background: var(--green-main);
     color: var(--white);
   }

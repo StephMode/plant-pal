@@ -16,6 +16,7 @@ export default createGlobalStyle`
   --black: #010F0B;
   --gray: #D2D5D2;
   --gray-dark: #808080;
+  --error-red: #b73400;
 }
 
 *,
