@@ -33,14 +33,14 @@ export default function Form({
     data.fertiliserSeason = selectedSeasons;
 
     if (data.name === "" || data.botanicalName === "" || data.fertiliserSeason.length === 0) {
-        toast.error('Smth went wrong');
+        toast.error('Some plant details are missing');
         if (data.name === "") {setShowErrorMessageName(true)};
         if (data.botanicalName === "") {setShowErrorMessageBotanicalName(true)};
         if (data.fertiliserSeason.length === 0) {setShowErrorMessageFertilizerSeason(true)};
     } else {
-      if (buttonText === "Edit") { handleEditPlant(data, plant.id); toast.success('Plant succ edited') }
+      if (buttonText === "Edit") { handleEditPlant(data, plant.id); toast.success('Plant successfully edited') }
       else if (buttonText === "Add") {
-        handleAddPlant(data); toast.success('There is a new plant')
+        handleAddPlant(data); toast.success('Plant successfully added')
       }
       event.target.reset();
     }
