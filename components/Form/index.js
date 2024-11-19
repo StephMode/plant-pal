@@ -167,6 +167,8 @@ export default function Form({
         {/*-----------------------------------------------------------*/}
         <StyledFieldsetCheckbox>
           <StyledLegend>Fertiliser Season:</StyledLegend>
+          
+          <StyledCheckboxInputWrapper>
 
           <StyledCheckboxInput
             id="fertiliser-spring"
@@ -237,6 +239,8 @@ export default function Form({
           </StyledCheckboxLabel>
           </ThemeProvider>
 
+          </StyledCheckboxInputWrapper>
+
           <StyledErrorMessage>{showErrorMessageFertilizerSeason && "Please select at least one season!"}&nbsp;</StyledErrorMessage>
 
         </StyledFieldsetCheckbox>
@@ -276,7 +280,7 @@ const StyledFieldset = styled.fieldset`
   flex-direction: column;
   display: flex;
   border: none;
-  padding: 10px 0;
+  padding: 2px 0;
   color: var(--green-main);
   text-align: left;
 `;
@@ -297,7 +301,8 @@ const StyledInput = styled.input`
 
   font-family: inherit;
 
-  background-color: ${props => props.theme.main};
+  background-color: rgba(0,0,0,0.1);
+  border: 2px solid ${props => props.theme.main};
 
   &:focus {
     outline-color:var(--green-light);
@@ -394,10 +399,17 @@ const StyledFieldsetCheckbox = styled.fieldset`
   display: flex;
   flex-direction: row;
   border: none;
-  padding: 10px 0;
+  /* padding: 10px 0; */
   color: var(--green-main);
   justify-content:space-between;
   flex-wrap: wrap;
+`;
+const StyledCheckboxInputWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 10px 0 0 0;
+}
 `;
 const StyledCheckboxLabel = styled.label`
   background: var(--green-light);
