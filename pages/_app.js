@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
 import { useEffect, useState,  useRef } from "react";
 import Navigation from "/components/Navigation";
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -159,6 +160,7 @@ export default function App({ Component, pageProps }) {
         handleMouseHover = {handleMouseHover}
         handleMouseLeave = {handleMouseLeave}
       />
+      <Toaster/>
       <Navigation />
     </>
   );
