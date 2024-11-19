@@ -87,5 +87,4 @@ const StyledProgressBar = styled.div`
     height: 5px;
     background-color: var(--gold);
     border-radius: 3px;
-   /*  transition: width 1000ms linear; */
 `;
