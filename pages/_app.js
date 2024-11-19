@@ -20,10 +20,12 @@ export default function App({ Component, pageProps }) {
 /*---------------------------------------------------------------------- */
   const [randomTip, setRandomTip] = useState("");
   const [progress, setProgress] = useState(100);
+  
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
     return tips[randomIndex];
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) => 
@@ -35,6 +37,7 @@ export default function App({ Component, pageProps }) {
     }, 50);
     return () => clearInterval(interval);
    },[])
+
   useEffect(() => {
       setRandomTip(getRandomTip());
       const interval = setInterval(() => {
