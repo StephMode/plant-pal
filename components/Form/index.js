@@ -19,8 +19,6 @@ export default function Form({
   const [showErrorMessageName, setShowErrorMessageName] = useState(false);
   const [showErrorMessageBotanicalName, setShowErrorMessageBotanicalName] = useState(false);
   const [showErrorMessageFertilizerSeason, setShowErrorMessageFertilizerSeason] = useState(false);
-
-  // const notify = () => toast('Here is your toast.');
   
   function handleSubmitPlant(event) {
     event.preventDefault();
@@ -28,23 +26,23 @@ export default function Form({
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     
-
     const selectedSeasons = formData.getAll("fertiliserSeason");
     data.fertiliserSeason = selectedSeasons;
 
     if (data.name === "" || data.botanicalName === "" || data.fertiliserSeason.length === 0) {
-        toast.error('Some plant details are missing');
+        toast.error("Some plant details are missing");
         if (data.name === "") {setShowErrorMessageName(true)};
         if (data.botanicalName === "") {setShowErrorMessageBotanicalName(true)};
         if (data.fertiliserSeason.length === 0) {setShowErrorMessageFertilizerSeason(true)};
     } else {
-      if (buttonText === "Edit") { handleEditPlant(data, plant.id); toast.success('Plant successfully edited') }
+      if (buttonText === "Edit") { handleEditPlant(data, plant.id); toast.success("Plant successfully edited") }
       else if (buttonText === "Add") {
-        handleAddPlant(data); toast.success('Plant successfully added')
+        handleAddPlant(data); toast.success("Plant successfully added")
       }
       event.target.reset();
     }
   }
+
   return (
     <StyledSection>
       <form onSubmit={handleSubmitPlant}>
@@ -55,7 +53,7 @@ export default function Form({
           )}
         <StyledFieldset>
           <label htmlFor="plantName">Plant name:</label>
-          <ThemeProvider theme={showErrorMessageName === true ? theme : defaultTheme}>
+          <ThemeProvider theme={showErrorMessageName ? theme : defaultTheme}>
           <StyledInput
             id="plantName"
             name="name"
@@ -65,11 +63,11 @@ export default function Form({
             onChange={() => {setShowErrorMessageName(false)}}           
           ></StyledInput>
           </ThemeProvider>
-          {showErrorMessageName === true && <StyledErrorMessage>Please provide a name for the plant.</StyledErrorMessage>}
+          <StyledErrorMessage>{showErrorMessageName && "Please provide a name for the plant."}&nbsp;</StyledErrorMessage>
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="botanicalPlantName">Botanical plant name:</label>
-          <ThemeProvider theme={showErrorMessageBotanicalName === true ? theme : defaultTheme}>
+          <ThemeProvider theme={showErrorMessageBotanicalName ? theme : defaultTheme}>
           <StyledInput
             id="botanicalPlantName"
             name="botanicalName"
@@ -79,7 +77,7 @@ export default function Form({
             onChange={() => {setShowErrorMessageBotanicalName(false)}}
           ></StyledInput>
           </ThemeProvider>
-          {showErrorMessageBotanicalName === true && <StyledErrorMessage>Please provide a botanical name for the plant.</StyledErrorMessage>}
+          <StyledErrorMessage>{showErrorMessageBotanicalName && "Please provide a botanical name for the plant."}&nbsp;</StyledErrorMessage>
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="plantDescription">Description:</label>
@@ -181,7 +179,7 @@ export default function Form({
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
-          <ThemeProvider theme={showErrorMessageFertilizerSeason === true ? themeCheckBox : defaultThemeCheckbox}>
+          <ThemeProvider theme={showErrorMessageFertilizerSeason ? themeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-spring">
             Spring
           </StyledCheckboxLabel>
@@ -198,7 +196,7 @@ export default function Form({
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
-          <ThemeProvider theme={showErrorMessageFertilizerSeason === true ? themeCheckBox : defaultThemeCheckbox}>
+          <ThemeProvider theme={showErrorMessageFertilizerSeason ? themeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-summer">
             Summer
           </StyledCheckboxLabel>
@@ -215,7 +213,7 @@ export default function Form({
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
 
-          <ThemeProvider theme={showErrorMessageFertilizerSeason === true ? themeCheckBox : defaultThemeCheckbox}>
+          <ThemeProvider theme={showErrorMessageFertilizerSeason ? themeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-fall">
             Fall
           </StyledCheckboxLabel>
@@ -233,13 +231,13 @@ export default function Form({
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
 
-          <ThemeProvider theme={showErrorMessageFertilizerSeason === true ? themeCheckBox : defaultThemeCheckbox}>
+          <ThemeProvider theme={showErrorMessageFertilizerSeason ? themeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-winter">
             Winter
           </StyledCheckboxLabel>
           </ThemeProvider>
 
-            {showErrorMessageFertilizerSeason && <StyledErrorMessage>Please select at least one season!</StyledErrorMessage>}
+          <StyledErrorMessage>{showErrorMessageFertilizerSeason && "Please select at least one season!"}&nbsp;</StyledErrorMessage>
 
         </StyledFieldsetCheckbox>
         <StyledButtonContainer>
@@ -402,7 +400,8 @@ const StyledFieldsetCheckbox = styled.fieldset`
   flex-wrap: wrap;
 `;
 const StyledCheckboxLabel = styled.label`
-  background: ${props => props.theme.main};
+  background: var(--green-light);
+  border: 2px solid ${props => props.theme.main};
   
   padding: 5px 10px;
   border-radius: 20px;
@@ -419,7 +418,7 @@ const defaultThemeCheckbox = {
   main: "var(--green-light)"
 }
 const themeCheckBox = {
-  main: "#fc8686"
+  main: "red"
 }
 
 const StyledCheckboxInput = styled.input`

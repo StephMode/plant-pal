@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import PlantDetails from "/components/PlantDetails/";
-import toast from 'react-hot-toast';
 
 export default function PlantDetailsPage({ plants, onDeletePlant, handleEditPlant, handleAddPlant, handleToggleModal, showModal, isEdit, isDelete }) {
   const router = useRouter();
@@ -8,7 +7,6 @@ export default function PlantDetailsPage({ plants, onDeletePlant, handleEditPlan
   const { id } = router.query;
 
   const plant = plants.find((plant) => plant.id === id);
-
 
   if (!plant) {
     return <p>Plant not found!</p>;
