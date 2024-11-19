@@ -177,9 +177,11 @@ export default function Form({
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
+          <ThemeProvider theme={showErrorMessageFertilizerSeason === true ? themeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-spring">
             Spring
           </StyledCheckboxLabel>
+          </ThemeProvider>
 
           <StyledCheckboxInput
             id="fertiliser-summer"
@@ -192,9 +194,11 @@ export default function Form({
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
+          <ThemeProvider theme={showErrorMessageFertilizerSeason === true ? themeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-summer">
             Summer
           </StyledCheckboxLabel>
+          </ThemeProvider>
 
           <StyledCheckboxInput
             id="fertiliser-fall"
@@ -206,9 +210,12 @@ export default function Form({
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
+
+          <ThemeProvider theme={showErrorMessageFertilizerSeason === true ? themeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-fall">
             Fall
           </StyledCheckboxLabel>
+          </ThemeProvider>
 
           <StyledCheckboxInput
             id="fertiliser-winter"
@@ -221,9 +228,12 @@ export default function Form({
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
+
+          <ThemeProvider theme={showErrorMessageFertilizerSeason === true ? themeCheckBox : defaultThemeCheckbox}>
           <StyledCheckboxLabel htmlFor="fertiliser-winter">
             Winter
           </StyledCheckboxLabel>
+          </ThemeProvider>
 
             {showErrorMessageFertilizerSeason && <p>select a fert season</p>}
 
@@ -380,13 +390,26 @@ const StyledFieldsetCheckbox = styled.fieldset`
   flex-wrap: wrap;
 `;
 const StyledCheckboxLabel = styled.label`
-  background: var(--green-light);
+  background: ${props => props.theme.main};
+  
   padding: 5px 10px;
   border-radius: 20px;
   font-weight: normal;
   font-size: 14px;  
   width: 22%;
 `;
+StyledCheckboxLabel.defaultProps = {
+  theme: {
+    main: "var(--green-light)"
+  }
+}
+const defaultThemeCheckbox = {
+  main: "var(--green-light)"
+}
+const themeCheckBox = {
+  main: "#fc8686"
+}
+
 const StyledCheckboxInput = styled.input`
   display: none;
 
