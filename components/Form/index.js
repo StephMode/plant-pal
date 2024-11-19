@@ -7,6 +7,7 @@ import { RiDropLine } from "react-icons/ri";
 import { RiDropFill } from "react-icons/ri";
 import { RiContrastDrop2Fill } from "react-icons/ri";
 import { useState } from "react";
+import toast from 'react-hot-toast';
 
 export default function Form({
   handleAddPlant,
@@ -18,6 +19,8 @@ export default function Form({
   const [showErrorMessageName, setShowErrorMessageName] = useState(false);
   const [showErrorMessageBotanicalName, setShowErrorMessageBotanicalName] = useState(false);
   const [showErrorMessageFertilizerSeason, setShowErrorMessageFertilizerSeason] = useState(false);
+
+  // const notify = () => toast('Here is your toast.');
   
   function handleSubmitPlant(event) {
     event.preventDefault();
@@ -30,6 +33,7 @@ export default function Form({
     data.fertiliserSeason = selectedSeasons;
 
     if (data.name === "" || data.botanicalName === "" || data.fertiliserSeason.length === 0) {
+        toast('Smth went wrong');
         if (data.name === "") {setShowErrorMessageName(true)};
         if (data.botanicalName === "") {setShowErrorMessageBotanicalName(true)};
         if (data.fertiliserSeason.length === 0) {setShowErrorMessageFertilizerSeason(true)};
@@ -39,6 +43,7 @@ export default function Form({
         handleAddPlant(data)
       }
       event.target.reset();  
+      toast('Plant submitted');
     }
   }
   return (
