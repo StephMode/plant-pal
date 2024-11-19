@@ -3,10 +3,15 @@ import styled from "styled-components";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useRouter } from "next/router";
+import { plants as initialPlants } from "/lib/plantData";
 
 
 export default function TipDetails({ tip }) {
   const router = useRouter();
+
+  const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
+  const relatedPlantObject = relatedPlants.map((plantID) => initialPlants.find((plant) => plant.id === plantID))
+
 
   return (
     <>
@@ -23,6 +28,17 @@ export default function TipDetails({ tip }) {
         <StyledIconContainer onClick={() =>  router.back()} type="button">
           <FaChevronLeft />
         </StyledIconContainer>
+        <h3>Related Plants</h3>
+        <ul>
+          {relatedPlantObject.map((plant) => (
+            <li>
+              <h3>{plant.name}</h3>
+              <h3>{plant.botanicalName}</h3>
+              
+            </li>
+          ))}
+          
+        </ul>
     </>
   );
 }
