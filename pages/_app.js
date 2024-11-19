@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
 import { useState } from "react";
 import Navigation from "/components/Navigation";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function App({ Component, pageProps }) {
@@ -113,6 +114,7 @@ export default function App({ Component, pageProps }) {
         showPlantFilterSection={showPlantFilterSection}
         toggleFilterSection={toggleFilterSection}
       />
+      <Toaster/>
       <Navigation />
     </>
   );
