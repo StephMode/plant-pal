@@ -30,8 +30,7 @@ export default function Form({
     else if (buttonText === "Add") {
       handleAddPlant(data)
     }
-
-
+    
     event.target.reset();
   }
   return (
