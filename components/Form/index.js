@@ -61,7 +61,7 @@ export default function Form({
             onChange={() => {setShowErrorMessageName(false)}}           
           ></StyledInput>
           </ThemeProvider>
-          {showErrorMessageName === true && <p>Please provide a name for the plant. Think of it as the plant's nickname</p>}
+          {showErrorMessageName === true && <p>Please provide a name for the plant.</p>}
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="botanicalPlantName">Botanical plant name:</label>
