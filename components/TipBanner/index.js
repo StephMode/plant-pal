@@ -32,7 +32,7 @@ const StyledLink = styled(Link)`
         background-color:${(props) => `var(${props.bannerColor}-dark)`};
     }
 `;
-const StyledBannerContainer = styled.section`
+const StyledBannerContainer = styled.div`
     width: 100%;
 
     color: var(--white);

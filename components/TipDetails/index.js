@@ -20,7 +20,7 @@ export default function TipDetails({ tip }) {
       </StyledTipContainer>
 
      
-        <StyledIconContainer onClick={() =>  router.back()}>
+        <StyledIconContainer onClick={() =>  router.back()} type="button">
           <FaChevronLeft />
         </StyledIconContainer>
     </>
@@ -60,7 +60,7 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 
-const StyledIconContainer = styled.span `
+const StyledIconContainer = styled.button `
     background-color: var(--green-light);
     border-radius: 40px;
     width: 50px;
@@ -73,6 +73,7 @@ const StyledIconContainer = styled.span `
     position: absolute;
     top: 70px;
     left: 20px;
+    border: none;
  `;
 
  const StyledH2 = styled.h2`

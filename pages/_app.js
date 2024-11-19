@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
 /*---------------------------------------------------------------------- */
   const [randomTip, setRandomTip] = useState("");
   const [progress, setProgress] = useState(100);
-  
+
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
     return tips[randomIndex];

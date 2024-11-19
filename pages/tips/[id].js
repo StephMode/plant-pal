@@ -12,6 +12,12 @@ export default function TipDetailsPage({ tips }) {
     return <p>Plant tip not found!</p>;
   }
 
+
+  if(!router.isReady) {
+    return null;
+  }
+  
+
   return (
     <main>
       <h1>Care tips</h1>
