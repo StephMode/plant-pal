@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { IoClose } from "react-icons/io5";
 import { IoMdMoon } from "react-icons/io";
 import { IoIosSunny } from "react-icons/io";
@@ -51,6 +51,7 @@ export default function Form({
           )}
         <StyledFieldset>
           <label htmlFor="plantName">Plant name:</label>
+          <ThemeProvider theme={showErrorMessageName === true ? theme : defaultTheme}>
           <StyledInput
             id="plantName"
             name="name"
@@ -59,10 +60,12 @@ export default function Form({
             defaultValue={buttonText === "Edit" ? plant.name : ""}
             onChange={() => {setShowErrorMessageName(false)}}           
           ></StyledInput>
+          </ThemeProvider>
           {showErrorMessageName === true && <p>Please provide a name for the plant. Think of it as the plant's nickname</p>}
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="botanicalPlantName">Botanical plant name:</label>
+          <ThemeProvider theme={showErrorMessageBotanicalName === true ? theme : defaultTheme}>
           <StyledInput
             id="botanicalPlantName"
             name="botanicalName"
@@ -71,6 +74,7 @@ export default function Form({
             defaultValue={buttonText === "Edit" ? plant.botanicalName : ""}
             onChange={() => {setShowErrorMessageBotanicalName(false)}}
           ></StyledInput>
+          </ThemeProvider>
           {showErrorMessageBotanicalName === true && <p>Please provide a botanical name for the plant.</p>}
         </StyledFieldset>
         <StyledFieldset>
@@ -278,13 +282,27 @@ const StyledInput = styled.input`
   border-radius: 30px;
   padding: 10px 15px;
   margin-top: 6px;
-  background-color: rgba(0,0,0,0.1);
+
   font-family: inherit;
+
+  background-color: ${props => props.theme.main};
 
   &:focus {
     outline-color:var(--green-light);
   }
 `;
+StyledInput.defaultProps = {
+  theme: {
+    main: "rgba(0,0,0,0.1)"
+  }
+}
+const defaultTheme = {
+  main: "rgba(0,0,0,0.1)"
+}
+const theme = {
+  main: "#fc8686"
+}
+
 const StyledTextarea = styled.textarea`
   border: none;
   border-radius: 30px;
