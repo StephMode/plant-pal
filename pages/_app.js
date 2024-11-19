@@ -6,7 +6,7 @@ import { tips } from "/lib/tipData";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
-import { useEffect, useState } from "react";
+import { useEffect, useState,  useRef } from "react";
 import Navigation from "/components/Navigation";
 
 
@@ -18,8 +18,10 @@ export default function App({ Component, pageProps }) {
     defaultValue: initialPlants,
   });
 /*---------------------------------------------------------------------- */
-  const [randomTip, setRandomTip] = useState("");
+  const intervalRef = useRef(null);
+  const [randomTip, setRandomTip] = useState(tips[1]);
   const [progress, setProgress] = useState(100);
+  const [isPaused, setIsPaused] = useState(false);
 
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
@@ -27,27 +29,32 @@ export default function App({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prevProgress) => 
-        {if(prevProgress<=0){
-          return 100;
+    const updateProgress = () => {
+      setProgress((prevProgress) => {
+        if (prevProgress <= 0) {
+          setRandomTip(getRandomTip());
+          return 100; 
         }
-        return prevProgress -0.5;
-        });
-    }, 50);
-    return () => clearInterval(interval);
-   },[])
-
-  useEffect(() => {
-      setRandomTip(getRandomTip());
-      const interval = setInterval(() => {
-        setRandomTip(getRandomTip());
-        setProgress(100);
-      }, 10000);
-      return () => clearInterval(interval);
-      
-     },[])
-    
+        return prevProgress - 0.5; 
+      });
+    };
+  
+    if (!isPaused) {
+      intervalRef.current = setInterval(updateProgress, 50);
+    }
+  
+    return () => {
+      clearInterval(intervalRef.current);
+    };
+  }, [isPaused]);
+  
+  const handleMouseHover = () => {
+    setIsPaused(true);
+  };
+  
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
 /*---------------------------------------------------------------------- */
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false)
@@ -148,6 +155,9 @@ export default function App({ Component, pageProps }) {
         showPlantFilterSection={showPlantFilterSection}
         toggleFilterSection={toggleFilterSection}
         progress={progress}
+
+        handleMouseHover = {handleMouseHover}
+        handleMouseLeave = {handleMouseLeave}
       />
       <Navigation />
     </>

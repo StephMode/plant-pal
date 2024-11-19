@@ -2,12 +2,17 @@ import styled from "styled-components"
 import Link from "next/link";
 import Image from "next/image";
 
-export default function TipBanner ({randomTip,progress}) {
+export default function TipBanner ({randomTip,progress,
+
+
+    handleMouseLeave,
+    handleMouseHover}) {
     
     
     return(
-        <StyledLink href={`/tips/${randomTip.id}`} bannerColor={randomTip?.bannerColor|| "var(--green-main)"}>
-            <StyledBannerContainer  >
+        <StyledLink href={`/tips/${randomTip.id}`} bannerColor={randomTip?.bannerColor|| "var(--green-main)"} >
+            <StyledBannerContainer  onMouseEnter={handleMouseHover}
+      onMouseLeave={handleMouseLeave}>
                 <StyledBannerTextContainer>
                     <p>Care tip: {randomTip.shortBodyContent}</p> 
                     <StyledBannerButton type="button">Read More</StyledBannerButton>
@@ -56,6 +61,7 @@ const StyledBannerButton = styled.button`
     border-radius: 20px;
     padding: 8px 15px;
     margin-top: 15px;
+    cursor: pointer;
 `;
 const StyledImageContainer = styled.div`
   width: 125px;
@@ -79,7 +85,7 @@ const StyledImage = styled(Image)`
 `;
 const StyledProgressBarWrapper =  styled.div`
     width: 100%;
-
+    background-color: var(--gold-dark);
 `;
 const StyledProgressBar = styled.div`
     width:  ${(props) => `${props.progressCss}%`};
