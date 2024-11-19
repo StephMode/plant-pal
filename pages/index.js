@@ -4,22 +4,38 @@ import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
 import { AiOutlineControl } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
+import TipBanner from "/components/TipBanner";
 
 
-export default function HomePage({ handleToggleOwned, plants, onFilterPlants, showPlantFilterSection, toggleFilterSection, onFilterPlantsReset, selectedFilter, filteredPlants}) {
+export default function HomePage({ 
+  handleToggleOwned, 
+  plants, 
+  onFilterPlants, 
+  showPlantFilterSection, 
+  toggleFilterSection, 
+  onFilterPlantsReset, 
+  selectedFilter, 
+  filteredPlants,
+  randomTip,
+  progress,
+
+  handleMouseLeave,
+  handleMouseHover
+}) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
 
   return (
     <main>
       <h1>Plant List</h1>
       <StyledSpacer/>
+      <TipBanner randomTip={randomTip} progress={progress} handleMouseHover = {handleMouseHover} handleMouseLeave = {handleMouseLeave}/>
       <StyledFilterButtonSection>
         <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
       </StyledFilterButtonSection>
       <StyledSpacer2/>
       <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} />
       { filteredPlants.length === 0 && 
-           <StyledInfoText>No plants were found. Reset filter.</StyledInfoText> }
+           <StyledInfoText>No plants were found. Reset filter.</StyledInfoText>}
       { !selectedFilter && plants.length === 0 ? (
           <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
       ) : (
@@ -35,7 +51,7 @@ export default function HomePage({ handleToggleOwned, plants, onFilterPlants, sh
                   isOwned={plant.isOwned}
                 />
               </li>)
-            ) }
+            )}
           </ul>
       )}
     </main>
@@ -52,14 +68,14 @@ const StyledInfoText = styled.p`
 `;
 const StyledSpacer = styled.span`
   display: block;
-  height: 62px;
+  height: 75px;
 `;
 const StyledSpacer2 = styled.span`
   display: block;
   height: 17px;
 `;
 const StyledFilterButtonSection = styled.section`
-  margin-right: 10px;
+  margin-right: 6px;
   align-self: end;
 `;
 

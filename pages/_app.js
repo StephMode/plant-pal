@@ -6,8 +6,9 @@ import { tips } from "/lib/tipData";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from 'nanoid';
-import { useState } from "react";
+import { useEffect, useState,  useRef } from "react";
 import Navigation from "/components/Navigation";
+
 
 
 export default function App({ Component, pageProps }) {
@@ -16,9 +17,45 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
+/*---------------------------------------------------------------------- */
+  const intervalRef = useRef(null);
+  const [randomTip, setRandomTip] = useState(tips[1]);
+  const [progress, setProgress] = useState(100);
+  const [isPaused, setIsPaused] = useState(false);
 
+  const getRandomTip = () => {
+    const randomIndex = Math.floor(Math.random() * tips.length);
+    return tips[randomIndex];
+  };
+
+  useEffect(() => {
+    const updateProgress = () => {
+      setProgress((prevProgress) => {
+        if (prevProgress <= 0) {
+          setRandomTip(getRandomTip());
+          return 100; 
+        }
+        return prevProgress - 0.5; 
+      });
+    };
   
-
+    if (!isPaused) {
+      intervalRef.current = setInterval(updateProgress, 50);
+    }
+  
+    return () => {
+      clearInterval(intervalRef.current);
+    };
+  }, [isPaused]);
+  
+  const handleMouseHover = () => {
+    setIsPaused(true);
+  };
+  
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+/*---------------------------------------------------------------------- */
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false)
   const [isDelete, setIsDelete] = useState(false)
@@ -103,6 +140,7 @@ export default function App({ Component, pageProps }) {
         handleToggleOwned={handleToggleOwned}
         plants={plants}
         tips={tips}
+        randomTip={randomTip}
         onDeletePlant={handleDeletePlant}
         handleAddPlant={handleAddPlant}
         handleEditPlant={handleEditPlant}
@@ -116,6 +154,10 @@ export default function App({ Component, pageProps }) {
         filteredPlants={filteredPlants}
         showPlantFilterSection={showPlantFilterSection}
         toggleFilterSection={toggleFilterSection}
+        progress={progress}
+
+        handleMouseHover = {handleMouseHover}
+        handleMouseLeave = {handleMouseLeave}
       />
       <Navigation />
     </>

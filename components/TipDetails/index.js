@@ -2,9 +2,12 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
+import { useRouter } from "next/router";
 
 
 export default function TipDetails({ tip }) {
+  const router = useRouter();
+
   return (
     <>
       <StyledImageContainer>
@@ -16,11 +19,10 @@ export default function TipDetails({ tip }) {
         <StyledDescription>{tip.bodyContent}</StyledDescription>
       </StyledTipContainer>
 
-      <Link href="/plantTipsPage">
-        <StyledIconContainer>
+     
+        <StyledIconContainer onClick={() =>  router.back()} type="button">
           <FaChevronLeft />
         </StyledIconContainer>
-      </Link>
     </>
   );
 }
@@ -58,7 +60,7 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 
-const StyledIconContainer = styled.span `
+const StyledIconContainer = styled.button `
     background-color: var(--green-light);
     border-radius: 40px;
     width: 50px;
@@ -71,6 +73,7 @@ const StyledIconContainer = styled.span `
     position: absolute;
     top: 70px;
     left: 20px;
+    border: none;
  `;
 
  const StyledH2 = styled.h2`
