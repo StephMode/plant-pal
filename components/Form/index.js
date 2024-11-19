@@ -65,7 +65,7 @@ export default function Form({
             onChange={() => {setShowErrorMessageName(false)}}           
           ></StyledInput>
           </ThemeProvider>
-          {showErrorMessageName === true && <p>Please provide a name for the plant.</p>}
+          {showErrorMessageName === true && <StyledErrorMessage>Please provide a name for the plant.</StyledErrorMessage>}
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="botanicalPlantName">Botanical plant name:</label>
@@ -79,7 +79,7 @@ export default function Form({
             onChange={() => {setShowErrorMessageBotanicalName(false)}}
           ></StyledInput>
           </ThemeProvider>
-          {showErrorMessageBotanicalName === true && <p>Please provide a botanical name for the plant.</p>}
+          {showErrorMessageBotanicalName === true && <StyledErrorMessage>Please provide a botanical name for the plant.</StyledErrorMessage>}
         </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="plantDescription">Description:</label>
@@ -239,7 +239,7 @@ export default function Form({
           </StyledCheckboxLabel>
           </ThemeProvider>
 
-            {showErrorMessageFertilizerSeason && <p>select a fert season</p>}
+            {showErrorMessageFertilizerSeason && <StyledErrorMessage>select a fert season</StyledErrorMessage>}
 
         </StyledFieldsetCheckbox>
         <StyledButtonContainer>
@@ -316,6 +316,14 @@ const defaultTheme = {
 const theme = {
   main: "#fc8686"
 }
+
+const StyledErrorMessage = styled.p`
+  color: red;
+  font-size: 0.75rem;
+  margin-left: 15px;
+  padding-top: 5px;
+
+`;
 
 const StyledTextarea = styled.textarea`
   border: none;
