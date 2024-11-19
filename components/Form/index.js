@@ -239,7 +239,7 @@ export default function Form({
           </StyledCheckboxLabel>
           </ThemeProvider>
 
-            {showErrorMessageFertilizerSeason && <StyledErrorMessage>select a fert season</StyledErrorMessage>}
+            {showErrorMessageFertilizerSeason && <StyledErrorMessage>Please select at least one season!</StyledErrorMessage>}
 
         </StyledFieldsetCheckbox>
         <StyledButtonContainer>
