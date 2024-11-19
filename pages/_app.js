@@ -34,7 +34,6 @@ export default function App({ Component, pageProps }) {
         });
     }, 50);
     return () => clearInterval(interval);
-    
    },[])
   useEffect(() => {
       setRandomTip(getRandomTip());
