@@ -321,7 +321,7 @@ const errorMessagetheme = {
 }
 
 const StyledErrorMessage = styled.p`
-  color: red;
+  color: var(--error-red);
   font-size: 0.75rem;
   margin-left: 15px;
   padding-top: 5px;
