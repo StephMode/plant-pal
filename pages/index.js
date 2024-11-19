@@ -16,7 +16,8 @@ export default function HomePage({
   onFilterPlantsReset, 
   selectedFilter, 
   filteredPlants,
-  randomTip
+  randomTip,
+  progress
 }) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
 
@@ -24,7 +25,7 @@ export default function HomePage({
     <main>
       <h1>Plant List</h1>
       <StyledSpacer/>
-      <TipBanner randomTip={randomTip}/>
+      <TipBanner randomTip={randomTip} progress={progress}/>
       <StyledFilterButtonSection>
         <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
       </StyledFilterButtonSection>

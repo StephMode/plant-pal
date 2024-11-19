@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Navigation from "/components/Navigation";
 
 
+
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
@@ -18,19 +19,33 @@ export default function App({ Component, pageProps }) {
   });
 /*---------------------------------------------------------------------- */
   const [randomTip, setRandomTip] = useState("");
+  const [progress, setProgress] = useState(100);
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
     return tips[randomIndex];
   };
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prevProgress) => 
+        {if(prevProgress<=0){
+          return 100;
+        }
+        return prevProgress -0.5;
+        });
+    }, 50);
+    return () => clearInterval(interval);
+    
+   },[])
   useEffect(() => {
       setRandomTip(getRandomTip());
       const interval = setInterval(() => {
         setRandomTip(getRandomTip());
-      }, 5000);
+        setProgress(100);
+      }, 10000);
       return () => clearInterval(interval);
       
      },[])
+    
 /*---------------------------------------------------------------------- */
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false)
@@ -130,6 +145,7 @@ export default function App({ Component, pageProps }) {
         filteredPlants={filteredPlants}
         showPlantFilterSection={showPlantFilterSection}
         toggleFilterSection={toggleFilterSection}
+        progress={progress}
       />
       <Navigation />
     </>

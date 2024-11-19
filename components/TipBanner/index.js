@@ -2,12 +2,12 @@ import styled from "styled-components"
 import Link from "next/link";
 import Image from "next/image";
 
-export default function TipBanner ({randomTip}) {
+export default function TipBanner ({randomTip,progress}) {
     
     
     return(
-        <StyledLink href={`/tips/${randomTip.id}`}>
-            <StyledBannerContainer bannerColor={randomTip?.bannerColor|| "var(--green-main)"} >
+        <StyledLink href={`/tips/${randomTip.id}`} bannerColor={randomTip?.bannerColor|| "var(--green-main)"}>
+            <StyledBannerContainer  >
                 <StyledBannerTextContainer>
                     <p>Care tip: {randomTip.shortBodyContent}</p> 
                     <StyledBannerButton type="button">Read More</StyledBannerButton>
@@ -16,24 +16,30 @@ export default function TipBanner ({randomTip}) {
                     <StyledImage src={randomTip.imageURL} alt={randomTip.title} fill={true} />
                 </StyledImageContainer>
             </StyledBannerContainer>
+            <StyledProgressBarWrapper>
+                    <StyledProgressBar progressCss={progress || 100 }/>
+            </StyledProgressBarWrapper>
         </StyledLink>
     )
 }
 const StyledLink = styled(Link)`
     width: 97%;
     margin: 0 0 20px 0;
+    background-color: ${(props) => `var(${props.bannerColor})`};
+    border-radius: 20px;
+    overflow: hidden;
+    &:hover {
+        background-color:${(props) => `var(${props.bannerColor}-dark)`};
+    }
 `;
 const StyledBannerContainer = styled.section`
     width: 100%;
-    background-color: ${(props) => `var(${props.bannerColor})`};
-    border-radius: 20px;
+
     color: var(--white);
     display:flex;
     justify-content: space-between;
     
-    &:hover {
-        background-color:${(props) => `var(${props.bannerColor}-dark)`};
-    }
+
 `;
 const StyledBannerTextContainer = styled.section`  
     padding: 13px 10px 20px 20px;
@@ -58,7 +64,7 @@ const StyledImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
+  border-radius: 20px 20px 0 20px;
 
   @media (min-width: 750px) {
     min-height: 150px;
@@ -70,4 +76,16 @@ const StyledImage = styled(Image)`
   height: auto;
   text-align: center;
   object-fit: cover;
+`;
+const StyledProgressBarWrapper =  styled.div`
+    width: 100%;
+
+`;
+const StyledProgressBar = styled.div`
+    width:  ${(props) => `${props.progressCss}%`};
+    display: block;
+    height: 5px;
+    background-color: var(--gold);
+    border-radius: 3px;
+   /*  transition: width 1000ms linear; */
 `;
