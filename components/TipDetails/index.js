@@ -20,17 +20,16 @@ export default function TipDetails({ tip }) {
             <StyledImage src={tip.imageURL} alt={tip.title} fill />
       </StyledImageContainer>
       
+      <StyledIconContainer onClick={() =>  router.back()} type="button">
+          <FaChevronLeft />
+        </StyledIconContainer>
+
       <StyledTipContainer>
         <StyledH2>{tip.title}</StyledH2>
         <StyledDescription>{tip.bodyContent}</StyledDescription>
-      </StyledTipContainer>
-
-     
-        <StyledIconContainer onClick={() =>  router.back()} type="button">
-          <FaChevronLeft />
-        </StyledIconContainer>
-        <h3>Related Plants</h3>
-        <ul>
+      
+        <StyledH3>Related Plants</StyledH3>
+        <StyledTagContainer>
           {relatedPlantObject.map((plant) => (
             <li key={plant.id}>
               <Tag
@@ -43,7 +42,13 @@ export default function TipDetails({ tip }) {
             </li>
           ))}
           
-        </ul>
+        </StyledTagContainer>
+      
+      </StyledTipContainer>
+
+     
+        
+        
         
 
         
@@ -102,10 +107,19 @@ const StyledIconContainer = styled.button `
 
  const StyledH2 = styled.h2`
   margin-bottom: 13px;
-  max-width: 260px;
  `;
 
  const StyledDescription = styled.p`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-align: justify;
  `;
+
+const StyledH3 = styled.h3`
+ margin-bottom: 20px;
+ text-align: left;
+`;
+
+const StyledTagContainer = styled.ul`
+  display: flex;
+  justify-content:flex-start;
+`;

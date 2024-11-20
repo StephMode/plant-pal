@@ -12,8 +12,8 @@ export default function Tag({id, headline, subHeadline, image, tagType }) {
        
        <StyledImage src={image} width={50} height={50} alt={`"image of ${headline}"`}/>
         <div>
-        <StyledH4>{headline}</StyledH4>
-        <StyledH5>{subHeadline}</StyledH5>
+          <StyledH4>{headline}</StyledH4>
+          <StyledH5>{subHeadline}</StyledH5>
         </div>
         </StyledTag>
       </Link>
@@ -28,7 +28,7 @@ const StyledTag = styled.article`
   gap: 15px;
   border-radius: 40px;
   background-color: var(--green-light);
-  padding: 10px 25px 10px 10px;
+  padding: 7px 18px 7px 7px;
   transition: all ease-in-out 0.5s;
 
   &:hover{
