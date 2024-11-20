@@ -32,21 +32,21 @@ export default function TipDetails({ tip }) {
         <h3>Related Plants</h3>
         <ul>
           {relatedPlantObject.map((plant) => (
-            <li>
-              <h3>{plant.name}</h3>
-              <h3>{plant.botanicalName}</h3>
-              
+            <li key={plant.id}>
+              <Tag
+                id={plant.id}
+                tagType={"plants"}
+                headline={plant.name}
+                subHeadline={plant.botanicalName}
+                image={plant.imageUrl}
+              />              
             </li>
           ))}
           
         </ul>
         
 
-        <Tag
-          plantID={1}
-          name={"Piranha Plant"}
-          botanicalName={"Prinanha Plantus"}
-        />
+        
     </>
   );
 }
