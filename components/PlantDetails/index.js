@@ -15,8 +15,13 @@ import { IoMdMoon } from "react-icons/io";
 import { GiPowder } from "react-icons/gi";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
+import { useRouter } from "next/router";
 
 export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdit, showModal, handleEditPlant, handleAddPlant, onDeletePlant }) {
+  const router = useRouter();
+
+
+  
   return (
     <>
       <StyledImageContainer>
@@ -76,6 +81,11 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
             </StyledFertilizerUl>
           </StyledIconSection>
         </StyledPlantNeedsContainer>
+        <section>
+          <ul>
+            <li>lala</li>
+          </ul>
+        </section>
         <StyledEditDeleteSection>
           <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")}/>
       </StyledEditDeleteSection>
@@ -93,11 +103,9 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
                 "This is an error, please reload page."
           } />}
 
-        <Link href="/">
-        <StyledIconContainer>
-          <FaChevronLeft />
+        <StyledIconContainer onClick={() => router.back()} type="button">
+          <FaChevronLeft/>
         </StyledIconContainer>
-        </Link>
     </>
   );
 }
@@ -138,9 +146,10 @@ const StyledImage = styled(Image)`
   text-align: center;
   object-fit: cover;
 `;
-const StyledIconContainer = styled.span `
+const StyledIconContainer = styled.button `
     background-color: var(--green-light);
     border-radius: 40px;
+    border: none;
     width: 50px;
     height: 50px;
     display: flex;
