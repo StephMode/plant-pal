@@ -92,6 +92,9 @@ export default function PlantDetails({
             </StyledFertilizerUl>
           </StyledIconSection>
         </StyledPlantNeedsContainer>
+        <StyledEditDeleteSection>
+          <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")}/>
+        </StyledEditDeleteSection>
         <StyledTipH3>Related Care Tips:</StyledTipH3>
 
           <StyledTagContainer>
@@ -109,9 +112,7 @@ export default function PlantDetails({
             
           </StyledTagContainer>
 
-        <StyledEditDeleteSection>
-          <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")}/>
-      </StyledEditDeleteSection>
+        
       </StyledPlantContainer>
 
         {showModal &&
@@ -238,4 +239,5 @@ const StyledEditDeleteSection = styled.section`
   display: flex;
   width: 100%;
   margin-top: 25px;
+  filter: grayscale(100%);
 `;
