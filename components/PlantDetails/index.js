@@ -99,8 +99,9 @@ export default function PlantDetails({
             </StyledFertilizerUl>
           </StyledIconSection>
         </StyledPlantNeedsContainer>
-        <section>
-          <ul>
+        <StyledTipH3>Related Care Tips:</StyledTipH3>
+
+          <StyledTagContainer>
               {realtedTips.map((tip) => plant === undefined ? null : (
                 <li key={tip.id}>
                   <Tag
@@ -113,8 +114,8 @@ export default function PlantDetails({
                 </li>
               ))}
             
-          </ul>
-        </section>
+          </StyledTagContainer>
+
         <StyledEditDeleteSection>
           <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")}/>
       </StyledEditDeleteSection>
@@ -149,12 +150,17 @@ const StyledPlantContainer = styled.section`
     width: 70%;
   }
 `;
-
 const StyledPlantNeedsContainer = styled.article`
   display: flex;
   flex-direction: column;
 `;
-
+const StyledTipH3 = styled.h3`
+  margin: 20px 0px;
+  text-align: left;
+  color: var(--green-main);
+  font-weight: bold;
+  font-size: 20px;
+`;
 const StyledImageContainer = styled.div`
   width: 100%;
   height: 300px;
@@ -168,7 +174,6 @@ const StyledImageContainer = styled.div`
     height: 500px;
   }
 `;
-
 const StyledImage = styled(Image)`
   width: 200%;
   height: auto;
@@ -194,7 +199,6 @@ const StyledIconSection = styled.section`
   display: flex;
   align-items: center;
   color: var(--green-main);
-  font-weight: bold;
   font-size: 20px;
   gap: 10px;
   margin-bottom: 5px;
@@ -231,6 +235,12 @@ const StyledIconSection = styled.section`
   font-size: 14px;
   font-weight: normal;
 `;
+
+const StyledTagContainer = styled.ul`
+  display: flex;
+  justify-content:flex-start;
+`;
+
 const StyledEditDeleteSection = styled.section`
   display: flex;
   width: 100%;

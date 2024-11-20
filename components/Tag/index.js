@@ -8,7 +8,7 @@ export default function Tag({tagId, headline, subHeadline, image, tagType }) {
       <Link href={`/${tagType}/${tagId}`}>
         <StyledTag>
        
-       <StyledImage src={image} width={50} height={50} alt={`"image of ${headline}"`}/>
+       <StyledImage src={image} width={55} height={55} alt={`"image of ${headline}"`}/>
         <div>
           <StyledH4>{headline}</StyledH4>
           <StyledH5>{subHeadline}</StyledH5>
@@ -22,11 +22,13 @@ export default function Tag({tagId, headline, subHeadline, image, tagType }) {
 
 const StyledTag = styled.article`
   min-width: 200px;
+  max-width: 300px;
   display: flex;
+  align-items: center;
   gap: 15px;
   border-radius: 40px;
   background-color: var(--green-light);
-  padding: 7px 18px 7px 7px;
+  padding: 10px 25px 10px 10px;
   transition: all ease-in-out 0.5s;
 
   &:hover{
@@ -37,6 +39,8 @@ const StyledTag = styled.article`
 
 const StyledImage = styled(Image)`
   border-radius: 50px;
+  min-width: 55px;
+  min-height: 55px;
 `;
 
 
