@@ -1,18 +1,19 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useRouter } from "next/router";
-import { plants as initialPlants } from "/lib/plantData";
 import Tag from "../Tag";
 
 
-export default function TipDetails({ tip }) {
+export default function TipDetails({ tip, plantsToBeTagged }) {
   const router = useRouter();
 
   const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
-  const relatedPlantObject = relatedPlants.map((plantID) => initialPlants.find((plant) => plant.id === plantID));
-
+  const relatedPlantObject = relatedPlants.map((plantID) => plantsToBeTagged.find((plant) => plant.id === plantID));
+  // console.log(relatedPlantObject);
+  // console.log(relatedPlantObject.includes(undefined));
+  
+  
 
   return (
     <>
@@ -30,17 +31,19 @@ export default function TipDetails({ tip }) {
       
         <StyledH3>Related Plants</StyledH3>
         <StyledTagContainer>
-          {relatedPlantObject.map((plant) => (
-            <li key={plant.id}>
+          {relatedPlantObject.map((plant) => 
+            plant === undefined ? null :
+            (<li key={plant.id}>
               <Tag
-                id={plant.id}
+                tagId={plant.id}
                 tagType={"plants"}
                 headline={plant.name}
                 subHeadline={plant.botanicalName}
                 image={plant.imageUrl}
               />              
             </li>
-          ))}
+            )
+          )}
           
         </StyledTagContainer>
       

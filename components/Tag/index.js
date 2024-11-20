@@ -2,12 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 
-export default function Tag({id, headline, subHeadline, image, tagType }) {
+export default function Tag({tagId, headline, subHeadline, image, tagType }) {
     // wir können die compo so bauen: prop hashtagType gibt vor, welche Art von hashtag und dementsprechend conditional render
     // TipDetails und PlantDetails geben dann jweils die detail props für den Einzelhashtag runter
   
     return (
-      <Link href={`/${tagType}/${id}`}>
+      <Link href={`/${tagType}/${tagId}`}>
         <StyledTag>
        
        <StyledImage src={image} width={50} height={50} alt={`"image of ${headline}"`}/>
