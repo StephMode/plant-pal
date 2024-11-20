@@ -29,10 +29,10 @@ export default function PlantDetails({
   tipsToBeTagged }) {
   const router = useRouter();
 
-  
+
   const realtedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
 
-  
+
   return (
     <>
       <StyledImageContainer>

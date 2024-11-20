@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 
 export default function Tag({tagId, headline, subHeadline, image, tagType }) {
   
     return (
       <Link href={`/${tagType}/${tagId}`}>
+        <ThemeProvider theme={tagType === "plants" ? plantTagtheme : tipTagtheme}>
         <StyledTag>
        
        <StyledImage src={image} width={55} height={55} alt={`"image of ${headline}"`}/>
@@ -14,6 +15,7 @@ export default function Tag({tagId, headline, subHeadline, image, tagType }) {
           <StyledH5>{subHeadline}</StyledH5>
         </div>
         </StyledTag>
+        </ThemeProvider>
       </Link>
   )
 }
@@ -27,15 +29,30 @@ const StyledTag = styled.article`
   align-items: center;
   gap: 15px;
   border-radius: 40px;
-  background-color: var(--green-light);
+  background-color: ${props => props.theme.main};
   padding: 10px 25px 10px 10px;
   transition: all ease-in-out 0.5s;
+  color: var(--black);
 
   &:hover{
-    background-color: var(--green-main);
+    background-color: ${props => props.theme.hover};
     color: var(--white)
   }
 `;
+StyledTag.defaultProps = {
+  theme: {
+    main: "var(--green-light)",
+    hover: "var(--green-main)"
+  }
+}
+const tipTagtheme = {
+  main: "var(--brown)",
+  hover: "var(--brown-dark)"
+}
+const plantTagtheme = {
+  main: "var(--green-light)",
+  hover: "var(--green-main)"
+}
 
 const StyledImage = styled(Image)`
   border-radius: 50px;
@@ -48,7 +65,5 @@ const StyledH4 = styled.h4`
 `;
 
 const StyledH5 = styled.h5`
-  color: var(--gray);
   font-weight: normal;
-  
 `;
