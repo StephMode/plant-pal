@@ -24,7 +24,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Full Shade"
-              onChange={() => handleFilterPlants("lightNeed", "Full Shade")}
+              onClick={() => handleFilterPlants("lightNeed", "Full Shade")}
             />
             <StyledRadiolabel htmlFor="light-full-shade">
               <StyledIconSection>
@@ -38,7 +38,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Partial Shade"
-              onChange={() => handleFilterPlants("lightNeed", "Partial Shade")}
+              onClick={() => handleFilterPlants("lightNeed", "Partial Shade")}
             />
             <StyledRadiolabel htmlFor="light-partial-shade">
               <StyledIconSection>
@@ -52,7 +52,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Full Sun"
-              onChange={() => handleFilterPlants("lightNeed", "Full Sun")}
+              onClick={() => handleFilterPlants("lightNeed", "Full Sun")}
             />
             <StyledRadiolabel htmlFor="light-full-sun">
               <StyledIconSection>
@@ -68,7 +68,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="Low"
-              onChange={() => handleFilterPlants("waterNeed", "Low")}
+              onClick={() => handleFilterPlants("waterNeed", "Low")}
             />
             <StyledRadiolabel htmlFor="water-low">
               <StyledIconSection>
@@ -82,7 +82,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="Medium"
-              onChange={() => handleFilterPlants("waterNeed", "Medium")}
+              onClick={() => handleFilterPlants("waterNeed", "Medium")}
             />
             <StyledRadiolabel htmlFor="water-medium">
               <StyledIconSection>
@@ -96,7 +96,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="High"
-              onChange={() => handleFilterPlants("waterNeed", "High")}
+              onClick={() => handleFilterPlants("waterNeed", "High")}
             />
             <StyledRadiolabel htmlFor="water-high">
               <StyledIconSection>
@@ -105,6 +105,53 @@ export default function PlantFilterSection({
               </StyledIconSection>
             </StyledRadiolabel>
           </StyledFieldsetRadio>
+          <StyledFieldsetCheckbox>
+            <StyledLegend>Fertiliser Season:</StyledLegend>
+
+            <StyledCheckboxInput
+              id="fertiliser-spring"
+              name="fertiliserSeason"
+              type="checkbox"
+              value="Spring"
+              onClick={() => handleFilterPlants("fertiliserSeason", "Spring")}
+            />
+            <StyledCheckboxLabel htmlFor="fertiliser-spring">
+              Spring
+            </StyledCheckboxLabel>
+
+            <StyledCheckboxInput
+              id="fertiliser-summer"
+              name="fertiliserSeason"
+              type="checkbox"
+              value="Summer"
+              onClick={() => handleFilterPlants("fertiliserSeason", "Summer")}
+            />
+            <StyledCheckboxLabel htmlFor="fertiliser-summer">
+              Summer
+            </StyledCheckboxLabel>
+
+            <StyledCheckboxInput
+              id="fertiliser-fall"
+              name="fertiliserSeason"
+              type="checkbox"
+              value="Fall"
+              onClick={() => handleFilterPlants("fertiliserSeason", "Fall")}
+            />
+            <StyledCheckboxLabel htmlFor="fertiliser-fall">
+              Fall
+            </StyledCheckboxLabel>
+
+            <StyledCheckboxInput
+              id="fertiliser-winter"
+              name="fertiliserSeason"
+              type="checkbox"
+              value="Winter"
+              onClick={() => handleFilterPlants("fertiliserSeason", "Winter")}
+            />
+            <StyledCheckboxLabel htmlFor="fertiliser-winter">
+              Winter
+            </StyledCheckboxLabel>
+          </StyledFieldsetCheckbox>
           <StyledSubmitButton type="submit">
             <RxReset />
           </StyledSubmitButton>
@@ -184,4 +231,33 @@ const StyledIconSection = styled.section`
   gap: 5px;
   margin-bottom: 5px;
   flex-wrap: wrap;
+`;
+const StyledFieldsetCheckbox = styled.fieldset`
+  display: flex;
+  flex-direction: row;
+  border: none;
+  padding: 10px 0;
+  color: var(--green-main);
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+const StyledCheckboxLabel = styled.label`
+  background: var(--green-light);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: normal;
+  font-size: 14px;
+  width: 22%;
+`;
+const StyledCheckboxInput = styled.input`
+  display: none;
+
+  &:checked + label {
+    background: var(--green-main);
+    color: var(--white);
+  }
+`;
+const StyledLegend = styled.legend`
+  width: 100%;
+  text-align: left;
 `;

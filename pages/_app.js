@@ -57,7 +57,12 @@ export default function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState({});
+  const initialFilterObject = {
+    waterNeed: "",
+    lightNeed: "",
+    fertiliserSeason: [],
+  };
+  const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
   function handleToggleModal() {
@@ -122,10 +127,30 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleFilterPlants(selectedFilterKey, selectedFilterValue) {
-    setSelectedFilter({
-      ...selectedFilter,
-      [selectedFilterKey]: selectedFilterValue,
-    });
+    if (selectedFilterKey === "waterNeed") {
+      setSelectedFilter({
+        ...selectedFilter,
+        [selectedFilterKey]: selectedFilterValue,
+      });
+    }
+    if (selectedFilterKey === "lightNeed") {
+      setSelectedFilter({
+        ...selectedFilter,
+        [selectedFilterKey]: selectedFilterValue,
+      });
+    }
+
+    if (selectedFilterKey === "fertiliserSeason") {
+      setSelectedFilter({
+        ...selectedFilter,
+        [selectedFilterKey]: [
+          ...new Set([
+            ...selectedFilter[selectedFilterKey],
+            selectedFilterValue,
+          ]),
+        ],
+      });
+    }
   }
 
   const filteredPlants = selectedFilter
@@ -134,7 +159,11 @@ export default function App({ Component, pageProps }) {
           (!selectedFilter.lightNeed ||
             plant.lightNeed === selectedFilter.lightNeed) &&
           (!selectedFilter.waterNeed ||
-            plant.waterNeed === selectedFilter.waterNeed)
+            plant.waterNeed === selectedFilter.waterNeed) &&
+          (!selectedFilter.fertiliserSeason ||
+            selectedFilter.fertiliserSeason.every((season) =>
+              plant.fertiliserSeason.includes(season)
+            ))
       )
     : plants;
 
@@ -144,7 +173,7 @@ export default function App({ Component, pageProps }) {
 
   function handleFilterPlantsReset(event) {
     event.preventDefault();
-    setSelectedFilter({});
+    setSelectedFilter(initialFilterObject);
     event.target.reset();
   }
 
