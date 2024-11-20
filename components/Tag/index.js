@@ -8,9 +8,9 @@ export default function Tag({id, headline, subHeadline, image, tagType }) {
     return (
       <article>
        <Link href={`/${tagType}/${id}`}>
-        <h3>{headline}</h3>
-        <h4>{subHeadline}</h4>
-        <Image src={image} width={50} height={50}/>
+       <Image src={image} width={50} height={50} alt={`"image of ${headline}"`}/>
+        <h4>{headline}</h4>
+        <h5>{subHeadline}</h5>
        </Link>
       </article>
   )
