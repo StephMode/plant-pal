@@ -3,17 +3,27 @@ import styled from "styled-components";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import Tag from "../Tag";
+import { useState } from "react";
 
 
 export default function TipDetails({ tip, plantsToBeTagged }) {
   const router = useRouter();
+
+  const [undefinedChecker, SetUndefinedChecker] = useState(false);  
 
   const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
   const relatedPlantObject = relatedPlants.map((plantID) => plantsToBeTagged.find((plant) => plant.id === plantID));
   // console.log(relatedPlantObject);
   // console.log(relatedPlantObject.includes(undefined));
   
+  const undefinedCount = relatedPlantObject.filter(plant => plant === undefined).length;
+  // console.log(undefinedCount);
   
+  const noRelatedPlants = () => {if (undefinedCount === relatedPlantObject.length) {
+    SetUndefinedChecker(true)
+  }}
+
+  // console.log(undefinedChecker);
 
   return (
     <>
@@ -29,7 +39,7 @@ export default function TipDetails({ tip, plantsToBeTagged }) {
         <StyledH2>{tip.title}</StyledH2>
         <StyledDescription>{tip.bodyContent}</StyledDescription>
       
-        <StyledH3>Related Plants</StyledH3>
+        {undefinedChecker ? (<StyledH3>Related Plants</StyledH3>) : ("")}
         <StyledTagContainer>
           {relatedPlantObject.map((plant) => 
             plant === undefined ? null :
