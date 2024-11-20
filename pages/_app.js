@@ -57,10 +57,7 @@ export default function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState({
-    waterNeed: "Low",
-    lightneed: "High",
-  });
+  const [selectedFilter, setSelectedFilter] = useState({});
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
   function handleToggleModal() {
@@ -124,28 +121,31 @@ export default function App({ Component, pageProps }) {
     setShowModal(!showModal);
   }
 
+  function handleFilterPlants(selectedFilterKey, selectedFilterValue) {
+    setSelectedFilter({
+      ...selectedFilter,
+      [selectedFilterKey]: selectedFilterValue,
+    });
+  }
+
+  const filteredPlants = selectedFilter
+    ? plants.filter(
+        (plant) =>
+          (!selectedFilter.lightNeed ||
+            plant.lightNeed === selectedFilter.lightNeed) &&
+          (!selectedFilter.waterNeed ||
+            plant.waterNeed === selectedFilter.waterNeed)
+      )
+    : plants;
+
   function toggleFilterSection() {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
-  function handleFilterPlants(selectedFilterKey, selectedFilterValue) {
-    setSelectedFilter({
-      ...selectedFilter,
-      selectedFilterKey: selectedFilterValue,
-    });
-  }
-
-  const objectkeys = Object.keys(selectedFilter);
-  if (objectkeys.includes(lightNeed)) {
-    plants.filter((plant) => plant.lightNeed === selectedFilter.lightNeed);
-  }
-
-  /* const filteredPlants = 
-    ? plants.filter((plant) => plant.lightNeed === selectedFilter.lightNeed)
-    : plants; */
-
-  function handleFilterPlantsReset() {
-    setSelectedFilter("");
+  function handleFilterPlantsReset(event) {
+    event.preventDefault();
+    setSelectedFilter({});
+    event.target.reset();
   }
 
   return (

@@ -6,6 +6,7 @@ import { RxReset } from "react-icons/rx";
 import { RiDropFill } from "react-icons/ri";
 import { RiContrastDrop2Fill } from "react-icons/ri";
 import { RiDropLine } from "react-icons/ri";
+
 export default function PlantFilterSection({
   handleFilterPlants,
   showPlantFilterSection,
@@ -14,7 +15,7 @@ export default function PlantFilterSection({
   return (
     showPlantFilterSection && (
       <StyledPlantFilterSection>
-        <form>
+        <form onSubmit={handleFilterPlantsReset}>
           <StyledFieldsetRadio>
             <legend>Light needs </legend>
 
@@ -37,7 +38,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Partial Shade"
-              onChange={() => handleFilterPlants("Partial Shade")}
+              onChange={() => handleFilterPlants("lightNeed", "Partial Shade")}
             />
             <StyledRadiolabel htmlFor="light-partial-shade">
               <StyledIconSection>
@@ -51,7 +52,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Full Sun"
-              onChange={() => handleFilterPlants("Full Sun")}
+              onChange={() => handleFilterPlants("lightNeed", "Full Sun")}
             />
             <StyledRadiolabel htmlFor="light-full-sun">
               <StyledIconSection>
@@ -67,7 +68,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="Low"
-              onChange={() => handleFilterPlants("Low")}
+              onChange={() => handleFilterPlants("waterNeed", "Low")}
             />
             <StyledRadiolabel htmlFor="water-low">
               <StyledIconSection>
@@ -81,7 +82,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="Medium"
-              onChange={() => handleFilterPlants("Medium")}
+              onChange={() => handleFilterPlants("waterNeed", "Medium")}
             />
             <StyledRadiolabel htmlFor="water-medium">
               <StyledIconSection>
@@ -95,7 +96,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="High"
-              onChange={() => handleFilterPlants("High")}
+              onChange={() => handleFilterPlants("waterNeed", "High")}
             />
             <StyledRadiolabel htmlFor="water-high">
               <StyledIconSection>
@@ -103,18 +104,10 @@ export default function PlantFilterSection({
                 <p>High</p>
               </StyledIconSection>
             </StyledRadiolabel>
-
-            <StyledRadioInputReset
-              id="reset"
-              name="lightNeed"
-              type="radio"
-              value="reset"
-              onChange={handleFilterPlantsReset}
-            />
-            <StyledRadiolabelReset htmlFor="reset">
-              <RxReset />
-            </StyledRadiolabelReset>
           </StyledFieldsetRadio>
+          <StyledSubmitButton type="submit">
+            <RxReset />
+          </StyledSubmitButton>
         </form>
       </StyledPlantFilterSection>
     )
@@ -164,7 +157,7 @@ const StyledRadioInput = styled.input`
   }
 `;
 
-const StyledRadiolabelReset = styled.label`
+const StyledSubmitButton = styled.button`
   background-color: var(--white);
   padding: 6px 10px;
   border: none;
@@ -173,12 +166,8 @@ const StyledRadiolabelReset = styled.label`
   cursor: pointer;
   font-size: 15px;
   margin-top: 10px;
-`;
 
-const StyledRadioInputReset = styled.input`
-  display: none;
-
-  &:active + label {
+  &:active {
     background-color: var(--white);
     padding: 8px 20px;
     border: 1px solid var(--black);
@@ -186,6 +175,7 @@ const StyledRadioInputReset = styled.input`
     font-weight: bold;
   }
 `;
+
 const StyledIconSection = styled.section`
   display: flex;
   align-items: center;
