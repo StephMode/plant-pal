@@ -30,16 +30,9 @@ export default function PlantDetails({
   const router = useRouter();
 
   
-
-  // const relatedPlants = tipsToBeTagged.map((tip) => tip.relatedPlants.map((relatedPlant) => relatedPlant));
-  // const searchableTips = tipsToBeTagged.forEach((element) => element.find(plant.id))
-  // console.log(searchableTips);
-  // const relatedTips = relatedPlants.forEach((element) => element.find(plant))
-  
   const realtedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
 
   
-
   return (
     <>
       <StyledImageContainer>
