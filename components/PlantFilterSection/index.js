@@ -23,7 +23,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Full Shade"
-              onChange={() => handleFilterPlants("Full Shade")}
+              onChange={() => handleFilterPlants("lightNeed", "Full Shade")}
             />
             <StyledRadiolabel htmlFor="light-full-shade">
               <StyledIconSection>

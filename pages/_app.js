@@ -1,15 +1,13 @@
 import GlobalStyle from "../styles";
-import "../fonts.css"
+import "../fonts.css";
 import Image from "next/image";
 import { plants as initialPlants } from "/lib/plantData";
 import { tips } from "/lib/tipData";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
-import { nanoid } from 'nanoid';
-import { useEffect, useState,  useRef } from "react";
+import { nanoid } from "nanoid";
+import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
-
-
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -17,7 +15,7 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
-/*---------------------------------------------------------------------- */
+  /*---------------------------------------------------------------------- */
   const intervalRef = useRef(null);
   const [randomTip, setRandomTip] = useState(tips[1]);
   const [progress, setProgress] = useState(100);
@@ -33,33 +31,36 @@ export default function App({ Component, pageProps }) {
       setProgress((prevProgress) => {
         if (prevProgress <= 0) {
           setRandomTip(getRandomTip());
-          return 100; 
+          return 100;
         }
-        return prevProgress - 0.5; 
+        return prevProgress - 0.5;
       });
     };
-  
+
     if (!isPaused) {
       intervalRef.current = setInterval(updateProgress, 50);
     }
-  
+
     return () => {
       clearInterval(intervalRef.current);
     };
   }, [isPaused]);
-  
+
   const handleMouseHover = () => {
     setIsPaused(true);
   };
-  
+
   const handleMouseLeave = () => {
     setIsPaused(false);
   };
-/*---------------------------------------------------------------------- */
+  /*---------------------------------------------------------------------- */
   const [showModal, setShowModal] = useState(false);
-  const [isEdit, setIsEdit] = useState(false)
-  const [isDelete, setIsDelete] = useState(false)
-  const [selectedFilter, setSelectedFilter] = useState("");
+  const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState({
+    waterNeed: "Low",
+    lightneed: "High",
+  });
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
   function handleToggleModal() {
@@ -75,39 +76,51 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleAddPlant(newPlantData) {
-    const newPlant = { ...newPlantData, id: nanoid(), imageUrl: "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
-    setPlants([newPlant, ...plants])
+    const newPlant = {
+      ...newPlantData,
+      id: nanoid(),
+      imageUrl:
+        "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    };
+    setPlants([newPlant, ...plants]);
     router.push(`/`);
   }
 
   function handleEditPlant(newPlantData, id) {
     setPlants((prevPlants) =>
       prevPlants.map((plant) =>
-        plant.id === id ? { ...plant, name: newPlantData.name, botanicalName: newPlantData.botanicalName, description: newPlantData.description, lightNeed: newPlantData.lightNeed, waterNeed: newPlantData.waterNeed, fertiliserSeason: newPlantData.fertiliserSeason } : plant
+        plant.id === id
+          ? {
+              ...plant,
+              name: newPlantData.name,
+              botanicalName: newPlantData.botanicalName,
+              description: newPlantData.description,
+              lightNeed: newPlantData.lightNeed,
+              waterNeed: newPlantData.waterNeed,
+              fertiliserSeason: newPlantData.fertiliserSeason,
+            }
+          : plant
       )
     );
     router.push(`/plants/${id}`);
-    setIsEdit(false)
+    setIsEdit(false);
     setShowModal(false);
   }
 
   function handleToggleModal(buttonFunctionText) {
     setShowModal(!showModal);
     if (buttonFunctionText === "Edit") {
-      setIsEdit(!isEdit)
+      setIsEdit(!isEdit);
     } else if (buttonFunctionText === "Delete") {
-      setIsDelete(!isDelete)
+      setIsDelete(!isDelete);
     }
   }
 
   function handleDeletePlant(id) {
-    setPlants((prevPlants) =>
-      prevPlants.filter((plant) =>
-        plant.id !== id)
-    );
+    setPlants((prevPlants) => prevPlants.filter((plant) => plant.id !== id));
 
     router.push("/");
-    setIsDelete(!isDelete)
+    setIsDelete(!isDelete);
     setShowModal(!showModal);
   }
 
@@ -115,15 +128,21 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
-  function handleFilterPlants(selectedFilter) {
-    setSelectedFilter(selectedFilter);
+  function handleFilterPlants(selectedFilterKey, selectedFilterValue) {
+    setSelectedFilter({
+      ...selectedFilter,
+      selectedFilterKey: selectedFilterValue,
+    });
   }
 
-  const filteredPlants = selectedFilter 
-   ? plants.filter((plant) => 
-      plant.lightNeed === selectedFilter) 
-   : plants;
+  const objectkeys = Object.keys(selectedFilter);
+  if (objectkeys.includes(lightNeed)) {
+    plants.filter((plant) => plant.lightNeed === selectedFilter.lightNeed);
+  }
 
+  /* const filteredPlants = 
+    ? plants.filter((plant) => plant.lightNeed === selectedFilter.lightNeed)
+    : plants; */
 
   function handleFilterPlantsReset() {
     setSelectedFilter("");
@@ -155,9 +174,8 @@ export default function App({ Component, pageProps }) {
         showPlantFilterSection={showPlantFilterSection}
         toggleFilterSection={toggleFilterSection}
         progress={progress}
-
-        handleMouseHover = {handleMouseHover}
-        handleMouseLeave = {handleMouseLeave}
+        handleMouseHover={handleMouseHover}
+        handleMouseLeave={handleMouseLeave}
       />
       <Navigation />
     </>
