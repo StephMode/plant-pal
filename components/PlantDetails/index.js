@@ -5,6 +5,7 @@ import Button from "../Button";
 import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
+import PlantOwnedButton from "../PlantOwnedButton";
 import { RiDropLine } from "react-icons/ri";
 import { FaChevronLeft } from "react-icons/fa6";
 import { RiDropFill } from "react-icons/ri";
@@ -26,7 +27,9 @@ export default function PlantDetails({
   handleEditPlant, 
   handleAddPlant, 
   onDeletePlant, 
-  tipsToBeTagged }) {
+  tipsToBeTagged,
+  handleToggleOwned,
+  }) {
   const router = useRouter();
 
 
@@ -37,6 +40,13 @@ export default function PlantDetails({
     <>
       <StyledImageContainer>
             <StyledImage src={plant.imageUrl} alt={plant.name} fill />
+            <StyledPlantOwnedButtonWrapper>
+              <PlantOwnedButton 
+                isOwned={plant.isOwned}
+                plantId={plant.id}
+                onClick={() => handleToggleOwned(plant.id)}
+              />
+            </StyledPlantOwnedButtonWrapper>
       </StyledImageContainer>
       
       <StyledPlantContainer>
@@ -130,6 +140,7 @@ export default function PlantDetails({
         <StyledIconContainer onClick={() => router.back()} type="button">
           <FaChevronLeft/>
         </StyledIconContainer>
+        
     </>
   );
 }
@@ -173,6 +184,11 @@ const StyledImage = styled(Image)`
   height: auto;
   text-align: center;
   object-fit: cover;
+`;
+const StyledPlantOwnedButtonWrapper = styled.div`
+  position: relative;
+  top: 45px;
+  right: 20px;
 `;
 const StyledIconContainer = styled.button `
     background-color: var(--green-light);
