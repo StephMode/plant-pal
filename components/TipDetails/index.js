@@ -9,21 +9,17 @@ import { useState } from "react";
 export default function TipDetails({ tip, plantsToBeTagged }) {
   const router = useRouter();
 
-  const [undefinedChecker, SetUndefinedChecker] = useState(false);  
+  const [noRelatedPlants, setNoRelatedPlants] = useState(false);  
 
   const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
   const relatedPlantObject = relatedPlants.map((plantID) => plantsToBeTagged.find((plant) => plant.id === plantID));
-  // console.log(relatedPlantObject);
-  // console.log(relatedPlantObject.includes(undefined));
   
   const undefinedCount = relatedPlantObject.filter(plant => plant === undefined).length;
-  // console.log(undefinedCount);
   
-  const noRelatedPlants = () => {if (undefinedCount === relatedPlantObject.length) {
-    SetUndefinedChecker(true)
+  const noRelatedPlantsChecker = () => {if (undefinedCount === relatedPlantObject.length) {
+    setNoRelatedPlants(true)
   }}
 
-  // console.log(undefinedChecker);
 
   return (
     <>
@@ -39,7 +35,7 @@ export default function TipDetails({ tip, plantsToBeTagged }) {
         <StyledH2>{tip.title}</StyledH2>
         <StyledDescription>{tip.bodyContent}</StyledDescription>
       
-        {undefinedChecker ? (<StyledH3>Related Plants</StyledH3>) : ("")}
+        {!noRelatedPlants ? (<StyledH3>Related Plants</StyledH3>) : ("")}
         <StyledTagContainer>
           {relatedPlantObject.map((plant) => 
             plant === undefined ? null :
