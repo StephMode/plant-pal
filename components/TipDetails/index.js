@@ -4,13 +4,14 @@ import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import { plants as initialPlants } from "/lib/plantData";
+import Tag from "../Tag";
 
 
 export default function TipDetails({ tip }) {
   const router = useRouter();
 
   const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
-  const relatedPlantObject = relatedPlants.map((plantID) => initialPlants.find((plant) => plant.id === plantID))
+  const relatedPlantObject = relatedPlants.map((plantID) => initialPlants.find((plant) => plant.id === plantID));
 
 
   return (
@@ -39,6 +40,13 @@ export default function TipDetails({ tip }) {
           ))}
           
         </ul>
+        
+
+        <Tag
+          plantID={1}
+          name={"Piranha Plant"}
+          botanicalName={"Prinanha Plantus"}
+        />
     </>
   );
 }
