@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import PlantDetails from "/components/PlantDetails/";
 
-export default function PlantDetailsPage({ plants, onDeletePlant, handleEditPlant, handleAddPlant, handleToggleModal, showModal, isEdit, isDelete }) {
+export default function PlantDetailsPage({ plants, onDeletePlant, handleEditPlant, handleAddPlant, handleToggleModal, showModal, isEdit, isDelete, tips }) {
   const router = useRouter();
+
+  const tipsToBeTagged = tips;
 
   const { id } = router.query;
 
@@ -15,7 +17,7 @@ export default function PlantDetailsPage({ plants, onDeletePlant, handleEditPlan
   return (
     <main>
       <h1>Plant Details</h1>
-      <PlantDetails plant={plant} onDeletePlant={onDeletePlant} handleEditPlant={handleEditPlant} handleToggleModal={handleToggleModal} showModal={showModal} isDelete={isDelete} isEdit={isEdit} handleAddPlant={handleAddPlant} />
+      <PlantDetails plant={plant} onDeletePlant={onDeletePlant} handleEditPlant={handleEditPlant} handleToggleModal={handleToggleModal} showModal={showModal} isDelete={isDelete} isEdit={isEdit} handleAddPlant={handleAddPlant} tipsToBeTagged={tipsToBeTagged} />
     </main>
   );
 }

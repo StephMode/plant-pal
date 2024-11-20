@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Link from "next/link";
+import Tag from "../Tag";
 import Button from "../Button";
 import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
@@ -17,11 +17,29 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
 import { useRouter } from "next/router";
 
-export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdit, showModal, handleEditPlant, handleAddPlant, onDeletePlant }) {
+export default function PlantDetails({ 
+  plant, 
+  handleToggleModal, 
+  isDelete, 
+  isEdit, 
+  showModal, 
+  handleEditPlant, 
+  handleAddPlant, 
+  onDeletePlant, 
+  tipsToBeTagged }) {
   const router = useRouter();
 
+  
+
+  // const relatedPlants = tipsToBeTagged.map((tip) => tip.relatedPlants.map((relatedPlant) => relatedPlant));
+  // const searchableTips = tipsToBeTagged.forEach((element) => element.find(plant.id))
+  // console.log(searchableTips);
+  // const relatedTips = relatedPlants.forEach((element) => element.find(plant))
+  
+  const realtedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
 
   
+
   return (
     <>
       <StyledImageContainer>
@@ -83,7 +101,18 @@ export default function PlantDetails({ plant, handleToggleModal, isDelete, isEdi
         </StyledPlantNeedsContainer>
         <section>
           <ul>
-            <li>lala</li>
+              {realtedTips.map((tip) => plant === undefined ? null : (
+                <li key={tip.id}>
+                  <Tag
+                    tagId={tip.id}
+                    tagType={"tips"}
+                    headline={tip.title}
+                    subHeadline={tip.shortBodyContent}
+                    image={tip.imageURL}
+                  />
+                </li>
+              ))}
+            
           </ul>
         </section>
         <StyledEditDeleteSection>
