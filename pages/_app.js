@@ -141,15 +141,26 @@ export default function App({ Component, pageProps }) {
     }
 
     if (selectedFilterKey === "fertiliserSeason") {
-      setSelectedFilter({
-        ...selectedFilter,
-        [selectedFilterKey]: [
-          ...new Set([
-            ...selectedFilter[selectedFilterKey],
-            selectedFilterValue,
-          ]),
-        ],
-      });
+      if (
+        selectedFilter.fertiliserSeason &&
+        selectedFilter.fertiliserSeason.includes(selectedFilterValue)
+      ) {
+        setSelectedFilter((prevSelectedFilter) =>
+          prevSelectedFilter.fertiliserSeason.filter(
+            (season) => season !== selectedFilterValue
+          )
+        );
+      } else {
+        setSelectedFilter({
+          ...selectedFilter,
+          [selectedFilterKey]: [
+            ...new Set([
+              ...selectedFilter[selectedFilterKey],
+              selectedFilterValue,
+            ]),
+          ],
+        });
+      }
     }
   }
 
