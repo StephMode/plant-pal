@@ -57,12 +57,14 @@ export default function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+
   const initialFilterObject = {
     waterNeed: "",
     lightNeed: "",
     fertiliserSeason: [],
   };
   const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
+
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
   function handleToggleModal() {
@@ -127,13 +129,10 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleFilterPlants(selectedFilterKey, selectedFilterValue) {
-    if (selectedFilterKey === "waterNeed") {
-      setSelectedFilter({
-        ...selectedFilter,
-        [selectedFilterKey]: selectedFilterValue,
-      });
-    }
-    if (selectedFilterKey === "lightNeed") {
+    if (
+      selectedFilterKey === "waterNeed" ||
+      selectedFilterKey === "lightNeed"
+    ) {
       setSelectedFilter({
         ...selectedFilter,
         [selectedFilterKey]: selectedFilterValue,
@@ -184,7 +183,7 @@ export default function App({ Component, pageProps }) {
     setSelectedFilter(initialFilterObject);
     event.target.reset();
   }
-  
+
   function toggleFilterSection() {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
