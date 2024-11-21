@@ -103,7 +103,7 @@ export default function PlantDetails({
           </StyledIconSection>
         </StyledPlantNeedsContainer>
         <StyledEditDeleteSection>
-          <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")}/>
+          <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")} buttonRole={"deleteButton"}/>
         </StyledEditDeleteSection>
         <StyledTipH3>Related Care Tips:</StyledTipH3>
 
@@ -255,5 +255,4 @@ const StyledEditDeleteSection = styled.section`
   display: flex;
   width: 100%;
   margin-top: 25px;
-  filter: grayscale(100%);
 `;

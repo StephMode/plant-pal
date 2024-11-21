@@ -11,7 +11,7 @@ export default function Tag({tagId, headline, subHeadline, image, tagType }) {
        
        <StyledImage src={image} width={55} height={55} alt={`"image of ${headline}"`}/>
         <div>
-          <StyledH4>{headline}</StyledH4>
+          <h4>{headline}</h4>
           <StyledH5>{subHeadline}</StyledH5>
         </div>
         </StyledTag>
@@ -58,10 +58,6 @@ const StyledImage = styled(Image)`
   border-radius: 50px;
   min-width: 55px;
   min-height: 55px;
-`;
-
-
-const StyledH4 = styled.h4`
 `;
 
 const StyledH5 = styled.h5`
