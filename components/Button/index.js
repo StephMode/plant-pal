@@ -1,17 +1,19 @@
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 
-export default function Button({ buttonText, handleButtonFunction }) {
+export default function Button({ buttonText, handleButtonFunction, buttonRole }) {
 
     return (
+        <ThemeProvider theme={buttonRole === "deleteButton" ? deleteButtonTheme : mainTheme}>
         <StyledButton type="button" onClick={handleButtonFunction}>
             {buttonText}
         </StyledButton>
+        </ThemeProvider>
     )
 }
 
 
 const StyledButton = styled.button`
-    background-color: var(--brown);
+    background-color: ${props => props.theme.main};
     padding: 8px 20px 1px 20px;
     border: none;
     border-radius: 20px;
@@ -21,7 +23,20 @@ const StyledButton = styled.button`
     transition: 0.5s ease-in-out;
 
     &:hover {
-    background-color: var(--brown-dark);
+    background-color: ${props => props.theme.hover};
   }
 `;
-
+StyledButton.defaultProps = {
+    theme: {
+        main: "var(--brown)",
+        hover: "var(--brown-dark)"
+    }
+}
+const deleteButtonTheme = {
+    main: "var(--gray)",
+    hover: "var(--gray-dark)"
+}
+const mainTheme = {
+    main: "var(--brown)",
+    hover: "var(--brown-dark)"
+}
