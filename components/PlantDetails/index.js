@@ -33,7 +33,7 @@ export default function PlantDetails({
   const router = useRouter();
 
 
-  const realtedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
+  const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
 
 
   return (
@@ -108,7 +108,7 @@ export default function PlantDetails({
         <StyledTipH3>Related Care Tips:</StyledTipH3>
 
           <StyledTagContainer>
-              {realtedTips.map((tip) => plant === undefined ? null : (
+              {relatedTips.map((tip) => plant === undefined ? null : (
                 <li key={tip.id}>
                   <Tag
                     tagId={tip.id}

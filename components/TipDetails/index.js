@@ -54,13 +54,7 @@ export default function TipDetails({ tip, plantsToBeTagged }) {
         </StyledTagContainer>
       
       </StyledTipContainer>
-
-     
-        
-        
-        
-
-        
+       
     </>
   );
 }
