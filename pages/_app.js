@@ -145,11 +145,12 @@ export default function App({ Component, pageProps }) {
         selectedFilter.fertiliserSeason &&
         selectedFilter.fertiliserSeason.includes(selectedFilterValue)
       ) {
-        setSelectedFilter((prevSelectedFilter) =>
-          prevSelectedFilter.fertiliserSeason.filter(
+        setSelectedFilter((prevSelectedFilter) => ({
+          ...prevSelectedFilter,
+          [selectedFilterKey]: prevSelectedFilter.fertiliserSeason.filter(
             (season) => season !== selectedFilterValue
-          )
-        );
+          ),
+        }));
       } else {
         setSelectedFilter({
           ...selectedFilter,
