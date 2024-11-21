@@ -60,7 +60,8 @@ export default function PlantFilterSection({
                 <p>Full sun</p>
               </StyledIconSection>
             </StyledRadiolabel>
-
+          </StyledFieldsetRadio>
+          <StyledFieldsetRadio>
             <legend>Water needs </legend>
 
             <StyledRadioInput
@@ -115,9 +116,9 @@ export default function PlantFilterSection({
               value="Spring"
               onClick={() => handleFilterPlants("fertiliserSeason", "Spring")}
             />
-            <StyledCheckboxLabel htmlFor="fertiliser-spring">
+            <StyledCheckboxlabel htmlFor="fertiliser-spring">
               Spring
-            </StyledCheckboxLabel>
+            </StyledCheckboxlabel>
 
             <StyledCheckboxInput
               id="fertiliser-summer"
@@ -126,9 +127,9 @@ export default function PlantFilterSection({
               value="Summer"
               onClick={() => handleFilterPlants("fertiliserSeason", "Summer")}
             />
-            <StyledCheckboxLabel htmlFor="fertiliser-summer">
+            <StyledCheckboxlabel htmlFor="fertiliser-summer">
               Summer
-            </StyledCheckboxLabel>
+            </StyledCheckboxlabel>
 
             <StyledCheckboxInput
               id="fertiliser-fall"
@@ -137,9 +138,9 @@ export default function PlantFilterSection({
               value="Fall"
               onClick={() => handleFilterPlants("fertiliserSeason", "Fall")}
             />
-            <StyledCheckboxLabel htmlFor="fertiliser-fall">
+            <StyledCheckboxlabel htmlFor="fertiliser-fall">
               Fall
-            </StyledCheckboxLabel>
+            </StyledCheckboxlabel>
 
             <StyledCheckboxInput
               id="fertiliser-winter"
@@ -148,9 +149,9 @@ export default function PlantFilterSection({
               value="Winter"
               onClick={() => handleFilterPlants("fertiliserSeason", "Winter")}
             />
-            <StyledCheckboxLabel htmlFor="fertiliser-winter">
+            <StyledCheckboxlabel htmlFor="fertiliser-winter">
               Winter
-            </StyledCheckboxLabel>
+            </StyledCheckboxlabel>
           </StyledFieldsetCheckbox>
           <StyledSubmitButton type="submit">
             <RxReset />
@@ -181,23 +182,21 @@ const StyledFieldsetRadio = styled.fieldset`
   padding: 10px 0;
   color: var(--green-main);
   justify-content: flex-start;
-  gap: 5px;
+  gap: 12px;
   flex-wrap: wrap;
 `;
-
 const StyledRadiolabel = styled.label`
   background: var(--green-light);
   min-width: 50px;
-  padding: 6px 10px 2px;
+  padding: 8px 14px 4px;
   border-radius: 20px;
-  font-weight: bold;
   cursor: pointer;
 `;
 
 const StyledRadioInput = styled.input`
   display: none;
 
-  &:checked + label {
+  &:checked {
     background: var(--green-main);
     font-weight: bold;
     color: var(--white);
@@ -238,21 +237,22 @@ const StyledFieldsetCheckbox = styled.fieldset`
   border: none;
   padding: 10px 0;
   color: var(--green-main);
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 8px;
 `;
-const StyledCheckboxLabel = styled.label`
+const StyledCheckboxlabel = styled.label`
   background: var(--green-light);
-  padding: 5px 10px;
+  min-width: 50px;
+  padding: 8px 14px;
   border-radius: 20px;
-  font-weight: normal;
-  font-size: 14px;
-  width: 22%;
+  cursor: pointer;
 `;
+
 const StyledCheckboxInput = styled.input`
   display: none;
 
-  &:checked + label {
+  &:checked {
     background: var(--green-main);
     color: var(--white);
   }
