@@ -89,6 +89,16 @@ const StyledSpacer2 = styled.span`
   height: 17px;
 `;
 const StyledFilterButtonSection = styled.section`
-  margin-right: 6px;
   align-self: end;
+  position: relative;
+  right: 3.5%;
+  @media (min-width: 750px) {
+    right: 3.25%;
+  }
+  @media (min-width: 950px) {
+    right: 3%;
+  }
+  @media (min-width: 1500px) {
+    right: 2.75%;
+  }
 `;

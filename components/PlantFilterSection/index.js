@@ -178,7 +178,7 @@ const StyledPlantFilterSection = styled.section`
   border-radius: 15px;
   width: 95%;
   padding: 10px 20px 5px 20px;
-  margin: 0px 20px 20px;
+  margin: -56px 20px 20px;
   display: flex;
   text-align: left;
   flex-direction: column;
