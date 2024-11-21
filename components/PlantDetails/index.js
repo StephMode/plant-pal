@@ -108,7 +108,7 @@ export default function PlantDetails({
         <StyledTipH3>Related Care Tips:</StyledTipH3>
 
           <StyledTagContainer>
-              {relatedTips.map((tip) => plant === undefined ? null : (
+              {relatedTips.map((tip) => (
                 <li key={tip.id}>
                   <Tag
                     tagId={tip.id}
@@ -160,7 +160,7 @@ const StyledPlantNeedsContainer = styled.article`
   flex-direction: column;
 `;
 const StyledTipH3 = styled.h3`
-  margin: 20px 0px;
+  margin: 20px 0;
   text-align: left;
   color: var(--green-main);
   font-weight: bold;
@@ -172,7 +172,7 @@ const StyledImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   border-radius: 35px;
-  box-shadow: 0 0px 51px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 51px rgba(0, 0, 0, 0.3);
 
   
   @media (min-width: 750px) {
@@ -235,7 +235,6 @@ const StyledIconSection = styled.section`
  const StyledFertilizerUl = styled.ul`
   gap: 5px;
   margin : 0 0 0 30px;
-  justify-content: flex-start;
  `;
  const StyledFertilizerLi = styled.li`
   color: var(--white);

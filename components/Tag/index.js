@@ -9,7 +9,7 @@ export default function Tag({tagId, headline, subHeadline, image, tagType }) {
         <ThemeProvider theme={tagType === "plants" ? plantTagtheme : tipTagtheme}>
         <StyledTag>
        
-       <StyledImage src={image} width={55} height={55} alt={`"image of ${headline}"`}/>
+       <StyledImage src={image} width={55} height={55} alt={`image of ${headline}`}/>
         <div>
           <h4>{headline}</h4>
           <StyledH5>{subHeadline}</StyledH5>

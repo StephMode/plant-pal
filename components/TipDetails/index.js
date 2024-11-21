@@ -35,7 +35,7 @@ export default function TipDetails({ tip, plantsToBeTagged }) {
         <StyledH2>{tip.title}</StyledH2>
         <StyledDescription>{tip.bodyContent}</StyledDescription>
       
-        {!noRelatedPlants ? (<StyledH3>Related Plants</StyledH3>) : ("")}
+        {noRelatedPlants && <StyledH3>Related Plants</StyledH3>}
         <StyledTagContainer>
           {relatedPlantObject.map((plant) => 
             plant === undefined ? null :
