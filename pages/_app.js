@@ -179,14 +179,14 @@ export default function App({ Component, pageProps }) {
       )
     : plants;
 
-  function toggleFilterSection() {
-    setShowPlantFilterSection(!showPlantFilterSection);
-  }
-
   function handleFilterPlantsReset(event) {
     event.preventDefault();
     setSelectedFilter(initialFilterObject);
     event.target.reset();
+  }
+  
+  function toggleFilterSection() {
+    setShowPlantFilterSection(!showPlantFilterSection);
   }
 
   return (

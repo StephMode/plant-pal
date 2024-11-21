@@ -11,6 +11,7 @@ export default function PlantFilterSection({
   handleFilterPlants,
   showPlantFilterSection,
   handleFilterPlantsReset,
+  selectedFilter,
 }) {
   return (
     showPlantFilterSection && (
@@ -24,6 +25,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Full Shade"
+              checked={selectedFilter.lightNeed === "Full Shade"}
               onClick={() => handleFilterPlants("lightNeed", "Full Shade")}
             />
             <StyledRadiolabel htmlFor="light-full-shade">
@@ -38,6 +40,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Partial Shade"
+              checked={selectedFilter.lightNeed === "Partial Shade"}
               onClick={() => handleFilterPlants("lightNeed", "Partial Shade")}
             />
             <StyledRadiolabel htmlFor="light-partial-shade">
@@ -52,6 +55,7 @@ export default function PlantFilterSection({
               name="lightNeed"
               type="radio"
               value="Full Sun"
+              checked={selectedFilter.lightNeed === "Full Sun"}
               onClick={() => handleFilterPlants("lightNeed", "Full Sun")}
             />
             <StyledRadiolabel htmlFor="light-full-sun">
@@ -69,6 +73,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="Low"
+              checked={selectedFilter.waterNeed === "Low"}
               onClick={() => handleFilterPlants("waterNeed", "Low")}
             />
             <StyledRadiolabel htmlFor="water-low">
@@ -83,6 +88,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="Medium"
+              checked={selectedFilter.waterNeed === "Medium"}
               onClick={() => handleFilterPlants("waterNeed", "Medium")}
             />
             <StyledRadiolabel htmlFor="water-medium">
@@ -97,6 +103,7 @@ export default function PlantFilterSection({
               name="waterNeed"
               type="radio"
               value="High"
+              checked={selectedFilter.waterNeed === "High"}
               onClick={() => handleFilterPlants("waterNeed", "High")}
             />
             <StyledRadiolabel htmlFor="water-high">
@@ -114,6 +121,7 @@ export default function PlantFilterSection({
               name="fertiliserSeason"
               type="checkbox"
               value="Spring"
+              checked={selectedFilter.fertiliserSeason.includes("Spring")}
               onClick={() => handleFilterPlants("fertiliserSeason", "Spring")}
             />
             <StyledCheckboxlabel htmlFor="fertiliser-spring">
@@ -125,6 +133,7 @@ export default function PlantFilterSection({
               name="fertiliserSeason"
               type="checkbox"
               value="Summer"
+              checked={selectedFilter.fertiliserSeason.includes("Summer")}
               onClick={() => handleFilterPlants("fertiliserSeason", "Summer")}
             />
             <StyledCheckboxlabel htmlFor="fertiliser-summer">
@@ -136,6 +145,7 @@ export default function PlantFilterSection({
               name="fertiliserSeason"
               type="checkbox"
               value="Fall"
+              checked={selectedFilter.fertiliserSeason.includes("Fall")}
               onClick={() => handleFilterPlants("fertiliserSeason", "Fall")}
             />
             <StyledCheckboxlabel htmlFor="fertiliser-fall">
@@ -147,6 +157,7 @@ export default function PlantFilterSection({
               name="fertiliserSeason"
               type="checkbox"
               value="Winter"
+              checked={selectedFilter.fertiliserSeason.includes("Winter")}
               onClick={() => handleFilterPlants("fertiliserSeason", "Winter")}
             />
             <StyledCheckboxlabel htmlFor="fertiliser-winter">
@@ -196,7 +207,7 @@ const StyledRadiolabel = styled.label`
 const StyledRadioInput = styled.input`
   display: none;
 
-  &:checked {
+  &:checked + label {
     background: var(--green-main);
     font-weight: bold;
     color: var(--white);
@@ -252,7 +263,7 @@ const StyledCheckboxlabel = styled.label`
 const StyledCheckboxInput = styled.input`
   display: none;
 
-  &:checked {
+  &:checked + label {
     background: var(--green-main);
     color: var(--white);
   }
