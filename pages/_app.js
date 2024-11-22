@@ -9,6 +9,8 @@ import { nanoid } from "nanoid";
 import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
 import { Toaster } from 'react-hot-toast';
+import Link from "next/link";
+import styled from "styled-components";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -193,7 +195,9 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <header>
-        <Image src="/logo-main.svg" width={200} height={50} alt="rooted logo" />
+        <StyledLogoLink href="/">
+          <Image src="/logo-main.svg" width={200} height={50} alt="rooted logo" />
+        </StyledLogoLink>
       </header>
       <Component
         {...pageProps}
@@ -223,3 +227,7 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
+
+const StyledLogoLink = styled.a`
+  display: flex;
+`;

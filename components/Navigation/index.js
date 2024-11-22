@@ -14,7 +14,7 @@ export default function Navigation() {
     return (
         <>
             <StyledNavContainer>
-                <Link href="/" passHref >
+                <Link href="/home" passHref >
                     <StyledIconContainer $isactive={router.asPath === "/"}>
                         <HiHome />
                     </StyledIconContainer>
