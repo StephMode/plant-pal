@@ -1,10 +1,11 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Link from "next/link";
+import Tag from "../Tag";
 import Button from "../Button";
 import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
+import PlantOwnedButton from "../PlantOwnedButton";
 import { RiDropLine } from "react-icons/ri";
 import { FaChevronLeft } from "react-icons/fa6";
 import { RiDropFill } from "react-icons/ri";
@@ -15,21 +16,35 @@ import { IoMdMoon } from "react-icons/io";
 import { GiPowder } from "react-icons/gi";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
+import { useRouter } from "next/router";
 
-export default function PlantDetails({
-  plant,
-  handleToggleModal,
-  isDelete,
-  isEdit,
-  showModal,
-  handleEditPlant,
-  handleAddPlant,
-  onDeletePlant,
-}) {
+export default function PlantDetails({ 
+  plant, 
+  handleToggleModal, 
+  isDelete, 
+  isEdit, 
+  showModal, 
+  handleEditPlant, 
+  handleAddPlant, 
+  onDeletePlant, 
+  tipsToBeTagged,
+  handleToggleOwned,
+  }) {
+  const router = useRouter();
+
+  const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
+
   return (
     <>
       <StyledImageContainer>
-        <StyledImage src={plant.imageUrl} alt={plant.name} fill />
+            <StyledImage src={plant.imageUrl} alt={plant.name} fill />
+            <StyledPlantOwnedButtonWrapper>
+              <PlantOwnedButton 
+                isOwned={plant.isOwned}
+                plantId={plant.id}
+                onClick={() => handleToggleOwned(plant.id)}
+              />
+            </StyledPlantOwnedButtonWrapper>
       </StyledImageContainer>
 
       <StyledPlantContainer>
@@ -89,11 +104,25 @@ export default function PlantDetails({
           </StyledIconSection>
         </StyledPlantNeedsContainer>
         <StyledEditDeleteSection>
-          <Button
-            buttonText={<FaTrashAlt />}
-            handleButtonFunction={() => handleToggleModal("Delete")}
-          />
+          <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")} buttonRole={"deleteButton"}/>
         </StyledEditDeleteSection>
+        <StyledTipH3>Related Care Tips:</StyledTipH3>
+
+          <StyledTagContainer>
+              {relatedTips.map((tip) => (
+                <li key={tip.id}>
+                  <Tag
+                    tagId={tip.id}
+                    tagType={"tips"}
+                    headline={tip.title}
+                    subHeadline={tip.shortBodyContent}
+                    image={tip.imageURL}
+                  />
+                </li>
+              ))}
+            
+          </StyledTagContainer>
+
       </StyledPlantContainer>
 
       {showModal && (
@@ -122,11 +151,10 @@ export default function PlantDetails({
         />
       )}
 
-      <Link href="/">
-        <StyledIconContainer>
-          <FaChevronLeft />
+        <StyledIconContainer onClick={() => router.back()} type="button">
+          <FaChevronLeft/>
         </StyledIconContainer>
-      </Link>
+        
     </>
   );
 }
@@ -141,50 +169,59 @@ const StyledPlantContainer = styled.section`
     width: 70%;
   }
 `;
-
 const StyledPlantNeedsContainer = styled.article`
   display: flex;
   flex-direction: column;
 `;
-
+const StyledTipH3 = styled.h3`
+  margin: 20px 0;
+  text-align: left;
+  color: var(--green-main);
+  font-weight: bold;
+  font-size: 20px;
+`;
 const StyledImageContainer = styled.div`
   width: 100%;
   height: 300px;
   overflow: hidden;
   position: relative;
   border-radius: 35px;
-  box-shadow: 0 0px 51px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 51px rgba(0, 0, 0, 0.3);
 
   @media (min-width: 750px) {
     height: 500px;
   }
 `;
-
 const StyledImage = styled(Image)`
   width: 200%;
   height: auto;
   text-align: center;
   object-fit: cover;
 `;
-const StyledIconContainer = styled.span`
-  background-color: var(--green-light);
-  border-radius: 40px;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--white);
-  font-size: 30px;
-  position: absolute;
-  top: 70px;
-  left: 20px;
+const StyledPlantOwnedButtonWrapper = styled.div`
+  position: relative;
+  top: 45px;
+  right: 20px;
 `;
+const StyledIconContainer = styled.button `
+    background-color: var(--green-light);
+    border-radius: 40px;
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-size: 30px;
+    position: absolute;
+    top: 70px;
+    left: 20px;
+ `;
 const StyledIconSection = styled.section`
   display: flex;
   align-items: center;
   color: var(--green-main);
-  font-weight: bold;
   font-size: 20px;
   gap: 10px;
   margin-bottom: 5px;
@@ -210,10 +247,9 @@ const StyledDescription = styled.p`
 `;
 const StyledFertilizerUl = styled.ul`
   gap: 5px;
-  margin: 0 0 0 30px;
-  justify-content: flex-start;
-`;
-const StyledFertilizerLi = styled.li`
+  margin : 0 0 0 30px;
+ `;
+ const StyledFertilizerLi = styled.li`
   color: var(--white);
   background-color: var(--green-light);
   padding: 3px 10px 5px 10px;
@@ -221,6 +257,12 @@ const StyledFertilizerLi = styled.li`
   font-size: 14px;
   font-weight: normal;
 `;
+
+const StyledTagContainer = styled.ul`
+  display: flex;
+  justify-content:flex-start;
+`;
+
 const StyledEditDeleteSection = styled.section`
   display: flex;
   width: 100%;

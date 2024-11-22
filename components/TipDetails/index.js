@@ -1,12 +1,24 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useRouter } from "next/router";
+import Tag from "../Tag";
+import { useState } from "react";
 
 
-export default function TipDetails({ tip }) {
+export default function TipDetails({ tip, plantsToBeTagged }) {
   const router = useRouter();
+
+  const [noRelatedPlants, setNoRelatedPlants] = useState(false);  
+
+  const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
+  const relatedPlantObject = relatedPlants.map((plantID) => plantsToBeTagged.find((plant) => plant.id === plantID));
+  
+  const undefinedCount = relatedPlantObject.filter(plant => plant === undefined).length;
+  
+  const noRelatedPlantsChecker = () => {if (undefinedCount === relatedPlantObject.length) {
+    setNoRelatedPlants(true)
+  }}
 
   return (
     <>
@@ -14,15 +26,34 @@ export default function TipDetails({ tip }) {
             <StyledImage src={tip.imageURL} alt={tip.title} fill />
       </StyledImageContainer>
       
+      <StyledIconContainer onClick={() =>  router.back()} type="button">
+          <FaChevronLeft />
+        </StyledIconContainer>
+
       <StyledTipContainer>
         <StyledH2>{tip.title}</StyledH2>
         <StyledDescription>{tip.bodyContent}</StyledDescription>
+      
+        <StyledH3>Related Plants</StyledH3>
+        <StyledTagContainer>
+          {relatedPlantObject.map((plant) => 
+            plant === undefined ? null :
+            (<li key={plant.id}>
+              <Tag
+                tagId={plant.id}
+                tagType={"plants"}
+                headline={plant.name}
+                subHeadline={plant.botanicalName}
+                image={plant.imageUrl}
+              />              
+            </li>
+            )
+          )}
+          
+        </StyledTagContainer>
+      
       </StyledTipContainer>
-
-     
-        <StyledIconContainer onClick={() =>  router.back()} type="button">
-          <FaChevronLeft />
-        </StyledIconContainer>
+       
     </>
   );
 }
@@ -78,10 +109,19 @@ const StyledIconContainer = styled.button `
 
  const StyledH2 = styled.h2`
   margin-bottom: 13px;
-  max-width: 260px;
  `;
 
  const StyledDescription = styled.p`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-align: justify;
  `;
+
+const StyledH3 = styled.h3`
+ margin-bottom: 20px;
+ text-align: left;
+`;
+
+const StyledTagContainer = styled.ul`
+  display: flex;
+  justify-content:flex-start;
+`;
