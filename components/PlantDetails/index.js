@@ -32,9 +32,7 @@ export default function PlantDetails({
   }) {
   const router = useRouter();
 
-
   const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
-
 
   return (
     <>
@@ -48,49 +46,52 @@ export default function PlantDetails({
               />
             </StyledPlantOwnedButtonWrapper>
       </StyledImageContainer>
-      
-      <StyledPlantContainer>
-      <StyledTopSection>
-        <StyledH2>{plant.name}</StyledH2>
-        <Button buttonText={<FaPen />}   handleButtonFunction={() => handleToggleModal("Edit")}  />
-      </StyledTopSection>
-      <StyledH3>{plant.botanicalName}</StyledH3>
-      
-      <StyledDescription>{plant.description}</StyledDescription>
-        <StyledPlantNeedsContainer>
-            {plant.lightNeed === "Full Shade" ? (
-              <StyledIconSection>
-                <IoMdMoon />
-                <p>Full shade</p>
-              </StyledIconSection>
-            ) : plant.lightNeed === "Partial Shade" ? (
-              <StyledIconSection>
-                <IoIosPartlySunny />
-                <p>Partial shade</p>
-              </StyledIconSection>
-            ) : plant.lightNeed === "Full Sun" ? (
-              <StyledIconSection>
-                <IoIosSunny /> 
-                <p>Full sun</p>
-              </StyledIconSection>
-            ) : null}
 
-            {plant.waterNeed === "Low" ? (
-              <StyledIconSection>
-                <RiDropLine /> 
-                <p>Low water need</p>
-              </StyledIconSection>
-            ) : plant.waterNeed === "Medium" ? (
-              <StyledIconSection>
-                <RiContrastDrop2Fill />
-                <p>Medium water need</p>
-              </StyledIconSection>
-            ) : plant.waterNeed === "High" ? (
-              <StyledIconSection>
-                <RiDropFill />
-                <p>High water need</p>
-              </StyledIconSection>
-            ) : null}
+      <StyledPlantContainer>
+        <StyledTopSection>
+          <StyledH2>{plant.name}</StyledH2>
+          <Button
+            buttonText={<FaPen />}
+            handleButtonFunction={() => handleToggleModal("Edit")}
+          />
+        </StyledTopSection>
+        <StyledH3>{plant.botanicalName}</StyledH3>
+
+        <StyledDescription>{plant.description}</StyledDescription>
+        <StyledPlantNeedsContainer>
+          {plant.lightNeed === "Full Shade" ? (
+            <StyledIconSection>
+              <IoMdMoon />
+              <p>Full shade</p>
+            </StyledIconSection>
+          ) : plant.lightNeed === "Partial Shade" ? (
+            <StyledIconSection>
+              <IoIosPartlySunny />
+              <p>Partial shade</p>
+            </StyledIconSection>
+          ) : plant.lightNeed === "Full Sun" ? (
+            <StyledIconSection>
+              <IoIosSunny />
+              <p>Full sun</p>
+            </StyledIconSection>
+          ) : null}
+
+          {plant.waterNeed === "Low" ? (
+            <StyledIconSection>
+              <RiDropLine />
+              <p>Low water need</p>
+            </StyledIconSection>
+          ) : plant.waterNeed === "Medium" ? (
+            <StyledIconSection>
+              <RiContrastDrop2Fill />
+              <p>Medium water need</p>
+            </StyledIconSection>
+          ) : plant.waterNeed === "High" ? (
+            <StyledIconSection>
+              <RiDropFill />
+              <p>High water need</p>
+            </StyledIconSection>
+          ) : null}
 
           <StyledIconSection>
             <GiPowder />
@@ -122,20 +123,33 @@ export default function PlantDetails({
             
           </StyledTagContainer>
 
-        
       </StyledPlantContainer>
 
-        {showModal &&
-          <Modal modalContent={
-            isEdit ? <Form handleAddPlant={handleAddPlant}
-              plant={plant}
-              buttonText={"Edit"}
-              handleToggleModal={handleToggleModal}
-              handleEditPlant={handleEditPlant}
-            /> :
-              isDelete ? <PlantDeleteSection plant={plant} buttonText={"Delete"} onDeletePlant={onDeletePlant} id={plant.id} handleToggleModal={handleToggleModal} /> :
-                "This is an error, please reload page."
-          } />}
+      {showModal && (
+        <Modal
+          modalContent={
+            isEdit ? (
+              <Form
+                handleAddPlant={handleAddPlant}
+                plant={plant}
+                buttonText={"Edit"}
+                handleToggleModal={handleToggleModal}
+                handleEditPlant={handleEditPlant}
+              />
+            ) : isDelete ? (
+              <PlantDeleteSection
+                plant={plant}
+                buttonText={"Delete"}
+                onDeletePlant={onDeletePlant}
+                id={plant.id}
+                handleToggleModal={handleToggleModal}
+              />
+            ) : (
+              "This is an error, please reload page."
+            )
+          }
+        />
+      )}
 
         <StyledIconContainer onClick={() => router.back()} type="button">
           <FaChevronLeft/>
@@ -174,7 +188,6 @@ const StyledImageContainer = styled.div`
   border-radius: 35px;
   box-shadow: 0 0 51px rgba(0, 0, 0, 0.3);
 
-  
   @media (min-width: 750px) {
     height: 500px;
   }
@@ -214,25 +227,25 @@ const StyledIconSection = styled.section`
   margin-bottom: 5px;
   flex-wrap: wrap;
 `;
- const StyledTopSection = styled.section`
+const StyledTopSection = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
- `;
- const StyledH2 = styled.h2`
+`;
+const StyledH2 = styled.h2`
   margin-bottom: 2px;
   max-width: 260px;
- `;
- const StyledH3 = styled.h3`
+`;
+const StyledH3 = styled.h3`
   margin-bottom: 15px;
   font-style: italic;
   font-weight: normal;
- `;
- const StyledDescription = styled.p`
+`;
+const StyledDescription = styled.p`
   margin-bottom: 20px;
   text-align: justify;
- `;
- const StyledFertilizerUl = styled.ul`
+`;
+const StyledFertilizerUl = styled.ul`
   gap: 5px;
   margin : 0 0 0 30px;
  `;
