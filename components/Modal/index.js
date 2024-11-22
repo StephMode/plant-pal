@@ -1,18 +1,10 @@
 import styled from "styled-components";
-import Button from "../Button";
-
 
 export default function Modal({ modalContent }) {
   return (
-
-
     <StyledModalBackground>
-      <StyledModal>
-        {modalContent}
-      </StyledModal>
+      <StyledModal>{modalContent}</StyledModal>
     </StyledModalBackground>
-
-
   );
 }
 
@@ -27,17 +19,17 @@ const StyledModalBackground = styled.section`
 `;
 
 const StyledModal = styled.section`
-    background-color: var(--white);
-    border-radius: 35px;
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    height: auto;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background-color: var(--white);
+  border-radius: 35px;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

@@ -101,7 +101,7 @@ export default function Form({
             defaultChecked
           />
           <StyledRadiolabel htmlFor="light-full-shade">
-          <IoMdMoon /> Full Shade{" "}
+            <IoMdMoon /> Full Shade{" "}
           </StyledRadiolabel>
 
           <StyledRadioInput
@@ -109,11 +109,12 @@ export default function Form({
             name="lightNeed"
             type="radio"
             value="Partial Shade"
-            defaultChecked={buttonText === "Edit" && plant.lightNeed == "Partial Shade"}
-
+            defaultChecked={
+              buttonText === "Edit" && plant.lightNeed == "Partial Shade"
+            }
           />
           <StyledRadiolabel htmlFor="light-partial-shade">
-          <IoIosPartlySunny /> Partial Shade{" "}
+            <IoIosPartlySunny /> Partial Shade{" "}
           </StyledRadiolabel>
 
           <StyledRadioInput
@@ -122,10 +123,11 @@ export default function Form({
             type="radio"
             value="Full Sun"
             defaultChecked={
-              buttonText === "Edit" && plant.lightNeed == "Full Sun"}
+              buttonText === "Edit" && plant.lightNeed == "Full Sun"
+            }
           />
           <StyledRadiolabel htmlFor="light-full-sun">
-          <IoIosSunny /> Full Sun{" "}
+            <IoIosSunny /> Full Sun{" "}
           </StyledRadiolabel>
         </StyledFieldsetRadio>
         {/*-----------------------------------------------------------*/}
@@ -139,7 +141,9 @@ export default function Form({
             value="Low"
             defaultChecked
           />
-          <StyledWaterRadiolabel htmlFor="water-low"><RiDropLine /> Low</StyledWaterRadiolabel>
+          <StyledWaterRadiolabel htmlFor="water-low">
+            <RiDropLine /> Low
+          </StyledWaterRadiolabel>
 
           <StyledWaterRadioInput
             id="water-medium"
@@ -148,21 +152,22 @@ export default function Form({
             value="Medium"
             defaultChecked={
               buttonText === "Edit" && plant.waterNeed == "Medium"
-
             }
           />
-          <StyledWaterRadiolabel htmlFor="water-medium"><RiContrastDrop2Fill /> Medium</StyledWaterRadiolabel>
+          <StyledWaterRadiolabel htmlFor="water-medium">
+            <RiContrastDrop2Fill /> Medium
+          </StyledWaterRadiolabel>
 
           <StyledWaterRadioInput
             id="water-high"
             name="waterNeed"
             type="radio"
             value="High"
-            defaultChecked={
-              buttonText === "Edit" && plant.waterNeed == "High"
-            }
+            defaultChecked={buttonText === "Edit" && plant.waterNeed == "High"}
           />
-          <StyledWaterRadiolabel htmlFor="water-high"><RiDropFill /> High </StyledWaterRadiolabel>
+          <StyledWaterRadiolabel htmlFor="water-high">
+            <RiDropFill /> High{" "}
+          </StyledWaterRadiolabel>
         </StyledFieldsetRadio>
         {/*-----------------------------------------------------------*/}
         <StyledFieldsetCheckbox>
@@ -177,7 +182,9 @@ export default function Form({
             value="Spring"
             defaultChecked={
               buttonText === "Edit" &&
-              !plant.fertiliserSeason.includes("Spring") ? false : true
+              !plant.fertiliserSeason.includes("Spring")
+                ? false
+                : true
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
@@ -194,7 +201,6 @@ export default function Form({
             value="Summer"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Summer")
-
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
@@ -228,7 +234,6 @@ export default function Form({
             value="Winter"
             defaultChecked={
               buttonText === "Edit" && plant.fertiliserSeason.includes("Winter")
-
             }
             onChange={() => {setShowErrorMessageFertilizerSeason(false)}}
           />
@@ -245,7 +250,6 @@ export default function Form({
 
         </StyledFieldsetCheckbox>
         <StyledButtonContainer>
-
           <StyledSubmitButton type="submit">
             {buttonText === "Edit" ? "Edit Plant" : "Add plant"}
           </StyledSubmitButton>
@@ -298,14 +302,13 @@ const StyledInput = styled.input`
   border-radius: 30px;
   padding: 10px 15px;
   margin-top: 6px;
-
   font-family: inherit;
 
   background-color: rgba(0,0,0,0.1);
   border: 2px solid ${props => props.theme.main};
 
   &:focus {
-    outline-color:var(--green-light);
+    outline-color: var(--green-light);
   }
 `;
 StyledInput.defaultProps = {
@@ -339,11 +342,11 @@ const StyledTextarea = styled.textarea`
   height: auto;
   resize: none;
   min-height: 50px;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   font-family: inherit;
-  
+
   &:focus {
-    outline-color:var(--green-light);
+    outline-color: var(--green-light);
   }
 `;
 const StyledRadiolabel = styled.label`
@@ -354,8 +357,8 @@ const StyledRadiolabel = styled.label`
   text-align: center;
   font-size: 14px;
   display: flex;
-    align-items: center;
-    gap: 5px;
+  align-items: center;
+  gap: 5px;
 `;
 const StyledWaterRadiolabel = styled.label`
   background: var(--green-light);
@@ -413,7 +416,7 @@ const StyledCheckboxLabel = styled.label`
   padding: 5px 10px;
   border-radius: 20px;
   font-weight: normal;
-  font-size: 14px;  
+  font-size: 14px;
   width: 22%;
   text-align: center;
 `;
@@ -456,11 +459,10 @@ const StyledSubmitButton = styled.button`
   }
 `;
 const StyledButtonContainer = styled.section`
-display: flex;
-gap: 15px;
+  display: flex;
+  gap: 15px;
 `;
 const StyledLegend = styled.legend`
   width: 100%;
   text-align: left;
 `;
-
