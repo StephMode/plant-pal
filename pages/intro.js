@@ -6,7 +6,7 @@ export default function IntroPage() {
         <StyledIntroContainer>
             <StyledImageContainer>
                 <Image src="/logo-main.svg" width={200} height={50} alt="rooted logo" />
-                <p>Master the art of plant care, one tip at a time.</p>
+                <StyledBaseline>Master the art of plant care, one tip at a time.</StyledBaseline>
             </StyledImageContainer>
         </StyledIntroContainer>
     )
@@ -37,4 +37,19 @@ const StyledImageContainer = styled.div`
     font-family: 'Assistant', sans serif;
     padding: 30px;
     border-radius: 35px;
+    animation-name: logo;
+    animation-duration: 5s;
+    transition: all cubic-bezier(0.65, 0.05, 0.36, 1);;
+
+@keyframes logo {
+  0%   {left:0px; top:0px; opacity:0;background: var(--green-light);}
+  10%  {opacity:0;}
+  30% {left:0px; top: 27%;opacity:1;background: var(--green-main);}
+  70% {left:0px; top: 27%;opacity:1;background: var(--green-main);}
+  100% {left:0px; top: 50%;opacity:0;}
+}
+`;
+const StyledBaseline = styled.p`
+    text-align: center;
+    margin-top: 10px;
 `;
