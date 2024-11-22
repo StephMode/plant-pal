@@ -5,6 +5,7 @@ import PlantFilterSection from "/components/PlantFilterSection";
 import { AiOutlineControl } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
 import TipBanner from "/components/TipBanner";
+import Link from "next/link";
 
 
 export default function HomePage({ 
@@ -28,6 +29,7 @@ export default function HomePage({
     <main>
       <h1>Plant List</h1>
       <StyledSpacer/>
+      <Link href="/intro">intro page</Link>
       <TipBanner randomTip={randomTip} progress={progress} handleMouseHover = {handleMouseHover} handleMouseLeave = {handleMouseLeave}/>
       <StyledFilterButtonSection>
         <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
