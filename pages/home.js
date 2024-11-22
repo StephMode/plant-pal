@@ -5,7 +5,6 @@ import PlantFilterSection from "/components/PlantFilterSection";
 import { AiOutlineControl } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
 import TipBanner from "/components/TipBanner";
-import Link from "next/link";
 
 
 export default function HomePage({ 
@@ -25,8 +24,10 @@ export default function HomePage({
 }) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
 
+
   return (
     <main>
+
       <h1>Plant List</h1>
       <StyledSpacer/>
       <TipBanner randomTip={randomTip} progress={progress} handleMouseHover = {handleMouseHover} handleMouseLeave = {handleMouseLeave}/>

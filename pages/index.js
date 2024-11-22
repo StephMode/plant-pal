@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function IntroPage() {
-
     const router = useRouter();
 
     useEffect(() => {
@@ -25,7 +24,7 @@ export default function IntroPage() {
 }
 
 const StyledIntroContainer = styled.section`
-    background: no-repeat url(/intro.jpg) center center;
+    background: var(--green-main) no-repeat url(/intro.jpg) center center;
     width: 100%;
     height: 100%;
     display: block;
