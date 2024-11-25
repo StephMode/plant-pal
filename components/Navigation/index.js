@@ -5,6 +5,7 @@ import { HiHome } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
 import { RiPlantFill } from "react-icons/ri";
+import { RiCalendarScheduleFill } from "react-icons/ri";
 
 
 export default function Navigation() { 
@@ -32,6 +33,11 @@ export default function Navigation() {
                 <Link href="/plantTipsPage" passHref>
                     <StyledIconContainer $isactive={router.asPath === "/plantTipsPage"}>
                         <RiPlantFill />
+                    </StyledIconContainer>
+                </Link>
+                <Link href="/remindersPage" passHref>
+                    <StyledIconContainer $isactive={router.asPath === "/remindersPage"}>
+                        <RiCalendarScheduleFill />
                     </StyledIconContainer>
                 </Link>
             </StyledNavContainer>
