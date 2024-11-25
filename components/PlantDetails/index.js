@@ -7,6 +7,7 @@ import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
 import PlantOwnedButton from "../PlantOwnedButton";
 import ReminderCard from "../ReminderCard";
+import ReminderForm from "../ReminderForm";
 import { RiDropLine } from "react-icons/ri";
 import { FaChevronLeft } from "react-icons/fa6";
 import { RiDropFill } from "react-icons/ri";
@@ -17,6 +18,7 @@ import { IoMdMoon } from "react-icons/io";
 import { GiPowder } from "react-icons/gi";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
+import { RiCalendarScheduleFill } from "react-icons/ri";
 import { useRouter } from "next/router";
 
 export default function PlantDetails({ 
@@ -30,7 +32,8 @@ export default function PlantDetails({
   onDeletePlant, 
   tipsToBeTagged,
   handleToggleOwned,
-  reminders
+  reminders,
+  isReminder
   }) {
   const router = useRouter();
 
@@ -52,6 +55,10 @@ export default function PlantDetails({
       <StyledPlantContainer>
         <StyledTopSection>
           <StyledH2>{plant.name}</StyledH2>
+          <Button
+            buttonText={<RiCalendarScheduleFill />}
+            handleButtonFunction={() => handleToggleModal("Reminder")}
+          />
           <Button
             buttonText={<FaPen />}
             handleButtonFunction={() => handleToggleModal("Edit")}
@@ -154,7 +161,13 @@ export default function PlantDetails({
                 id={plant.id}
                 handleToggleModal={handleToggleModal}
               />
-            ) : (
+            ) : isReminder ? (
+              <ReminderForm
+                plantName={plant.name}
+                handleToggleModal={handleToggleModal}
+              />
+            )
+             : (
               "This is an error, please reload page."
             )
           }

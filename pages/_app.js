@@ -84,6 +84,7 @@ export default function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const [isReminder, setIsReminder] = useState(false);
 
   const initialFilterObject = {
     waterNeed: "",
@@ -144,6 +145,8 @@ export default function App({ Component, pageProps }) {
       setIsEdit(!isEdit);
     } else if (buttonFunctionText === "Delete") {
       setIsDelete(!isDelete);
+    } else if (buttonFunctionText === "Reminder") {
+      setIsReminder(!isReminder);
     }
   }
 
@@ -246,6 +249,7 @@ export default function App({ Component, pageProps }) {
         handleMouseHover={handleMouseHover}
         handleMouseLeave={handleMouseLeave}
         reminders={reminders}
+        isReminder={isReminder}
       />
       <Toaster/>
       <Navigation />
