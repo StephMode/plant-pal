@@ -90,7 +90,7 @@ export default function App({ Component, pageProps }) {
         "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     };
     setPlants([newPlant, ...plants]);
-    router.push(`/`);
+    router.push(`/home`);
   }
 
   function handleEditPlant(newPlantData, id) {
@@ -126,7 +126,7 @@ export default function App({ Component, pageProps }) {
   function handleDeletePlant(id) {
     setPlants((prevPlants) => prevPlants.filter((plant) => plant.id !== id));
 
-    router.push("/");
+    router.push("/home");
     setIsDelete(!isDelete);
     setShowModal(!showModal);
   }
