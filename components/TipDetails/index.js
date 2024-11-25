@@ -4,6 +4,7 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import Tag from "../Tag";
 import { useState } from "react";
+import Breadcrumbs from "../Breadcrumbs";
 
 
 export default function TipDetails({ tip, plantsToBeTagged }) {
@@ -29,8 +30,9 @@ export default function TipDetails({ tip, plantsToBeTagged }) {
       <StyledIconContainer onClick={() =>  router.back()} type="button">
           <FaChevronLeft />
         </StyledIconContainer>
-
+      
       <StyledTipContainer>
+      <Breadcrumbs breadcrumbType="tip" tip={tip}/>
         <StyledH2>{tip.title}</StyledH2>
         <StyledDescription>{tip.bodyContent}</StyledDescription>
       
