@@ -24,7 +24,8 @@ export default function App({ Component, pageProps }) {
   const [isPaused, setIsPaused] = useState(false);
 
   const testReminder = [
-    { plantName: "TestPlant",
+    { id: 1,
+      plantName: "TestPlant",
       task: "watering",
       date: "25.11.2024"
     }

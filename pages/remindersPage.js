@@ -6,7 +6,7 @@ export default function RemindersPage({reminders}) {
             <h1>Your reminders</h1>
             <ul>
             {reminders.map((reminder) => 
-                <li key={reminder.plantName}>
+                <li key={reminder.id}>
                     <ReminderCard plantName={reminder.plantName} task={reminder.task} date={reminder.date} reminderPage={true} />
                 </li>)}
             </ul>
