@@ -218,6 +218,17 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
+  function handleAddReminder(newReminderData, id) {
+    const newReminder = {
+      ...newReminderData,
+      id: nanoid(),
+    };
+    setReminders([newReminder, ...reminders]);
+    router.push(`/plants/${id}`);
+    setIsReminder(false);
+    setShowModal(false);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -250,6 +261,7 @@ export default function App({ Component, pageProps }) {
         handleMouseLeave={handleMouseLeave}
         reminders={reminders}
         isReminder={isReminder}
+        handleAddReminder={handleAddReminder}
       />
       <Toaster/>
       <Navigation />

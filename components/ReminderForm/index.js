@@ -1,14 +1,30 @@
 import styled, {ThemeProvider}  from "styled-components";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
+import toast from 'react-hot-toast';
 
-export default function ReminderForm({plantName, handleToggleModal}) {
+export default function ReminderForm({plantName, handleToggleModal, handleAddReminder, id}) {
 
     const [showErrorMessageTask, setShowErrorMessageTask] = useState(false);
 
+    function handleSubmitReminder(event) {
+        event.preventDefault();
+    
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+        
+        if (data.task === "") {
+            toast.error("Some reminder details are missing");
+            if (data.task === "") {setShowErrorMessageTask(true)};
+        } else {
+          handleAddReminder(data, id); toast.success("Reminder successfully created") 
+        }
+          event.target.reset();
+        };
+
     return (
         <StyledSection>
-            <form>
+            <form onSubmit={handleSubmitReminder}>
                 <StyledCloseButton type="button" onClick={() => handleToggleModal("Reminder")}>
                     <IoClose />
                 </StyledCloseButton>

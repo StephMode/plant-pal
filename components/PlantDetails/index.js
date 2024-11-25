@@ -33,7 +33,8 @@ export default function PlantDetails({
   tipsToBeTagged,
   handleToggleOwned,
   reminders,
-  isReminder
+  isReminder,
+  handleAddReminder
   }) {
   const router = useRouter();
 
@@ -165,6 +166,8 @@ export default function PlantDetails({
               <ReminderForm
                 plantName={plant.name}
                 handleToggleModal={handleToggleModal}
+                handleAddReminder={handleAddReminder}
+                id={plant.id}
               />
             )
              : (
