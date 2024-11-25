@@ -26,7 +26,7 @@ export default function HomePage({
 
 
   return (
-    <main>
+    <StyledMain>
 
       <h1>Plant List</h1>
       <StyledSpacer/>
@@ -56,11 +56,17 @@ export default function HomePage({
             )}
           </ul>
       )}
-    </main>
+    </StyledMain>
   );
 }
 
-
+const StyledMain = styled.main`
+  padding: 0 20px;
+  @media (max-width: 750px) {
+        padding:0 9px;
+        
+    }
+`;
 const StyledInfoText = styled.p`
   color: var(--green-main);
   background-color: var(--gray);
