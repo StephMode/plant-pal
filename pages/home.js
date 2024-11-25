@@ -18,9 +18,8 @@ export default function HomePage({
   filteredPlants,
   randomTip,
   progress,
-
   handleMouseLeave,
-  handleMouseHover
+  handleMouseHover,
 }) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
 

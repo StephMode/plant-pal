@@ -8,9 +8,9 @@ import { useRouter } from "next/router";
 import { nanoid } from "nanoid";
 import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import styled from "styled-components";
-
+import { notes } from "/lib/noteData";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
@@ -190,12 +190,25 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
+  /* __________________________________ */
+
+  const [notes, setNotes] = useState(notes);
+
+  function handleDeleteNote(id) {
+    setNotes((prevnotes) => prevnotes.filter((note) => note.id !== id));
+  }
+
   return (
     <>
       <GlobalStyle />
       <header>
         <StyledLogoLink href="/">
-          <Image src="/logo-main.svg" width={200} height={50} alt="rooted logo" />
+          <Image
+            src="/logo-main.svg"
+            width={200}
+            height={50}
+            alt="rooted logo"
+          />
         </StyledLogoLink>
       </header>
       <Component
@@ -220,8 +233,9 @@ export default function App({ Component, pageProps }) {
         progress={progress}
         handleMouseHover={handleMouseHover}
         handleMouseLeave={handleMouseLeave}
+        handleDeleteNote={handleDeleteNote}
       />
-      <Toaster/>
+      <Toaster />
       <Navigation />
     </>
   );

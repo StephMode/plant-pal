@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import TipDetails from "/components/TipDetails/";
 
-export default function TipDetailsPage({ tips, plants }) {
+export default function TipDetailsPage({ tips, plants, handleDeleteNote }) {
   const router = useRouter();
 
   const { id } = router.query;
@@ -14,16 +14,18 @@ export default function TipDetailsPage({ tips, plants }) {
     return <p>Plant tip not found!</p>;
   }
 
-
-  if(!router.isReady) {
+  if (!router.isReady) {
     return null;
   }
-  
 
   return (
     <main>
       <h1>Care tips</h1>
-      <TipDetails tip={tip} plantsToBeTagged={plantsToBeTagged}/>
+      <TipDetails
+        tip={tip}
+        plantsToBeTagged={plantsToBeTagged}
+        handleDeleteNote={handleDeleteNote}
+      />
     </main>
   );
 }
