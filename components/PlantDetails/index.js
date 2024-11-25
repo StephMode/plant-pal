@@ -17,6 +17,7 @@ import { GiPowder } from "react-icons/gi";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
 import { useRouter } from "next/router";
+import Breadcrumbs from "../Breadcrumbs";
 
 export default function PlantDetails({ 
   plant, 
@@ -48,6 +49,7 @@ export default function PlantDetails({
       </StyledImageContainer>
 
       <StyledPlantContainer>
+        <Breadcrumbs breadcrumbType="plant" plant={plant} isOwned={plant.isOwned} />
         <StyledTopSection>
           <StyledH2>{plant.name}</StyledH2>
           <Button
