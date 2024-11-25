@@ -194,7 +194,7 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleSearchQuery(searchInput) {
-    console.log("app: the input for the search query is:", searchInput);
+    // console.log("app: the input for the search query is:", searchInput);
     setSearchQuery(searchInput);
     // console.log("app: the search query is:", searchQuery);
   }
@@ -202,17 +202,22 @@ export default function App({ Component, pageProps }) {
   // const searchResults = searchQuery !== "" ? tips.filter((tip) => tip.title.includes(searchQuery)) : tips;
    
   useEffect(() => {
-  if (searchQuery.length > 0) {setSearchResults(tips.filter((tip) => tip.title.toLowerCase().includes(searchQuery)))}
+  if (searchQuery.length > 0) 
+      {setSearchResults(tips.filter((tip) => 
+        tip.title.includes(searchQuery) || tip.title.toLowerCase().includes(searchQuery)     
+      )
+    )
+    }
   }, [searchQuery])
 
   function resetSearch() {
     setSearchResults(tips);
   }
 
-  useEffect(() => {
-    console.log("Search query updated:", searchQuery);
-    console.log("Search results:", searchResults);
-  }, [searchQuery]);
+  // useEffect(() => {
+  //   console.log("Search query updated:", searchQuery);
+  //   console.log("Search results:", searchResults);
+  // }, [searchQuery]);
   
 
   return (
