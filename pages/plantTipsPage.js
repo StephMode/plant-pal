@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, resetSearch }) {
 
-  const tipsTobeRendered = searchResults;
+  const tipsTobeRendered = searchResults !== tips ? searchResults : tips;
 
   return (
     <main>
@@ -12,15 +12,17 @@ export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, 
 
       
       <StyledSpacer/>
-      {tips.length === 0 && (
-        <StyledInfoText>Currently no tips available!</StyledInfoText>
-      )}
-      
+
       <Search 
         handleSearchQuery={handleSearchQuery}
         resetSearch={resetSearch}
       />
 
+      {tips.length === 0 ? 
+        (<StyledInfoText>Currently no tips available!</StyledInfoText>)
+         : (searchResults.length === 0 && (<StyledInfoText>No tips match the search critera!</StyledInfoText>))
+        }
+      
       <ul>
         {tipsTobeRendered.map((tip) => (
           <li key={tip.id}>
