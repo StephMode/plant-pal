@@ -49,14 +49,14 @@ const StyledButton = styled.button`
     margin: 10px 0 5px 0;
     border: none;
     border-radius: 20px;
-    background-color: var(--green-light);
+    background-color: var(--brown);
     color: var(-green-main);
     font-size: 14px;
     cursor: pointer;
     transition: 0.5s ease-in-out;
 
     &:hover {
-    background-color: var(--green-light-dark);
+    background-color: var(--brown-dark);
     color: var(--white);
   }
 `;
