@@ -174,11 +174,6 @@ export default function PlantFilterSection({
 }
 
 const StyledPlantFilterSection = styled.section`
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  width: 95%;
-  padding: 10px 20px 5px 20px;
-  margin: -56px 20px 20px;
   display: flex;
   text-align: left;
   flex-direction: column;

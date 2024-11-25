@@ -31,11 +31,20 @@ export default function HomePage({
       <h1>Plant List</h1>
       <StyledSpacer/>
       <TipBanner randomTip={randomTip} progress={progress} handleMouseHover = {handleMouseHover} handleMouseLeave = {handleMouseLeave}/>
-      <StyledFilterButtonSection>
-        <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
-      </StyledFilterButtonSection>
-      <StyledSpacer2/>
-      <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} selectedFilter={selectedFilter}/>
+
+      <StyledFilterSection>
+        <StyledFilterButtonSection>
+          <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
+        </StyledFilterButtonSection>
+        <StyledSpacer2/>
+        <PlantFilterSection 
+          handleFilterPlants={onFilterPlants} 
+          showPlantFilterSection={showPlantFilterSection} 
+          handleFilterPlantsReset={onFilterPlantsReset} 
+          selectedFilter={selectedFilter}/>
+      </StyledFilterSection>
+
+      
       { filteredPlants.length === 0 && 
            <StyledInfoText>No plants were found. Reset filter.</StyledInfoText>}
       { !selectedFilter && plants.length === 0 ? (
@@ -67,6 +76,17 @@ const StyledMain = styled.main`
         
     }
 `;
+const StyledFilterSection = styled.section`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 20px;
+ /*  
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+
+  padding: 10px 20px 5px 20px; */
+`;
 const StyledInfoText = styled.p`
   color: var(--green-main);
   background-color: var(--gray);
@@ -83,8 +103,7 @@ const StyledSpacer2 = styled.span`
   height: 17px;
 `;
 const StyledFilterButtonSection = styled.section`
-  margin-right: 6px;
-  align-self: end;
+
 `;
 
 
