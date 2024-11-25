@@ -4,19 +4,15 @@ import { useState } from "react";
 
 
 export default function Search({ handleSearchQuery }) {
-    const [searchInput, setSearchInput] = useState("");
 
     function handleSearchInput(event) {
         if (event.target.value.length < 3) {
             console.log("input not long enough")
         } else {
-        setSearchInput(event.target.value);
-        // console.log("The searchInput is", searchInput);
-        handleSearchQuery(searchInput);
+        handleSearchQuery(event.target.value);
         }
     }
 
-    
 
     return(
         <>
