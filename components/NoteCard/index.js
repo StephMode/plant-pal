@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
 
-export default function NoteCard() {
+export default function NoteCard({ headline, note }) {
   return (
-    <>
+    <StyledNoteWrapper>
       <StyledFieldset>
         <StyledInput
           id="Title"
           name="Title"
           type="text"
           placeholder
-          defaultValue
+          defaultValue={headline}
         ></StyledInput>
       </StyledFieldset>
       <StyledFieldset>
@@ -20,20 +20,16 @@ export default function NoteCard() {
           name="note"
           type="text"
           placeholder
-          defaultValue
+          defaultValue={note}
         ></StyledInput>
       </StyledFieldset>
-      <StyledButton
-        type="button"
-        onClick={""}
-        buttonText={<FaTrashAlt />}
-      ></StyledButton>
-      <StyledButton
-        type="button"
-        onClick={""}
-        buttonText={<FaPen />}
-      ></StyledButton>
-    </>
+      <StyledButton type="button" onClick={""}>
+        <FaTrashAlt />
+      </StyledButton>
+      <StyledButton type="button" onClick={""}>
+        <FaPen />
+      </StyledButton>
+    </StyledNoteWrapper>
   );
 }
 
@@ -54,7 +50,7 @@ const StyledFieldset = styled.fieldset`
 `;
 
 const StyledButton = styled.button`
-  background-color: var(--brown);
+  background-color: var(--gray);
   padding: 8px 20px 1px 20px;
   border: none;
   border-radius: 20px;
@@ -62,4 +58,9 @@ const StyledButton = styled.button`
   align-self: end;
   font-size: 20px;
   transition: 0.5s ease-in-out;
+`;
+const StyledNoteWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
 `;

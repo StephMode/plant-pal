@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
-  
+
   /*---------------------------------------------------------------------- */
   const intervalRef = useRef(null);
   const [randomTip, setRandomTip] = useState(tips[1]);
@@ -193,24 +193,12 @@ export default function App({ Component, pageProps }) {
 
   /* __________________________________ */
 
-
-
-
-
   const [notesData, setNotesData] = useState(notes);
 
   function handleDeleteNote(id) {
     setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
   }
 
-
-
-
-
-
-
-
-  
   return (
     <>
       <GlobalStyle />
@@ -247,6 +235,7 @@ export default function App({ Component, pageProps }) {
         handleMouseHover={handleMouseHover}
         handleMouseLeave={handleMouseLeave}
         handleDeleteNote={handleDeleteNote}
+        notesData={notesData}
       />
       <Toaster />
       <Navigation />

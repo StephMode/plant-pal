@@ -6,7 +6,12 @@ import Tag from "../Tag";
 import { useState } from "react";
 import NoteCard from "../NoteCard";
 
-export default function TipDetails({ tip, plantsToBeTagged }) {
+export default function TipDetails({
+  tip,
+  plantsToBeTagged,
+  notesData,
+  routerQuery,
+}) {
   const router = useRouter();
 
   const [noRelatedPlants, setNoRelatedPlants] = useState(false);
@@ -57,7 +62,16 @@ export default function TipDetails({ tip, plantsToBeTagged }) {
           )}
         </StyledTagContainer>
       </StyledTipContainer>
-      <NoteCard />
+      <StyledNoteContainer>
+        {notesData
+          .filter((note) => note.noteLocation === routerQuery)
+          .slice(0, 5)
+          .map((note) => (
+            <li key={note.id}>
+              <NoteCard headline={note.headline} note={note.note} />
+            </li>
+          ))}gi
+      </StyledNoteContainer>
     </>
   );
 }
@@ -124,6 +138,10 @@ const StyledH3 = styled.h3`
 `;
 
 const StyledTagContainer = styled.ul`
+  display: flex;
+  justify-content: flex-start;
+`;
+const StyledNoteContainer = styled.ul`
   display: flex;
   justify-content: flex-start;
 `;
