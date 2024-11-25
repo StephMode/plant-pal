@@ -1,9 +1,11 @@
-import ReminderCard from "@/components/ReminderCard";
+import styled from "styled-components";
+import ReminderCard from "/components/ReminderCard";
 
 export default function RemindersPage({reminders}) {
     return (
         <main>
-            <h1>Your reminders</h1>
+            <h1>Reminders</h1>
+            <StyledSpacer />
             <ul>
             {reminders.map((reminder) => 
                 <li key={reminder.id}>
@@ -13,3 +15,9 @@ export default function RemindersPage({reminders}) {
         </main>
     )
 }
+
+
+const StyledSpacer = styled.span`
+  display: block;
+  height: 113px;
+`;

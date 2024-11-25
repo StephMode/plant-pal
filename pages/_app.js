@@ -28,6 +28,21 @@ export default function App({ Component, pageProps }) {
       plantName: "TestPlant",
       task: "watering",
       date: "25.11.2024"
+    },
+    { id: 2,
+      plantName: "TestPlant2",
+      task: "fertilizing",
+      date: "25.11.2024"
+    },
+    { id: 3,
+      plantName: "TestPlant3",
+      task: "fertilizing",
+      date: "25.11.2024"
+    },
+    { id: 4,
+      plantName: "TestPlant4",
+      task: "fertilizing",
+      date: "25.11.2024"
     }
   ];
 
