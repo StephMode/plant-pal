@@ -198,7 +198,13 @@ export default function App({ Component, pageProps }) {
     console.log("app: the search query is:", searchQuery);
   }
 
+  const searchResults = searchQuery !== "" ? tips.filter((tip) => tip.title.includes(searchQuery)) : tips;
 
+  // useEffect(() => {
+  //   // console.log("Search query updated:", searchQuery);
+  //   console.log("Search results:", searchResults);
+  // }, [searchResults]);
+  
 
   return (
     <>
@@ -231,6 +237,7 @@ export default function App({ Component, pageProps }) {
         handleMouseHover={handleMouseHover}
         handleMouseLeave={handleMouseLeave}
         handleSearchQuery={handleSearchQuery}
+        searchResults={searchResults}
       />
       <Toaster/>
       <Navigation />

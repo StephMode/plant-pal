@@ -2,11 +2,14 @@ import Search from "@/components/Search";
 import TipCard from "/components/TipCard";
 import styled from "styled-components";
 
-export default function PlantTipsPage({ tips, handleSearchQuery }) {
+export default function PlantTipsPage({ tips, handleSearchQuery, searchResults }) {
+
+  const tipsTobeRendered = searchResults;
 
   return (
     <main>
       <h1>Care tips</h1>
+
       
       <StyledSpacer/>
       {tips.length === 0 && (
@@ -18,7 +21,7 @@ export default function PlantTipsPage({ tips, handleSearchQuery }) {
       />
 
       <ul>
-        {tips.map((tip) => (
+        {tipsTobeRendered.map((tip) => (
           <li key={tip.id}>
             <TipCard
               tipId={tip.id}
