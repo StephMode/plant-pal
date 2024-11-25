@@ -2,7 +2,7 @@ import Search from "@/components/Search";
 import TipCard from "/components/TipCard";
 import styled from "styled-components";
 
-export default function PlantTipsPage({ tips, handleSearchQuery, searchResults }) {
+export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, resetSearch }) {
 
   const tipsTobeRendered = searchResults;
 
@@ -18,6 +18,7 @@ export default function PlantTipsPage({ tips, handleSearchQuery, searchResults }
       
       <Search 
         handleSearchQuery={handleSearchQuery}
+        resetSearch={resetSearch}
       />
 
       <ul>

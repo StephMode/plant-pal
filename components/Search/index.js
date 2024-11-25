@@ -3,11 +3,11 @@ import { IoSearch } from "react-icons/io5";
 import { useState } from "react";
 
 
-export default function Search({ handleSearchQuery }) {
+export default function Search({ handleSearchQuery, resetSearch }) {
 
     function handleSearchInput(event) {
-        if (event.target.value.length < 3) {
-            console.log("input not long enough")
+        if (event.target.value.length === 0) {
+            resetSearch(event.target.value.length)
         } else {
         handleSearchQuery(event.target.value);
         }
