@@ -229,6 +229,7 @@ export default function App({ Component, pageProps }) {
         progress={progress}
         handleMouseHover={handleMouseHover}
         handleMouseLeave={handleMouseLeave}
+        reminders={reminders}
       />
       <Toaster/>
       <Navigation />

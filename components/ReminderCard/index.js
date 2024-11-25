@@ -9,7 +9,7 @@ export default function ReminderCard({plantName, task, date, reminderPage}) {
             {reminderPage && <p>{plantName}</p>}
             <p>{task}</p>
             <p>{date}</p>
-            {reminderPage && <Button buttontext="Mark as done" />}
+            {reminderPage && <Button buttonText="Mark as done" />}
         </article>
     );
 }
