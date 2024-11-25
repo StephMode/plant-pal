@@ -190,6 +190,10 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
+  function handleSearchQuery(searchQuery) {
+    console.log("app: the search query is", searchQuery);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -220,6 +224,7 @@ export default function App({ Component, pageProps }) {
         progress={progress}
         handleMouseHover={handleMouseHover}
         handleMouseLeave={handleMouseLeave}
+        handleSearchQuery={handleSearchQuery}
       />
       <Toaster/>
       <Navigation />

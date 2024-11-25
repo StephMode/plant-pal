@@ -1,10 +1,42 @@
+import styled from "styled-components"
+import { IoSearch } from "react-icons/io5";
+import { useState } from "react";
 
 
-export default function Search() {
+export default function Search({ handleSearchQuery }) {
+    const [searchInput, setSearchInput] = useState("");
+
+    function handleSearchInput(event) {
+        if (event.target.value.length < 3) {
+            console.log("input not long enough")
+        } else {
+        setSearchInput(event.target.value);
+        // console.log("The searchInput is", searchInput);
+        handleSearchQuery(searchInput);
+        }
+    }
+
+    
 
     return(
-        <div>
+        <>
             <p>This is a search bar</p>
-        </div>
+            <StyledSearchBar>
+                <input 
+                type="text"
+                name="searchQuery"
+                placeholder="Search for tip"
+                onChange={handleSearchInput}
+                />
+            {/* hier kann ich auch gleich einen Reset Button "x" einbauen, der die Search reseted */}
+            <IoSearch />
+            </StyledSearchBar>
+        </>
     )
 }
+
+
+const StyledSearchBar = styled.div`
+    display: flex;
+    margin: 20px;
+`;

@@ -2,7 +2,7 @@ import Search from "@/components/Search";
 import TipCard from "/components/TipCard";
 import styled from "styled-components";
 
-export default function PlantTipsPage({ tips }) {
+export default function PlantTipsPage({ tips, handleSearchQuery }) {
 
   return (
     <main>
@@ -13,7 +13,9 @@ export default function PlantTipsPage({ tips }) {
         <StyledInfoText>Currently no tips available!</StyledInfoText>
       )}
       
-      <Search></Search>
+      <Search 
+        handleSearchQuery={handleSearchQuery}
+      />
 
       <ul>
         {tips.map((tip) => (
