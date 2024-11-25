@@ -9,7 +9,6 @@ import { nanoid } from "nanoid";
 import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
 import { Toaster } from 'react-hot-toast';
-import Link from "next/link";
 import styled from "styled-components";
 
 export default function App({ Component, pageProps }) {
@@ -126,7 +125,7 @@ export default function App({ Component, pageProps }) {
   function handleDeletePlant(id) {
     setPlants((prevPlants) => prevPlants.filter((plant) => plant.id !== id));
 
-    router.push("/home");
+    router.push(`/home`);
     setIsDelete(!isDelete);
     setShowModal(!showModal);
   }
