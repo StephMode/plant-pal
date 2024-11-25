@@ -202,7 +202,7 @@ export default function App({ Component, pageProps }) {
   // const searchResults = searchQuery !== "" ? tips.filter((tip) => tip.title.includes(searchQuery)) : tips;
    
   useEffect(() => {
-  if (searchQuery.length > 0) {setSearchResults(tips.filter((tip) => tip.title.includes(searchQuery)))}
+  if (searchQuery.length > 0) {setSearchResults(tips.filter((tip) => tip.title.toLowerCase().includes(searchQuery)))}
   }, [searchQuery])
 
   function resetSearch() {
