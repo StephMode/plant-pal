@@ -11,6 +11,7 @@ import Navigation from "/components/Navigation";
 import { Toaster } from "react-hot-toast";
 import styled from "styled-components";
 import { notes } from "@/lib/noteData";
+import toast from "react-hot-toast";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
@@ -197,6 +198,7 @@ export default function App({ Component, pageProps }) {
 
   function handleDeleteNote(id) {
     setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
+    toast.success("Note successfully deleted");
   }
 
   function handleAddNote(routerQuery) {
@@ -209,10 +211,23 @@ export default function App({ Component, pageProps }) {
         noteLocation: routerQuery,
       },
     ]);
+    toast.success("Note successfully added");
   }
-function handleEditNote(id) {
-  
-}
+  function handleEditNote(newPlantData, id, routerQuery) {
+    console.log(routerQuery);
+    setNotesData((prevnotes) =>
+      prevnotes.map((note) =>
+        note.id === id
+          ? {
+              ...note,
+              headline: newPlantData.title,
+              note: newPlantData.note,
+              noteLocation: routerQuery,
+            }
+          : note
+      )
+    );
+  }
 
   return (
     <>
@@ -252,6 +267,7 @@ function handleEditNote(id) {
         handleDeleteNote={handleDeleteNote}
         notesData={notesData}
         handleAddNote={handleAddNote}
+        handleEditNote={handleEditNote}
       />
       <Toaster />
       <Navigation />

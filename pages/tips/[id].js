@@ -7,6 +7,7 @@ export default function TipDetailsPage({
   handleDeleteNote,
   notesData,
   handleAddNote,
+  handleEditNote,
 }) {
   const router = useRouter();
 
@@ -34,6 +35,7 @@ export default function TipDetailsPage({
         notesData={notesData}
         routerQuery={id}
         handleAddNote={handleAddNote}
+        handleEditNote={handleEditNote}
       />
     </main>
   );

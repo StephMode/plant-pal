@@ -14,6 +14,7 @@ export default function TipDetails({
   routerQuery,
   handleAddNote,
   handleDeleteNote,
+  handleEditNote,
 }) {
   const router = useRouter();
   const [noRelatedPlants, setNoRelatedPlants] = useState(false);
@@ -79,6 +80,8 @@ export default function TipDetails({
                   note={note.note}
                   handleDeleteNote={handleDeleteNote}
                   id={note.id}
+                  handleEditNote={handleEditNote}
+                  routerQuery={routerQuery}
                 />
               </li>
             ))}
