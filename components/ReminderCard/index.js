@@ -1,21 +1,37 @@
-import styled from "styled-components";
+import styled, {ThemeProvider} from "styled-components";
 import { RiCalendarScheduleFill } from "react-icons/ri";
-import Button from "../Button";
+
 
 export default function ReminderCard({plantName, task, date, reminderPage}) {
 
     return (
+        <ThemeProvider theme={reminderPage ? reminderPageTheme : plantDetailsPageTheme}>
             <StyledReminderCard>
                 <StyledIconContainer>
                     <RiCalendarScheduleFill />
                 </StyledIconContainer>
                 {reminderPage && <h2>{plantName}</h2>}
-                <p><b>{task}:</b> {date}</p>
+                <StyledReminderContent><b>{task}:</b> {date}</StyledReminderContent>
                 {reminderPage && <StyledButton type="button">Mark as done</StyledButton>}
             </StyledReminderCard>
+        </ThemeProvider>
     );
 }
 
+
+const reminderPageTheme = {
+    width: "350px",
+    minWidth: "330px",
+    marginLeft: "0px",
+    alignSelf: "flex-end",
+};
+
+const plantDetailsPageTheme = {
+    width: "300px",
+    minWidth: "300px",
+    marginLeft: "40px",
+    alignSelf: "flex-start",
+};
 
 
 const StyledReminderCard = styled.article`
@@ -25,18 +41,22 @@ const StyledReminderCard = styled.article`
     padding: 10px 15px;
     border-radius: 25px;
     margin-bottom: 10px;
-    width: 350px;
+    width: ${props => props.theme.width};
     justify-content: flex-start;
     box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
 
   @media (max-width: 750px) {
-    width: 330px;
+    width: ${props => props.theme.minWidth};
   }
+`;
+
+const StyledReminderContent = styled.p`
+    margin-left: ${props => props.theme.marginLeft};
 `;
 
 
 const StyledIconContainer = styled.span`
-    align-self: flex-end;
+    align-self: ${props => props.theme.alignSelf};
     font-size: 1.5rem;
     position: absolute;
     color: var(--black);

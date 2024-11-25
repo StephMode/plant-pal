@@ -6,6 +6,7 @@ import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
 import PlantOwnedButton from "../PlantOwnedButton";
+import ReminderCard from "../ReminderCard";
 import { RiDropLine } from "react-icons/ri";
 import { FaChevronLeft } from "react-icons/fa6";
 import { RiDropFill } from "react-icons/ri";
@@ -29,6 +30,7 @@ export default function PlantDetails({
   onDeletePlant, 
   tipsToBeTagged,
   handleToggleOwned,
+  reminders
   }) {
   const router = useRouter();
 
@@ -106,9 +108,17 @@ export default function PlantDetails({
         <StyledEditDeleteSection>
           <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")} buttonRole={"deleteButton"}/>
         </StyledEditDeleteSection>
+        <StyledTipH3>Reminders:</StyledTipH3>
+        <StyledListContainer>
+            {reminders.map((reminder) => 
+                <li key={reminder.id}>
+                    <ReminderCard task={reminder.task} date={reminder.date} />
+                </li>)}
+            </StyledListContainer>
+
         <StyledTipH3>Related Care Tips:</StyledTipH3>
 
-          <StyledTagContainer>
+          <StyledListContainer>
               {relatedTips.map((tip) => (
                 <li key={tip.id}>
                   <Tag
@@ -121,7 +131,7 @@ export default function PlantDetails({
                 </li>
               ))}
             
-          </StyledTagContainer>
+          </StyledListContainer>
 
       </StyledPlantContainer>
 
@@ -258,7 +268,7 @@ const StyledFertilizerUl = styled.ul`
   font-weight: normal;
 `;
 
-const StyledTagContainer = styled.ul`
+const StyledListContainer = styled.ul`
   display: flex;
   justify-content:flex-start;
 `;
