@@ -10,7 +10,7 @@ import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
 import { Toaster } from "react-hot-toast";
 import styled from "styled-components";
-import { notes } from "/lib/noteData";
+import { notes } from "@/lib/noteData";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
@@ -193,11 +193,26 @@ export default function App({ Component, pageProps }) {
 
   /* __________________________________ */
 
-  const [notesData, setNotesData] = useState(notes);
+  const [notesData, setNotesData] = useLocalStorageState(notes);
 
   function handleDeleteNote(id) {
     setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
   }
+
+  function handleAddNote(routerQuery) {
+    setNotesData((prevnotes) => [
+      ...prevnotes,
+      {
+        id: nanoid(),
+        headline: "initial Headline",
+        note: "initial note",
+        noteLocation: routerQuery,
+      },
+    ]);
+  }
+function handleEditNote(id) {
+  
+}
 
   return (
     <>
@@ -236,6 +251,7 @@ export default function App({ Component, pageProps }) {
         handleMouseLeave={handleMouseLeave}
         handleDeleteNote={handleDeleteNote}
         notesData={notesData}
+        handleAddNote={handleAddNote}
       />
       <Toaster />
       <Navigation />

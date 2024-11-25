@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
 
-export default function NoteCard({ headline, note }) {
+export default function NoteCard({ headline, note, handleDeleteNote, id }) {
   return (
     <StyledNoteWrapper>
       <StyledFieldset>
@@ -12,6 +12,7 @@ export default function NoteCard({ headline, note }) {
           type="text"
           placeholder
           defaultValue={headline}
+          readonly
         ></StyledInput>
       </StyledFieldset>
       <StyledFieldset>
@@ -21,9 +22,10 @@ export default function NoteCard({ headline, note }) {
           type="text"
           placeholder
           defaultValue={note}
+          readonly
         ></StyledInput>
       </StyledFieldset>
-      <StyledButton type="button" onClick={""}>
+      <StyledButton type="button" onClick={() => handleDeleteNote(noteid)}>
         <FaTrashAlt />
       </StyledButton>
       <StyledButton type="button" onClick={""}>

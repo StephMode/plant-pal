@@ -5,15 +5,17 @@ import { useRouter } from "next/router";
 import Tag from "../Tag";
 import { useState } from "react";
 import NoteCard from "../NoteCard";
+import { FaPlus } from "react-icons/fa";
 
 export default function TipDetails({
   tip,
   plantsToBeTagged,
   notesData,
   routerQuery,
+  handleAddNote,
+  handleDeleteNote,
 }) {
   const router = useRouter();
-
   const [noRelatedPlants, setNoRelatedPlants] = useState(false);
 
   const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
@@ -62,15 +64,24 @@ export default function TipDetails({
           )}
         </StyledTagContainer>
       </StyledTipContainer>
+      <AddNodeButton type="Button" onClick={() => handleAddNote(routerQuery)}>
+        <FaPlus />
+      </AddNodeButton>
       <StyledNoteContainer>
-        {notesData
-          .filter((note) => note.noteLocation === routerQuery)
-          .slice(0, 5)
-          .map((note) => (
-            <li key={note.id}>
-              <NoteCard headline={note.headline} note={note.note} />
-            </li>
-          ))}gi
+        {Array.isArray(notesData) &&
+          notesData
+            .filter((note) => note.noteLocation === String(routerQuery))
+            .slice(0, 5)
+            .map((note) => (
+              <li key={note.id}>
+                <NoteCard
+                  headline={note.headline}
+                  note={note.note}
+                  handleDeleteNote={handleDeleteNote}
+                  id={note.id}
+                />
+              </li>
+            ))}
       </StyledNoteContainer>
     </>
   );
@@ -144,4 +155,15 @@ const StyledTagContainer = styled.ul`
 const StyledNoteContainer = styled.ul`
   display: flex;
   justify-content: flex-start;
+`;
+
+const AddNodeButton = styled.button`
+  background-color: var(--brown);
+  padding: 8px 20px 1px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  align-self: end;
+  font-size: 20px;
+  transition: 0.5s ease-in-out;
 `;
