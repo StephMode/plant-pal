@@ -69,6 +69,8 @@ export default function App({ Component, pageProps }) {
 
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   function handleToggleModal() {
     setShowModal(!showModal);
   }
@@ -190,9 +192,13 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
-  function handleSearchQuery(searchQuery) {
-    console.log("app: the search query is", searchQuery);
+  function handleSearchQuery(searchInput) {
+    // console.log("app: the input for the search query is:", searchInput);
+    setSearchQuery(searchInput);
+    console.log("app: the search query is:", searchQuery);
   }
+
+
 
   return (
     <>
