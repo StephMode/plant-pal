@@ -23,6 +23,15 @@ export default function App({ Component, pageProps }) {
   const [progress, setProgress] = useState(100);
   const [isPaused, setIsPaused] = useState(false);
 
+  const testReminder = [
+    { plantName: "TestPlant",
+      task: "watering",
+      date: "25.11.2024"
+    }
+  ];
+
+  const [reminders, setReminders] = useState(testReminder);
+
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
     return tips[randomIndex];
