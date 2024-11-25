@@ -25,6 +25,7 @@ export default function TipDetailsPage({ tips, plants, handleDeleteNote }) {
         tip={tip}
         plantsToBeTagged={plantsToBeTagged}
         handleDeleteNote={handleDeleteNote}
+        
       />
     </main>
   );
