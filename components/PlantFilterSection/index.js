@@ -218,6 +218,9 @@ const StyledSubmitButton = styled.button`
   cursor: pointer;
   font-size: 15px;
   margin-top: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 
   &:active {
     background-color: var(--white);
