@@ -209,6 +209,7 @@ export default function App({ Component, pageProps }) {
     )
     }
   }, [searchQuery])
+  // später nochmal schauen, ob ich useEffect hier unbedingt brauche
 
   function resetSearch() {
     setSearchResults(tips);

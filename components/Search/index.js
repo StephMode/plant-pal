@@ -1,17 +1,21 @@
 import styled from "styled-components"
 import { IoSearch } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function Search({ handleSearchQuery, resetSearch }) {
 
     function handleSearchInput(event) {
-        if (event.target.value.length === 0) {
+        if (event.target.value.length < 3) {
             resetSearch(event.target.value.length)
         } else {
         handleSearchQuery(event.target.value);
         }
     }
+
+    useEffect(() => {
+        resetSearch("");
+    }, [])
 
 
     return(
