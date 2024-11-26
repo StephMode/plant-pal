@@ -64,10 +64,10 @@ export default function TipDetails({
             )
           )}
         </StyledTagContainer>
+        <AddNodeButton type="Button" onClick={() => handleAddNote(routerQuery)}>
+          <FaPlus /> Add Note
+        </AddNodeButton>
       </StyledTipContainer>
-      <AddNodeButton type="Button" onClick={() => handleAddNote(routerQuery)}>
-        <FaPlus />
-      </AddNodeButton>
       <StyledNoteContainer>
         {Array.isArray(notesData) &&
           notesData
@@ -82,6 +82,7 @@ export default function TipDetails({
                   handleEditNote={handleEditNote}
                   routerQuery={routerQuery}
                   dateCreated={note.dateCreated}
+                  tipTitle={tip.title}
                 />
               </li>
             ))}
@@ -155,18 +156,27 @@ const StyledTagContainer = styled.ul`
   display: flex;
   justify-content: flex-start;
 `;
-const StyledNoteContainer = styled.ul`
+const StyledNoteContainer = styled.section`
   display: flex;
-  justify-content: flex-start;
+  width: 72%;
+  padding: 0px 20px;
+  flex-wrap: wrap;
+  @media (max-width: 768px) {
+    display: block;
+    width: 100%;
+  }
 `;
 
 const AddNodeButton = styled.button`
   background-color: var(--brown);
-  padding: 8px 20px 1px 20px;
+  padding: 10px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  align-self: end;
-  font-size: 20px;
+  font-size: 15px;
   transition: 0.5s ease-in-out;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;

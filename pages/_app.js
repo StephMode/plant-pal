@@ -193,13 +193,26 @@ export default function App({ Component, pageProps }) {
 
   /* __________________________________ */
 
-  const [notesData, setNotesData] = useState(notes);
+  const [notesData, setNotesData] = useLocalStorageState("notesData", {
+    defaultValue: notes,
+  });
 
   function handleDeleteNote(id) {
     setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
     toast.success("Note successfully deleted");
   }
 
+  function showWarningToast() {
+    toast("This is a warning message!", {
+      icon: "⚠️", // Ein passendes Icon für Warnungen
+      style: {
+        border: "1px solid #ffeeba",
+        padding: "16px",
+        color: "#856404",
+        backgroundColor: "#fff3cd", // Gelber Hintergrund
+      },
+    });
+  }
   function handleAddNote(routerQuery) {
     let noteAdded = false;
 
@@ -209,7 +222,7 @@ export default function App({ Component, pageProps }) {
       );
 
       if (notesOnCurrentPage.length >= 5) {
-        toast.error("Maximum of 5 notes per page reached");
+        warningToast();
         return prevnotes;
       } else noteAdded = true;
 
