@@ -8,7 +8,7 @@ export default function Breadcrumbs({breadcrumbType, plant,tip, isOwned}){
                 <StyledLink href="/home">Home</StyledLink>
                 { breadcrumbType === "plant" && 
                 <>
-                    {isOwned && <>&gt; <StyledLink href="/plantTipsPage">My plants</StyledLink></>} &gt; <i><b> {plant.name} </b></i>
+                    {isOwned && <>&gt; <StyledLink href="/myplants">My plants</StyledLink></>} &gt; <i><b> {plant.name} </b></i>
                 </>
                 }
                 { breadcrumbType === "tip" && 
