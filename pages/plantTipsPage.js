@@ -2,9 +2,9 @@ import Search from "@/components/Search";
 import TipCard from "/components/TipCard";
 import styled from "styled-components";
 
-export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, resetSearch }) {
+export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, resetSearch, noSearchResults }) {
 
-  const tipsTobeRendered = searchResults !== tips ? searchResults : tips;
+  const tipsTobeRendered = searchResults.length > 0 ? searchResults : tips;
 
   return (
     <main>

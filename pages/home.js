@@ -26,10 +26,11 @@ export default function HomePage({
   resetSearch,
   searchResults
 }) {
-  const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
+  // const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
   // const plantsToBeRendered = searchResults !== plants ? searchResults : plants;
+  const plantsToBeRendered = searchResults.length > 0 ? searchResults : plants;
   
-
+  
 
   return (
     <main>

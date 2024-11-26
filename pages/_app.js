@@ -72,6 +72,7 @@ export default function App({ Component, pageProps }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchPage, setSearchPage] = useState(""); 
   const [searchResults, setSearchResults] = useState([]);
+  const [noSearchResults, setNoSearchResults] = useState(false);
 
   function handleToggleModal() {
     setShowModal(!showModal);
@@ -212,29 +213,38 @@ export default function App({ Component, pageProps }) {
         tip.title.includes(searchQuery) 
         || tip.title.toLowerCase().includes(searchQuery)
         || tip.shortBodyContent.includes(searchQuery) 
-        || tip.shortBodyContent.toLowerCase().includes(searchQuery)     
+        || tip.shortBodyContent.toLowerCase().includes(searchQuery)
       )
-    )
-    } else if (searchPage === "plants") 
+    );setNoSearchResults(false)
+      ; if (searchResults.length === 0) {
+      setNoSearchResults(true)
+    }
+    }
+    else if (searchPage === "plants") 
       {setSearchResults(plants.filter((plant) => 
         plant.name.includes(searchQuery) 
         || plant.name.toLowerCase().includes(searchQuery)
         || plant.botanicalName.includes(searchQuery) 
         || plant.botanicalName.toLowerCase().includes(searchQuery)     
       )
-    )
+    );setNoSearchResults(false)
+    ; if (searchResults.length === 0) {
+    setNoSearchResults(true)
+  }
     }
   }, [searchQuery, searchPage])
   // später nochmal schauen, ob ich useEffect hier unbedingt brauche
 
   function resetSearch() {
-    setSearchResults(tips);
+    setSearchResults([]);
+    setNoSearchResults(false)
   }
 
-  // useEffect(() => {
-  //   console.log("Search query updated:", searchQuery);
-  //   console.log("Search results:", searchResults);
-  // }, [searchQuery]);
+  useEffect(() => {
+    console.log("Search query updated:", searchQuery);
+    console.log("Search results:", searchResults);
+    console.log(noSearchResults)
+  }, [searchQuery, searchResults, noSearchResults]);
   
 
   return (
@@ -270,6 +280,7 @@ export default function App({ Component, pageProps }) {
         handleSearchQuery={handleSearchQuery}
         searchResults={searchResults}
         resetSearch={resetSearch}
+        noSearchResults={noSearchResults}
       />
       <Toaster/>
       <Navigation />
