@@ -117,7 +117,7 @@ export default function PlantDetails({
         <StyledEditDeleteSection>
           <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")} buttonRole={"deleteButton"}/>
         </StyledEditDeleteSection>
-        <StyledTipH3>Reminders:</StyledTipH3>
+        {relatedReminders.length > 0 ? <StyledTipH3>Reminders:</StyledTipH3> : null}
         <StyledListContainer>
             {relatedReminders.map((reminder) => 
                 <li key={reminder.id}>
