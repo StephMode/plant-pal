@@ -208,31 +208,27 @@ export default function App({ Component, pageProps }) {
   // const searchResults = searchQuery !== "" ? tips.filter((tip) => tip.title.includes(searchQuery)) : tips;
    
   useEffect(() => {
-  if (searchPage === "tips") 
-      {setSearchResults(tips.filter((tip) => 
-        tip.title.includes(searchQuery) 
-        || tip.title.toLowerCase().includes(searchQuery)
-        || tip.shortBodyContent.includes(searchQuery) 
-        || tip.shortBodyContent.toLowerCase().includes(searchQuery)
-      )
-    );setNoSearchResults(false)
-      ; if (searchResults.length === 0) {
-      setNoSearchResults(true)
-    }
-    }
-    else if (searchPage === "plants") 
-      {setSearchResults(plants.filter((plant) => 
+    if (searchPage === "plants") {
+      const queriedPlants = plants.filter((plant) => 
         plant.name.includes(searchQuery) 
         || plant.name.toLowerCase().includes(searchQuery)
         || plant.botanicalName.includes(searchQuery) 
         || plant.botanicalName.toLowerCase().includes(searchQuery)     
-      )
-    );setNoSearchResults(false)
-    ; if (searchResults.length === 0) {
-    setNoSearchResults(true)
-  }
+      );
+      setSearchResults(queriedPlants);
+      setNoSearchResults(queriedPlants.length === 0);
+    } else if (searchPage === "tips") {
+      const queriedTips = tips.filter((tip) => 
+        tip.title.includes(searchQuery) 
+        || tip.title.toLowerCase().includes(searchQuery)
+        || tip.shortBodyContent.includes(searchQuery) 
+        || tip.shortBodyContent.toLowerCase().includes(searchQuery)
+      );
+      setSearchResults(queriedTips);
+      setNoSearchResults(queriedTips.length === 0);
     }
-  }, [searchQuery, searchPage])
+  }, [searchQuery, searchPage]);
+  
   // später nochmal schauen, ob ich useEffect hier unbedingt brauche
 
   function resetSearch() {
@@ -243,7 +239,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     console.log("Search query updated:", searchQuery);
     console.log("Search results:", searchResults);
-    console.log(noSearchResults)
+    console.log("value of no search result", noSearchResults)
   }, [searchQuery, searchResults, noSearchResults]);
   
 

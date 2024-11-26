@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, resetSearch, noSearchResults }) {
 
-  const tipsTobeRendered = searchResults.length > 0 ? searchResults : tips;
+  const tipsTobeRendered = noSearchResults ? searchResults : searchResults.length > 0 ? searchResults : tips;
+  // const tipsTobeRendered = searchResults.length > 0 ? searchResults : tips;
 
   return (
     <main>

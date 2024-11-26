@@ -24,11 +24,13 @@ export default function HomePage({
   handleMouseHover,
   handleSearchQuery,
   resetSearch,
-  searchResults
+  searchResults,
+  noSearchResults
 }) {
   // const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
   // const plantsToBeRendered = searchResults !== plants ? searchResults : plants;
-  const plantsToBeRendered = searchResults.length > 0 ? searchResults : plants;
+  // const plantsToBeRendered = searchResults.length > 0 ? searchResults : plants;
+  const plantsToBeRendered = noSearchResults ? searchResults : searchResults.length > 0 ? searchResults : filteredPlants !== searchResults ? filteredPlants : plants;
   
   
 
