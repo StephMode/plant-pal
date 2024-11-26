@@ -222,13 +222,6 @@ const StyledSubmitButton = styled.button`
   gap: 5px;
   align-items: center;
 
-  &:active {
-    background-color: var(--white);
-    padding: 8px 20px;
-    border: 1px solid var(--black);
-    border-radius: 20px;
-    font-weight: bold;
-  }
 `;
 
 const StyledIconSection = styled.section`

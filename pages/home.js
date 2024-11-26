@@ -32,9 +32,8 @@ export default function HomePage({
       <StyledSpacer/>
       <TipBanner randomTip={randomTip} progress={progress} handleMouseHover = {handleMouseHover} handleMouseLeave = {handleMouseLeave}/>
 
-      <ThemeProvider theme={showPlantFilterSection ? openfilter : defaultTheme }>
+      <ThemeProvider theme={showPlantFilterSection ? openFilter : closedFilter }>
         <StyledFilterSection>
-          
           <PlantFilterSection 
             handleFilterPlants={onFilterPlants} 
             showPlantFilterSection={showPlantFilterSection} 
@@ -87,18 +86,18 @@ const StyledFilterSection = styled.section`
   border-radius: 15px;
   padding: ${props => props.theme.padding};
 `;
-  const defaultTheme = {
-    main: "transparent",
-    padding: "0",
-    flex: "flex-end",
-    flexDir: ""
-  }
-  const openfilter = {
-    main: "rgba(0, 0, 0, 0.1)",
-    padding: "15px 15px 20px 20px",
-    flex: "space-between",
-    flexDir: "column-reverse"
-  }
+const closedFilter = {
+  main: "transparent",
+  padding: "0",
+  flex: "flex-end",
+  flexDir: ""
+}
+const openFilter = {
+  main: "rgba(0, 0, 0, 0.1)",
+  padding: "15px 15px 20px 20px",
+  flex: "space-between",
+  flexDir: "column-reverse"
+}
 const StyledInfoText = styled.p`
   color: var(--green-main);
   background-color: var(--gray);
