@@ -71,7 +71,7 @@ export default function App({ Component, pageProps }) {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchPage, setSearchPage] = useState(""); 
-  const [searchResults, setSearchResults] = useState(tips);
+  const [searchResults, setSearchResults] = useState([]);
 
   function handleToggleModal() {
     setShowModal(!showModal);
@@ -207,7 +207,7 @@ export default function App({ Component, pageProps }) {
   // const searchResults = searchQuery !== "" ? tips.filter((tip) => tip.title.includes(searchQuery)) : tips;
    
   useEffect(() => {
-  if (searchQuery.length > 0) 
+  if (searchPage === "tips") 
       {setSearchResults(tips.filter((tip) => 
         tip.title.includes(searchQuery) 
         || tip.title.toLowerCase().includes(searchQuery)
@@ -215,8 +215,16 @@ export default function App({ Component, pageProps }) {
         || tip.shortBodyContent.toLowerCase().includes(searchQuery)     
       )
     )
+    } else if (searchPage === "plants") 
+      {setSearchResults(plants.filter((plant) => 
+        plant.name.includes(searchQuery) 
+        || plant.name.toLowerCase().includes(searchQuery)
+        || plant.botanicalName.includes(searchQuery) 
+        || plant.botanicalName.toLowerCase().includes(searchQuery)     
+      )
+    )
     }
-  }, [searchQuery])
+  }, [searchQuery, searchPage])
   // später nochmal schauen, ob ich useEffect hier unbedingt brauche
 
   function resetSearch() {

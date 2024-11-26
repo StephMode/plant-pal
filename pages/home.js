@@ -23,9 +23,12 @@ export default function HomePage({
   handleMouseLeave,
   handleMouseHover,
   handleSearchQuery,
-  resetSearch
+  resetSearch,
+  searchResults
 }) {
   const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
+  // const plantsToBeRendered = searchResults !== plants ? searchResults : plants;
+  
 
 
   return (
@@ -46,9 +49,9 @@ export default function HomePage({
       <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} selectedFilter={selectedFilter}/>
       { filteredPlants.length === 0 && 
            <StyledInfoText>No plants were found. Reset filter.</StyledInfoText>}
-      { !selectedFilter && plants.length === 0 ? (
+      { !selectedFilter && plants.length === 0 &&
           <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
-      ) : (
+        }
           <ul>
            {plantsToBeRendered.map((plant) => (
               <li key={plant.id}>
@@ -63,7 +66,7 @@ export default function HomePage({
               </li>)
             )}
           </ul>
-      )}
+      
     </main>
   );
 }
