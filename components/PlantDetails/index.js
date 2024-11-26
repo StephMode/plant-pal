@@ -164,7 +164,7 @@ export default function PlantDetails({
               />
             ) : isReminder ? (
               <ReminderForm
-                plantName={plant.name}
+                plant={plant.name}
                 handleToggleModal={handleToggleModal}
                 handleAddReminder={handleAddReminder}
                 id={plant.id}

@@ -218,15 +218,17 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
-  function handleAddReminder(newReminderData, id) {
+  function handleAddReminder(newReminderData, id, name) {
     const newReminder = {
-      ...newReminderData,
       id: nanoid(),
+      plantName: name,
+      ...newReminderData,
     };
     setReminders([newReminder, ...reminders]);
     router.push(`/plants/${id}`);
     setIsReminder(false);
     setShowModal(false);
+    console.log(reminders);
   }
 
   return (

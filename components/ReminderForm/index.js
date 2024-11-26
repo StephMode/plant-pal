@@ -3,7 +3,7 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import toast from 'react-hot-toast';
 
-export default function ReminderForm({plantName, handleToggleModal, handleAddReminder, id}) {
+export default function ReminderForm({plant, handleToggleModal, handleAddReminder, id}) {
 
     const [showErrorMessageTask, setShowErrorMessageTask] = useState(false);
 
@@ -17,7 +17,7 @@ export default function ReminderForm({plantName, handleToggleModal, handleAddRem
             toast.error("Some reminder details are missing");
             if (data.task === "") {setShowErrorMessageTask(true)};
         } else {
-          handleAddReminder(data, id); toast.success("Reminder successfully created") 
+          handleAddReminder(data, id, plant); toast.success("Reminder successfully created") 
         }
           event.target.reset();
         };
@@ -51,7 +51,7 @@ export default function ReminderForm({plantName, handleToggleModal, handleAddRem
                 </StyledFieldset>
                 <StyledButtonContainer>
                     <StyledSubmitButton type="submit">
-                        Create Reminder for {plantName}
+                        Create Reminder for {plant}
                     </StyledSubmitButton>
                 </StyledButtonContainer>
             </form>
