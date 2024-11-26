@@ -2,7 +2,7 @@ import styled, {ThemeProvider} from "styled-components";
 import { RiCalendarScheduleFill } from "react-icons/ri";
 
 
-export default function ReminderCard({plantName, task, date, reminderPage, handleDeleteReminder}) {
+export default function ReminderCard({plantName, task, date, id, reminderPage, handleDeleteReminder}) {
 
     return (
         <ThemeProvider theme={reminderPage ? reminderPageTheme : plantDetailsPageTheme}>
