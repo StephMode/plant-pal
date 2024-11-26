@@ -10,7 +10,7 @@ import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
 import { Toaster } from "react-hot-toast";
 import styled from "styled-components";
-import { notes } from "@/lib/noteData";
+import { notes } from "/lib/noteData";
 import toast from "react-hot-toast";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -24,7 +24,6 @@ export default function App({ Component, pageProps }) {
   const [randomTip, setRandomTip] = useState(tips[1]);
   const [progress, setProgress] = useState(100);
   const [isPaused, setIsPaused] = useState(false);
-
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
     return tips[randomIndex];
@@ -194,7 +193,7 @@ export default function App({ Component, pageProps }) {
 
   /* __________________________________ */
 
-  const [notesData, setNotesData] = useLocalStorageState(notes);
+  const [notesData, setNotesData] = useState(notes);
 
   function handleDeleteNote(id) {
     setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
@@ -202,17 +201,37 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleAddNote(routerQuery) {
-    setNotesData((prevnotes) => [
-      ...prevnotes,
-      {
-        id: nanoid(),
-        headline: "initial Headline",
-        note: "initial note",
-        noteLocation: routerQuery,
-      },
-    ]);
-    toast.success("Note successfully added");
+    let noteAdded = false;
+
+    setNotesData((prevnotes) => {
+      const notesOnCurrentPage = prevnotes.filter(
+        (note) => note.noteLocation === routerQuery
+      );
+
+      if (notesOnCurrentPage.length >= 5) {
+        toast.error("Maximum of 5 notes per page reached");
+        return prevnotes;
+      } else noteAdded = true;
+
+      const currentDate = new Date().toLocaleDateString();
+
+      return [
+        ...prevnotes,
+        {
+          id: nanoid(),
+          headline: "initial Headline",
+          note: "initial note",
+          noteLocation: routerQuery,
+          dateCreated: currentDate,
+        },
+      ];
+    });
+
+    if (noteAdded) {
+      toast.success("Note successfully added");
+    }
   }
+
   function handleEditNote(newPlantData, id, routerQuery) {
     console.log(routerQuery);
     setNotesData((prevnotes) =>

@@ -12,6 +12,7 @@ export default function NoteCard({
   id,
   handleEditNote,
   routerQuery,
+  dateCreated,
 }) {
   const [toggleEditNote, setToggleEditNote] = useState(false);
 
@@ -32,6 +33,7 @@ export default function NoteCard({
   return (
     <form onSubmit={EditNote}>
       <StyledNoteWrapper>
+        <p>{dateCreated}</p>
         <StyledFieldset>
           <StyledInput
             id="Title"

@@ -72,7 +72,6 @@ export default function TipDetails({
         {Array.isArray(notesData) &&
           notesData
             .filter((note) => note.noteLocation === String(routerQuery))
-            .slice(0, 5)
             .map((note) => (
               <li key={note.id}>
                 <NoteCard
@@ -82,6 +81,7 @@ export default function TipDetails({
                   id={note.id}
                   handleEditNote={handleEditNote}
                   routerQuery={routerQuery}
+                  dateCreated={note.dateCreated}
                 />
               </li>
             ))}
