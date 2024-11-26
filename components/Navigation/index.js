@@ -18,8 +18,13 @@ export default function Navigation({reminders, currentDate}) {
         <>
             <StyledNavContainer>
                 <Link href="/home" passHref >
-                    <StyledIconContainer $isactive={router.asPath === "/"}>
+                    <StyledIconContainer $isactive={router.asPath === "/home"}>
                         <HiHome />
+                    </StyledIconContainer>
+                </Link>
+                <Link href="/plantTipsPage" passHref>
+                    <StyledIconContainer $isactive={router.asPath === "/plantTipsPage"}>
+                        <RiPlantFill />
                     </StyledIconContainer>
                 </Link>
                 <Link href="/addplant" passHref>
@@ -30,11 +35,6 @@ export default function Navigation({reminders, currentDate}) {
                 <Link href="/myplants" passHref>
                     <StyledIconContainer $isactive={router.asPath === "/myplants"}>
                         <IoHeart />
-                    </StyledIconContainer>
-                </Link>
-                <Link href="/plantTipsPage" passHref>
-                    <StyledIconContainer $isactive={router.asPath === "/plantTipsPage"}>
-                        <RiPlantFill />
                     </StyledIconContainer>
                 </Link>
                 <Link href="/remindersPage" passHref>
