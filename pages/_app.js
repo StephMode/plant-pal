@@ -23,6 +23,18 @@ export default function App({ Component, pageProps }) {
   const [progress, setProgress] = useState(100);
   const [isPaused, setIsPaused] = useState(false);
 
+
+  function getDate() {
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${year}-${month}-${date}`;
+  }
+
+  const [currentDate, setCurrentDate] = useState(getDate());
+
+
   const testReminder = [
     { id: 1,
       plantName: "Snake Plant",

@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
 import { RiPlantFill } from "react-icons/ri";
 import { RiCalendarScheduleFill } from "react-icons/ri";
+import { GoDotFill } from "react-icons/go";
 
 
 export default function Navigation() { 
@@ -37,6 +38,7 @@ export default function Navigation() {
                 </Link>
                 <Link href="/remindersPage" passHref>
                     <StyledIconContainer $isactive={router.asPath === "/remindersPage"}>
+                        <StyledNotificationIcon />
                         <RiCalendarScheduleFill />
                     </StyledIconContainer>
                 </Link>
@@ -71,3 +73,12 @@ const StyledNavContainer = styled.nav`
     color: var(--white);
     font-size: 2.2rem;
  `;
+
+const StyledNotificationIcon = styled(GoDotFill)`
+    color: var(--gold-dark);
+    position: relative;
+    right: -30px;
+    top: 4px;
+    opacity: 0.5;
+    z-index: 1;
+`;
