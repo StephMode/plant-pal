@@ -27,22 +27,26 @@ export default function App({ Component, pageProps }) {
     { id: 1,
       plantName: "TestPlant",
       task: "watering",
-      date: "25.11.2024"
+      date: "25.11.2024",
+      relatedPlant: 1
     },
     { id: 2,
       plantName: "TestPlant2",
       task: "fertilizing",
-      date: "25.11.2024"
+      date: "25.11.2024",
+      relatedPlant: 2
     },
     { id: 3,
       plantName: "TestPlant3",
       task: "fertilizing",
-      date: "25.11.2024"
+      date: "25.11.2024",
+      relatedPlant: 3
     },
     { id: 4,
       plantName: "TestPlant4",
       task: "fertilizing",
-      date: "25.11.2024"
+      date: "25.11.2024",
+      relatedPlant: 4
     }
   ];
 
@@ -218,17 +222,17 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
-  function handleAddReminder(newReminderData, id, name) {
+  function handleAddReminder(newReminderData, plantId, name) {
     const newReminder = {
       id: nanoid(),
       plantName: name,
+      relatedPlant: plantId,
       ...newReminderData,
     };
     setReminders([newReminder, ...reminders]);
-    router.push(`/plants/${id}`);
+    router.push(`/plants/${plantId}`);
     setIsReminder(false);
     setShowModal(false);
-    console.log(reminders);
   }
 
   function handleDeleteReminder(id, task) {
