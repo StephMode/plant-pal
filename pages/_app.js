@@ -204,7 +204,10 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
   if (searchQuery.length > 0) 
       {setSearchResults(tips.filter((tip) => 
-        tip.title.includes(searchQuery) || tip.title.toLowerCase().includes(searchQuery)     
+        tip.title.includes(searchQuery) 
+        || tip.title.toLowerCase().includes(searchQuery)
+        || tip.shortBodyContent.includes(searchQuery) 
+        || tip.shortBodyContent.toLowerCase().includes(searchQuery)     
       )
     )
     }
