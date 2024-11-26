@@ -66,7 +66,9 @@ const StyledReminderContent = styled.p`
 `;
 
 const StyledH2 = styled.h2`
-&:hover {
+    max-width: 260px;
+    
+    &:hover {
     color: var(--green-light-dark);
     transition: all 0.45s ease 0s;
   }
