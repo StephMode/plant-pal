@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { nanoid } from "nanoid";
 import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import styled from "styled-components";
 
 export default function App({ Component, pageProps }) {
@@ -233,7 +233,7 @@ export default function App({ Component, pageProps }) {
 
   function handleDeleteReminder(id) {
     setReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
-
+    toast.success("Task completed");
   }
 
   return (
