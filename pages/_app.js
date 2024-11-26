@@ -269,6 +269,7 @@ export default function App({ Component, pageProps }) {
         reminders={reminders}
         isReminder={isReminder}
         handleAddReminder={handleAddReminder}
+        handleDeleteReminder={handleDeleteReminder}
       />
       <Toaster/>
       <Navigation />
