@@ -37,7 +37,6 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     const Interval = setInterval(() => {
       setCurrentDate(getDate());
-      console.log(getDate());
     }, 10000);
 
     return () => clearInterval(Interval);
@@ -254,7 +253,6 @@ export default function App({ Component, pageProps }) {
     router.push(`/plants/${plantId}`);
     setIsReminder(false);
     setShowModal(false);
-    console.log(reminders);
   }
 
   function handleDeleteReminder(id, task) {
