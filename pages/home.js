@@ -95,7 +95,7 @@ const StyledFilterSection = styled.section`
   }
   const openfilter = {
     main: "rgba(0, 0, 0, 0.1)",
-    padding: "20px;",
+    padding: "15px 15px 20px 20px",
     flex: "space-between",
     flexDir: "column-reverse"
   }
