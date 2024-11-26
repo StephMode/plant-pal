@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled from "styled-components"
+import styled, {ThemeProvider} from "styled-components"
 import { HiHome } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
 import { RiPlantFill } from "react-icons/ri";
-import { RiCalendarScheduleFill } from "react-icons/ri";
-import { GoDotFill } from "react-icons/go";
+import { RiCalendarFill } from "react-icons/ri";
 
 
 export default function Navigation({reminders, currentDate}) { 
@@ -39,10 +38,12 @@ export default function Navigation({reminders, currentDate}) {
                     </StyledIconContainer>
                 </Link>
                 <Link href="/remindersPage" passHref>
+                    <ThemeProvider theme={showNotification ? notificationTheme : defaultTheme}>
+                    {showNotification && <StyledNotificationIcon></StyledNotificationIcon>}
                     <StyledIconContainer $isactive={router.asPath === "/remindersPage"}>
-                        {showNotification && <StyledNotificationIcon />}
-                        <RiCalendarScheduleFill />
+                        <RiCalendarFill />
                     </StyledIconContainer>
+                    </ThemeProvider>
                 </Link>
             </StyledNavContainer>
         </>
@@ -74,13 +75,34 @@ const StyledNavContainer = styled.nav`
     align-items: center;
     color: var(--white);
     font-size: 2.2rem;
+    position: ${props => props.theme.position};
+    top: ${props => props.theme.top};
  `;
 
-const StyledNotificationIcon = styled(GoDotFill)`
-    color: var(--gold-dark);
+
+const notificationTheme = {
+    position: "relative",
+    top: "-6px",
+}
+
+const defaultTheme = {
+    position: "static",
+    top: "none",
+}
+
+const StyledNotificationIcon = styled.span`
+    display: block;
+    background-color: var(--error-red);
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
     position: relative;
-    right: -30px;
-    top: 4px;
-    opacity: 0.5;
+    top: 16px;
+    right: -26px;
     z-index: 1;
 `;
+
+
+
+
+
