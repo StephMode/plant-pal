@@ -37,6 +37,7 @@ export default function HomePage({
       <Search 
         handleSearchQuery={handleSearchQuery}
         resetSearch={resetSearch}
+        searchFor={"plants"}
       />
       <StyledFilterButtonSection>
         <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />

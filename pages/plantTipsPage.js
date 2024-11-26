@@ -16,6 +16,7 @@ export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, 
       <Search 
         handleSearchQuery={handleSearchQuery}
         resetSearch={resetSearch}
+        searchFor={"tips"}
       />
 
       {tips.length === 0 ? 
