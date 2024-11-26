@@ -48,25 +48,25 @@ export default function App({ Component, pageProps }) {
     { id: 1,
       plantName: "Snake Plant",
       task: "watering",
-      date: "2024-11-25",
+      date: "2024-11-27",
       relatedPlant: "1"
     },
     { id: 2,
       plantName: "Fiddle Leaf Fig",
       task: "fertilizing",
-      date: "2024-11-25",
+      date: "2024-11-28",
       relatedPlant: "2"
     },
     { id: 3,
       plantName: "Aloe Vera",
       task: "fertilizing",
-      date: "2024-11-25",
+      date: "2024-11-30",
       relatedPlant: "3"
     },
     { id: 4,
       plantName: "Spider Plant",
       task: "fertilizing",
-      date: "2024-11-25",
+      date: "2024-12-03",
       relatedPlant: "4"
     }
   ];

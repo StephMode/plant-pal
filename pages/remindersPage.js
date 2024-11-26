@@ -7,7 +7,10 @@ export default function RemindersPage({reminders, handleDeleteReminder}) {
             <h1>Reminders</h1>
             <StyledSpacer />
             <ul>
-            {reminders.map((reminder) => 
+            {reminders.length === 0 && <StyledInfoText>Currently no reminders.</StyledInfoText>}
+            {reminders
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .map((reminder) => 
                 <li key={reminder.id}>
                     <ReminderCard plantName={reminder.plantName} task={reminder.task} date={reminder.date} id={reminder.id} reminderPage={true} handleDeleteReminder={handleDeleteReminder} plantId={reminder.relatedPlant} />
                 </li>)}
@@ -20,4 +23,12 @@ export default function RemindersPage({reminders, handleDeleteReminder}) {
 const StyledSpacer = styled.span`
   display: block;
   height: 113px;
+`;
+
+const StyledInfoText = styled.p`
+  color: var(--green-main);
+  background-color: var(--gray);
+  margin-top: 10px;
+  padding: 40px 40px;
+  border-radius: 25px;
 `;

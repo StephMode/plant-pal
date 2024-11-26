@@ -120,7 +120,9 @@ export default function PlantDetails({
         </StyledEditDeleteSection>
         {relatedReminders.length > 0 ? <StyledTipH3>Reminders:</StyledTipH3> : null}
         <StyledListContainer>
-            {relatedReminders.map((reminder) => 
+            {relatedReminders
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .map((reminder) => 
                 <li key={reminder.id}>
                     <ReminderCard task={reminder.task} date={reminder.date} />
                 </li>)}
