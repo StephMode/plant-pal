@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
 
   function getDate() {
     const today = new Date();
-    const month = today.getMonth();
+    const month = today.getMonth() + 1;
     const year = today.getFullYear();
     const date = today.getDate();
     return `${year}-${month}-${date}`;
@@ -34,30 +34,39 @@ export default function App({ Component, pageProps }) {
 
   const [currentDate, setCurrentDate] = useState(getDate());
 
+  useEffect(() => {
+    const Interval = setInterval(() => {
+      setCurrentDate(getDate());
+      console.log(getDate());
+    }, 10000);
+
+    return () => clearInterval(Interval);
+  }, []);
+
 
   const testReminder = [
     { id: 1,
       plantName: "Snake Plant",
       task: "watering",
-      date: "25.11.2024",
+      date: "2024-11-25",
       relatedPlant: "1"
     },
     { id: 2,
       plantName: "Fiddle Leaf Fig",
       task: "fertilizing",
-      date: "25.11.2024",
+      date: "2024-11-25",
       relatedPlant: "2"
     },
     { id: 3,
       plantName: "Aloe Vera",
       task: "fertilizing",
-      date: "25.11.2024",
+      date: "2024-11-25",
       relatedPlant: "3"
     },
     { id: 4,
       plantName: "Spider Plant",
       task: "fertilizing",
-      date: "25.11.2024",
+      date: "2024-11-25",
       relatedPlant: "4"
     }
   ];
@@ -245,6 +254,7 @@ export default function App({ Component, pageProps }) {
     router.push(`/plants/${plantId}`);
     setIsReminder(false);
     setShowModal(false);
+    console.log(reminders);
   }
 
   function handleDeleteReminder(id, task) {

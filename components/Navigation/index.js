@@ -13,8 +13,8 @@ export default function Navigation({reminders, currentDate}) {
 
     const router = useRouter();
 
-    const showNotification = reminders.includes(currentDate);
-  
+    const showNotification = reminders.some(reminder => reminder.date <= currentDate);
+    
     return (
         <>
             <StyledNavContainer>
