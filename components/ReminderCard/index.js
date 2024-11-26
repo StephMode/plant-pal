@@ -23,6 +23,7 @@ const reminderPageTheme = {
     width: "350px",
     minWidth: "330px",
     marginLeft: "0px",
+    marginBottom: "10px",
     alignSelf: "flex-end",
     boxShadow: "0 0px 15px rgba(0, 0, 0, 0.3)",
     backgroundColor: "var(--white)",
@@ -32,6 +33,7 @@ const plantDetailsPageTheme = {
     width: "300px",
     minWidth: "300px",
     marginLeft: "40px",
+    marginBottom: "0px",
     alignSelf: "flex-start",
     boxShadow: "none",
     backgroundColor: "rgb(240, 240, 240)",
@@ -44,7 +46,7 @@ const StyledReminderCard = styled.article`
     flex-direction: column;
     padding: 10px 15px;
     border-radius: 25px;
-    margin-bottom: 10px;
+    margin-bottom: ${props => props.theme.marginBottom};
     width: ${props => props.theme.width};
     justify-content: flex-start;
     box-shadow: ${props => props.theme.boxShadow};
