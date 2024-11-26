@@ -231,9 +231,9 @@ export default function App({ Component, pageProps }) {
     console.log(reminders);
   }
 
-  function handleDeleteReminder(id) {
+  function handleDeleteReminder(id, task) {
     setReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
-    toast.success("Task completed");
+    toast.success(`${task} completed`);
   }
 
   return (

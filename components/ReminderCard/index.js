@@ -12,7 +12,7 @@ export default function ReminderCard({plantName, task, date, id, reminderPage, h
                 </StyledIconContainer>
                 {reminderPage && <h2>{plantName}</h2>}
                 <StyledReminderContent><b>{task}:</b> {date}</StyledReminderContent>
-                {reminderPage && <StyledButton type="button" onClick={() => handleDeleteReminder(id)}>Mark as done</StyledButton>}
+                {reminderPage && <StyledButton type="button" onClick={() => handleDeleteReminder(id, task)}>Mark as done</StyledButton>}
             </StyledReminderCard>
         </ThemeProvider>
     );
