@@ -28,25 +28,25 @@ export default function App({ Component, pageProps }) {
       plantName: "TestPlant",
       task: "watering",
       date: "25.11.2024",
-      relatedPlant: 1
+      relatedPlant: "1"
     },
     { id: 2,
       plantName: "TestPlant2",
       task: "fertilizing",
       date: "25.11.2024",
-      relatedPlant: 2
+      relatedPlant: "2"
     },
     { id: 3,
       plantName: "TestPlant3",
       task: "fertilizing",
       date: "25.11.2024",
-      relatedPlant: 3
+      relatedPlant: "3"
     },
     { id: 4,
       plantName: "TestPlant4",
       task: "fertilizing",
       date: "25.11.2024",
-      relatedPlant: 4
+      relatedPlant: "4"
     }
   ];
 

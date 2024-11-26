@@ -38,6 +38,7 @@ export default function PlantDetails({
   }) {
   const router = useRouter();
 
+  const relatedReminders = reminders.filter((reminder) => reminder.relatedPlant === plant.id);
   const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
 
   return (
@@ -118,7 +119,7 @@ export default function PlantDetails({
         </StyledEditDeleteSection>
         <StyledTipH3>Reminders:</StyledTipH3>
         <StyledListContainer>
-            {reminders.map((reminder) => 
+            {relatedReminders.map((reminder) => 
                 <li key={reminder.id}>
                     <ReminderCard task={reminder.task} date={reminder.date} />
                 </li>)}
