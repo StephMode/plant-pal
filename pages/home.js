@@ -1,5 +1,5 @@
 import PlantCard from "/components/PlantCard";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
 import { AiOutlineControl } from "react-icons/ai";
@@ -32,18 +32,19 @@ export default function HomePage({
       <StyledSpacer/>
       <TipBanner randomTip={randomTip} progress={progress} handleMouseHover = {handleMouseHover} handleMouseLeave = {handleMouseLeave}/>
 
-      <StyledFilterSection>
-        <StyledFilterButtonSection>
-          <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
-        </StyledFilterButtonSection>
-        <StyledSpacer2/>
-        <PlantFilterSection 
-          handleFilterPlants={onFilterPlants} 
-          showPlantFilterSection={showPlantFilterSection} 
-          handleFilterPlantsReset={onFilterPlantsReset} 
-          selectedFilter={selectedFilter}/>
-      </StyledFilterSection>
-
+      <ThemeProvider theme={showPlantFilterSection ? openfilter : defaultTheme }>
+        <StyledFilterSection>
+          
+          <PlantFilterSection 
+            handleFilterPlants={onFilterPlants} 
+            showPlantFilterSection={showPlantFilterSection} 
+            handleFilterPlantsReset={onFilterPlantsReset} 
+            selectedFilter={selectedFilter}/>
+            <StyledFilterButtonSection>
+            <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
+          </StyledFilterButtonSection>
+        </StyledFilterSection>
+      </ThemeProvider>
       
       { filteredPlants.length === 0 && 
            <StyledInfoText>No plants were found. Reset filter.</StyledInfoText>}
@@ -78,15 +79,26 @@ const StyledMain = styled.main`
 `;
 const StyledFilterSection = styled.section`
   display: flex;
-  justify-content: flex-end;
+  justify-content:  ${props => props.theme.flex};
+  flex-direction: ${props => props.theme.flexDir};
   width: 100%;
   margin-bottom: 20px;
- /*  
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: ${props => props.theme.main};
   border-radius: 15px;
-
-  padding: 10px 20px 5px 20px; */
+  padding: ${props => props.theme.padding};
 `;
+  const defaultTheme = {
+    main: "transparent",
+    padding: "0",
+    flex: "flex-end",
+    flexDir: ""
+  }
+  const openfilter = {
+    main: "rgba(0, 0, 0, 0.1)",
+    padding: "20px;",
+    flex: "space-between",
+    flexDir: "column-reverse"
+  }
 const StyledInfoText = styled.p`
   color: var(--green-main);
   background-color: var(--gray);
@@ -98,12 +110,8 @@ const StyledSpacer = styled.span`
   display: block;
   height: 75px;
 `;
-const StyledSpacer2 = styled.span`
-  display: block;
-  height: 17px;
-`;
 const StyledFilterButtonSection = styled.section`
-
+  align-self: flex-end;
 `;
 
 
