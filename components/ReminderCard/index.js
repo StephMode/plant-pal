@@ -7,18 +7,27 @@ export default function ReminderCard({plantName, task, date, id, reminderPage, h
 
     return (
         <ThemeProvider theme={reminderPage ? reminderPageTheme : plantDetailsPageTheme}>
-            <StyledReminderCard>
-                <StyledIconContainer>
-                    <RiCalendarScheduleFill />
-                </StyledIconContainer>
-                {reminderPage && 
-                 <Link href={`/plants/${plantId}`}>
-                    <StyledH2>{plantName}</StyledH2>
-                </Link>
-                }
-                <StyledReminderContent><b>{task}:</b> {date}</StyledReminderContent>
-                {reminderPage && <StyledButton type="button" onClick={() => handleDeleteReminder(id, task)}>Mark as done</StyledButton>}
-            </StyledReminderCard>
+            {!reminderPage ? (
+            <Link href='/remindersPage'>
+                <StyledReminderCard>
+                    <StyledIconContainer>
+                        <RiCalendarScheduleFill />
+                    </StyledIconContainer>
+                    <StyledReminderContent><b>{task}:</b> {date}</StyledReminderContent>
+                </StyledReminderCard>
+            </Link> )
+            : (
+                <StyledReminderCard>
+                    <StyledIconContainer>
+                        <RiCalendarScheduleFill />
+                    </StyledIconContainer>
+                    <Link href={`/plants/${plantId}`}>
+                        <StyledH2>{plantName}</StyledH2>
+                    </Link>
+                    <StyledReminderContent><b>{task}:</b> {date}</StyledReminderContent>
+                    <StyledButton type="button" onClick={() => handleDeleteReminder(id, task)}>Mark as done</StyledButton>
+                </StyledReminderCard>
+            )}
         </ThemeProvider>
     );
 }
@@ -31,7 +40,9 @@ const reminderPageTheme = {
     marginBottom: "10px",
     alignSelf: "flex-end",
     boxShadow: "0 0px 15px rgba(0, 0, 0, 0.3)",
-    backgroundColor: "var(--white)",
+    backgroundColor: "var(--white)", 
+    backgroundColorHover: "none",
+    transition: "none"  
 };
 
 const plantDetailsPageTheme = {
@@ -42,6 +53,8 @@ const plantDetailsPageTheme = {
     alignSelf: "flex-start",
     boxShadow: "none",
     backgroundColor: "rgb(240, 240, 240)",
+    backgroundColorHover: "var(--gray)",
+    transition: "all 0.45s ease 0s"
 };
 
 
@@ -56,6 +69,12 @@ const StyledReminderCard = styled.article`
     justify-content: flex-start;
     box-shadow: ${props => props.theme.boxShadow};
 
+    &:hover {
+        background-color: ${props => props.theme.backgroundColorHover};
+        transition: ${props => props.theme.transition};
+    }
+
+
   @media (max-width: 750px) {
     width: ${props => props.theme.minWidth};
   }
@@ -67,7 +86,7 @@ const StyledReminderContent = styled.p`
 
 const StyledH2 = styled.h2`
     max-width: 260px;
-    
+
     &:hover {
     color: var(--green-light-dark);
     transition: all 0.45s ease 0s;
@@ -98,4 +117,12 @@ const StyledButton = styled.button`
     background-color: var(--brown-dark);
     color: var(--white);
   }
+`;
+
+const StyledLink = styled(Link)`
+    &:hover {
+    background-color: var(--gray-dark);
+    color: var(--white);
+    transition: all 0.45s ease 0s;
+    }
 `;
