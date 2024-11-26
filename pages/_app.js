@@ -231,6 +231,11 @@ export default function App({ Component, pageProps }) {
     console.log(reminders);
   }
 
+  function handleDeleteReminder(id) {
+    setReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
+
+  }
+
   return (
     <>
       <GlobalStyle />
