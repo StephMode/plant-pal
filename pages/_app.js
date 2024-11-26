@@ -288,7 +288,7 @@ export default function App({ Component, pageProps }) {
         handleDeleteReminder={handleDeleteReminder}
       />
       <Toaster/>
-      <Navigation />
+      <Navigation reminders={reminders} currentDate={currentDate}/>
     </>
   );
 }

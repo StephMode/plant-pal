@@ -9,10 +9,12 @@ import { RiCalendarScheduleFill } from "react-icons/ri";
 import { GoDotFill } from "react-icons/go";
 
 
-export default function Navigation() { 
+export default function Navigation({reminders, currentDate}) { 
 
     const router = useRouter();
 
+    const showNotification = reminders.includes(currentDate);
+  
     return (
         <>
             <StyledNavContainer>
@@ -38,7 +40,7 @@ export default function Navigation() {
                 </Link>
                 <Link href="/remindersPage" passHref>
                     <StyledIconContainer $isactive={router.asPath === "/remindersPage"}>
-                        <StyledNotificationIcon />
+                        {showNotification && <StyledNotificationIcon />}
                         <RiCalendarScheduleFill />
                     </StyledIconContainer>
                 </Link>
