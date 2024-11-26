@@ -9,13 +9,7 @@ export default function Search({ handleSearchQuery, resetSearch, searchFor }) {
         if (event.target.value.length < 3) {
             resetSearch(event.target.value.length)
         } else {
-            if (searchFor === "tips") {
-                handleSearchQuery(event.target.value);
-                console.log("search input for: tips")
-            } else {
-                handleSearchQuery(event.target.value); 
-                console.log("search input for plants")
-            }   
+            handleSearchQuery(event.target.value, searchFor)
         }
     }
 
