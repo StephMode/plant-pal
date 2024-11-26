@@ -3,9 +3,11 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import toast from 'react-hot-toast';
 
-export default function ReminderForm({plant, handleToggleModal, handleAddReminder, id}) {
+export default function ReminderForm({plant, handleToggleModal, handleAddReminder, id, currentDate}) {
 
     const [showErrorMessageTask, setShowErrorMessageTask] = useState(false);
+    const [showErrorMessageDate, setShowErrorMessageDate] = useState(false);
+
 
     function handleSubmitReminder(event) {
         event.preventDefault();
@@ -13,13 +15,14 @@ export default function ReminderForm({plant, handleToggleModal, handleAddReminde
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
         
-        if (data.task === "") {
+        if (data.task === "" || data.date === "") {
             toast.error("Some reminder details are missing");
             if (data.task === "") {setShowErrorMessageTask(true)};
+            if (data.date === "") {setShowErrorMessageDate(true)};
         } else {
-          handleAddReminder(data, id, plant); toast.success("Reminder successfully created") 
+          handleAddReminder(data, id, plant); toast.success("Reminder successfully created");
+          event.target.reset(); 
         }
-          event.target.reset();
         };
 
     return (
@@ -43,11 +46,15 @@ export default function ReminderForm({plant, handleToggleModal, handleAddReminde
                 </StyledFieldset>
                 <StyledFieldset>
                     <label htmlFor="date">Date:</label>
+                    <ThemeProvider theme={showErrorMessageDate ? errorMessagetheme : defaultTheme}>
                         <StyledInput
                             id="date"
                             name="date"
                             type="date"
+                            onChange={() => {setShowErrorMessageDate(false)}}
                         ></StyledInput>
+                    </ThemeProvider>
+                    <StyledErrorMessage>{showErrorMessageDate && "Please pick a date."}&nbsp;</StyledErrorMessage>
                 </StyledFieldset>
                 <StyledButtonContainer>
                     <StyledSubmitButton type="submit">
