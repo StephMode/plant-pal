@@ -261,11 +261,14 @@ const StyledIconSection = styled.section`
 const StyledTopSection = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 12px;
 `;
 const StyledH2 = styled.h2`
   margin-bottom: 2px;
   max-width: 260px;
+  margin-right: auto;
+  align-self: flex-start;
 `;
 const StyledH3 = styled.h3`
   margin-bottom: 15px;
