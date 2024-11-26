@@ -57,18 +57,22 @@ export default function PlantDetails({
 
       <StyledPlantContainer>
         <StyledTopSection>
-          <StyledH2>{plant.name}</StyledH2>
-          <Button
-            buttonText={<RiCalendarScheduleFill />}
-            handleButtonFunction={() => handleToggleModal("Reminder")}
-          />
-          <Button
-            buttonText={<FaPen />}
-            handleButtonFunction={() => handleToggleModal("Edit")}
-          />
+          <StyledTopSectionHeadlineContainer>
+            <StyledH2>{plant.name}</StyledH2>
+            <StyledH3>{plant.botanicalName}</StyledH3>
+          </StyledTopSectionHeadlineContainer>
+          <StyledTopSectionIconContainer>
+            <Button
+              buttonText={<RiCalendarScheduleFill />}
+              handleButtonFunction={() => handleToggleModal("Reminder")}
+            />
+            <Button
+              buttonText={<FaPen />}
+              handleButtonFunction={() => handleToggleModal("Edit")}
+            />
+          </StyledTopSectionIconContainer>
         </StyledTopSection>
-        <StyledH3>{plant.botanicalName}</StyledH3>
-
+        
         <StyledDescription>{plant.description}</StyledDescription>
         <StyledPlantNeedsContainer>
           {plant.lightNeed === "Full Shade" ? (
@@ -260,15 +264,29 @@ const StyledIconSection = styled.section`
 `;
 const StyledTopSection = styled.section`
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+`;
+
+const StyledTopSectionHeadlineContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 3;
+`;
+
+const StyledTopSectionIconContainer = styled.section`
+  display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 8px;
+  flex-grow: 1;
 `;
+
+
 const StyledH2 = styled.h2`
   margin-bottom: 2px;
-  max-width: 260px;
-  margin-right: auto;
-  align-self: flex-start;
 `;
 const StyledH3 = styled.h3`
   margin-bottom: 15px;
