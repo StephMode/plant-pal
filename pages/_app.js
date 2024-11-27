@@ -202,17 +202,17 @@ export default function App({ Component, pageProps }) {
     toast.success("Note successfully deleted");
   }
 
-  function showWarningToast() {
-    toast("This is a warning message!", {
-      icon: "⚠️", // Ein passendes Icon für Warnungen
+  function WarningToast() {
+    toast("Maximum of 5 notes per tip", {
+      icon: "⚠️",
       style: {
         border: "1px solid #ffeeba",
-        padding: "16px",
         color: "#856404",
-        backgroundColor: "#fff3cd", // Gelber Hintergrund
+        backgroundColor: "#fff3cd",
       },
     });
   }
+
   function handleAddNote(routerQuery) {
     let noteAdded = false;
 
@@ -222,7 +222,7 @@ export default function App({ Component, pageProps }) {
       );
 
       if (notesOnCurrentPage.length >= 5) {
-        warningToast();
+        WarningToast();
         return prevnotes;
       } else noteAdded = true;
 
@@ -232,8 +232,8 @@ export default function App({ Component, pageProps }) {
         ...prevnotes,
         {
           id: nanoid(),
-          headline: "initial Headline",
-          note: "initial note",
+          headline: "Add Headline here",
+          note: "Add note here",
           noteLocation: routerQuery,
           dateCreated: currentDate,
         },
@@ -246,7 +246,6 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleEditNote(newPlantData, id, routerQuery) {
-    console.log(routerQuery);
     setNotesData((prevnotes) =>
       prevnotes.map((note) =>
         note.id === id

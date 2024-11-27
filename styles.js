@@ -9,6 +9,7 @@ export default createGlobalStyle`
   --green-main-dark: #08281F;
   --green-light: #6D9773;
   --green-light-dark: #4B684F;
+ --green-super-light: #cee4d1;
   --brown: #BB8A52;
   --brown-dark: #86643E;
   --white: #FBfBfB;

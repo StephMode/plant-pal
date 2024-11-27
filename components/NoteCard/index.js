@@ -12,7 +12,8 @@ export default function NoteCard({
   handleEditNote,
   routerQuery,
   dateCreated,
-  tipTitle,
+  headline,
+  note,
 }) {
   const [toggleEditNote, setToggleEditNote] = useState(false);
 
@@ -40,7 +41,15 @@ export default function NoteCard({
     <ThemeProvider theme={toggleEditNote ? EditMode : ViewMode}>
       <StyledNoteWrapperForm onSubmit={EditNote}>
         <StyledTitleAndButtonWrapper>
-          <TipTitle>Note on {tipTitle}</TipTitle>
+          <StyledInputTitle
+            id="title"
+            name="title"
+            readOnly={!toggleEditNote}
+            onInput={(e) => autoResize(e)}
+            defaultValue={headline}
+            maxLength={22}
+          ></StyledInputTitle>
+
           <StyledButtonWrapper>
             <StyledButton type="button" onClick={() => handleDeleteNote(id)}>
               <FaTrashAlt />
@@ -50,24 +59,15 @@ export default function NoteCard({
             </StyledButton>
           </StyledButtonWrapper>
         </StyledTitleAndButtonWrapper>
-        <StyledFieldset>
-          <StyledTextareaTitle
-            id="Title"
-            name="Title"
-            placeholder="Enter headline"
-            readOnly={!toggleEditNote}
-            onInput={(e) => autoResize(e)}
-          ></StyledTextareaTitle>
-        </StyledFieldset>
-        <StyledFieldset>
-          <StyledTextareaNote
-            id="note"
-            name="note"
-            placeholder="Enter note"
-            readOnly={!toggleEditNote}
-            onInput={(e) => autoResize(e)}
-          ></StyledTextareaNote>
-        </StyledFieldset>
+
+        <StyledTextareaNote
+          id="note"
+          name="note"
+          readOnly={!toggleEditNote}
+          onInput={(e) => autoResize(e)}
+          defaultValue={note}
+        ></StyledTextareaNote>
+
         <StyledDate>{dateCreated}</StyledDate>
       </StyledNoteWrapperForm>
     </ThemeProvider>
@@ -80,17 +80,15 @@ const EditMode = {
   },
   border: {
     color: "2px solid var(--green-light)",
-    boxShadow: "0 0 2px rgba(0, 112, 243, 0.5)",
   },
 };
 
 const ViewMode = {
   background: {
-    color: "var(--white)",
+    color: "var(--green-super-light)",
   },
   border: {
     color: "none",
-    boxShadow: "none",
   },
 };
 
@@ -101,34 +99,30 @@ const StyledTextareaNote = styled.textarea`
   width: 100%;
   font-size: 15px;
   border: ${(props) => props.theme.border.color};
-  box-shadow: ${(props) => props.theme.border.boxShadow};
   background-color: ${(props) => props.theme.background.color};
   resize: none;
-  overflow: hidden;
+  overflow: visible;
   outline: none;
+  height: auto;
+  font-family: inherit;
+  color: var(--black);
 `;
 
-const StyledTextareaTitle = styled.textarea`
+const StyledInputTitle = styled.input`
   border-radius: 10px;
   padding: 10px;
   margin-top: 6px;
   width: 100%;
   font-size: 15px;
   border: ${(props) => props.theme.border.color};
-  box-shadow: ${(props) => props.theme.border.boxShadow};
   background-color: ${(props) => props.theme.background.color};
   resize: none;
   overflow: hidden;
   outline: none;
   font-weight: bold;
-`;
-
-const StyledFieldset = styled.fieldset`
-  display: flex;
-  flex-direction: column;
-  border: none;
-  padding: 2px 0;
-  text-align: left;
+  height: auto;
+  font-family: inherit;
+  color: var(--black);
 `;
 
 const StyledButton = styled.button`
@@ -138,18 +132,18 @@ const StyledButton = styled.button`
   align-self: end;
   font-size: 17px;
   transition: 0.5s ease-in-out;
-  background-color: #fbfbfb;
+  background-color: transparent;
+  color: var(--black);
 `;
 const StyledNoteWrapperForm = styled.form`
   display: flex;
   flex-direction: column;
   padding: 12px;
-  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.45s ease;
   border-radius: 20px;
   height: auto;
-  width: 320px;
-  margin: 15px 0px;
+  width: 100%;
+  background-color: var(--green-super-light);
 `;
 const StyledTitleAndButtonWrapper = styled.div`
   display: flex;
@@ -161,15 +155,10 @@ const StyledButtonWrapper = styled.div`
   display: flex;
 `;
 
-const TipTitle = styled.p`
-  background-color: var(--gold);
-  padding: 5px 7px;
-  border-radius: 10px;
-`;
 const StyledDate = styled.p`
   align-self: end;
   margin-top: 10px;
-  color: #cccccc;
+  color: var(--green-main);
   font-size: 13px;
   margin-right: 5px;
 `;

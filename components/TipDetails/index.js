@@ -64,13 +64,13 @@ export default function TipDetails({
             )
           )}
         </StyledTagContainer>
+      </StyledTipContainer>
+      <StyledNoteWrapper>
         <AddNodeButton type="Button" onClick={() => handleAddNote(routerQuery)}>
           <FaPlus /> Add Note
         </AddNodeButton>
-      </StyledTipContainer>
-      <StyledNoteContainer>
-        {Array.isArray(notesData) &&
-          notesData
+        <StyledNoteContainer>
+          {notesData
             .filter((note) => note.noteLocation === String(routerQuery))
             .map((note) => (
               <li key={note.id}>
@@ -86,7 +86,8 @@ export default function TipDetails({
                 />
               </li>
             ))}
-      </StyledNoteContainer>
+        </StyledNoteContainer>
+      </StyledNoteWrapper>
     </>
   );
 }
@@ -156,14 +157,14 @@ const StyledTagContainer = styled.ul`
   display: flex;
   justify-content: flex-start;
 `;
-const StyledNoteContainer = styled.section`
+const StyledNoteContainer = styled.ul`
   display: flex;
-  width: 72%;
-  padding: 0px 20px;
+  flex-direction: column;
   flex-wrap: wrap;
-  @media (max-width: 768px) {
-    display: block;
-    width: 100%;
+  justify-content: flex-start;
+  gap: 15px;
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 `;
 
@@ -175,8 +176,16 @@ const AddNodeButton = styled.button`
   cursor: pointer;
   font-size: 15px;
   transition: 0.5s ease-in-out;
-  margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   gap: 5px;
+`;
+
+const StyledNoteWrapper = styled.section`
+  width: 100%;
+  padding: 20px;
+  @media (min-width: 768px) {
+    width: 72%;
+  }
 `;
