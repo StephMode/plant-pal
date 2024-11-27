@@ -228,15 +228,7 @@ export default function App({ Component, pageProps }) {
     setNoSearchResults(false)
   }
 
-  useEffect(() => {
-    console.log("Search query updated:", searchQuery);
-    console.log("Search results:", searchResults);
-    console.log("value of no search result", noSearchResults)
-    console.log("The filterable plants are", filterablePlants)
-    console.log("The FILTERED plants are", filteredPlants)
-  }, [searchQuery, searchResults, noSearchResults]);
   
-
   return (
     <>
       <GlobalStyle />

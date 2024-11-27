@@ -6,18 +6,18 @@ import { useEffect } from "react";
 export default function Search({ handleSearchQuery, resetSearch, searchFor }) {
 
     function handleSearchInput(event) {
-        if (event.target.value.length < 2 || event.target.value.length === 2) {
-            resetSearch(event.target.value.length)
+        const searchInput = event.target.value;
+        if (searchInput.length <= 2) {
+            resetSearch()
             return
         } else {
-            handleSearchQuery(event.target.value, searchFor)
+            handleSearchQuery(searchInput, searchFor)
         }
     }
 
     useEffect(() => {
-        resetSearch("");
+        resetSearch();
     }, [])
-
 
     return(
 
@@ -25,10 +25,9 @@ export default function Search({ handleSearchQuery, resetSearch, searchFor }) {
                 <StyledSearchInput 
                 type="text"
                 name="searchQuery"
-                placeholder="Search for tip"
+                placeholder={`Search for ${searchFor}`}
                 onChange={handleSearchInput}
-                ></StyledSearchInput>
-            {/* hier kann ich auch gleich einen Reset Button "x" einbauen, der die Search reseted */}
+                />
             <IoSearch />
             </StyledSearchBar>
     )
