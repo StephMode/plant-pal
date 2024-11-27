@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { IoSearch } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 
 export default function Search({ handleSearchQuery, resetSearch, searchFor }) {

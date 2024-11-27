@@ -197,16 +197,9 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleSearchQuery(searchInput, searchFor) {
-    // console.log("app: the input for the search query is:", searchInput);
     setSearchQuery(searchInput);
     setSearchPage(searchFor);
-    // setSearchFor(searchFor)
-    // console.log(searchQuery);
-    // console.log(searchPage);
-    // console.log("app: the search query is:", searchQuery);
   }
-
-  // const searchResults = searchQuery !== "" ? tips.filter((tip) => tip.title.includes(searchQuery)) : tips;
    
   useEffect(() => {
     if (searchPage === "plants") {
@@ -229,8 +222,6 @@ export default function App({ Component, pageProps }) {
       setNoSearchResults(queriedTips.length === 0);
     }
   }, [searchQuery, searchPage]);
-  
-  // später nochmal schauen, ob ich useEffect hier unbedingt brauche
 
   function resetSearch() {
     setSearchResults([]);

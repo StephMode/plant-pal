@@ -28,20 +28,6 @@ export default function HomePage({
   noSearchResults
 }) {
   const plantsToBeRendered = noSearchResults ? searchResults : filteredPlants !== plants ? filteredPlants : plants;
-  // const plantsToBeRendered = searchResults !== plants ? searchResults : plants;
-  // const plantsToBeRendered = searchResults.length > 0 ? searchResults : plants;
-  // const plantsToBeRendered = noSearchResults ? searchResults : searchResults.length > 0 ? searchResults : filteredPlants !== searchResults ? filteredPlants : plants;
-  
-  // const plantsToBeRendered = noSearchResults ? searchResults
-  //   : (
-  //   (searchResults.length > 0 ? searchResults : filteredPlants !== searchResults ? filteredPlants : plants) || /* bei aktiven Filtern suchen */
-  //   (filteredPlants !== plants ? (searchResults.length > 0 ? (searchResults !== filteredPlants ? searchResults : filteredPlants) : filteredPlants) : plants) /* bei Suchergebnissen filtern */
-  //     )
-
-  // const plantsToBeRendered = noSearchResults ? searchResults : 
-  //   searchResults.length > 0 ? searchResults === filteredPlants ? filteredPlants : searchResults    
-  // : plants;
-
 
   return (
     <main>
