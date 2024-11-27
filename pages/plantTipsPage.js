@@ -19,7 +19,7 @@ export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, 
       />
 
       {tips.length === 0 && (<StyledInfoText>Currently no tips available!</StyledInfoText>)}
-      {noSearchResults && (<StyledInfoText>No plants match the search. Please try again.</StyledInfoText>)}
+      {noSearchResults && (<StyledInfoText>No tips match the search. Please try again.</StyledInfoText>)}
       
       <ul>
         {tipsTobeRendered.map((tip) => (

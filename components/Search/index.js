@@ -6,8 +6,8 @@ import { useEffect } from "react";
 export default function Search({ handleSearchQuery, resetSearch, searchFor }) {
 
     function handleSearchInput(event) {
-        const searchInput = event.target.value;
-        if (searchInput.length <= 2) {
+        const searchInput = event.target.value.toLowerCase();
+        if (searchInput.length < 3) {
             resetSearch()
             return
         } else {

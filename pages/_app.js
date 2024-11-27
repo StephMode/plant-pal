@@ -204,18 +204,14 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     if (searchPage === "plants") {
       const queriedPlants = plants.filter((plant) => 
-        plant.name.includes(searchQuery) 
-        || plant.name.toLowerCase().includes(searchQuery)
-        || plant.botanicalName.includes(searchQuery) 
-        || plant.botanicalName.toLowerCase().includes(searchQuery)     
+        plant.name.toLowerCase().includes(searchQuery)
+        || plant.botanicalName.toLowerCase().includes(searchQuery)
       );
       setSearchResults(queriedPlants);
       setNoSearchResults(queriedPlants.length === 0);
     } else if (searchPage === "tips") {
       const queriedTips = tips.filter((tip) => 
-        tip.title.includes(searchQuery) 
-        || tip.title.toLowerCase().includes(searchQuery)
-        || tip.shortBodyContent.includes(searchQuery) 
+        tip.title.toLowerCase().includes(searchQuery)
         || tip.shortBodyContent.toLowerCase().includes(searchQuery)
       );
       setSearchResults(queriedTips);
