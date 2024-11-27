@@ -11,7 +11,6 @@ import Navigation from "/components/Navigation";
 import toast, { Toaster } from 'react-hot-toast';
 import styled from "styled-components";
 import { notes } from "/lib/noteData";
-import toast from "react-hot-toast";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
