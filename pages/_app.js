@@ -305,6 +305,7 @@ export default function App({ Component, pageProps }) {
           : note
       )
     );
+}
     
   function handleAddReminder(newReminderData, plantId, name) {
     const newReminder = {
