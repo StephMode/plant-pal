@@ -171,8 +171,9 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  const filterablePlants = searchResults.length > 0 ? searchResults : plants;
   const filteredPlants = selectedFilter
-    ? plants.filter(
+    ? filterablePlants.filter(
         (plant) =>
           (!selectedFilter.lightNeed ||
             plant.lightNeed === selectedFilter.lightNeed) &&
@@ -240,6 +241,8 @@ export default function App({ Component, pageProps }) {
     console.log("Search query updated:", searchQuery);
     console.log("Search results:", searchResults);
     console.log("value of no search result", noSearchResults)
+    console.log("The filterable plants are", filterablePlants)
+    console.log("The FILTERED plants are", filteredPlants)
   }, [searchQuery, searchResults, noSearchResults]);
   
 

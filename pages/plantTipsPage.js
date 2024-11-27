@@ -1,10 +1,16 @@
 import Search from "@/components/Search";
 import TipCard from "/components/TipCard";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, resetSearch, noSearchResults }) {
+  // const [tipsTobeRendered, setTipsTobeRendered] = useState(tips);
 
-  const tipsTobeRendered = noSearchResults ? searchResults : searchResults.length > 0 ? searchResults : tips;
+  // {noSearchResults && setTipsTobeRendered(searchResults)}
+  // {searchResults.length > 0 && setTipsTobeRendered(searchResults)}
+
+  const tipsTobeRendered = noSearchResults || searchResults.length > 0 ? searchResults : tips;
+
   // const tipsTobeRendered = searchResults.length > 0 ? searchResults : tips;
 
   return (
