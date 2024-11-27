@@ -5,6 +5,7 @@ import PlantFilterSection from "/components/PlantFilterSection";
 import { AiOutlineControl } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
 import TipBanner from "/components/TipBanner";
+import Search from "@/components/Search";
 
 
 export default function HomePage({ 
@@ -20,9 +21,12 @@ export default function HomePage({
   progress,
   handleMouseLeave,
   handleMouseHover,
+  handleSearchQuery,
+  resetSearch,
+  searchResults,
+  noSearchResults
 }) {
-  const plantsToBeRendered = filteredPlants !== plants ? filteredPlants : plants;
-
+  const plantsToBeRendered = noSearchResults ? searchResults : filteredPlants !== plants ? filteredPlants : plants;
 
   return (
     <StyledMain>
@@ -31,6 +35,12 @@ export default function HomePage({
       <StyledSpacer/>
       <TipBanner randomTip={randomTip} progress={progress} handleMouseHover = {handleMouseHover} handleMouseLeave = {handleMouseLeave}/>
 
+      <Search 
+        handleSearchQuery={handleSearchQuery}
+        resetSearch={resetSearch}
+        searchFor={"plants"}
+      />
+      
       <ThemeProvider theme={showPlantFilterSection ? openFilter : closedFilter }>
         <StyledFilterSection>
           <PlantFilterSection 
@@ -43,12 +53,15 @@ export default function HomePage({
           </StyledFilterButtonSection>
         </StyledFilterSection>
       </ThemeProvider>
+
       
       { filteredPlants.length === 0 && 
            <StyledInfoText>No plants were found. Reset filter.</StyledInfoText>}
-      { !selectedFilter && plants.length === 0 ? (
+      { !selectedFilter && plants.length === 0 &&
           <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
-      ) : (
+        }
+      {noSearchResults && (<StyledInfoText>No plants match the search. Please try again.</StyledInfoText>)}
+
           <ul>
            {plantsToBeRendered.map((plant) => (
               <li key={plant.id}>
@@ -63,7 +76,7 @@ export default function HomePage({
               </li>)
             )}
           </ul>
-      )}
+
     </StyledMain>
   );
 }

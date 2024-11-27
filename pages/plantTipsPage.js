@@ -1,18 +1,28 @@
+import Search from "@/components/Search";
 import TipCard from "/components/TipCard";
 import styled from "styled-components";
 
-export default function PlantTipsPage({ tips }) {
+export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, resetSearch, noSearchResults }) {
+  const tipsTobeRendered = noSearchResults || searchResults.length > 0 ? searchResults : tips;
 
   return (
     <main>
       <h1>Care tips</h1>
+
+      
       <StyledSpacer/>
-      {tips.length === 0 && (
-        <StyledInfoText>Currently no tips available!</StyledInfoText>
-      )}
+
+      <Search 
+        handleSearchQuery={handleSearchQuery}
+        resetSearch={resetSearch}
+        searchFor={"tips"}
+      />
+
+      {tips.length === 0 && (<StyledInfoText>Currently no tips available!</StyledInfoText>)}
+      {noSearchResults && (<StyledInfoText>No tips match the search. Please try again.</StyledInfoText>)}
       
       <ul>
-        {tips.map((tip) => (
+        {tipsTobeRendered.map((tip) => (
           <li key={tip.id}>
             <TipCard
               tipId={tip.id}
@@ -36,5 +46,5 @@ const StyledInfoText = styled.p`
 `;
 const StyledSpacer = styled.span`
   display: block;
-  height: 113px;
+  height: 70px;
 `;

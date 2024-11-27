@@ -116,7 +116,12 @@ export default function App({ Component, pageProps }) {
   const handleMouseLeave = () => {
     setIsPaused(false);
   };
-  
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchPage, setSearchPage] = useState(""); 
+  const [searchResults, setSearchResults] = useState([]);
+  const [noSearchResults, setNoSearchResults] = useState(false);
+
   function handleToggleModal() {
     setShowModal(!showModal);
   }
@@ -216,8 +221,9 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  const filterablePlants = searchResults.length > 0 ? searchResults : plants;
   const filteredPlants = selectedFilter
-    ? plants.filter(
+    ? filterablePlants.filter(
         (plant) =>
           (!selectedFilter.lightNeed ||
             plant.lightNeed === selectedFilter.lightNeed) &&
@@ -239,6 +245,37 @@ export default function App({ Component, pageProps }) {
   function toggleFilterSection() {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
+
+
+  function handleSearchQuery(searchInput, searchFor) {
+    setSearchQuery(searchInput);
+    setSearchPage(searchFor);
+  }
+   
+  useEffect(() => {
+    if (searchPage === "plants") {
+      const queriedPlants = plants.filter((plant) => 
+        plant.name.toLowerCase().includes(searchQuery)
+        || plant.botanicalName.toLowerCase().includes(searchQuery)
+      );
+      setSearchResults(queriedPlants);
+      setNoSearchResults(queriedPlants.length === 0);
+    } else if (searchPage === "tips") {
+      const queriedTips = tips.filter((tip) => 
+        tip.title.toLowerCase().includes(searchQuery)
+        || tip.shortBodyContent.toLowerCase().includes(searchQuery)
+      );
+      setSearchResults(queriedTips);
+      setNoSearchResults(queriedTips.length === 0);
+    }
+  }, [plants, searchPage, searchQuery]);
+
+  function resetSearch() {
+    setSearchResults([]);
+    setNoSearchResults(false)
+  }
+
+  
 
   const [notesData, setNotesData] = useLocalStorageState("notesData", {
     defaultValue: notes,
@@ -326,6 +363,7 @@ export default function App({ Component, pageProps }) {
 
   }
 
+
   return (
     <>
       <GlobalStyle />
@@ -361,6 +399,10 @@ export default function App({ Component, pageProps }) {
         progress={progress}
         handleMouseHover={handleMouseHover}
         handleMouseLeave={handleMouseLeave}
+        handleSearchQuery={handleSearchQuery}
+        searchResults={searchResults}
+        resetSearch={resetSearch}
+        noSearchResults={noSearchResults}
         handleDeleteNote={handleDeleteNote}
         notesData={notesData}
         handleAddNote={handleAddNote}
