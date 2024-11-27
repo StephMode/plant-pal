@@ -10,8 +10,8 @@ export default function RemindersPage({reminders, handleDeleteReminder}) {
         <main>
             <h1>Reminders</h1>
             <StyledIconContainer onClick={() =>  router.back()} type="button">
-          <FaChevronLeft />
-        </StyledIconContainer>
+              <FaChevronLeft />
+            </StyledIconContainer>
             <StyledSpacer />
             <ul>
             {reminders.length === 0 && <StyledInfoText>Currently no reminders.</StyledInfoText>}
@@ -19,7 +19,14 @@ export default function RemindersPage({reminders, handleDeleteReminder}) {
             .sort((a, b) => new Date(a.date) - new Date(b.date))
             .map((reminder) => 
                 <li key={reminder.id}>
-                    <ReminderCard plantName={reminder.plantName} task={reminder.task} date={reminder.date} id={reminder.id} reminderPage={true} handleDeleteReminder={handleDeleteReminder} plantId={reminder.relatedPlant} />
+                    <ReminderCard 
+                    plantName={reminder.plantName} 
+                    task={reminder.task} 
+                    date={reminder.date} 
+                    id={reminder.id} 
+                    reminderPage={true} 
+                    handleDeleteReminder={handleDeleteReminder} 
+                    plantId={reminder.relatedPlant} />
                 </li>)}
             </ul>
         </main>

@@ -3,11 +3,32 @@ import { RiCalendarScheduleFill } from "react-icons/ri";
 import Link from "next/link";
 
 
-export default function ReminderCard({plantName, task, date, id, reminderPage, handleDeleteReminder, plantId}) {
+export default function ReminderCard({
+    plantName, 
+    task, 
+    date, 
+    id, 
+    reminderPage, 
+    handleDeleteReminder, 
+    plantId}) {
 
     return (
         <ThemeProvider theme={reminderPage ? reminderPageTheme : plantDetailsPageTheme}>
-            {!reminderPage ? (
+            {reminderPage ? 
+            (
+             <StyledReminderCard>
+                <StyledIconContainer>
+                    <RiCalendarScheduleFill />
+                </StyledIconContainer>
+                <Link href={`/plants/${plantId}`}>
+                    <StyledH2>{plantName}</StyledH2>
+                </Link>
+                <StyledReminderContent><b>{task}:</b> {date}</StyledReminderContent>
+                <StyledButton type="button" onClick={() => handleDeleteReminder(id, task)}>Mark as done</StyledButton>
+            </StyledReminderCard>
+            )
+            :
+            (
             <Link href='/remindersPage'>
                 <StyledReminderCard>
                     <StyledIconContainer>
@@ -15,18 +36,7 @@ export default function ReminderCard({plantName, task, date, id, reminderPage, h
                     </StyledIconContainer>
                     <StyledReminderContent><b>{task}:</b> {date}</StyledReminderContent>
                 </StyledReminderCard>
-            </Link> )
-            : (
-                <StyledReminderCard>
-                    <StyledIconContainer>
-                        <RiCalendarScheduleFill />
-                    </StyledIconContainer>
-                    <Link href={`/plants/${plantId}`}>
-                        <StyledH2>{plantName}</StyledH2>
-                    </Link>
-                    <StyledReminderContent><b>{task}:</b> {date}</StyledReminderContent>
-                    <StyledButton type="button" onClick={() => handleDeleteReminder(id, task)}>Mark as done</StyledButton>
-                </StyledReminderCard>
+            </Link>
             )}
         </ThemeProvider>
     );
@@ -57,7 +67,6 @@ const plantDetailsPageTheme = {
     transition: "all 0.45s ease 0s"
 };
 
-
 const StyledReminderCard = styled.article`
     background-color: ${props => props.theme.backgroundColor};
     display: flex;
@@ -73,7 +82,6 @@ const StyledReminderCard = styled.article`
         background-color: ${props => props.theme.backgroundColorHover};
         transition: ${props => props.theme.transition};
     }
-
 
   @media (max-width: 750px) {
     width: ${props => props.theme.minWidth};
@@ -117,12 +125,4 @@ const StyledButton = styled.button`
     background-color: var(--brown-dark);
     color: var(--white);
   }
-`;
-
-const StyledLink = styled(Link)`
-    &:hover {
-    background-color: var(--gray-dark);
-    color: var(--white);
-    transition: all 0.45s ease 0s;
-    }
 `;

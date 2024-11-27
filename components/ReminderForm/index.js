@@ -3,7 +3,11 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import toast from 'react-hot-toast';
 
-export default function ReminderForm({plant, handleToggleModal, handleAddReminder, id}) {
+export default function ReminderForm({
+  plant,
+  handleToggleModal,
+  handleAddReminder,
+  id}) {
 
     const [showErrorMessageTask, setShowErrorMessageTask] = useState(false);
     const [showErrorMessageDate, setShowErrorMessageDate] = useState(false);
@@ -114,14 +118,17 @@ const StyledInput = styled.input`
     outline-color: var(--green-light);
   }
 `;
+
 StyledInput.defaultProps = {
   theme: {
     main: "rgba(0,0,0,0.1)"
   }
 }
+
 const defaultTheme = {
   main: "rgba(0,0,0,0.1)"
 }
+
 const errorMessagetheme = {
   main: "var(--error-red)"
 }

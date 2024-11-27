@@ -34,8 +34,7 @@ export default function PlantDetails({
   handleToggleOwned,
   reminders,
   isReminder,
-  handleAddReminder,
-  currentDate
+  handleAddReminder
   }) {
   const router = useRouter();
 
@@ -176,7 +175,6 @@ export default function PlantDetails({
                 handleToggleModal={handleToggleModal}
                 handleAddReminder={handleAddReminder}
                 id={plant.id}
-                currentDate={currentDate}
               />
             )
              : (

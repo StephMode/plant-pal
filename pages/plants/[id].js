@@ -48,7 +48,6 @@ export default function PlantDetailsPage({
         reminders={reminders}
         isReminder={isReminder}
         handleAddReminder={handleAddReminder}
-        currentDate={currentDate}
          />
     </main>
   );
