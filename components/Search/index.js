@@ -16,7 +16,7 @@ export default function Search({ handleSearchQuery, resetSearch, searchFor }) {
 
     useEffect(() => {
         resetSearch();
-    }, [])
+    }, [searchFor])
 
     return(
             <StyledSearchBar>

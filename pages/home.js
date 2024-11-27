@@ -40,13 +40,7 @@ export default function HomePage({
         resetSearch={resetSearch}
         searchFor={"plants"}
       />
-      <StyledFilterButtonSection>
-        <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
-      </StyledFilterButtonSection>
-      <StyledSpacer2/>
-      <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} selectedFilter={selectedFilter}/>
-
-
+      
       <ThemeProvider theme={showPlantFilterSection ? openFilter : closedFilter }>
         <StyledFilterSection>
           <PlantFilterSection 

@@ -268,7 +268,7 @@ export default function App({ Component, pageProps }) {
       setSearchResults(queriedTips);
       setNoSearchResults(queriedTips.length === 0);
     }
-  }, [searchQuery, searchPage]);
+  }, [plants, searchPage, searchQuery]);
 
   function resetSearch() {
     setSearchResults([]);
