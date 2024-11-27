@@ -45,6 +45,9 @@ const StyledSearchInput = styled.input`
   font-family: inherit;
   width: 100%;
 
+  background: url("./magnifying-glass-solid.svg") no-repeat 97.5%;
+  background-size: 20px;
+
   background-color: rgba(0,0,0,0.1);
   border: 2px solid rgba(0,0,0,0.1);
 
