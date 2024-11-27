@@ -10,6 +10,7 @@ export default createGlobalStyle`
   --green-light: #6D9773;
   --green-super-light: #CEE4D1;
   --green-light-dark: #4B684F;
+ --green-super-light: #cee4d1;
   --brown: #BB8A52;
   --brown-dark: #86643E;
   --white: #FBfBfB;

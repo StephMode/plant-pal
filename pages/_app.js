@@ -10,19 +10,17 @@ import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
 import toast, { Toaster } from 'react-hot-toast';
 import styled from "styled-components";
-
+import { notes } from "/lib/noteData";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
-
   const intervalRef = useRef(null);
   const [randomTip, setRandomTip] = useState(tips[1]);
   const [progress, setProgress] = useState(100);
   const [isPaused, setIsPaused] = useState(false);
-
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -83,6 +81,7 @@ export default function App({ Component, pageProps }) {
 
     return () => clearInterval(Interval);
   }, []);
+
 
 
   const getRandomTip = () => {
@@ -241,6 +240,73 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
+  const [notesData, setNotesData] = useLocalStorageState("notesData", {
+    defaultValue: notes,
+  });
+
+  function handleDeleteNote(id) {
+    setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
+    toast.success("Note successfully deleted");
+  }
+
+  function WarningToast() {
+    toast("Maximum of 5 notes per tip", {
+      icon: "⚠️",
+      style: {
+        border: "1px solid #ffeeba",
+        color: "#856404",
+        backgroundColor: "#fff3cd",
+      },
+    });
+  }
+
+  function handleAddNote(routerQuery) {
+    let noteAdded = false;
+
+    setNotesData((prevnotes) => {
+      const notesOnCurrentPage = prevnotes.filter(
+        (note) => note.noteLocation === routerQuery
+      );
+
+      if (notesOnCurrentPage.length >= 5) {
+        WarningToast();
+        return prevnotes;
+      } else noteAdded = true;
+
+      const currentDate = new Date().toLocaleDateString();
+
+      return [
+        ...prevnotes,
+        {
+          id: nanoid(),
+          headline: "Add Headline here",
+          note: "Add note here",
+          noteLocation: routerQuery,
+          dateCreated: currentDate,
+        },
+      ];
+    });
+
+    if (noteAdded) {
+      toast.success("Note successfully added");
+    }
+  }
+
+  function handleEditNote(newPlantData, id, routerQuery) {
+    setNotesData((prevnotes) =>
+      prevnotes.map((note) =>
+        note.id === id
+          ? {
+              ...note,
+              headline: newPlantData.title,
+              note: newPlantData.note,
+              noteLocation: routerQuery,
+            }
+          : note
+      )
+    );
+}
+    
   function handleAddReminder(newReminderData, plantId, name) {
     const newReminder = {
       id: nanoid(),
@@ -257,6 +323,7 @@ export default function App({ Component, pageProps }) {
   function handleDeleteReminder(id, task) {
     setReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
     toast.success(`${task} completed`);
+
   }
 
   return (
@@ -264,7 +331,12 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <header>
         <StyledLogoLink href="/">
-          <Image src="/logo-main.svg" width={200} height={50} alt="rooted logo" />
+          <Image
+            src="/logo-main.svg"
+            width={200}
+            height={50}
+            alt="rooted logo"
+          />
         </StyledLogoLink>
       </header>
       <Component
@@ -289,13 +361,18 @@ export default function App({ Component, pageProps }) {
         progress={progress}
         handleMouseHover={handleMouseHover}
         handleMouseLeave={handleMouseLeave}
+        handleDeleteNote={handleDeleteNote}
+        notesData={notesData}
+        handleAddNote={handleAddNote}
+        handleEditNote={handleEditNote}
         reminders={reminders}
         isReminder={isReminder}
         handleAddReminder={handleAddReminder}
         handleDeleteReminder={handleDeleteReminder}
       />
-      <Toaster/>
+      <Toaster />
       <Navigation reminders={reminders} currentDate={currentDate}/>
+
     </>
   );
 }
