@@ -13,6 +13,10 @@ export default function PlantDetailsPage({
   tips,
   isOwned,
   handleToggleOwned,
+  reminders,
+  isReminder,
+  handleAddReminder,
+  currentDate
   }) {
   const router = useRouter();
 
@@ -41,6 +45,9 @@ export default function PlantDetailsPage({
         tipsToBeTagged={tipsToBeTagged}
         isOwned={isOwned}
         handleToggleOwned={handleToggleOwned}
+        reminders={reminders}
+        isReminder={isReminder}
+        handleAddReminder={handleAddReminder}
          />
     </main>
   );
