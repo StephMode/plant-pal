@@ -8,20 +8,81 @@ import { useRouter } from "next/router";
 import { nanoid } from "nanoid";
 import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import styled from "styled-components";
-
+import { notes } from "/lib/noteData";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
-  /*---------------------------------------------------------------------- */
   const intervalRef = useRef(null);
   const [randomTip, setRandomTip] = useState(tips[1]);
   const [progress, setProgress] = useState(100);
   const [isPaused, setIsPaused] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  const [isReminder, setIsReminder] = useState(false);
+
+  const initialFilterObject = {
+    waterNeed: "",
+    lightNeed: "",
+    fertiliserSeason: [],
+  };
+  const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
+  const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
+
+  const testReminder = [
+    { id: 1,
+      plantName: "Snake Plant",
+      task: "watering",
+      date: "2024-11-27",
+      relatedPlant: "1"
+    },
+    { id: 2,
+      plantName: "Fiddle Leaf Fig",
+      task: "fertilizing",
+      date: "2024-11-28",
+      relatedPlant: "2"
+    },
+    { id: 3,
+      plantName: "Aloe Vera",
+      task: "fertilizing",
+      date: "2024-11-30",
+      relatedPlant: "3"
+    },
+    { id: 4,
+      plantName: "Spider Plant",
+      task: "fertilizing",
+      date: "2024-12-03",
+      relatedPlant: "4"
+    }
+  ];
+  
+  const [reminders, setReminders] = useState(testReminder);
+
+
+  const [currentDate, setCurrentDate] = useState(getDate());
+
+  function getDate() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${year}-${month}-${date}`;
+  }
+
+  useEffect(() => {
+    const Interval = setInterval(() => {
+      setCurrentDate(getDate());
+    }, 10000);
+
+    return () => clearInterval(Interval);
+  }, []);
+
+
 
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
@@ -55,19 +116,6 @@ export default function App({ Component, pageProps }) {
   const handleMouseLeave = () => {
     setIsPaused(false);
   };
-  /*---------------------------------------------------------------------- */
-  const [showModal, setShowModal] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-  const [isDelete, setIsDelete] = useState(false);
-
-  const initialFilterObject = {
-    waterNeed: "",
-    lightNeed: "",
-    fertiliserSeason: [],
-  };
-  const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
-
-  const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchPage, setSearchPage] = useState(""); 
@@ -124,6 +172,8 @@ export default function App({ Component, pageProps }) {
       setIsEdit(!isEdit);
     } else if (buttonFunctionText === "Delete") {
       setIsDelete(!isDelete);
+    } else if (buttonFunctionText === "Reminder") {
+      setIsReminder(!isReminder);
     }
   }
 
@@ -196,6 +246,7 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
+
   function handleSearchQuery(searchInput, searchFor) {
     setSearchQuery(searchInput);
     setSearchPage(searchFor);
@@ -225,12 +276,105 @@ export default function App({ Component, pageProps }) {
   }
 
   
+
+  const [notesData, setNotesData] = useLocalStorageState("notesData", {
+    defaultValue: notes,
+  });
+
+  function handleDeleteNote(id) {
+    setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
+    toast.success("Note successfully deleted");
+  }
+
+  function WarningToast() {
+    toast("Maximum of 5 notes per tip", {
+      icon: "⚠️",
+      style: {
+        border: "1px solid #ffeeba",
+        color: "#856404",
+        backgroundColor: "#fff3cd",
+      },
+    });
+  }
+
+  function handleAddNote(routerQuery) {
+    let noteAdded = false;
+
+    setNotesData((prevnotes) => {
+      const notesOnCurrentPage = prevnotes.filter(
+        (note) => note.noteLocation === routerQuery
+      );
+
+      if (notesOnCurrentPage.length >= 5) {
+        WarningToast();
+        return prevnotes;
+      } else noteAdded = true;
+
+      const currentDate = new Date().toLocaleDateString();
+
+      return [
+        ...prevnotes,
+        {
+          id: nanoid(),
+          headline: "Add Headline here",
+          note: "Add note here",
+          noteLocation: routerQuery,
+          dateCreated: currentDate,
+        },
+      ];
+    });
+
+    if (noteAdded) {
+      toast.success("Note successfully added");
+    }
+  }
+
+  function handleEditNote(newPlantData, id, routerQuery) {
+    setNotesData((prevnotes) =>
+      prevnotes.map((note) =>
+        note.id === id
+          ? {
+              ...note,
+              headline: newPlantData.title,
+              note: newPlantData.note,
+              noteLocation: routerQuery,
+            }
+          : note
+      )
+    );
+}
+    
+  function handleAddReminder(newReminderData, plantId, name) {
+    const newReminder = {
+      id: nanoid(),
+      plantName: name,
+      relatedPlant: plantId,
+      ...newReminderData,
+    };
+    setReminders([newReminder, ...reminders]);
+    router.push(`/plants/${plantId}`);
+    setIsReminder(false);
+    setShowModal(false);
+  }
+
+  function handleDeleteReminder(id, task) {
+    setReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
+    toast.success(`${task} completed`);
+
+  }
+
+
   return (
     <>
       <GlobalStyle />
       <header>
         <StyledLogoLink href="/">
-          <Image src="/logo-main.svg" width={200} height={50} alt="rooted logo" />
+          <Image
+            src="/logo-main.svg"
+            width={200}
+            height={50}
+            alt="rooted logo"
+          />
         </StyledLogoLink>
       </header>
       <Component
@@ -259,9 +403,18 @@ export default function App({ Component, pageProps }) {
         searchResults={searchResults}
         resetSearch={resetSearch}
         noSearchResults={noSearchResults}
+        handleDeleteNote={handleDeleteNote}
+        notesData={notesData}
+        handleAddNote={handleAddNote}
+        handleEditNote={handleEditNote}
+        reminders={reminders}
+        isReminder={isReminder}
+        handleAddReminder={handleAddReminder}
+        handleDeleteReminder={handleDeleteReminder}
       />
-      <Toaster/>
-      <Navigation />
+      <Toaster />
+      <Navigation reminders={reminders} currentDate={currentDate}/>
+
     </>
   );
 }

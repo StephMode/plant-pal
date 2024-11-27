@@ -6,6 +6,8 @@ import Modal from "../Modal";
 import PlantDeleteSection from "../PlantDeleteSection";
 import Form from "../Form";
 import PlantOwnedButton from "../PlantOwnedButton";
+import ReminderCard from "../ReminderCard";
+import ReminderForm from "../ReminderForm";
 import { RiDropLine } from "react-icons/ri";
 import { FaChevronLeft } from "react-icons/fa6";
 import { RiDropFill } from "react-icons/ri";
@@ -16,7 +18,9 @@ import { IoMdMoon } from "react-icons/io";
 import { GiPowder } from "react-icons/gi";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPen } from "react-icons/fa6";
+import { RiCalendarScheduleFill } from "react-icons/ri";
 import { useRouter } from "next/router";
+import Breadcrumbs from "../Breadcrumbs";
 
 export default function PlantDetails({ 
   plant, 
@@ -29,9 +33,13 @@ export default function PlantDetails({
   onDeletePlant, 
   tipsToBeTagged,
   handleToggleOwned,
+  reminders,
+  isReminder,
+  handleAddReminder
   }) {
   const router = useRouter();
 
+  const relatedReminders = reminders.filter((reminder) => reminder.relatedPlant === plant.id);
   const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
 
   return (
@@ -48,15 +56,24 @@ export default function PlantDetails({
       </StyledImageContainer>
 
       <StyledPlantContainer>
+        <Breadcrumbs breadcrumbType="plant" plant={plant} isOwned={plant.isOwned} />
         <StyledTopSection>
-          <StyledH2>{plant.name}</StyledH2>
-          <Button
-            buttonText={<FaPen />}
-            handleButtonFunction={() => handleToggleModal("Edit")}
-          />
+          <StyledTopSectionHeadlineContainer>
+            <StyledH2>{plant.name}</StyledH2>
+            <StyledH3>{plant.botanicalName}</StyledH3>
+          </StyledTopSectionHeadlineContainer>
+          <StyledTopSectionIconContainer>
+            <Button
+              buttonText={<RiCalendarScheduleFill />}
+              handleButtonFunction={() => handleToggleModal("Reminder")}
+            />
+            <Button
+              buttonText={<FaPen />}
+              handleButtonFunction={() => handleToggleModal("Edit")}
+            />
+          </StyledTopSectionIconContainer>
         </StyledTopSection>
-        <StyledH3>{plant.botanicalName}</StyledH3>
-
+        
         <StyledDescription>{plant.description}</StyledDescription>
         <StyledPlantNeedsContainer>
           {plant.lightNeed === "Full Shade" ? (
@@ -106,9 +123,19 @@ export default function PlantDetails({
         <StyledEditDeleteSection>
           <Button buttonText={<FaTrashAlt />} handleButtonFunction={() => handleToggleModal("Delete")} buttonRole={"deleteButton"}/>
         </StyledEditDeleteSection>
+        {relatedReminders.length > 0 ? <StyledTipH3>Reminders:</StyledTipH3> : null}
+        <StyledListContainer>
+            {relatedReminders
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .map((reminder) => 
+                <li key={reminder.id}>
+                    <ReminderCard task={reminder.task} date={reminder.date} />
+                </li>)}
+            </StyledListContainer>
+
         <StyledTipH3>Related Care Tips:</StyledTipH3>
 
-          <StyledTagContainer>
+          <StyledListContainer>
               {relatedTips.map((tip) => (
                 <li key={tip.id}>
                   <Tag
@@ -121,7 +148,7 @@ export default function PlantDetails({
                 </li>
               ))}
             
-          </StyledTagContainer>
+          </StyledListContainer>
 
       </StyledPlantContainer>
 
@@ -144,7 +171,15 @@ export default function PlantDetails({
                 id={plant.id}
                 handleToggleModal={handleToggleModal}
               />
-            ) : (
+            ) : isReminder ? (
+              <ReminderForm
+                plant={plant.name}
+                handleToggleModal={handleToggleModal}
+                handleAddReminder={handleAddReminder}
+                id={plant.id}
+              />
+            )
+             : (
               "This is an error, please reload page."
             )
           }
@@ -229,12 +264,29 @@ const StyledIconSection = styled.section`
 `;
 const StyledTopSection = styled.section`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
 `;
+
+const StyledTopSectionHeadlineContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 3;
+`;
+
+const StyledTopSectionIconContainer = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-grow: 1;
+`;
+
+
 const StyledH2 = styled.h2`
   margin-bottom: 2px;
-  max-width: 260px;
 `;
 const StyledH3 = styled.h3`
   margin-bottom: 15px;
@@ -258,7 +310,7 @@ const StyledFertilizerUl = styled.ul`
   font-weight: normal;
 `;
 
-const StyledTagContainer = styled.ul`
+const StyledListContainer = styled.ul`
   display: flex;
   justify-content:flex-start;
 `;

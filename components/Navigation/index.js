@@ -1,22 +1,30 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled from "styled-components"
+import styled, {ThemeProvider} from "styled-components"
 import { HiHome } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa";
 import { IoHeart } from "react-icons/io5";
 import { RiPlantFill } from "react-icons/ri";
+import { RiCalendarFill } from "react-icons/ri";
 
 
-export default function Navigation() { 
+export default function Navigation({reminders, currentDate}) { 
 
     const router = useRouter();
 
+    const showNotification = reminders.some(reminder => reminder.date <= currentDate);
+    
     return (
         <>
             <StyledNavContainer>
                 <Link href="/home" passHref >
-                    <StyledIconContainer $isactive={router.asPath === "/"}>
+                    <StyledIconContainer $isactive={router.asPath === "/home"}>
                         <HiHome />
+                    </StyledIconContainer>
+                </Link>
+                <Link href="/plantTipsPage" passHref>
+                    <StyledIconContainer $isactive={router.asPath === "/plantTipsPage"}>
+                        <RiPlantFill />
                     </StyledIconContainer>
                 </Link>
                 <Link href="/addplant" passHref>
@@ -29,14 +37,16 @@ export default function Navigation() {
                         <IoHeart />
                     </StyledIconContainer>
                 </Link>
-                <Link href="/plantTipsPage" passHref>
-                    <StyledIconContainer $isactive={router.asPath === "/plantTipsPage"}>
-                        <RiPlantFill />
+                <Link href="/remindersPage" passHref>
+                    <ThemeProvider theme={showNotification ? notificationTheme : defaultTheme}>
+                    {showNotification && <StyledNotificationIcon></StyledNotificationIcon>}
+                    <StyledIconContainer $isactive={router.asPath === "/remindersPage"}>
+                        <RiCalendarFill />
                     </StyledIconContainer>
+                    </ThemeProvider>
                 </Link>
             </StyledNavContainer>
         </>
-
     )
 }
 
@@ -64,4 +74,34 @@ const StyledNavContainer = styled.nav`
     align-items: center;
     color: var(--white);
     font-size: 2.2rem;
+    position: ${props => props.theme.position};
+    top: ${props => props.theme.top};
  `;
+
+
+const notificationTheme = {
+    position: "relative",
+    top: "-6px",
+}
+
+const defaultTheme = {
+    position: "static",
+    top: "none",
+}
+
+const StyledNotificationIcon = styled.span`
+    display: block;
+    background-color: var(--error-red);
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    position: relative;
+    top: 16px;
+    right: -26px;
+    z-index: 1;
+`;
+
+
+
+
+

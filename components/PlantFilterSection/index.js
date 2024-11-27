@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { IoMdMoon } from "react-icons/io";
 import { IoIosSunny } from "react-icons/io";
 import { IoIosPartlySunny } from "react-icons/io";
-import { RxReset } from "react-icons/rx";
+import { GrPowerReset  } from "react-icons/gr";
 import { RiDropFill } from "react-icons/ri";
 import { RiContrastDrop2Fill } from "react-icons/ri";
 import { RiDropLine } from "react-icons/ri";
@@ -165,7 +165,7 @@ export default function PlantFilterSection({
             </StyledCheckboxlabel>
           </StyledFieldsetCheckbox>
           <StyledSubmitButton type="submit">
-            <RxReset />
+          Reset <GrPowerReset />
           </StyledSubmitButton>
         </form>
       </StyledPlantFilterSection>
@@ -174,11 +174,6 @@ export default function PlantFilterSection({
 }
 
 const StyledPlantFilterSection = styled.section`
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  width: 95%;
-  padding: 10px 20px 5px 20px;
-  margin: -56px 20px 20px;
   display: flex;
   text-align: left;
   flex-direction: column;
@@ -223,14 +218,10 @@ const StyledSubmitButton = styled.button`
   cursor: pointer;
   font-size: 15px;
   margin-top: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 
-  &:active {
-    background-color: var(--white);
-    padding: 8px 20px;
-    border: 1px solid var(--black);
-    border-radius: 20px;
-    font-weight: bold;
-  }
 `;
 
 const StyledIconSection = styled.section`

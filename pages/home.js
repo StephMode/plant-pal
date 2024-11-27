@@ -1,5 +1,5 @@
 import PlantCard from "/components/PlantCard";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import Button from "/components/Button";
 import PlantFilterSection from "/components/PlantFilterSection";
 import { AiOutlineControl } from "react-icons/ai";
@@ -19,7 +19,6 @@ export default function HomePage({
   filteredPlants,
   randomTip,
   progress,
-
   handleMouseLeave,
   handleMouseHover,
   handleSearchQuery,
@@ -30,11 +29,12 @@ export default function HomePage({
   const plantsToBeRendered = noSearchResults ? searchResults : filteredPlants !== plants ? filteredPlants : plants;
 
   return (
-    <main>
+    <StyledMain>
 
       <h1>Plant List</h1>
       <StyledSpacer/>
       <TipBanner randomTip={randomTip} progress={progress} handleMouseHover = {handleMouseHover} handleMouseLeave = {handleMouseLeave}/>
+
       <Search 
         handleSearchQuery={handleSearchQuery}
         resetSearch={resetSearch}
@@ -45,6 +45,21 @@ export default function HomePage({
       </StyledFilterButtonSection>
       <StyledSpacer2/>
       <PlantFilterSection handleFilterPlants={onFilterPlants} showPlantFilterSection={showPlantFilterSection} handleFilterPlantsReset={onFilterPlantsReset} selectedFilter={selectedFilter}/>
+
+
+      <ThemeProvider theme={showPlantFilterSection ? openFilter : closedFilter }>
+        <StyledFilterSection>
+          <PlantFilterSection 
+            handleFilterPlants={onFilterPlants} 
+            showPlantFilterSection={showPlantFilterSection} 
+            handleFilterPlantsReset={onFilterPlantsReset} 
+            selectedFilter={selectedFilter}/>
+            <StyledFilterButtonSection>
+            <Button buttonText={showPlantFilterSection ? <IoClose /> : <AiOutlineControl />} handleButtonFunction={toggleFilterSection} />
+          </StyledFilterButtonSection>
+        </StyledFilterSection>
+      </ThemeProvider>
+
       
       { filteredPlants.length === 0 && 
            <StyledInfoText>No plants were found. Reset filter.</StyledInfoText>}
@@ -67,12 +82,40 @@ export default function HomePage({
               </li>)
             )}
           </ul>
-      
-    </main>
+
+    </StyledMain>
   );
 }
 
-
+const StyledMain = styled.main`
+  padding: 0 20px;
+  @media (max-width: 750px) {
+        padding:0 9px;
+        
+    }
+`;
+const StyledFilterSection = styled.section`
+  display: flex;
+  justify-content:  ${props => props.theme.flex};
+  flex-direction: ${props => props.theme.flexDir};
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: ${props => props.theme.main};
+  border-radius: 15px;
+  padding: ${props => props.theme.padding};
+`;
+const closedFilter = {
+  main: "transparent",
+  padding: "0",
+  flex: "flex-end",
+  flexDir: ""
+}
+const openFilter = {
+  main: "rgba(0, 0, 0, 0.1)",
+  padding: "15px 15px 20px 20px",
+  flex: "space-between",
+  flexDir: "column-reverse"
+}
 const StyledInfoText = styled.p`
   color: var(--green-main);
   background-color: var(--gray);
@@ -84,13 +127,8 @@ const StyledSpacer = styled.span`
   display: block;
   height: 75px;
 `;
-const StyledSpacer2 = styled.span`
-  display: block;
-  height: 17px;
-`;
 const StyledFilterButtonSection = styled.section`
-  margin-right: 6px;
-  align-self: end;
+  align-self: flex-end;
 `;
 
 
