@@ -49,8 +49,7 @@ const reminderPageTheme = {
     marginLeft: "0px",
     marginBottom: "10px",
     alignSelf: "flex-end",
-    boxShadow: "0 0px 15px rgba(0, 0, 0, 0.3)",
-    backgroundColor: "var(--white)", 
+    backgroundColor: "var(--green-super-light)", 
     backgroundColorHover: "none",
     transition: "none"  
 };
@@ -61,7 +60,6 @@ const plantDetailsPageTheme = {
     marginLeft: "40px",
     marginBottom: "0px",
     alignSelf: "flex-start",
-    boxShadow: "none",
     backgroundColor: "rgb(240, 240, 240)",
     backgroundColorHover: "var(--gray)",
     transition: "all 0.45s ease 0s"
@@ -76,7 +74,6 @@ const StyledReminderCard = styled.article`
     margin-bottom: ${props => props.theme.marginBottom};
     width: ${props => props.theme.width};
     justify-content: flex-start;
-    box-shadow: ${props => props.theme.boxShadow};
 
     &:hover {
         background-color: ${props => props.theme.backgroundColorHover};
@@ -116,7 +113,7 @@ const StyledButton = styled.button`
     border: none;
     border-radius: 20px;
     background-color: var(--brown);
-    color: var(-green-main);
+    color: var(--black);
     font-size: 14px;
     cursor: pointer;
     transition: 0.5s ease-in-out;
