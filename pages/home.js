@@ -50,6 +50,8 @@ export default function HomePage({
       { !selectedFilter && plants.length === 0 &&
           <StyledInfoText>No plants there yet. Add new ones!</StyledInfoText>
         }
+      {noSearchResults && (<StyledInfoText>No plants match the search. Please try again.</StyledInfoText>)}
+
           <ul>
            {plantsToBeRendered.map((plant) => (
               <li key={plant.id}>
