@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { nanoid } from "nanoid";
 import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from 'react-hot-toast';
 import styled from "styled-components";
 import { notes } from "/lib/noteData";
 import toast from "react-hot-toast";
@@ -18,12 +18,73 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
-
-  /*---------------------------------------------------------------------- */
   const intervalRef = useRef(null);
   const [randomTip, setRandomTip] = useState(tips[1]);
   const [progress, setProgress] = useState(100);
   const [isPaused, setIsPaused] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  const [isReminder, setIsReminder] = useState(false);
+
+  const initialFilterObject = {
+    waterNeed: "",
+    lightNeed: "",
+    fertiliserSeason: [],
+  };
+  const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
+  const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
+
+  const testReminder = [
+    { id: 1,
+      plantName: "Snake Plant",
+      task: "watering",
+      date: "2024-11-27",
+      relatedPlant: "1"
+    },
+    { id: 2,
+      plantName: "Fiddle Leaf Fig",
+      task: "fertilizing",
+      date: "2024-11-28",
+      relatedPlant: "2"
+    },
+    { id: 3,
+      plantName: "Aloe Vera",
+      task: "fertilizing",
+      date: "2024-11-30",
+      relatedPlant: "3"
+    },
+    { id: 4,
+      plantName: "Spider Plant",
+      task: "fertilizing",
+      date: "2024-12-03",
+      relatedPlant: "4"
+    }
+  ];
+  
+  const [reminders, setReminders] = useState(testReminder);
+
+
+  const [currentDate, setCurrentDate] = useState(getDate());
+
+  function getDate() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${year}-${month}-${date}`;
+  }
+
+  useEffect(() => {
+    const Interval = setInterval(() => {
+      setCurrentDate(getDate());
+    }, 10000);
+
+    return () => clearInterval(Interval);
+  }, []);
+
+
+
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
     return tips[randomIndex];
@@ -56,20 +117,7 @@ export default function App({ Component, pageProps }) {
   const handleMouseLeave = () => {
     setIsPaused(false);
   };
-  /*---------------------------------------------------------------------- */
-  const [showModal, setShowModal] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-  const [isDelete, setIsDelete] = useState(false);
-
-  const initialFilterObject = {
-    waterNeed: "",
-    lightNeed: "",
-    fertiliserSeason: [],
-  };
-  const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
-
-  const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
-
+  
   function handleToggleModal() {
     setShowModal(!showModal);
   }
@@ -120,6 +168,8 @@ export default function App({ Component, pageProps }) {
       setIsEdit(!isEdit);
     } else if (buttonFunctionText === "Delete") {
       setIsDelete(!isDelete);
+    } else if (buttonFunctionText === "Reminder") {
+      setIsReminder(!isReminder);
     }
   }
 
@@ -191,8 +241,6 @@ export default function App({ Component, pageProps }) {
     setShowPlantFilterSection(!showPlantFilterSection);
   }
 
-  /* __________________________________ */
-
   const [notesData, setNotesData] = useLocalStorageState("notesData", {
     defaultValue: notes,
   });
@@ -258,6 +306,24 @@ export default function App({ Component, pageProps }) {
           : note
       )
     );
+    
+  function handleAddReminder(newReminderData, plantId, name) {
+    const newReminder = {
+      id: nanoid(),
+      plantName: name,
+      relatedPlant: plantId,
+      ...newReminderData,
+    };
+    setReminders([newReminder, ...reminders]);
+    router.push(`/plants/${plantId}`);
+    setIsReminder(false);
+    setShowModal(false);
+  }
+
+  function handleDeleteReminder(id, task) {
+    setReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
+    toast.success(`${task} completed`);
+
   }
 
   return (
@@ -299,9 +365,14 @@ export default function App({ Component, pageProps }) {
         notesData={notesData}
         handleAddNote={handleAddNote}
         handleEditNote={handleEditNote}
+        reminders={reminders}
+        isReminder={isReminder}
+        handleAddReminder={handleAddReminder}
+        handleDeleteReminder={handleDeleteReminder}
       />
       <Toaster />
-      <Navigation />
+      <Navigation reminders={reminders} currentDate={currentDate}/>
+
     </>
   );
 }

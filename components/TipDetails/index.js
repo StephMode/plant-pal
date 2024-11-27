@@ -6,6 +6,7 @@ import Tag from "../Tag";
 import { useState } from "react";
 import NoteCard from "../NoteCard";
 import { FaPlus } from "react-icons/fa";
+import Breadcrumbs from "../Breadcrumbs";
 
 export default function TipDetails({
   tip,
@@ -39,12 +40,11 @@ export default function TipDetails({
       <StyledImageContainer>
         <StyledImage src={tip.imageURL} alt={tip.title} fill />
       </StyledImageContainer>
-
       <StyledIconContainer onClick={() => router.back()} type="button">
         <FaChevronLeft />
       </StyledIconContainer>
-
       <StyledTipContainer>
+      <Breadcrumbs breadcrumbType="tip" tip={tip}/>
         <StyledH2>{tip.title}</StyledH2>
         <StyledDescription>{tip.bodyContent}</StyledDescription>
 
