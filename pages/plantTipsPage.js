@@ -46,5 +46,5 @@ const StyledInfoText = styled.p`
 `;
 const StyledSpacer = styled.span`
   display: block;
-  height: 113px;
+  height: 70px;
 `;

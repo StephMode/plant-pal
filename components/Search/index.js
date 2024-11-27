@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { IoSearch } from "react-icons/io5";
 import { useEffect } from "react";
 
 
@@ -20,7 +19,6 @@ export default function Search({ handleSearchQuery, resetSearch, searchFor }) {
     }, [])
 
     return(
-
             <StyledSearchBar>
                 <StyledSearchInput 
                 type="text"
@@ -28,17 +26,15 @@ export default function Search({ handleSearchQuery, resetSearch, searchFor }) {
                 placeholder={`Search for ${searchFor}`}
                 onChange={handleSearchInput}
                 />
-            <IoSearch />
             </StyledSearchBar>
     )
 }
 
 
 const StyledSearchBar = styled.div`
-    display: flex;
-    align-items: center;
-    margin: 20px;
-    gap: 5px;
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 20px;
 `;
 
 const StyledSearchInput = styled.input`
@@ -47,6 +43,7 @@ const StyledSearchInput = styled.input`
   padding: 10px 15px;
   margin-top: 6px;
   font-family: inherit;
+  width: 100%;
 
   background-color: rgba(0,0,0,0.1);
   border: 2px solid rgba(0,0,0,0.1);
