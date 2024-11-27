@@ -3,7 +3,7 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import toast from 'react-hot-toast';
 
-export default function ReminderForm({plant, handleToggleModal, handleAddReminder, id, currentDate}) {
+export default function ReminderForm({plant, handleToggleModal, handleAddReminder, id}) {
 
     const [showErrorMessageTask, setShowErrorMessageTask] = useState(false);
     const [showErrorMessageDate, setShowErrorMessageDate] = useState(false);
@@ -58,7 +58,7 @@ export default function ReminderForm({plant, handleToggleModal, handleAddReminde
                 </StyledFieldset>
                 <StyledButtonContainer>
                     <StyledSubmitButton type="submit">
-                        Create Reminder for {plant}
+                        Create Reminder
                     </StyledSubmitButton>
                 </StyledButtonContainer>
             </form>
