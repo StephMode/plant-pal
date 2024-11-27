@@ -17,31 +17,24 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
   });
-  /*---------------------------------------------------------------------- */
+
   const intervalRef = useRef(null);
   const [randomTip, setRandomTip] = useState(tips[1]);
   const [progress, setProgress] = useState(100);
   const [isPaused, setIsPaused] = useState(false);
 
+  const [showModal, setShowModal] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  const [isReminder, setIsReminder] = useState(false);
 
-  function getDate() {
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    const date = today.getDate();
-    return `${year}-${month}-${date}`;
-  }
-
-  const [currentDate, setCurrentDate] = useState(getDate());
-
-  useEffect(() => {
-    const Interval = setInterval(() => {
-      setCurrentDate(getDate());
-    }, 10000);
-
-    return () => clearInterval(Interval);
-  }, []);
-
+  const initialFilterObject = {
+    waterNeed: "",
+    lightNeed: "",
+    fertiliserSeason: [],
+  };
+  const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
+  const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
   const testReminder = [
     { id: 1,
@@ -69,8 +62,28 @@ export default function App({ Component, pageProps }) {
       relatedPlant: "4"
     }
   ];
-
+  
   const [reminders, setReminders] = useState(testReminder);
+
+
+  const [currentDate, setCurrentDate] = useState(getDate());
+
+  function getDate() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${year}-${month}-${date}`;
+  }
+
+  useEffect(() => {
+    const Interval = setInterval(() => {
+      setCurrentDate(getDate());
+    }, 10000);
+
+    return () => clearInterval(Interval);
+  }, []);
+
 
   const getRandomTip = () => {
     const randomIndex = Math.floor(Math.random() * tips.length);
@@ -104,21 +117,7 @@ export default function App({ Component, pageProps }) {
   const handleMouseLeave = () => {
     setIsPaused(false);
   };
-  /*---------------------------------------------------------------------- */
-  const [showModal, setShowModal] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-  const [isDelete, setIsDelete] = useState(false);
-  const [isReminder, setIsReminder] = useState(false);
-
-  const initialFilterObject = {
-    waterNeed: "",
-    lightNeed: "",
-    fertiliserSeason: [],
-  };
-  const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
-
-  const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
-
+  
   function handleToggleModal() {
     setShowModal(!showModal);
   }
