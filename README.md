@@ -1,46 +1,55 @@
-# rooted
+# Rooted 🌱
 
-#### A web application that serves as a digital handbook for plants, helping users keep their plants thriving and lasting longer
+## Master the art of plant care, one tip at a time
 
+This project was lovingly brought to life by [Carmen](https://github.com/carmen136), [Jan](https://github.com/jan-riemenschneider), [Stephan](https://github.com/StephMode) & [Levin](https://github.com/levinthiel).
 
-### Key Features of the Application
+It was engineered and designed as part of a final project in the web development bootcamp at [Neuefische](https://www.neuefische.de/en).
 
-- **Filter** Option: Users can filter plants based on specific criteria to quickly find relevant results.
-  
-- **Mark Plants** as Your Own: Plants can be marked as “Your Plant” and managed individually.
-  
-- **Care Tips:** Users receive helpful tips for optimal plant care.
-  
-- **Add Notes:** Personal notes can be added to each care tip for storing important information.
-  
-- **Reminder Function:** A built-in reminder feature helps users stay on top of care tasks like watering or fertilizing.
+Rooted is a curated plant collection, coupled with helpful and common plant care tips.
 
-- **Search Functionality:** Plants and care tips can be easily found using a search bar.
-  
-- **Plant Tip Slider:** An interactive slider displays various care tips to provide inspiration and guidance.
-  
-- **Related Plants for Tips:** Each care tip is accompanied by related plants that benefit from the advice.
-  
-- **Breadcrumb Navigation:** A breadcrumb trail shows the current page path, making navigation through the application seamless.
+## Demo:
 
-### Technologien
+https://plant-pal-sigma.vercel.app/
 
-- **Frontend:** React, Next.js, Styled Components  
-- **Deployment:** Vercel
+## Tech Stack:
 
-### Contributors
-
-The following people have contributed to this project:
+- react, next.js
+- styled components  & themes
+- Libraries (e.g. react-icons, react-hot-toast)
+- Deployment: Vercel
+- Design: Miró, photoshop, XD
 
 
-- [Carmen](https://github.com/carmen136)  
-- [Stephan](https://github.com/StephMode)  
-- [Lewin](https://github.com/levinthiel)  
-- [Jan](https://github.com/jan-riemenschneider)
+## Key Features:
+
+- favourite plants
+- add / edit / delete plants
+- set reminder
+- search
+- add Notes
+- cross-reference plants and tips
+
+## Acknowledgments:
+
+🙏🏻 We want to thank
+- all alumni from neuefische for the insightful code reviews
+- our coaches, for the help, the guidance, and the encouragements
+
+## Future Development:
+
+We will keep working and developing the project as a team.
+
+This is what we have on the roadmap:
+- Clean-up of the code base
+- Login functionality
+- Introduction of database
+- Image upload
+
+...more to come 🛣️
 
 
-
-
+## Installation Instructions:
 
 To work locally, please install the dependencies using `npm i` first.
 
