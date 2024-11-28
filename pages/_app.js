@@ -38,13 +38,13 @@ export default function App({ Component, pageProps }) {
     { id: 1,
       plantName: "Snake Plant",
       task: "watering",
-      date: "2024-11-27",
+      date: "2024-11-29",
       relatedPlant: "1"
     },
     { id: 2,
       plantName: "Fiddle Leaf Fig",
       task: "fertilizing",
-      date: "2024-11-28",
+      date: "2024-12-05",
       relatedPlant: "2"
     },
     { id: 3,
