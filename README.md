@@ -10,7 +10,9 @@ Rooted is a curated plant collection, coupled with helpful and common plant care
 
 ## Demo:
 
-https://plant-pal-sigma.vercel.app/
+[rooted-capstone.vercel.app
+](https://rooted-capstone.vercel.app/)
+
 
 ## Tech Stack:
 
