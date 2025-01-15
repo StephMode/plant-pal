@@ -61,8 +61,9 @@ return(
                     <StyledLoginbutton type="submit">Login</StyledLoginbutton>
                 </StyledFormContainer>
                 <StyledTextContainer>
-                    <p>Forgot your password?</p>
-                    <p>Do not have an account?</p>
+                    <p>
+                        {loginErrorMessage ? "mail: admin@rooted.com / password: RootedFTW" : "Forgot your password? Do not have an account yet?"}
+                    </p>
                 </StyledTextContainer>
             </StyledLoginContainer>
             
