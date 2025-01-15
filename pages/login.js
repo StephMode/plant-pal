@@ -7,34 +7,34 @@ return(
         <StyledLoginWrapper>
             <StyledLoginContainer>
                 <StyledImageContainer>
-                    <Image src="/logo-main.svg" width={150} height={130} alt="avatar" />
+                    <Image src="/logo-main.svg" width={180} height={130} alt="avatar" />
                 </StyledImageContainer>
                 <StyledFormContainer>
                     <StyledInputContainer>
-                        <label htmlFor="PlantName">Email:</label>
+                        <StyledH1>Login</StyledH1>
+                        <label htmlFor="email">Email:</label>
                         <StyledInput
-                            id="plantName"
-                            name="name"
+                            id="email"
+                            name="email"
                             type="text"
-                            placeholder="e.g. Monstera"
-                            defaultValue="Admin@rooted.com"
+                            placeholder="e.g. Admin@rooted.com"
+                            defaultValue=""
                             onChange={() => {setShowErrorMessageName(false)}}           
                         ></StyledInput>
-                        <label htmlFor="PlantName">Password:</label>
+                        <label htmlFor="password">Password:</label>
                         <StyledInput
-                            id="plantName"
-                            name="name"
+                            id="password"
+                            name="password"
                             type="text"
-                            placeholder="e.g. Monstera"
-                            defaultValue="Admin@rooted.com"
+                            placeholder="e.g. RootedFTW"
                             onChange={() => {setShowErrorMessageName(false)}}           
                         ></StyledInput>
                     </StyledInputContainer>
                     <StyledLoginbutton type="submit">Login</StyledLoginbutton>
                 </StyledFormContainer>
                 <StyledTextContainer>
-                    <p>forgot your password?</p>
-                    <p>you don't have an account?</p>
+                    <p>Forgot your password?</p>
+                    <p>Don't have an account?</p>
                 </StyledTextContainer>
             </StyledLoginContainer>
             
@@ -53,6 +53,7 @@ const StyledLoginWrapper = styled.section`
     z-index: 1000;
     align-items: center;
     justify-content: center;
+    color: var(--black);
 `;
 const StyledLoginContainer = styled.section`
     position: relative;
@@ -61,6 +62,7 @@ const StyledLoginContainer = styled.section`
     max-height: 670px;
     left: 0;
     right: 0;
+    font-family: Assistant, sans-serif;
 `;
 const StyledImageContainer = styled.section`
     width: 100%;
@@ -77,19 +79,28 @@ const StyledInputContainer = styled.div `
     background-color: var(--white);
     border-radius: 25px;
     width: 100%;
-    padding: 20px 5px;
+    padding: 20px 12px;
     margin-top: -20px;
     box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
 `;
+const StyledH1 = styled.h1`
+    position: relative;
+    color: var(--black);
+    font-weight: bold;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    font-family: inherit;
+    font-size: 32px;
+`;
 const StyledInput = styled.input`
-  border: none;
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.1) !important;
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   padding: 10px 15px;
   margin-top: 6px;
   font-family: inherit;
-
-  background-color: rgba(0,0,0,0.1);
-  border: 2px solid ${props => props.theme.main};
 
   &:focus {
     outline-color: var(--green-light);
@@ -110,4 +121,6 @@ const StyledLoginbutton = styled.button `
 const StyledTextContainer = styled.div `
     font-size: 14px;
     margin-top: 30px;
+    text-align: center;
+    color: var(--green-light-dark);
 `;
