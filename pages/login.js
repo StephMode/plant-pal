@@ -12,21 +12,17 @@ function passwordCheck(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log(data)
-    console.log(adminPW)
+
    
     if(data.email === adminPW.email & data.password === adminPW.password){
-        /* router.push(`/plants/${id}`); */
-        console.log("green")
         setLoginErrorMessage(false)
         setShowErrorMessageLogin(false)
+        router.push(`/home`);
     }
     else {
-        console.log("red")
         setLoginErrorMessage(true)
         setShowErrorMessageLogin(true)
     }
-    
 }    
 
 return(
