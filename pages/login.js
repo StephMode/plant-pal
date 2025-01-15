@@ -6,26 +6,33 @@ export default function LoginPage(){
 return(
         <StyledLoginWrapper>
             <StyledLoginContainer>
-                <Image src="/logo-main.svg" width={150} height={150} alt="avatar" />
-                <label htmlFor="PlantName">Email:</label>
-                <StyledInput
-                    id="plantName"
-                    name="name"
-                    type="text"
-                    placeholder="e.g. Monstera"
-                    defaultValue="Admin@rooted.com"
-                    onChange={() => {setShowErrorMessageName(false)}}           
-                ></StyledInput>
-                <label htmlFor="PlantName">Password:</label>
-                <StyledInput
-                    id="plantName"
-                    name="name"
-                    type="text"
-                    placeholder="e.g. Monstera"
-                    defaultValue="Admin@rooted.com"
-                    onChange={() => {setShowErrorMessageName(false)}}           
-                ></StyledInput>
-                <button type="submit">Login</button>
+                <StyledImageContainer>
+                    <Image src="/logo-main.svg" width={150} height={130} alt="avatar" />
+                </StyledImageContainer>
+                <StyledFormContainer>
+                    <label htmlFor="PlantName">Email:</label>
+                    <StyledInput
+                        id="plantName"
+                        name="name"
+                        type="text"
+                        placeholder="e.g. Monstera"
+                        defaultValue="Admin@rooted.com"
+                        onChange={() => {setShowErrorMessageName(false)}}           
+                    ></StyledInput>
+                    <label htmlFor="PlantName">Password:</label>
+                    <StyledInput
+                        id="plantName"
+                        name="name"
+                        type="text"
+                        placeholder="e.g. Monstera"
+                        defaultValue="Admin@rooted.com"
+                        onChange={() => {setShowErrorMessageName(false)}}           
+                    ></StyledInput>
+                    
+                    <StyledLoginbutton type="submit">Login</StyledLoginbutton>
+                </StyledFormContainer>
+                <p>forgot your password?</p>
+                <p>you don't have an account?</p>
             </StyledLoginContainer>
             
         </StyledLoginWrapper>
@@ -45,12 +52,28 @@ const StyledLoginWrapper = styled.section`
     justify-content: center;
 `;
 const StyledLoginContainer = styled.section`
+    position: relative;
     width: 250px;
     height: auto;
     max-height: 670px;
     left: 0;
     right: 0;
-    background: red;
+`;
+const StyledImageContainer = styled.section`
+    width: 100%;
+    height: 150px;
+    background: var(--green-main);
+    display: flex;
+    justify-content: center;
+    border-radius: 25px 25px 0 0;
+`;
+const StyledFormContainer = styled.section`
+    background-color: var(--white);
+    border-radius: 25px;
+    width: 100%;
+    padding: 20px 5px;
+    margin-top: -20px;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
 `;
 const StyledInput = styled.input`
   border: none;
@@ -65,4 +88,18 @@ const StyledInput = styled.input`
   &:focus {
     outline-color: var(--green-light);
   }
+`;
+const StyledLoginbutton = styled.button `
+    position: absolute;
+    width: 250px;
+    left: 0;
+    bottom: -90px;
+    border: none;
+    background: var(--green-main);
+    padding: 16px;
+    border-radius: 30px;
+    color: var(--gold);
+    font-family: Assistant, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
 `;
