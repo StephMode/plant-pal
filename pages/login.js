@@ -1,9 +1,10 @@
 import styled, { ThemeProvider } from "styled-components"
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function LoginPage(){
-
+const router = useRouter();
 const adminPW = { email:"admin@rooted.com",password:"RootedFTW",}
 const [loginErrorMessage,setLoginErrorMessage] = useState(false)
 const [showErrorMessageLogin, setShowErrorMessageLogin] = useState(false);
