@@ -10,29 +10,32 @@ return(
                     <Image src="/logo-main.svg" width={150} height={130} alt="avatar" />
                 </StyledImageContainer>
                 <StyledFormContainer>
-                    <label htmlFor="PlantName">Email:</label>
-                    <StyledInput
-                        id="plantName"
-                        name="name"
-                        type="text"
-                        placeholder="e.g. Monstera"
-                        defaultValue="Admin@rooted.com"
-                        onChange={() => {setShowErrorMessageName(false)}}           
-                    ></StyledInput>
-                    <label htmlFor="PlantName">Password:</label>
-                    <StyledInput
-                        id="plantName"
-                        name="name"
-                        type="text"
-                        placeholder="e.g. Monstera"
-                        defaultValue="Admin@rooted.com"
-                        onChange={() => {setShowErrorMessageName(false)}}           
-                    ></StyledInput>
-                    
+                    <StyledInputContainer>
+                        <label htmlFor="PlantName">Email:</label>
+                        <StyledInput
+                            id="plantName"
+                            name="name"
+                            type="text"
+                            placeholder="e.g. Monstera"
+                            defaultValue="Admin@rooted.com"
+                            onChange={() => {setShowErrorMessageName(false)}}           
+                        ></StyledInput>
+                        <label htmlFor="PlantName">Password:</label>
+                        <StyledInput
+                            id="plantName"
+                            name="name"
+                            type="text"
+                            placeholder="e.g. Monstera"
+                            defaultValue="Admin@rooted.com"
+                            onChange={() => {setShowErrorMessageName(false)}}           
+                        ></StyledInput>
+                    </StyledInputContainer>
                     <StyledLoginbutton type="submit">Login</StyledLoginbutton>
                 </StyledFormContainer>
-                <p>forgot your password?</p>
-                <p>you don't have an account?</p>
+                <StyledTextContainer>
+                    <p>forgot your password?</p>
+                    <p>you don't have an account?</p>
+                </StyledTextContainer>
             </StyledLoginContainer>
             
         </StyledLoginWrapper>
@@ -68,6 +71,9 @@ const StyledImageContainer = styled.section`
     border-radius: 25px 25px 0 0;
 `;
 const StyledFormContainer = styled.section`
+    width: 100%;
+`;
+const StyledInputContainer = styled.div `
     background-color: var(--white);
     border-radius: 25px;
     width: 100%;
@@ -90,10 +96,8 @@ const StyledInput = styled.input`
   }
 `;
 const StyledLoginbutton = styled.button `
-    position: absolute;
     width: 250px;
-    left: 0;
-    bottom: -90px;
+    margin-top: 30px;
     border: none;
     background: var(--green-main);
     padding: 16px;
@@ -102,4 +106,8 @@ const StyledLoginbutton = styled.button `
     font-family: Assistant, sans-serif;
     font-weight: bold;
     font-size: 18px;
+`;
+const StyledTextContainer = styled.div `
+    font-size: 14px;
+    margin-top: 30px;
 `;
