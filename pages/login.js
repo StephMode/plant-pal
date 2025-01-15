@@ -1,7 +1,33 @@
-import styled from "styled-components"
+import styled, { ThemeProvider } from "styled-components"
 import Image from "next/image";
+import { useState } from "react";
 
 export default function LoginPage(){
+
+const adminPW = { email:"admin@rooted.com",password:"RootedFTW",}
+const [loginErrorMessage,setLoginErrorMessage] = useState(false)
+const [showErrorMessageLogin, setShowErrorMessageLogin] = useState(false);
+
+function passwordCheck(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    console.log(data)
+    console.log(adminPW)
+   
+    if(data.email === adminPW.email & data.password === adminPW.password){
+        /* router.push(`/plants/${id}`); */
+        console.log("green")
+        setLoginErrorMessage(false)
+        setShowErrorMessageLogin(false)
+    }
+    else {
+        console.log("red")
+        setLoginErrorMessage(true)
+        setShowErrorMessageLogin(true)
+    }
+    
+}    
 
 return(
         <StyledLoginWrapper>
@@ -9,32 +35,37 @@ return(
                 <StyledImageContainer>
                     <Image src="/logo-main.svg" width={180} height={130} alt="avatar" />
                 </StyledImageContainer>
-                <StyledFormContainer>
+                <StyledFormContainer onSubmit={() => passwordCheck(event)}>
                     <StyledInputContainer>
                         <StyledH1>Login</StyledH1>
                         <label htmlFor="email">Email:</label>
-                        <StyledInput
-                            id="email"
-                            name="email"
-                            type="text"
-                            placeholder="e.g. Admin@rooted.com"
-                            defaultValue=""
-                            onChange={() => {setShowErrorMessageName(false)}}           
-                        ></StyledInput>
+                        <ThemeProvider theme={showErrorMessageLogin ? errorMessageInput : defaultThemeInput}>
+                            <StyledInput
+                                required
+                                id="email"
+                                name="email"
+                                type="text"
+                                placeholder="e.g. admin@rooted.com"
+                                defaultValue=""      
+                            ></StyledInput>
+                        </ThemeProvider>
                         <label htmlFor="password">Password:</label>
-                        <StyledInput
-                            id="password"
-                            name="password"
-                            type="text"
-                            placeholder="e.g. RootedFTW"
-                            onChange={() => {setShowErrorMessageName(false)}}           
-                        ></StyledInput>
+                        <ThemeProvider theme={showErrorMessageLogin ? errorMessageInput : defaultThemeInput}>
+                            <StyledInput
+                                required
+                                id="password"
+                                name="password"
+                                type="text"
+                                placeholder="e.g. RootedFTW"        
+                            ></StyledInput>
+                        </ThemeProvider>
+                        <StyledErrorMessage>{loginErrorMessage && <span>Password or Email is wrong</span>}&nbsp;</StyledErrorMessage>
                     </StyledInputContainer>
                     <StyledLoginbutton type="submit">Login</StyledLoginbutton>
                 </StyledFormContainer>
                 <StyledTextContainer>
                     <p>Forgot your password?</p>
-                    <p>Don't have an account?</p>
+                    <p>Do not have an account?</p>
                 </StyledTextContainer>
             </StyledLoginContainer>
             
@@ -72,14 +103,14 @@ const StyledImageContainer = styled.section`
     justify-content: center;
     border-radius: 25px 25px 0 0;
 `;
-const StyledFormContainer = styled.section`
+const StyledFormContainer = styled.form`
     width: 100%;
 `;
 const StyledInputContainer = styled.div `
     background-color: var(--white);
     border-radius: 25px;
     width: 100%;
-    padding: 20px 12px;
+    padding: 1px 20px 12px 20px;
     margin-top: -20px;
     box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
 `;
@@ -95,7 +126,7 @@ const StyledH1 = styled.h1`
 `;
 const StyledInput = styled.input`
   width: 100%;
-  border: 2px solid rgba(0, 0, 0, 0.1) !important;
+  border: 2px solid ${props => props.theme.main};
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   padding: 10px 15px;
@@ -106,6 +137,14 @@ const StyledInput = styled.input`
     outline-color: var(--green-light);
   }
 `;
+const StyledErrorMessage = styled.p `
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--error-red);
+    padding: 10px 0;
+    text-align: center;
+`;
+
 const StyledLoginbutton = styled.button `
     width: 250px;
     margin-top: 30px;
@@ -124,3 +163,16 @@ const StyledTextContainer = styled.div `
     text-align: center;
     color: var(--green-light-dark);
 `;
+//Theme for Error Styling 
+StyledInput.defaultProps = {
+    theme: {
+      main: "var(--green-light)"
+    }
+  }
+  const defaultThemeInput = {
+    main: "var(--green-light)"
+  }
+  const errorMessageInput = {
+    main: "var(--error-red)"
+  }
+  
