@@ -9,7 +9,7 @@ const adminPW = { email:"admin@rooted.com",password:"RootedFTW",}
 const [loginErrorMessage,setLoginErrorMessage] = useState(false)
 const [showErrorMessageLogin, setShowErrorMessageLogin] = useState(false);
 
-function passwordCheck(event) {
+function loginDataCheck (event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
@@ -32,7 +32,7 @@ return(
                 <StyledImageContainer>
                     <Image src="/logo-main.svg" width={180} height={130} alt="avatar" />
                 </StyledImageContainer>
-                <StyledFormContainer onSubmit={() => passwordCheck(event)}>
+                <StyledFormContainer onSubmit={() => loginDataCheck(event)}>
                     <StyledInputContainer>
                         <StyledH1>Login</StyledH1>
                         <label htmlFor="email">Email:</label>
@@ -41,7 +41,7 @@ return(
                                 required
                                 id="email"
                                 name="email"
-                                type="text"
+                                type="email"
                                 placeholder="e.g. admin@rooted.com"
                                 defaultValue=""      
                             ></StyledInput>
@@ -52,7 +52,7 @@ return(
                                 required
                                 id="password"
                                 name="password"
-                                type="text"
+                                type="password"
                                 placeholder="e.g. RootedFTW"        
                             ></StyledInput>
                         </ThemeProvider>
@@ -154,6 +154,7 @@ const StyledLoginbutton = styled.button `
     font-family: Assistant, sans-serif;
     font-weight: bold;
     font-size: 18px;
+    cursor: pointer;
 `;
 const StyledTextContainer = styled.div `
     font-size: 14px;
