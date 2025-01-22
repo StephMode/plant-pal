@@ -1,7 +1,6 @@
 import GlobalStyle from "../styles";
 import "../fonts.css";
 import Image from "next/image";
-import { tips } from "/lib/tipData";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 import { nanoid } from "nanoid";
@@ -17,15 +16,19 @@ const fetcher = (url) => fetch(url).then((response) => response.json());
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
-  // SWR Configuration
-  const { data: fetchedPlants, error } = useSWR("/api/plants", fetcher);
+  // SWR Configuration for tips
+  const { data: tips, error: tipsError } = useSWR("/api/tips", fetcher);
+
+
+  // SWR Configuration for plants
+  const { data: fetchedPlants, error: plantsError } = useSWR("/api/plants", fetcher);
 
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: [],
   });
 
 
-  // Wenn die Pflanzen-Daten erfolgreich geladen wurden, setze sie in State
+  // Once the plant data has been successfully loaded, set it in State
   useEffect(() => {
     if (fetchedPlants) {
       setPlants(fetchedPlants);
@@ -34,7 +37,8 @@ export default function App({ Component, pageProps }) {
   
 
   const intervalRef = useRef(null);
-  const [randomTip, setRandomTip] = useState(tips[1]);
+  // had to be set to zero because the fetch function is asynchronous and randomTip would therefore access data that is not yet available -> error message
+  const [randomTip, setRandomTip] = useState(null);
   const [progress, setProgress] = useState(100);
   const [isPaused, setIsPaused] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -99,31 +103,49 @@ export default function App({ Component, pageProps }) {
   }, []);
 
 
+ // generate a random tip when tip data is loaded:
+  useEffect(() => {
+    if (tips && tips.length > 1) {
+          const getRandomTip = () => {
+            const randomIndex = Math.floor(Math.random() * tips.length);
+            return tips[randomIndex];
+          };
+          setRandomTip(getRandomTip());
+    }
+  }, [tips]);
 
-  const getRandomTip = () => {
-    const randomIndex = Math.floor(Math.random() * tips.length);
-    return tips[randomIndex];
-  };
+  // former code (without useEffect):
+  // useEffect(() => {
+  //   if (tips && tips.length > 1) {
+  //         setRandomTip(tips[0]);
+  //   }
+  // }, [tips]);
+
 
   useEffect(() => {
     const updateProgress = () => {
       setProgress((prevProgress) => {
         if (prevProgress <= 0) {
+          const getRandomTip = () => {
+            const randomIndex = Math.floor(Math.random() * tips.length);
+            return tips[randomIndex];
+          };
           setRandomTip(getRandomTip());
           return 100;
         }
         return prevProgress - 0.5;
       });
     };
-
+  
     if (!isPaused) {
       intervalRef.current = setInterval(updateProgress, 50);
     }
-
+  
     return () => {
       clearInterval(intervalRef.current);
     };
-  }, [isPaused]);
+  }, [isPaused, tips]);
+
 
   const handleMouseHover = () => {
     setIsPaused(true);
@@ -142,6 +164,7 @@ export default function App({ Component, pageProps }) {
     setShowModal(!showModal);
   }
 
+  // with mongoDB?
   function handleToggleOwned(id) {
     setPlants((prevPlants) =>
       prevPlants.map((plant) =>
@@ -150,6 +173,7 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  // obsolete?
   function handleAddPlant(newPlantData) {
     const newPlant = {
       ...newPlantData,
@@ -161,6 +185,7 @@ export default function App({ Component, pageProps }) {
     router.push(`/home`);
   }
 
+  // obsolete?
   function handleEditPlant(newPlantData, id) {
     setPlants((prevPlants) =>
       prevPlants.map((plant) =>
@@ -292,7 +317,7 @@ export default function App({ Component, pageProps }) {
   }
 
   
-
+// implement data in mongoDB Atlas
   const [notesData, setNotesData] = useLocalStorageState("notesData", {
     defaultValue: notes,
   });
@@ -360,6 +385,7 @@ export default function App({ Component, pageProps }) {
     );
 }
     
+// also implement in mongoDB?
   function handleAddReminder(newReminderData, plantId, name) {
     const newReminder = {
       id: nanoid(),
@@ -381,7 +407,10 @@ export default function App({ Component, pageProps }) {
 
   // error handling of SWR configuration
   // has to be positioned after every hook and state
-  if (error) return <div>Fehler beim Laden der Pflanzen</div>;
+  if (tipsError) return <div>Fehler beim Laden der Tipps</div>;
+  if (!tips) return <div>Lade...</div>;
+
+  if (plantsError) return <div>Fehler beim Laden der Pflanzen</div>;
   if (!fetchedPlants) return <div>Lade...</div>;
 
   return (
