@@ -1,7 +1,7 @@
 import GlobalStyle from "../styles";
 import "../fonts.css";
 import Image from "next/image";
-import { plants as initialPlants } from "/lib/plantData";
+// import { plants as initialPlants } from "/lib/plantData";
 import { tips } from "/lib/tipData";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
@@ -11,12 +11,29 @@ import Navigation from "/components/Navigation";
 import toast, { Toaster } from 'react-hot-toast';
 import styled from "styled-components";
 import { notes } from "/lib/noteData";
+import useSWR, { SWRConfig} from "swr";
+
+const fetcher = (url) => fetch(url).then((response) => response.json());
+
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
+  // SWR Configuration
+  const { data: fetchedPlants, error } = useSWR("/api/plants", fetcher);
+
   const [plants, setPlants] = useLocalStorageState("plants", {
-    defaultValue: initialPlants,
+    defaultValue: [],
   });
+
+
+  // Wenn die Pflanzen-Daten erfolgreich geladen wurden, setze sie in State
+  useEffect(() => {
+    if (fetchedPlants) {
+      setPlants(fetchedPlants);
+    }
+  }, [fetchedPlants, setPlants]);
+  
+
   const intervalRef = useRef(null);
   const [randomTip, setRandomTip] = useState(tips[1]);
   const [progress, setProgress] = useState(100);
@@ -363,9 +380,13 @@ export default function App({ Component, pageProps }) {
 
   }
 
+  // error handling of SWR configuration
+  // has to be positioned after every hook and state
+  if (error) return <div>Fehler beim Laden der Pflanzen</div>;
+  if (!fetchedPlants) return <div>Lade...</div>;
 
   return (
-    <>
+    <SWRConfig value={{ fetcher }}>
       <GlobalStyle />
       <header>
         <StyledLogoLink href="/">
@@ -415,7 +436,7 @@ export default function App({ Component, pageProps }) {
       <Toaster />
       <Navigation reminders={reminders} currentDate={currentDate}/>
 
-    </>
+    </SWRConfig>
   );
 }
 
