@@ -1,7 +1,6 @@
 import GlobalStyle from "../styles";
 import "../fonts.css";
 import Image from "next/image";
-// import { plants as initialPlants } from "/lib/plantData";
 import { tips } from "/lib/tipData";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
