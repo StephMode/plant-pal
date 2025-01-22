@@ -1,5 +1,5 @@
-import dbConnect from "../../db/connect";
-import Plant from "../../db/models/Plant";
+import dbConnect from "../../../db/connect";
+import Plant from "../../../db/models/Plant";
 
 export default async function handler(request, response){
     await dbConnect();
@@ -13,4 +13,4 @@ export default async function handler(request, response){
 
         response.status(200).json(joke);
     }
-}
+};
