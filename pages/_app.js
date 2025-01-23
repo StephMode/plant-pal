@@ -8,7 +8,6 @@ import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
 import toast, { Toaster } from 'react-hot-toast';
 import styled from "styled-components";
-import { notes } from "/lib/noteData";
 import useSWR, { SWRConfig} from "swr";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
@@ -35,6 +34,21 @@ export default function App({ Component, pageProps }) {
     }
   }, [fetchedPlants, setPlants]);
   
+
+  // SWR Configuration for notes
+  // TO DO: remove localstorage 
+  const { data: fetchedNotes, error: notesError } = useSWR("/api/notes", fetcher);
+
+  const [notesData, setNotesData] = useLocalStorageState("notesData", {
+    defaultValue: [],
+  });
+
+  useEffect(() => {
+    if (fetchedNotes) {
+      setNotesData(fetchedNotes);
+    }
+  }, [fetchedNotes, setNotesData]);
+
 
   const intervalRef = useRef(null);
   // had to be set to zero because the fetch function is asynchronous and randomTip would therefore access data that is not yet available -> error message
@@ -199,28 +213,6 @@ export default function App({ Component, pageProps }) {
   }
 
 
-  // obsolete?
-  // function handleEditPlant(newPlantData, id) {
-  //   setPlants((prevPlants) =>
-  //     prevPlants.map((plant) =>
-  //       plant.id === id
-  //         ? {
-  //             ...plant,
-  //             name: newPlantData.name,
-  //             botanicalName: newPlantData.botanicalName,
-  //             description: newPlantData.description,
-  //             lightNeed: newPlantData.lightNeed,
-  //             waterNeed: newPlantData.waterNeed,
-  //             fertiliserSeason: newPlantData.fertiliserSeason,
-  //           }
-  //         : plant
-  //     )
-  //   );
-  //   router.push(`/plants/${id}`);
-  //   setIsEdit(false);
-  //   setShowModal(false);
-  // }
-
   async function handleEditPlant(newPlantData, id) {
 
     try {
@@ -246,7 +238,7 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  
+
   function handleToggleModal(buttonFunctionText) {
     setShowModal(!showModal);
     if (buttonFunctionText === "Edit") {
@@ -370,11 +362,6 @@ export default function App({ Component, pageProps }) {
   }
 
   
-// implement data in mongoDB Atlas
-  const [notesData, setNotesData] = useLocalStorageState("notesData", {
-    defaultValue: notes,
-  });
-
   function handleDeleteNote(id) {
     setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
     toast.success("Note successfully deleted");
@@ -461,6 +448,9 @@ export default function App({ Component, pageProps }) {
   // error handling of SWR configuration
   // has to be positioned after every hook and state
   if (tipsError) return <div>Fehler beim Laden der Tipps</div>;
+  if (!tips) return <div>Lade...</div>;
+
+  if (notesError) return <div>Fehler beim Laden der Notizen</div>;
   if (!tips) return <div>Lade...</div>;
 
   if (plantsError) return <div>Fehler beim Laden der Pflanzen</div>;
