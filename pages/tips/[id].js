@@ -12,8 +12,9 @@ export default function TipDetailsPage({
   const router = useRouter();
 
   const { id } = router.query;
+ 
 
-  const tip = tips.find((tip) => tip.id === id);
+  const tip = tips.find((tip) => tip._id === id);
 
   const plantsToBeTagged = plants;
 

@@ -14,4 +14,3 @@ const tipSchema = new Schema({
 const Tip = mongoose.models.Tip || mongoose.model("Tip", tipSchema);
 
 export default Tip;
-

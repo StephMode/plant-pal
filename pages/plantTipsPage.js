@@ -23,9 +23,9 @@ export default function PlantTipsPage({ tips, handleSearchQuery, searchResults, 
       
       <ul>
         {tipsTobeRendered.map((tip) => (
-          <li key={tip.id}>
+          <li key={tip._id}>
             <TipCard
-              tipId={tip.id}
+              tipId={tip._id}
               image={tip.imageURL}
               title={tip.title}
               shortBodyContent={tip.shortBodyContent}

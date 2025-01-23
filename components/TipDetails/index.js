@@ -20,6 +20,7 @@ export default function TipDetails({
   const router = useRouter();
   const [noRelatedPlants, setNoRelatedPlants] = useState(false);
 
+    // I haven't found a solution yet to use the objectIds here, so we have to keep the string-Ids 
   const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
   const relatedPlantObject = relatedPlants.map((plantID) =>
     plantsToBeTagged.find((plant) => plant.id === plantID)
@@ -52,9 +53,9 @@ export default function TipDetails({
         <StyledTagContainer>
           {relatedPlantObject.map((plant) =>
             plant === undefined ? null : (
-              <li key={plant.id}>
+              <li key={plant._id}>
                 <Tag
-                  tagId={plant.id}
+                  tagId={plant._id}
                   tagType={"plants"}
                   headline={plant.name}
                   subHeadline={plant.botanicalName}
