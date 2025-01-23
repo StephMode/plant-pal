@@ -39,9 +39,8 @@ export default function PlantDetails({
   }) {
   const router = useRouter();
 
-  // I haven't found a solution yet to use the objectIds here, so we have to keep the string-Ids 
   const relatedReminders = reminders.filter((reminder) => reminder.relatedPlant === plant.id);
-  const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
+  const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant._id));
 
   return (
     <>

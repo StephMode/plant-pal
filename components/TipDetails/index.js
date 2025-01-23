@@ -20,10 +20,9 @@ export default function TipDetails({
   const router = useRouter();
   const [noRelatedPlants, setNoRelatedPlants] = useState(false);
 
-    // I haven't found a solution yet to use the objectIds here, so we have to keep the string-Ids 
   const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
   const relatedPlantObject = relatedPlants.map((plantID) =>
-    plantsToBeTagged.find((plant) => plant.id === plantID)
+    plantsToBeTagged.find((plant) => plant._id === plantID)
   );
 
   const undefinedCount = relatedPlantObject.filter(

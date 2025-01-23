@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Plant from "./Plant";
 
 const { Schema } = mongoose;
 
