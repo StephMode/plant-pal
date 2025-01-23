@@ -378,37 +378,125 @@ export default function App({ Component, pageProps }) {
     });
   }
 
-  function handleAddNote(routerQuery) {
-    let noteAdded = false;
+  // function handleAddNote(routerQuery) {
+  //   let noteAdded = false;
 
+  //   setNotesData((prevnotes) => {
+  //     const notesOnCurrentPage = prevnotes.filter(
+  //       (note) => note.noteLocation === routerQuery
+  //     );
+
+  //     if (notesOnCurrentPage.length >= 5) {
+  //       WarningToast();
+  //       return prevnotes;
+  //     } else noteAdded = true;
+
+  //     const currentDate = new Date().toLocaleDateString();
+
+  //     return [
+  //       ...prevnotes,
+  //       {
+  //         id: nanoid(),
+  //         headline: "Add Headline here",
+  //         note: "Add note here",
+  //         noteLocation: routerQuery,
+  //         dateCreated: currentDate,
+  //       },
+  //     ];
+  //   });
+
+  //   if (noteAdded) {
+  //     toast.success("Note successfully added");
+  //   }
+  // }
+
+  // async function handleAddNote(routerQuery) {
+    
+  //   setNotesData((prevnotes) => {
+  //     const notesOnCurrentPage = prevnotes.filter(
+  //       (note) => note.noteLocation === routerQuery
+  //     );
+    
+  //     if (notesOnCurrentPage.length >= 5) {
+  //       WarningToast();
+  //       return prevnotes;
+  //     } 
+  //   });
+
+  //   const currentDate = new Date().toLocaleDateString();
+
+  //   const noteData = {
+  //     headline: "Add Headline here",
+  //     note: "Add note here",
+  //     noteLocation: routerQuery,
+  //     dateCreated: currentDate,
+  //   };
+
+  //   try {
+  //     const response = await fetch("/api/notes", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(noteData),
+  //     });
+  
+  //     if(response.ok) {
+  //       mutate();
+  //       toast.success("Note successfully added");
+  //       router.push(`/tips/${routerQuery}`);
+  //     } else {
+  //       console.error("Fehler beim Hinzufügen der Notiz:", response.status, response.statusText);
+  //       return;
+  //     }
+  //   } catch (error) {
+  //       console.error("Netzwerkfehler:", error);
+  //   }
+  // }
+
+  async function handleAddNote(routerQuery) {
+    const newNoteData = {
+      headline: "Add Headline here",
+      note: "Add note here",
+      noteLocation: routerQuery,
+      dateCreated: new Date().toLocaleDateString(),
+    };
+  
+    // we still need this due to state management and limit of 5 notes per tipPage
     setNotesData((prevnotes) => {
       const notesOnCurrentPage = prevnotes.filter(
         (note) => note.noteLocation === routerQuery
       );
-
+  
       if (notesOnCurrentPage.length >= 5) {
         WarningToast();
         return prevnotes;
-      } else noteAdded = true;
-
-      const currentDate = new Date().toLocaleDateString();
-
-      return [
-        ...prevnotes,
-        {
-          id: nanoid(),
-          headline: "Add Headline here",
-          note: "Add note here",
-          noteLocation: routerQuery,
-          dateCreated: currentDate,
-        },
-      ];
+      }
+  
+      return [...prevnotes, newNoteData]; 
     });
-
-    if (noteAdded) {
-      toast.success("Note successfully added");
+  
+    try {
+      const response = await fetch("/api/notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newNoteData),
+      });
+  
+      if (response.ok) {
+        mutate();
+        toast.success("Note successfully added");
+        router.push(`/tips/${routerQuery}`);
+      } else {
+        console.error("Fehler beim Hinzufügen der Notiz:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Netzwerkfehler:", error);
     }
   }
+
 
   function handleEditNote(newPlantData, id, routerQuery) {
     setNotesData((prevnotes) =>
