@@ -4,6 +4,7 @@ import Note from "../../../db/models/Note";
 export default async function handler(request, response){
     await dbConnect();
     const { id } = request.query;
+    console.log("Query:", request.query);
 
     if(request.method === "GET") {
         const note = await Note.findById(id);
@@ -29,7 +30,8 @@ export default async function handler(request, response){
         await Note.findByIdAndDelete(id);
 
         response.status(200).json({ status: "Note deleted!" });
+        return;
     }
 
-    await response.status(405).json({ status: "Method not allowed" });
+    return response.status(405).json({ status: "Method not allowed" });
 };

@@ -31,5 +31,5 @@ export default async function handler(request, response){
         response.status(200).json({ status: "Plant deleted!" });
     }
 
-    await response.status(405).json({ status: "Method not allowed" });
+    return response.status(405).json({ status: "Method not allowed" });
 };

@@ -18,9 +18,11 @@ export default function App({ Component, pageProps }) {
   // SWR Configuration for tips
   const { data: tips, error: tipsError } = useSWR("/api/tips", fetcher);
 
+  // SWR Configuration for notes
+  const { data: notes, error: notesError, mutate: mutateNotes } = useSWR("/api/notes", fetcher);
 
   // SWR Configuration for plants
-  const { data: fetchedPlants, error: plantsError, mutate } = useSWR("/api/plants", fetcher);
+  const { data: fetchedPlants, error: plantsError, mutate: mutatePlants } = useSWR("/api/plants", fetcher);
 
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: [],
@@ -34,21 +36,6 @@ export default function App({ Component, pageProps }) {
     }
   }, [fetchedPlants, setPlants]);
   
-
-  // SWR Configuration for notes
-  // TO DO: remove localstorage 
-  const { data: fetchedNotes, error: notesError } = useSWR("/api/notes", fetcher);
-
-  const [notesData, setNotesData] = useLocalStorageState("notesData", {
-    defaultValue: [],
-  });
-
-  useEffect(() => {
-    if (fetchedNotes) {
-      setNotesData(fetchedNotes);
-    }
-  }, [fetchedNotes, setNotesData]);
-
 
   const intervalRef = useRef(null);
   // had to be set to zero because the fetch function is asynchronous and randomTip would therefore access data that is not yet available -> error message
@@ -201,7 +188,7 @@ export default function App({ Component, pageProps }) {
       });
   
       if(response.ok) {
-        mutate();
+        mutatePlants();
         router.push("/home");
       } else {
         console.error("Fehler beim Hinzufügen der Pflanze:", response.status, response.statusText);
@@ -225,7 +212,7 @@ export default function App({ Component, pageProps }) {
       });
   
       if(response.ok) {
-        mutate();
+        mutatePlants();
         router.push(`/plants/${id}`);
         setIsEdit(false);
         setShowModal(false);
@@ -257,7 +244,7 @@ export default function App({ Component, pageProps }) {
         });
     
         if(response.ok) {
-          mutate();
+          mutatePlants();
           router.push("/home");
           setIsDelete(!isDelete);
           setShowModal(!showModal);
@@ -361,98 +348,38 @@ export default function App({ Component, pageProps }) {
     setNoSearchResults(false)
   }
 
-  
-  function handleDeleteNote(id) {
-    setNotesData((prevnotes) => prevnotes.filter((note) => note.id !== id));
-    toast.success("Note successfully deleted");
+
+  async function handleDeleteNote(id) {
+    console.log(id);
+    try {
+        const response = await fetch(`/api/notes/${id}`, {
+          method: "DELETE",
+        });
+    
+        if(response.ok) {
+          mutateNotes();
+          toast.success("Note successfully deleted");
+        } else {
+          console.error("Fehler beim Löschen der Notiz:", response.status, response.statusText);
+          return;
+        }
+      } catch (error) {
+          console.error("Netzwerkfehler:", error);
+      }
   }
 
-  function WarningToast() {
-    toast("Maximum of 5 notes per tip", {
-      icon: "⚠️",
-      style: {
-        border: "1px solid #ffeeba",
-        color: "#856404",
-        backgroundColor: "#fff3cd",
-      },
-    });
-  }
 
-  // function handleAddNote(routerQuery) {
-  //   let noteAdded = false;
-
-  //   setNotesData((prevnotes) => {
-  //     const notesOnCurrentPage = prevnotes.filter(
-  //       (note) => note.noteLocation === routerQuery
-  //     );
-
-  //     if (notesOnCurrentPage.length >= 5) {
-  //       WarningToast();
-  //       return prevnotes;
-  //     } else noteAdded = true;
-
-  //     const currentDate = new Date().toLocaleDateString();
-
-  //     return [
-  //       ...prevnotes,
-  //       {
-  //         id: nanoid(),
-  //         headline: "Add Headline here",
-  //         note: "Add note here",
-  //         noteLocation: routerQuery,
-  //         dateCreated: currentDate,
-  //       },
-  //     ];
+  // function WarningToast() {
+  //   toast("Maximum of 5 notes per tip", {
+  //     icon: "⚠️",
+  //     style: {
+  //       border: "1px solid #ffeeba",
+  //       color: "#856404",
+  //       backgroundColor: "#fff3cd",
+  //     },
   //   });
-
-  //   if (noteAdded) {
-  //     toast.success("Note successfully added");
-  //   }
   // }
 
-  // async function handleAddNote(routerQuery) {
-    
-  //   setNotesData((prevnotes) => {
-  //     const notesOnCurrentPage = prevnotes.filter(
-  //       (note) => note.noteLocation === routerQuery
-  //     );
-    
-  //     if (notesOnCurrentPage.length >= 5) {
-  //       WarningToast();
-  //       return prevnotes;
-  //     } 
-  //   });
-
-  //   const currentDate = new Date().toLocaleDateString();
-
-  //   const noteData = {
-  //     headline: "Add Headline here",
-  //     note: "Add note here",
-  //     noteLocation: routerQuery,
-  //     dateCreated: currentDate,
-  //   };
-
-  //   try {
-  //     const response = await fetch("/api/notes", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(noteData),
-  //     });
-  
-  //     if(response.ok) {
-  //       mutate();
-  //       toast.success("Note successfully added");
-  //       router.push(`/tips/${routerQuery}`);
-  //     } else {
-  //       console.error("Fehler beim Hinzufügen der Notiz:", response.status, response.statusText);
-  //       return;
-  //     }
-  //   } catch (error) {
-  //       console.error("Netzwerkfehler:", error);
-  //   }
-  // }
 
   async function handleAddNote(routerQuery) {
     const newNoteData = {
@@ -461,20 +388,6 @@ export default function App({ Component, pageProps }) {
       noteLocation: routerQuery,
       dateCreated: new Date().toLocaleDateString(),
     };
-  
-    // we still need this due to state management and limit of 5 notes per tipPage
-    setNotesData((prevnotes) => {
-      const notesOnCurrentPage = prevnotes.filter(
-        (note) => note.noteLocation === routerQuery
-      );
-  
-      if (notesOnCurrentPage.length >= 5) {
-        WarningToast();
-        return prevnotes;
-      }
-  
-      return [...prevnotes, newNoteData]; 
-    });
   
     try {
       const response = await fetch("/api/notes", {
@@ -486,9 +399,8 @@ export default function App({ Component, pageProps }) {
       });
   
       if (response.ok) {
-        mutate();
+        mutateNotes();
         toast.success("Note successfully added");
-        router.push(`/tips/${routerQuery}`);
       } else {
         console.error("Fehler beim Hinzufügen der Notiz:", response.status, response.statusText);
       }
@@ -498,21 +410,30 @@ export default function App({ Component, pageProps }) {
   }
 
 
-  function handleEditNote(newPlantData, id, routerQuery) {
-    setNotesData((prevnotes) =>
-      prevnotes.map((note) =>
-        note.id === id
-          ? {
-              ...note,
-              headline: newPlantData.title,
-              note: newPlantData.note,
-              noteLocation: routerQuery,
-            }
-          : note
-      )
-    );
+  async function handleEditNote(updatedNoteData, id) {
+
+    try {
+      const response = await fetch(`/api/notes/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedNoteData),
+      });
+  
+      if(response.ok) {
+        mutateNotes();
+      } else {
+        console.error("Fehler beim Ändern der Daten:", response.status, response.statusText);
+        return;
+      }
+    } catch (error) {
+        console.error("Netzwerkfehler:", error);
+    }
+
 }
-    
+
+ 
 // also implement in mongoDB?
   function handleAddReminder(newReminderData, plantId, name) {
     const newReminder = {
@@ -584,7 +505,7 @@ export default function App({ Component, pageProps }) {
         resetSearch={resetSearch}
         noSearchResults={noSearchResults}
         handleDeleteNote={handleDeleteNote}
-        notesData={notesData}
+        notesData={notes}
         handleAddNote={handleAddNote}
         handleEditNote={handleEditNote}
         reminders={reminders}

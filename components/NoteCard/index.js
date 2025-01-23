@@ -25,7 +25,7 @@ export default function NoteCard({
       event.preventDefault();
       const formData = new FormData(event.target);
       const data = Object.fromEntries(formData);
-      handleEditNote(data, id, routerQuery);
+      handleEditNote(data, id);
       setToggleEditNote(false);
       toast.success("Note successfully edited");
     }
