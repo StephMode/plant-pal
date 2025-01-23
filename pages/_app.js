@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
 
 
   // SWR Configuration for plants
-  const { data: fetchedPlants, error: plantsError } = useSWR("/api/plants", fetcher);
+  const { data: fetchedPlants, error: plantsError, mutate } = useSWR("/api/plants", fetcher);
 
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: [],
@@ -114,13 +114,6 @@ export default function App({ Component, pageProps }) {
     }
   }, [tips]);
 
-  // former code (without useEffect):
-  // useEffect(() => {
-  //   if (tips && tips.length > 1) {
-  //         setRandomTip(tips[0]);
-  //   }
-  // }, [tips]);
-
 
   useEffect(() => {
     const updateProgress = () => {
@@ -151,9 +144,11 @@ export default function App({ Component, pageProps }) {
     setIsPaused(true);
   };
 
+
   const handleMouseLeave = () => {
     setIsPaused(false);
   };
+
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchPage, setSearchPage] = useState(""); 
@@ -173,17 +168,36 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  // obsolete?
-  function handleAddPlant(newPlantData) {
-    const newPlant = {
+
+  async function handleAddPlant(newPlantData) {
+
+    const plantData = {
       ...newPlantData,
-      id: nanoid(),
       imageUrl:
         "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     };
-    setPlants([newPlant, ...plants]);
-    router.push(`/home`);
+
+    try {
+      const response = await fetch("/api/plants", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plantData),
+      });
+  
+      if(response.ok) {
+        mutate();
+        router.push("/home");
+      } else {
+        console.error("Fehler beim Hinzufügen der Pflanze:", response.status, response.statusText);
+        return;
+      }
+    } catch (error) {
+        console.error("Netzwerkfehler:", error);
+    }
   }
+
 
   // obsolete?
   function handleEditPlant(newPlantData, id) {
@@ -225,6 +239,7 @@ export default function App({ Component, pageProps }) {
         });
     
         if(response.ok) {
+          mutate();
           router.push("/home");
           setIsDelete(!isDelete);
           setShowModal(!showModal);
