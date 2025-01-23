@@ -168,7 +168,7 @@ export default function PlantDetails({
                 plant={plant}
                 buttonText={"Delete"}
                 onDeletePlant={onDeletePlant}
-                id={plant.id}
+                id={plant._id}
                 handleToggleModal={handleToggleModal}
               />
             ) : isReminder ? (

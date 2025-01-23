@@ -218,13 +218,25 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  function handleDeletePlant(id) {
-    setPlants((prevPlants) => prevPlants.filter((plant) => plant.id !== id));
-
-    router.push(`/home`);
-    setIsDelete(!isDelete);
-    setShowModal(!showModal);
+  async function handleDeletePlant(id) {
+    try {
+        const response = await fetch(`/api/plants/${id}`, {
+          method: "DELETE",
+        });
+    
+        if(response.ok) {
+          router.push("/home");
+          setIsDelete(!isDelete);
+          setShowModal(!showModal);
+        } else {
+          console.error("Fehler beim Löschen der Pflanze:", response.status, response.statusText);
+          return;
+        }
+      } catch (error) {
+          console.error("Netzwerkfehler:", error);
+      }
   }
+
 
   function handleFilterPlants(selectedFilterKey, selectedFilterValue) {
     if (
