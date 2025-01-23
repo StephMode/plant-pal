@@ -200,27 +200,53 @@ export default function App({ Component, pageProps }) {
 
 
   // obsolete?
-  function handleEditPlant(newPlantData, id) {
-    setPlants((prevPlants) =>
-      prevPlants.map((plant) =>
-        plant.id === id
-          ? {
-              ...plant,
-              name: newPlantData.name,
-              botanicalName: newPlantData.botanicalName,
-              description: newPlantData.description,
-              lightNeed: newPlantData.lightNeed,
-              waterNeed: newPlantData.waterNeed,
-              fertiliserSeason: newPlantData.fertiliserSeason,
-            }
-          : plant
-      )
-    );
-    router.push(`/plants/${id}`);
-    setIsEdit(false);
-    setShowModal(false);
+  // function handleEditPlant(newPlantData, id) {
+  //   setPlants((prevPlants) =>
+  //     prevPlants.map((plant) =>
+  //       plant.id === id
+  //         ? {
+  //             ...plant,
+  //             name: newPlantData.name,
+  //             botanicalName: newPlantData.botanicalName,
+  //             description: newPlantData.description,
+  //             lightNeed: newPlantData.lightNeed,
+  //             waterNeed: newPlantData.waterNeed,
+  //             fertiliserSeason: newPlantData.fertiliserSeason,
+  //           }
+  //         : plant
+  //     )
+  //   );
+  //   router.push(`/plants/${id}`);
+  //   setIsEdit(false);
+  //   setShowModal(false);
+  // }
+
+  async function handleEditPlant(newPlantData, id) {
+
+    try {
+      const response = await fetch(`/api/plants/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPlantData),
+      });
+  
+      if(response.ok) {
+        mutate();
+        router.push(`/plants/${id}`);
+        setIsEdit(false);
+        setShowModal(false);
+      } else {
+        console.error("Fehler beim Ändern der Daten:", response.status, response.statusText);
+        return;
+      }
+    } catch (error) {
+        console.error("Netzwerkfehler:", error);
+    }
   }
 
+  
   function handleToggleModal(buttonFunctionText) {
     setShowModal(!showModal);
     if (buttonFunctionText === "Edit") {
