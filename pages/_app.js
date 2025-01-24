@@ -464,11 +464,24 @@ async function handleDeleteNote(id) {
   }
 
 
-  function handleDeleteReminder(id, task) {
-    setReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
-    toast.success(`${task} completed`);
-
+  async function handleDeleteReminder(id, task) {
+    try {
+        const response = await fetch(`/api/reminders/${id}`, {
+          method: "DELETE",
+        });
+    
+        if(response.ok) {
+          mutateReminders();
+          toast.success(`${task} completed`);
+        } else {
+          console.error("Fehler beim Löschen der Erinnerung:", response.status, response.statusText);
+          return;
+        }
+      } catch (error) {
+          console.error("Netzwerkfehler:", error);
+      }
   }
+
 
   // error handling of SWR configuration
   // has to be positioned after every hook and state
