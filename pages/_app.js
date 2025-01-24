@@ -76,7 +76,7 @@ export default function App({ Component, pageProps }) {
   }, []);
 
 
- // generate a random tip when tip data is loaded:
+ // generate random tip when tip data is loaded:
   useEffect(() => {
     if (tips && tips.length > 1) {
           const getRandomTip = () => {
@@ -321,16 +321,16 @@ export default function App({ Component, pageProps }) {
   }
 
 
-  // function WarningToast() {
-  //   toast("Maximum of 5 notes per tip", {
-  //     icon: "⚠️",
-  //     style: {
-  //       border: "1px solid #ffeeba",
-  //       color: "#856404",
-  //       backgroundColor: "#fff3cd",
-  //     },
-  //   });
-  // }
+  function WarningToast() {
+    toast("Maximum of 5 notes per tip", {
+      icon: "⚠️",
+      style: {
+        border: "1px solid #ffeeba",
+        color: "#856404",
+        backgroundColor: "#fff3cd",
+      },
+    });
+  }
 
 
   async function handleAddNote(routerQuery) {
@@ -340,6 +340,10 @@ export default function App({ Component, pageProps }) {
       noteLocation: routerQuery,
       dateCreated: new Date().toLocaleDateString(),
     };
+
+    const everyTipNote = notes.filter((note) => {
+      return note.noteLocation === routerQuery;
+  });
   
     try {
       const response = await fetch("/api/notes", {
@@ -350,9 +354,12 @@ export default function App({ Component, pageProps }) {
         body: JSON.stringify(newNoteData),
       });
   
-      if (response.ok) {
+      if (response.ok && everyTipNote.length < 5) {
         mutateNotes();
         toast.success("Note successfully added");
+      } else if (response.ok && everyTipNote.length >= 5) {
+        WarningToast();
+        return;
       } else {
         console.error("Fehler beim Hinzufügen der Notiz:", response.status, response.statusText);
       }
