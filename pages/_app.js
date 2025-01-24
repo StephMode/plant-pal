@@ -21,6 +21,9 @@ export default function App({ Component, pageProps }) {
   // SWR Configuration for notes
   const { data: notes, error: notesError, mutate: mutateNotes } = useSWR("/api/notes", fetcher);
 
+  // SWR Configuration for reminders
+  const { data: reminders, error: remindersError, mutate: mutateReminders } = useSWR("/api/reminders", fetcher);
+
   // SWR Configuration for plants
   const { data: fetchedPlants, error: plantsError, mutate: mutatePlants } = useSWR("/api/plants", fetcher);
 
@@ -55,34 +58,34 @@ export default function App({ Component, pageProps }) {
   const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
 
-  const testReminder = [
-    { id: 1,
-      plantName: "Snake Plant",
-      task: "watering",
-      date: "2024-11-29",
-      relatedPlant: "1"
-    },
-    { id: 2,
-      plantName: "Fiddle Leaf Fig",
-      task: "fertilizing",
-      date: "2024-12-05",
-      relatedPlant: "2"
-    },
-    { id: 3,
-      plantName: "Aloe Vera",
-      task: "fertilizing",
-      date: "2024-11-30",
-      relatedPlant: "3"
-    },
-    { id: 4,
-      plantName: "Spider Plant",
-      task: "fertilizing",
-      date: "2024-12-03",
-      relatedPlant: "4"
-    }
-  ];
+  // const testReminder = [
+  //   { id: 1,
+  //     plantName: "Snake Plant",
+  //     task: "watering",
+  //     date: "2024-11-29",
+  //     relatedPlant: "1"
+  //   },
+  //   { id: 2,
+  //     plantName: "Fiddle Leaf Fig",
+  //     task: "fertilizing",
+  //     date: "2024-12-05",
+  //     relatedPlant: "2"
+  //   },
+  //   { id: 3,
+  //     plantName: "Aloe Vera",
+  //     task: "fertilizing",
+  //     date: "2024-11-30",
+  //     relatedPlant: "3"
+  //   },
+  //   { id: 4,
+  //     plantName: "Spider Plant",
+  //     task: "fertilizing",
+  //     date: "2024-12-03",
+  //     relatedPlant: "4"
+  //   }
+  // ];
   
-  const [reminders, setReminders] = useState(testReminder);
+  // const [reminders, setReminders] = useState(testReminder);
 
 
   const [currentDate, setCurrentDate] = useState(getDate());
@@ -458,7 +461,10 @@ async function handleDeleteNote(id) {
   if (!tips) return <div>Lade...</div>;
 
   if (notesError) return <div>Fehler beim Laden der Notizen</div>;
-  if (!tips) return <div>Lade...</div>;
+  if (!notes) return <div>Lade...</div>;
+
+  if (remindersError) return <div>Fehler beim Laden der Erinnerungen</div>;
+  if (!reminders) return <div>Lade...</div>;
 
   if (plantsError) return <div>Fehler beim Laden der Pflanzen</div>;
   if (!fetchedPlants) return <div>Lade...</div>;
