@@ -4,7 +4,6 @@ import Note from "../../../db/models/Note";
 export default async function handler(request, response){
     await dbConnect();
     const { id } = request.query;
-    console.log("Query:", request.query);
 
     if(request.method === "GET") {
         const note = await Note.findById(id);

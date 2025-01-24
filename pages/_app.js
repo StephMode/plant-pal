@@ -349,26 +349,6 @@ export default function App({ Component, pageProps }) {
   }
 
 
-  async function handleDeleteNote(id) {
-    console.log(id);
-    try {
-        const response = await fetch(`/api/notes/${id}`, {
-          method: "DELETE",
-        });
-    
-        if(response.ok) {
-          mutateNotes();
-          toast.success("Note successfully deleted");
-        } else {
-          console.error("Fehler beim Löschen der Notiz:", response.status, response.statusText);
-          return;
-        }
-      } catch (error) {
-          console.error("Netzwerkfehler:", error);
-      }
-  }
-
-
   // function WarningToast() {
   //   toast("Maximum of 5 notes per tip", {
   //     icon: "⚠️",
@@ -430,7 +410,25 @@ export default function App({ Component, pageProps }) {
     } catch (error) {
         console.error("Netzwerkfehler:", error);
     }
+}
 
+
+async function handleDeleteNote(id) {
+  try {
+      const response = await fetch(`/api/notes/${id}`, {
+        method: "DELETE",
+      });
+  
+      if(response.ok) {
+        mutateNotes();
+        toast.success("Note successfully deleted");
+      } else {
+        console.error("Fehler beim Löschen der Notiz:", response.status, response.statusText);
+        return;
+      }
+    } catch (error) {
+        console.error("Netzwerkfehler:", error);
+    }
 }
 
  
