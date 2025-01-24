@@ -435,19 +435,34 @@ async function handleDeleteNote(id) {
 }
 
  
-// also implement in mongoDB?
-  function handleAddReminder(newReminderData, plantId, name) {
+  async function handleAddReminder(newReminderData, plantId, name) {
     const newReminder = {
-      id: nanoid(),
       plantName: name,
       relatedPlant: plantId,
-      ...newReminderData,
+      ...newReminderData
     };
-    setReminders([newReminder, ...reminders]);
-    router.push(`/plants/${plantId}`);
-    setIsReminder(false);
-    setShowModal(false);
+
+    try {
+      const response = await fetch("/api/reminders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newReminder),
+      });
+  
+      if (response.ok) {
+        mutateReminders();
+        setIsReminder(false);
+        setShowModal(false);
+      } else {
+        console.error("Fehler beim Hinzufügen der Erinnerung:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Netzwerkfehler:", error);
+    }
   }
+
 
   function handleDeleteReminder(id, task) {
     setReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));

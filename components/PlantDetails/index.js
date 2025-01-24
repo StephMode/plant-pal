@@ -39,7 +39,7 @@ export default function PlantDetails({
   }) {
   const router = useRouter();
 
-  const relatedReminders = reminders.filter((reminder) => reminder.relatedPlant === plant.id);
+  const relatedReminders = reminders.filter((reminder) => reminder.relatedPlant === plant._id);
   const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant._id));
 
   return (
@@ -176,7 +176,7 @@ export default function PlantDetails({
                 plant={plant.name}
                 handleToggleModal={handleToggleModal}
                 handleAddReminder={handleAddReminder}
-                id={plant.id}
+                id={plant._id}
               />
             )
              : (
