@@ -15,9 +15,9 @@ export default function MyPlants({ handleToggleOwned, plants }) {
       
       <ul>
         {ownedPlants.map((plant) => (
-          <li key={plant.id}>
+          <li key={plant._id}>
             <PlantCard
-              plantId={plant.id}
+              plantId={plant._id}
               image={plant.imageUrl}
               name={plant.name}
               botanicalName={plant.botanicalName}

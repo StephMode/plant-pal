@@ -3,7 +3,6 @@ import "../fonts.css";
 import Image from "next/image";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
-import { nanoid } from "nanoid";
 import { useEffect, useState, useRef } from "react";
 import Navigation from "/components/Navigation";
 import toast, { Toaster } from 'react-hot-toast';
@@ -31,7 +30,6 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-
   // Once the plant data has been successfully loaded, set it in State
   useEffect(() => {
     if (fetchedPlants) {
@@ -57,35 +55,6 @@ export default function App({ Component, pageProps }) {
   };
   const [selectedFilter, setSelectedFilter] = useState(initialFilterObject);
   const [showPlantFilterSection, setShowPlantFilterSection] = useState(false);
-
-  // const testReminder = [
-  //   { id: 1,
-  //     plantName: "Snake Plant",
-  //     task: "watering",
-  //     date: "2024-11-29",
-  //     relatedPlant: "1"
-  //   },
-  //   { id: 2,
-  //     plantName: "Fiddle Leaf Fig",
-  //     task: "fertilizing",
-  //     date: "2024-12-05",
-  //     relatedPlant: "2"
-  //   },
-  //   { id: 3,
-  //     plantName: "Aloe Vera",
-  //     task: "fertilizing",
-  //     date: "2024-11-30",
-  //     relatedPlant: "3"
-  //   },
-  //   { id: 4,
-  //     plantName: "Spider Plant",
-  //     task: "fertilizing",
-  //     date: "2024-12-03",
-  //     relatedPlant: "4"
-  //   }
-  // ];
-  
-  // const [reminders, setReminders] = useState(testReminder);
 
 
   const [currentDate, setCurrentDate] = useState(getDate());
@@ -167,7 +136,7 @@ export default function App({ Component, pageProps }) {
   function handleToggleOwned(id) {
     setPlants((prevPlants) =>
       prevPlants.map((plant) =>
-        plant.id === id ? { ...plant, isOwned: !plant.isOwned } : plant
+        plant._id === id ? { ...plant, isOwned: !plant.isOwned } : plant
       )
     );
   }
