@@ -132,7 +132,7 @@ export default function App({ Component, pageProps }) {
     setShowModal(!showModal);
   }
 
-  // with mongoDB?
+  // leave it like this or update mongoDB data? This is currently working due to saving fetched plants in state
   function handleToggleOwned(id) {
     setPlants((prevPlants) =>
       prevPlants.map((plant) =>
@@ -140,6 +140,33 @@ export default function App({ Component, pageProps }) {
       )
     );
   }
+
+  // this is currently not working, reason unknown
+
+  // async function handleToggleOwned(id) {
+  //   const isOwnedPlant = {
+  //     isOwned: true
+  //   }
+
+  //   try {
+  //     const response = await fetch(`/api/plants/${id}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(isOwnedPlant),
+  //     });
+
+  //     if(response.ok) {
+  //       mutatePlants();
+  //     } else {
+  //       console.error("An error occurred while clicking the favourite Button:", response.status, response.statusText);
+  //       return;
+  //     }
+  //   } catch(error) {
+  //     console.error("Network error:", error);
+  //   }
+  // }
 
 
   async function handleAddPlant(newPlantData) {
@@ -163,11 +190,11 @@ export default function App({ Component, pageProps }) {
         mutatePlants();
         router.push("/home");
       } else {
-        console.error("Fehler beim Hinzufügen der Pflanze:", response.status, response.statusText);
+        console.error("An error occurred while adding the plant:", response.status, response.statusText);
         return;
       }
     } catch (error) {
-        console.error("Netzwerkfehler:", error);
+        console.error("Network error:", error);
     }
   }
 
@@ -189,11 +216,11 @@ export default function App({ Component, pageProps }) {
         setIsEdit(false);
         setShowModal(false);
       } else {
-        console.error("Fehler beim Ändern der Daten:", response.status, response.statusText);
+        console.error("An error occurred while changing plant data:", response.status, response.statusText);
         return;
       }
     } catch (error) {
-        console.error("Netzwerkfehler:", error);
+        console.error("Network error:", error);
     }
   }
 
@@ -221,11 +248,11 @@ export default function App({ Component, pageProps }) {
           setIsDelete(!isDelete);
           setShowModal(!showModal);
         } else {
-          console.error("Fehler beim Löschen der Pflanze:", response.status, response.statusText);
+          console.error("An error occurred while deleting the plant:", response.status, response.statusText);
           return;
         }
       } catch (error) {
-          console.error("Netzwerkfehler:", error);
+          console.error("Network error:", error);
       }
   }
 
@@ -361,10 +388,10 @@ export default function App({ Component, pageProps }) {
         WarningToast();
         return;
       } else {
-        console.error("Fehler beim Hinzufügen der Notiz:", response.status, response.statusText);
+        console.error("An error occurred while adding note:", response.status, response.statusText);
       }
     } catch (error) {
-      console.error("Netzwerkfehler:", error);
+      console.error("Network error:", error);
     }
   }
 
@@ -383,11 +410,11 @@ export default function App({ Component, pageProps }) {
       if(response.ok) {
         mutateNotes();
       } else {
-        console.error("Fehler beim Ändern der Daten:", response.status, response.statusText);
+        console.error("An error occurred while changing data:", response.status, response.statusText);
         return;
       }
     } catch (error) {
-        console.error("Netzwerkfehler:", error);
+        console.error("Network error", error);
     }
 }
 
@@ -402,11 +429,11 @@ async function handleDeleteNote(id) {
         mutateNotes();
         toast.success("Note successfully deleted");
       } else {
-        console.error("Fehler beim Löschen der Notiz:", response.status, response.statusText);
+        console.error("An error occurred while deleting note:", response.status, response.statusText);
         return;
       }
     } catch (error) {
-        console.error("Netzwerkfehler:", error);
+        console.error("Network error", error);
     }
 }
 
@@ -432,10 +459,10 @@ async function handleDeleteNote(id) {
         setIsReminder(false);
         setShowModal(false);
       } else {
-        console.error("Fehler beim Hinzufügen der Erinnerung:", response.status, response.statusText);
+        console.error("An error occurred while adding reminder:", response.status, response.statusText);
       }
     } catch (error) {
-      console.error("Netzwerkfehler:", error);
+      console.error("Network error", error);
     }
   }
 
@@ -450,28 +477,28 @@ async function handleDeleteNote(id) {
           mutateReminders();
           toast.success(`${task} completed`);
         } else {
-          console.error("Fehler beim Löschen der Erinnerung:", response.status, response.statusText);
+          console.error("An error occurred while deleting reminder:", response.status, response.statusText);
           return;
         }
       } catch (error) {
-          console.error("Netzwerkfehler:", error);
+          console.error("Network error", error);
       }
   }
 
 
   // error handling of SWR configuration
   // has to be positioned after every hook and state
-  if (tipsError) return <div>Fehler beim Laden der Tipps</div>;
-  if (!tips) return <div>Lade...</div>;
+  if (tipsError) return <div>Error loading the tips</div>;
+  if (!tips) return <div>Loading...</div>;
 
-  if (notesError) return <div>Fehler beim Laden der Notizen</div>;
-  if (!notes) return <div>Lade...</div>;
+  if (notesError) return <div>Error loading the notes</div>;
+  if (!notes) return <div>Loading...</div>;
 
-  if (remindersError) return <div>Fehler beim Laden der Erinnerungen</div>;
-  if (!reminders) return <div>Lade...</div>;
+  if (remindersError) return <div>Error loading the reminders</div>;
+  if (!reminders) return <div>Loading...</div>;
 
-  if (plantsError) return <div>Fehler beim Laden der Pflanzen</div>;
-  if (!fetchedPlants) return <div>Lade...</div>;
+  if (plantsError) return <div>Error loading the plants</div>;
+  if (!fetchedPlants) return <div>Loading...</div>;
 
   return (
     <SWRConfig value={{ fetcher }}>

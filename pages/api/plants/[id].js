@@ -19,7 +19,7 @@ export default async function handler(request, response){
     if(request.method === "PUT") {
         const updatedPlant = request.body;
 
-        await Plant.findByIdAndUpdate(id, updatedPlant);
+        await Plant.findByIdAndUpdate(id, updatedPlant, { new: true});
 
         response.status(200).json({ status: "Plant successfully updated."});
         return;
