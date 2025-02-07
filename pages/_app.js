@@ -14,16 +14,12 @@ const fetcher = (url) => fetch(url).then((response) => response.json());
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
-  // SWR Configuration for tips
   const { data: tips, error: tipsError } = useSWR("/api/tips", fetcher);
 
-  // SWR Configuration for notes
   const { data: notes, error: notesError, mutate: mutateNotes } = useSWR("/api/notes", fetcher);
 
-  // SWR Configuration for reminders
   const { data: reminders, error: remindersError, mutate: mutateReminders } = useSWR("/api/reminders", fetcher);
 
-  // SWR Configuration for plants
   const { data: fetchedPlants, error: plantsError, mutate: mutatePlants } = useSWR("/api/plants", fetcher);
 
   const [plants, setPlants] = useLocalStorageState("plants", {
@@ -31,6 +27,7 @@ export default function App({ Component, pageProps }) {
   });
 
   // Once the plant data has been successfully loaded, set it in State
+  // step 2
   useEffect(() => {
     if (fetchedPlants) {
       setPlants(fetchedPlants);
@@ -132,41 +129,35 @@ export default function App({ Component, pageProps }) {
     setShowModal(!showModal);
   }
 
-  // leave it like this or update mongoDB data? This is currently working due to saving fetched plants in state
-  function handleToggleOwned(id) {
-    setPlants((prevPlants) =>
-      prevPlants.map((plant) =>
-        plant._id === id ? { ...plant, isOwned: !plant.isOwned } : plant
-      )
-    );
+
+  // step 1
+  // update 07.02.25: PUT operation is working, now we have to expand the function
+  // by setting isOwned = false or remove isOwned, if isOwned is already true
+
+  async function handleToggleOwned(id) {
+    const isOwnedPlant = {
+      isOwned: true
+    }
+
+    try {
+      const response = await fetch(`/api/plants/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(isOwnedPlant),
+      });
+
+      if(response.ok) {
+        mutatePlants();
+      } else {
+        console.error("An error occurred while clicking the favourite Button:", response.status, response.statusText);
+        return;
+      }
+    } catch(error) {
+      console.error("Network error:", error);
+    }
   }
-
-  // this is currently not working, reason unknown
-
-  // async function handleToggleOwned(id) {
-  //   const isOwnedPlant = {
-  //     isOwned: true
-  //   }
-
-  //   try {
-  //     const response = await fetch(`/api/plants/${id}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(isOwnedPlant),
-  //     });
-
-  //     if(response.ok) {
-  //       mutatePlants();
-  //     } else {
-  //       console.error("An error occurred while clicking the favourite Button:", response.status, response.statusText);
-  //       return;
-  //     }
-  //   } catch(error) {
-  //     console.error("Network error:", error);
-  //   }
-  // }
 
 
   async function handleAddPlant(newPlantData) {
