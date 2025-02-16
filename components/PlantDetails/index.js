@@ -49,8 +49,7 @@ export default function PlantDetails({
             <StyledPlantOwnedButtonWrapper>
               <PlantOwnedButton 
                 isOwned={plant.isOwned}
-                plantId={plant.id}
-                onClick={() => handleToggleOwned(plant.id)}
+                onClick={() => handleToggleOwned(plant._id)}
               />
             </StyledPlantOwnedButtonWrapper>
       </StyledImageContainer>

@@ -22,10 +22,12 @@ export default function App({ Component, pageProps }) {
 
   const { data: fetchedPlants, error: plantsError, mutate: mutatePlants } = useSWR("/api/plants", fetcher);
 
+  // can be removed 
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: [],
   });
 
+  // can be removed
   // Once the plant data has been successfully loaded, set it in State
   // step 2
   useEffect(() => {
@@ -130,25 +132,30 @@ export default function App({ Component, pageProps }) {
   }
 
 
-  // step 1
-  // update 07.02.25: PUT operation is working, now we have to expand the function
-  // by setting isOwned = false or remove isOwned, if isOwned is already true
-
   async function handleToggleOwned(id) {
-    const isOwnedPlant = {
-      isOwned: true
-    }
-
     try {
-      const response = await fetch(`/api/plants/${id}`, {
+      const response = await fetch(`/api/plants/${id}`);
+      if (!response.ok) {
+        console.error("An error occured while trying to get plants data", response.status, response.statusText);
+        return;
+      }
+  
+      const plantData = await response.json();
+      const isOwned = plantData.isOwned;
+  
+      const isOwnedUpdatedPlant = {
+        isOwned: !isOwned
+      }
+
+      const updateResponse = await fetch(`/api/plants/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(isOwnedPlant),
+        body: JSON.stringify(isOwnedUpdatedPlant),
       });
 
-      if(response.ok) {
+      if(updateResponse.ok) {
         mutatePlants();
       } else {
         console.error("An error occurred while clicking the favourite Button:", response.status, response.statusText);
@@ -157,7 +164,7 @@ export default function App({ Component, pageProps }) {
     } catch(error) {
       console.error("Network error:", error);
     }
-  }
+}
 
 
   async function handleAddPlant(newPlantData) {

@@ -11,7 +11,6 @@ export default function PlantDetailsPage({
   isEdit, 
   isDelete, 
   tips,
-  isOwned,
   handleToggleOwned,
   reminders,
   isReminder,
@@ -42,7 +41,6 @@ export default function PlantDetailsPage({
         isEdit={isEdit} 
         handleAddPlant={handleAddPlant} 
         tipsToBeTagged={tipsToBeTagged}
-        isOwned={isOwned}
         handleToggleOwned={handleToggleOwned}
         reminders={reminders}
         isReminder={isReminder}
