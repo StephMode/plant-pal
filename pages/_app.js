@@ -22,14 +22,13 @@ export default function App({ Component, pageProps }) {
 
   const { data: fetchedPlants, error: plantsError, mutate: mutatePlants } = useSWR("/api/plants", fetcher);
 
-  // can be removed 
+  // we should keep the state:
+  // If we don't store plants in a state it may be that plants is not defined or available at the time we try to access it
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: [],
   });
 
-  // can be removed
   // Once the plant data has been successfully loaded, set it in State
-  // step 2
   useEffect(() => {
     if (fetchedPlants) {
       setPlants(fetchedPlants);
