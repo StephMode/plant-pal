@@ -43,7 +43,8 @@ return(
                                 name="email"
                                 type="email"
                                 placeholder="e.g. admin@rooted.com"
-                                defaultValue=""      
+                                defaultValue="" 
+                                onChange={() => setShowErrorMessageLogin(false)}
                             ></StyledInput>
                         </ThemeProvider>
                         <label htmlFor="password">Password:</label>
@@ -53,7 +54,8 @@ return(
                                 id="password"
                                 name="password"
                                 type="password"
-                                placeholder="e.g. RootedFTW"        
+                                placeholder="e.g. RootedFTW"  
+                                onChange={() => setShowErrorMessageLogin(false)}      
                             ></StyledInput>
                         </ThemeProvider>
                         <StyledErrorMessage>{loginErrorMessage && <span>Password or Email is wrong</span>}&nbsp;</StyledErrorMessage>
