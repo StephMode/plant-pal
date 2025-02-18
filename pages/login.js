@@ -8,7 +8,7 @@ export default function LoginPage(){
 const router = useRouter();
 const adminPW = { email:"admin@rooted.com",password:"RootedFTW",}
 const [loginErrorMessage,setLoginErrorMessage] = useState(false)
-const [showErrorMessageLogin, setShowErrorMessageLogin] = useState(false);
+const [showInputError, setShowInputError] = useState(false);
 const [loginMissingInputEmail,setLoginMissingInputEmail] = useState(false)
 const [loginMissingInputPassword,setLoginMissingInputPassword] = useState(false)
 
@@ -27,14 +27,14 @@ function loginDataCheck (event) {
     }
     else if(data.email === adminPW.email & data.password === adminPW.password){
         setLoginErrorMessage(false)
-        setShowErrorMessageLogin(false)
+        setShowInputError(false)
         router.push(`/home`);
     }
     else {
         setLoginMissingInputPassword(false)
         setLoginMissingInputEmail(false)
         setLoginErrorMessage(true)
-        setShowErrorMessageLogin(true)
+        setShowInputError(true)
 
         toast.error("Wrong login credentials");
     }
@@ -50,25 +50,25 @@ return(
                     <StyledInputContainer>
                         <StyledH1>Login</StyledH1>
                         <label htmlFor="email">Email:</label>
-                        <ThemeProvider theme={showErrorMessageLogin ? errorMessageInput : defaultThemeInput}>
+                        <ThemeProvider theme={showInputError ? errorMessageInput : defaultThemeInput}>
                             <StyledInput
                                 id="email"
                                 name="email"
                                 type="email"
                                 placeholder="e.g. admin@rooted.com"
                                 defaultValue="" 
-                                onChange={() => {setShowErrorMessageLogin(false),  setLoginMissingInputEmail(false)}}
+                                onChange={() => {setShowInputError(false),  setLoginMissingInputEmail(false)}}
                             ></StyledInput>
                         </ThemeProvider>
                         <StyledErrorMessage>{loginMissingInputEmail && "Please provide an email."}&nbsp;</StyledErrorMessage>
                         <label htmlFor="password">Password:</label>
-                        <ThemeProvider theme={showErrorMessageLogin ? errorMessageInput : defaultThemeInput}>
+                        <ThemeProvider theme={showInputError ? errorMessageInput : defaultThemeInput}>
                             <StyledInput
                                 id="password"
                                 name="password"
                                 type="password"
                                 placeholder="e.g. RootedFTW"  
-                                onChange={() => {setShowErrorMessageLogin(false),  setLoginMissingInputPassword(false)}}      
+                                onChange={() => {setShowInputError(false),  setLoginMissingInputPassword(false)}}      
                             ></StyledInput>
                         </ThemeProvider>
                         <StyledErrorMessage>
