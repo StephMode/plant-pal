@@ -2,27 +2,41 @@ import styled, { ThemeProvider } from "styled-components"
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import toast from 'react-hot-toast';
 
 export default function LoginPage(){
 const router = useRouter();
 const adminPW = { email:"admin@rooted.com",password:"RootedFTW",}
 const [loginErrorMessage,setLoginErrorMessage] = useState(false)
 const [showErrorMessageLogin, setShowErrorMessageLogin] = useState(false);
+const [loginMissingInputEmail,setLoginMissingInputEmail] = useState(false)
+const [loginMissingInputPassword,setLoginMissingInputPassword] = useState(false)
 
 function loginDataCheck (event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-   
-    if(data.email === adminPW.email & data.password === adminPW.password){
+    if (data.email === "") {
+        toast.error("email is required");
+        setLoginMissingInputEmail(true)   
+    }
+    else if (data.password === "") {
+        toast.error("password is required");
+        setLoginMissingInputPassword(true)
+    }
+    else if(data.email === adminPW.email & data.password === adminPW.password){
         setLoginErrorMessage(false)
         setShowErrorMessageLogin(false)
         router.push(`/home`);
     }
     else {
+        setLoginMissingInputPassword(false)
+        setLoginMissingInputEmail(false)
         setLoginErrorMessage(true)
         setShowErrorMessageLogin(true)
+
+        toast.error("Wrong login credentials");
     }
 }    
 
@@ -38,27 +52,29 @@ return(
                         <label htmlFor="email">Email:</label>
                         <ThemeProvider theme={showErrorMessageLogin ? errorMessageInput : defaultThemeInput}>
                             <StyledInput
-                                required
                                 id="email"
                                 name="email"
                                 type="email"
                                 placeholder="e.g. admin@rooted.com"
                                 defaultValue="" 
-                                onChange={() => setShowErrorMessageLogin(false)}
+                                onChange={() => {setShowErrorMessageLogin(false),  setLoginMissingInputEmail(false)}}
                             ></StyledInput>
                         </ThemeProvider>
+                        <StyledErrorMessage>{loginMissingInputEmail && "Please provide an email."}&nbsp;</StyledErrorMessage>
                         <label htmlFor="password">Password:</label>
                         <ThemeProvider theme={showErrorMessageLogin ? errorMessageInput : defaultThemeInput}>
                             <StyledInput
-                                required
                                 id="password"
                                 name="password"
                                 type="password"
                                 placeholder="e.g. RootedFTW"  
-                                onChange={() => setShowErrorMessageLogin(false)}      
+                                onChange={() => {setShowErrorMessageLogin(false),  setLoginMissingInputPassword(false)}}      
                             ></StyledInput>
                         </ThemeProvider>
-                        <StyledErrorMessage>{loginErrorMessage && <span>Password or Email is wrong</span>}&nbsp;</StyledErrorMessage>
+                        <StyledErrorMessage>
+                            {loginErrorMessage && <span>Password or Email is wrong</span>} <br/>
+                            {loginMissingInputPassword && "Please provide a password"}&nbsp;
+                        </StyledErrorMessage>
                     </StyledInputContainer>
                     <StyledLoginbutton type="submit">Login</StyledLoginbutton>
                 </StyledFormContainer>
@@ -68,7 +84,6 @@ return(
                     </p>
                 </StyledTextContainer>
             </StyledLoginContainer>
-            
         </StyledLoginWrapper>
 )
 
