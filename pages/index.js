@@ -8,7 +8,7 @@ export default function IntroPage() {
 
     useEffect(() => {
       const timer = setTimeout(() => {
-        router.push(`/home`);
+        router.push(`/login`);
       }, 4500); 
       return () => clearTimeout(timer); 
     }, [router]);
