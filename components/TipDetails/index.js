@@ -22,7 +22,7 @@ export default function TipDetails({
 
   const relatedPlants = tip.relatedPlants.map((relatedPlant) => relatedPlant);
   const relatedPlantObject = relatedPlants.map((plantID) =>
-    plantsToBeTagged.find((plant) => plant.id === plantID)
+    plantsToBeTagged.find((plant) => plant._id === plantID)
   );
 
   const undefinedCount = relatedPlantObject.filter(
@@ -52,9 +52,9 @@ export default function TipDetails({
         <StyledTagContainer>
           {relatedPlantObject.map((plant) =>
             plant === undefined ? null : (
-              <li key={plant.id}>
+              <li key={plant._id}>
                 <Tag
-                  tagId={plant.id}
+                  tagId={plant._id}
                   tagType={"plants"}
                   headline={plant.name}
                   subHeadline={plant.botanicalName}
@@ -73,12 +73,12 @@ export default function TipDetails({
           {notesData
             .filter((note) => note.noteLocation === String(routerQuery))
             .map((note) => (
-              <li key={note.id}>
+              <li key={note._id}>
                 <NoteCard
                   headline={note.headline}
                   note={note.note}
                   handleDeleteNote={handleDeleteNote}
-                  id={note.id}
+                  id={note._id}
                   handleEditNote={handleEditNote}
                   routerQuery={routerQuery}
                   dateCreated={note.dateCreated}

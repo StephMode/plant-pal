@@ -39,8 +39,8 @@ export default function PlantDetails({
   }) {
   const router = useRouter();
 
-  const relatedReminders = reminders.filter((reminder) => reminder.relatedPlant === plant.id);
-  const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant.id));
+  const relatedReminders = reminders.filter((reminder) => reminder.relatedPlant === plant._id);
+  const relatedTips = tipsToBeTagged.filter((tip) => tip.relatedPlants.includes(plant._id));
 
   return (
     <>
@@ -49,8 +49,7 @@ export default function PlantDetails({
             <StyledPlantOwnedButtonWrapper>
               <PlantOwnedButton 
                 isOwned={plant.isOwned}
-                plantId={plant.id}
-                onClick={() => handleToggleOwned(plant.id)}
+                onClick={() => handleToggleOwned(plant._id)}
               />
             </StyledPlantOwnedButtonWrapper>
       </StyledImageContainer>
@@ -137,9 +136,9 @@ export default function PlantDetails({
 
           <StyledListContainer>
               {relatedTips.map((tip) => (
-                <li key={tip.id}>
+                <li key={tip._id}>
                   <Tag
-                    tagId={tip.id}
+                    tagId={tip._id}
                     tagType={"tips"}
                     headline={tip.title}
                     subHeadline={tip.shortBodyContent}
@@ -168,7 +167,7 @@ export default function PlantDetails({
                 plant={plant}
                 buttonText={"Delete"}
                 onDeletePlant={onDeletePlant}
-                id={plant.id}
+                id={plant._id}
                 handleToggleModal={handleToggleModal}
               />
             ) : isReminder ? (
@@ -176,7 +175,7 @@ export default function PlantDetails({
                 plant={plant.name}
                 handleToggleModal={handleToggleModal}
                 handleAddReminder={handleAddReminder}
-                id={plant.id}
+                id={plant._id}
               />
             )
              : (

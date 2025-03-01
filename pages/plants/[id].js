@@ -11,12 +11,10 @@ export default function PlantDetailsPage({
   isEdit, 
   isDelete, 
   tips,
-  isOwned,
   handleToggleOwned,
   reminders,
   isReminder,
-  handleAddReminder,
-  currentDate
+  handleAddReminder
   }) {
   const router = useRouter();
 
@@ -24,7 +22,7 @@ export default function PlantDetailsPage({
 
   const { id } = router.query;
 
-  const plant = plants.find((plant) => plant.id === id);
+  const plant = plants.find((plant) => plant._id === id);
 
   if (!plant) {
     return <p>Plant not found!</p>;
@@ -43,7 +41,6 @@ export default function PlantDetailsPage({
         isEdit={isEdit} 
         handleAddPlant={handleAddPlant} 
         tipsToBeTagged={tipsToBeTagged}
-        isOwned={isOwned}
         handleToggleOwned={handleToggleOwned}
         reminders={reminders}
         isReminder={isReminder}

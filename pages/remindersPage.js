@@ -18,12 +18,12 @@ export default function RemindersPage({reminders, handleDeleteReminder}) {
             {reminders
             .sort((a, b) => new Date(a.date) - new Date(b.date))
             .map((reminder) => 
-                <li key={reminder.id}>
+                <li key={reminder._id}>
                     <ReminderCard 
                     plantName={reminder.plantName} 
                     task={reminder.task} 
                     date={reminder.date} 
-                    id={reminder.id} 
+                    id={reminder._id} 
                     reminderPage={true} 
                     handleDeleteReminder={handleDeleteReminder} 
                     plantId={reminder.relatedPlant} />

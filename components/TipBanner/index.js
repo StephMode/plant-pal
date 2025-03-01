@@ -10,7 +10,7 @@ export default function TipBanner ({randomTip,progress,
     
     
     return(
-        <StyledLink href={`/tips/${randomTip.id}`} bannerColor={randomTip?.bannerColor|| "var(--green-main)"} >
+        <StyledLink href={`/tips/${randomTip._id}`} bannerColor={randomTip?.bannerColor|| "var(--green-main)"} >
             <StyledBannerContainer  onMouseEnter={handleMouseHover}
       onMouseLeave={handleMouseLeave}>
                 <StyledBannerTextContainer>

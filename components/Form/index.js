@@ -35,7 +35,7 @@ export default function Form({
         if (data.botanicalName === "") {setShowErrorMessageBotanicalName(true)};
         if (data.fertiliserSeason.length === 0) {setShowErrorMessageFertilizerSeason(true)};
     } else {
-      if (buttonText === "Edit") { handleEditPlant(data, plant.id); toast.success("Plant successfully edited") }
+      if (buttonText === "Edit") { handleEditPlant(data, plant._id); toast.success("Plant successfully edited") }
       else if (buttonText === "Add") {
         handleAddPlant(data); toast.success("Plant successfully added")
       }
